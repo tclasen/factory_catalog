@@ -2,9 +2,9 @@
 
 A managed catalog of individually selectable controls for building a knowledge-work factory: repeatable ways for people and AI systems to produce, verify, and improve work. Controls can be used within AI systems, alongside them, or combined into complete systems.
 
-The catalog will organize controls into families and centralize each control's purpose, when to apply it, how to implement it, how to assess whether it works, and the outcomes to expect.
+The catalog organizes controls into families and describes each control's purpose, applicability, implementation, assessment, and expected outcomes. A lightweight ontology connects factories, activities, authority, outcomes, controls, and evidence.
 
-**Status: early beta, v0.1.0.** The taxonomy and initial controls are still to be defined. See the [versioning and baseline policy](CONTRIBUTING.md#4-classify-the-version-impact).
+**Status: early beta, v0.1.0.** Start at the [catalog entry point](catalog/index.md). See the [versioning and baseline policy](CONTRIBUTING.md#4-classify-the-version-impact).
 
 ## Why this exists
 
@@ -12,11 +12,13 @@ The goal is to provide a prioritized selection of reusable controls for building
 
 ## Catalog format
 
-The control taxonomy will be maintained in an OKF bundle under `catalog/`. It targets Open Knowledge Format (OKF) **0.2**; this is separate from the catalog version **v0.1.0**. The [vendored specification](vendor/okf/SPEC.md) and [upstream provenance](vendor/okf/UPSTREAM.md) pin the format used here. The bundle and its control families will be built out after the taxonomy discussion.
+The catalog is an OKF bundle under `catalog/`, targeting Open Knowledge Format (OKF) **0.2**; this is separate from the catalog version **v0.1.0**. The [vendored specification](vendor/okf/SPEC.md) and [upstream provenance](vendor/okf/UPSTREAM.md) pin the format used here.
+
+The [ontology](catalog/ontology.md) defines concepts and relationships. Browse [work types](catalog/work-types.md), [control families](catalog/control-families.md), [controls](catalog/controls/index.md), and [factory examples](catalog/factories/index.md). The examples are fictional designs, not claims of deployed or effective systems.
 
 ## How to use it
 
-Once controls are available:
+Follow the [selection, adoption, and assessment guide](catalog/adoption.md):
 
 1. Describe your intended outcome, operating context, and constraints.
 2. Select applicable controls and prioritize them by risk, value, and dependencies.
@@ -50,4 +52,6 @@ steps without presenting invented controls as catalog content.
 
 ## Contributing
 
-Human and AI contributors should follow [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow, security controls, and SEMVER release policy. AI contributors must also read [AGENTS.md](AGENTS.md). The next design step is agreeing on the control taxonomy.
+Human and AI contributors should follow [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow, security controls, and SEMVER release policy. AI contributors must also read [AGENTS.md](AGENTS.md). Extend the ontology and vocabulary through explicit design decisions, preserving adopted identities and references.
+
+Validate the bundle with `ruby scripts/validate_catalog.rb`. The validator uses Ruby's standard libraries and checks the pinned OKF structure plus this catalog's metadata, links, and index coverage. It does not assess operational control effectiveness.

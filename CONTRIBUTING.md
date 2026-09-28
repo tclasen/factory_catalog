@@ -5,7 +5,7 @@ This workflow applies to human and AI contributors. Read [README.md](README.md) 
 ## 1. Define the change
 
 - Inspect current files, applicable instructions, and relevant issues or pull requests. Identify the requested outcome and the smallest useful change.
-- Discuss and record decisions about control families, identifiers, and the domain schema before establishing them. These remain open design decisions; do not silently invent a baseline or import an entire factory framework.
+- Discuss and record changes to control families, identifiers, and the domain schema before establishing them. The [catalog ontology](catalog/ontology.md) records the initial design. Do not silently replace it, invent a release baseline, or import an entire factory framework.
 - Coordinate through an existing issue or pull request when available. Record scope, decisions, evidence, blockers, and next steps so another contributor can continue without reconstructing the conversation.
 - Keep changes focused and reviewable. Preserve others' work, reconcile concurrent changes, and avoid unrelated cleanup.
 
@@ -31,7 +31,7 @@ This workflow applies to human and AI contributors. Read [README.md](README.md) 
 
 ### Write useful controls
 
-Once the taxonomy and format are agreed, each control should have a stable identity and family, a clear purpose, applicability guidance, implementation instructions, measurable expected outcomes, and an assessment with evidence and pass/fail criteria. Make dependencies and limitations explicit.
+Each control should have a stable identity and family, a clear purpose, applicability guidance, implementation instructions, measurable expected outcomes, and an assessment with evidence and pass/fail criteria. Follow the [catalog ontology](catalog/ontology.md) and [control families](catalog/control-families.md). Make dependencies and limitations explicit.
 
 Keep controls individually selectable and usable both by URL and by copying their content. Separate reusable requirements from project-specific examples. Prefer observable behavior over vague advice, and distinguish proposed guidance from verified results.
 
@@ -59,6 +59,7 @@ Before submitting:
 
 - Review the complete diff for accuracy, clarity, scope, and consistency; run `git diff --check`.
 - Check changed links, references, and examples. For bundle changes, validate against the pinned specification and ensure indexes match the concepts present.
+- Run `ruby scripts/validate_catalog.rb` for bundle or schema changes. It uses Ruby's standard libraries to check OKF structure, catalog metadata, local links, and index coverage; passing it does not establish control effectiveness.
 - Run relevant repository checks when available. For controls, assess whether the procedure can demonstrate the expected outcome and record evidence against its pass/fail criteria.
 - Explain the problem and resulting change in the pull request. Include scope, version impact, compatibility or migration notes, checks actually performed, unverified claims, and the next unresolved decision. Link the relevant issue or prior discussion when available.
 
