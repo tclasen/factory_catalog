@@ -9,7 +9,7 @@ family: knowledge-and-evidence
 
 # Evidence traceability
 
-[Controls](index.md) · [Adoption](../adoption.md) · [Control families](../control-families.md)
+[Controls](./) · [Adoption](../adoption.md) · [Control families](../control-families.md)
 
 **Identity:** `controls/evidence-traceability` · **Catalog:** v0.1.0 · **Family:** `knowledge-and-evidence`
 

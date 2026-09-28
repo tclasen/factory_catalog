@@ -24,7 +24,7 @@ control_selections:
 
 # Example: public research factory
 
-[Factory examples](index.md) · [Ontology](../ontology.md) · [Adoption](../adoption.md)
+[Factory examples](./) · [Ontology](../ontology.md) · [Adoption](../adoption.md)
 
 **Fictional design case; proposed implementations; no assessments performed.**
 

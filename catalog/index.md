@@ -14,16 +14,11 @@ Catalog version **v0.1.0**, early beta. OKF format version **0.2** is independen
 - [Knowledge work types](work-types.md) — Sixteen non-exclusive work labels classified by their intended outcome.
 - [Control families](control-families.md) — Eleven control families and contextual questions for selecting controls.
 - [Select, adopt, and assess controls](adoption.md) — Describe a factory, select contextual controls, and preserve pinned adoption and assessment records.
-- [Apply classwork learnings](classwork-learnings.md) — Apply source intake, graph reconciliation, learning assessment, and action evidence to existing catalog controls.
 
 ## Controls and factories
 
-- [Controls](controls/index.md) — Individually selectable requirements with implementation and assessment procedures.
-- [Factory examples](factories/index.md) — Research, learning, and contract workflows connecting outcomes, authority, risks, and controls.
-
-## History
-
-- [Historical catalog log](log.md) — Earlier changes; subsequent history is recorded in Git and pull requests.
+- [Controls](controls/) — Individually selectable requirements with implementation and assessment procedures.
+- [Factory examples](factories/) — Fictional workflows connecting outcomes, authority, risks, and controls.
 
 ## Browse all concepts
 

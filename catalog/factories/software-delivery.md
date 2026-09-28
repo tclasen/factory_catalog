@@ -28,7 +28,7 @@ sources:
 
 # Example: software delivery factory
 
-[Factory examples](index.md) · [Ontology](../ontology.md) · [Adoption](../adoption.md)
+[Factory examples](./) · [Ontology](../ontology.md) · [Adoption](../adoption.md)
 
 **Fictional design case; proposed implementations; no assessments performed.** This applies the [source-backed lessons](../software-factory-learnings.md) to an invented reporting service. Its roles, thresholds, and infrastructure are illustrative local choices, not facts about the source repository.[^lessons]
 

@@ -88,7 +88,7 @@ This bundle uses OKF 0.2. Its domain-specific fields extend OKF; they do not red
 
 The body records rationale, assumptions, owner, scope, implementation details, evidence expectations, and reassessment triggers. `not-planned` records no planned implementation; it does not imply that a control is unnecessary. Partial implementation is described explicitly and does not earn a passing result. Real adoption adds the [pinned adoption record](adoption.md#record-the-adoption); selection alone is not adoption.
 
-Each concept is a Markdown file. Small local objects such as grants and outcomes can be tables or structured blocks in that concept. Split them into independently linked concepts when they need their own identity, reuse, or lifecycle. The conceptual ontology is broader than the document types needed for this initial collection.
+Each concept is a Markdown file. Small local objects such as grants and outcomes can be tables or structured blocks in that concept. Split them into independently linked concepts when they need their own identity, reuse, or lifecycle. The conceptual ontology is broader than the document types needed for this catalog.
 
 ## Relationships in use
 
@@ -98,12 +98,6 @@ Markdown links assert relationships; surrounding prose names their meaning. The 
 
 ## Identity and lifecycle
 
-Control paths stay independent of family names so a classification change does not move the control. Preserve published identities and document replacements and migration when a change is unavoidable. For interim revisions, use exact commit SHAs with catalog version v0.1.0.
+Control paths stay independent of family names so a classification change does not move the control. Before v1, paths and definitions may change without backwards compatibility. Update current references when removing or moving a concept. For interim revisions, use exact commit SHAs with catalog version v0.1.0.
 
 `status: stable` means that a definition is ready for consumption under OKF. It does not signify an approved release baseline, human verification, implementation, or effectiveness. The absence of `verified` means no document verification event is asserted. Local assessment results remain separate from OKF document verification.
-
-## Design basis
-
-The initial design uses an ontology for relationships and taxonomies for browsing; separates work type from domain, autonomy from authority, artifacts from outcomes, and controls from implementation evidence; and keeps small objects embedded until reuse justifies separate concepts. It uses 16 work types, 11 control families, and semantic control paths. These decisions implement the owner's direction to establish the discussed content directly in the catalog. Baseline approval and release changes remain separate decisions.
-
-No formal reasoner or graph database is required. Test future schema changes against concrete factories and preserve the distinctions above.
