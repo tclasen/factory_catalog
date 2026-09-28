@@ -14,7 +14,7 @@ The goal is to provide a prioritized selection of reusable controls for building
 
 The catalog is an OKF bundle under `catalog/`, targeting Open Knowledge Format (OKF) **0.2**; this is separate from the catalog version **v0.1.0**. The [vendored specification](vendor/okf/SPEC.md) and [upstream provenance](vendor/okf/UPSTREAM.md) pin the format used here.
 
-The [ontology](catalog/ontology.md) defines concepts and relationships. Browse [work types](catalog/work-types.md), [control families](catalog/control-families.md), [controls](catalog/controls/index.md), and [factory examples](catalog/factories/index.md). The examples are fictional designs, not claims of deployed or effective systems.
+The [ontology](catalog/ontology.md) defines concepts and relationships. Browse [work types](catalog/work-types.md), [control families](catalog/control-families.md), [controls](catalog/controls/), and [factory examples](catalog/factories/). The examples are fictional designs, not claims of deployed or effective systems.
 
 ## How to use it
 
@@ -52,7 +52,7 @@ steps without presenting invented controls as catalog content.
 
 ## Contributing
 
-Human and AI contributors should follow [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow, security controls, and SEMVER release policy. AI contributors must also read [AGENTS.md](AGENTS.md). Extend the ontology and vocabulary through explicit design decisions, preserving adopted identities and references.
+Human and AI contributors should follow [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow, security controls, and SEMVER release policy. AI contributors must also read [AGENTS.md](AGENTS.md). Extend the ontology and vocabulary through explicit design decisions. Before v1, paths and definitions may change without compatibility shims; pin adoption to an exact commit.
 
 With [uv](https://docs.astral.sh/uv/guides/scripts/) on your PATH, validate the bundle with `./scripts/validate_catalog.py`. The executable Python validator uses `uv` script mode with inline PyYAML and Markdown parser dependencies and checks the pinned OKF structure plus this catalog's metadata and links. It does not assess operational control effectiveness.
 
@@ -60,6 +60,6 @@ Run `./scripts/test_validate_catalog.py` for validator regression tests.
 
 ## Repository layout and parallel work
 
-`catalog/` holds the authored OKF concepts at stable paths. Its checked-in indexes are curated entry points. For a complete inventory, scan all concept files or generate a browsable bundle with `./scripts/build_catalog.py --output build/catalog`. The output directory must be new; `build/` is ignored. The build creates complete directory indexes from frontmatter and validates their coverage. Run `./scripts/build_catalog.py` without arguments to check a temporary build.
+`catalog/` holds the authored OKF concepts at stable paths. Its root index is a curated entry point; directory listings are generated. For a complete inventory, scan all concept files or generate a browsable bundle with `./scripts/build_catalog.py --output build/catalog`. The output directory must be new; `build/` is ignored. The build creates complete directory indexes from frontmatter and validates their coverage. Run `./scripts/build_catalog.py` without arguments to check a temporary build.
 
-Independent PRs add or edit their own concept files without maintaining a shared inventory or changelog. Git and PR history record new changes; `catalog/log.md` retains earlier history. See [parallel contributions](CONTRIBUTING.md#parallel-contributions) for agent isolation, shared-schema coordination, and checks before merge.
+Independent PRs add or edit their own concept files without maintaining a shared inventory or changelog. Keep change history in Git and PRs. See [parallel contributions](CONTRIBUTING.md#parallel-contributions) for agent isolation, shared-schema coordination, and checks before merge.

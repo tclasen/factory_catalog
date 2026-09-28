@@ -55,7 +55,7 @@ Classwork searches before creating a concept, retains one canonical treatment pe
 
 **Application:** before extending this graph, search titles, bodies, and incoming links. Update the existing concept when the meaning matches; create a new one only when it needs a distinct identity. Explain whether a link supplies a prerequisite, evidence, example, or limitation, using the [ontology's relationship conventions](ontology.md#relationships-in-use). Keep individual learner observations outside reusable knowledge and apply access restrictions to them.
 
-**Review fixture:** propose an addition under a synonym for an existing topic. Pass the reconciliation check only if the change reuses the canonical concept or explains a meaningful distinction, preserves valid incoming links, and updates the index. Separately review whether each relationship makes sense: a resolving link alone cannot establish that. Keep the catalog's existing schema and control identities; any new classifications require a design decision.
+**Review fixture:** propose an addition under a synonym for an existing topic. Pass the reconciliation check only if the change reuses the canonical concept or explains a meaningful distinction, repairs affected incoming links, and passes generated-index validation. Separately review whether each relationship makes sense: a resolving link alone cannot establish that. Changes to the catalog schema or classifications require a design decision.
 
 ## 3. Assess capability under stated conditions
 
@@ -83,7 +83,7 @@ Classwork's agent loop separates a proposed action, authorization, execution, ob
 
 ## Decisions still open
 
-This addition preserves the current families, control requirements, schema, and v0.1.0 baseline hold. Graph reconciliation, learner-data handling, and bounded recovery may justify dedicated controls later. Decide that after reviewing concrete implementations, their failure cases, and overlap with existing controls. Each adopter still needs a pinned catalog revision and local assessment evidence.
+Graph reconciliation, learner-data handling, and bounded recovery may justify dedicated controls later. Decide that after reviewing concrete implementations, their failure cases, and overlap with existing controls. Each adopter still needs a pinned catalog revision and local assessment evidence.
 
 [^intake]: [Source intake procedure](https://github.com/tclasen/classwork/blob/12d29b3ae730c565135604f027b502b87b225758/.agents/skills/okf-source-intake/SKILL.md), pinned classwork revision.
 [^synthesis]: [Knowledge synthesis procedure](https://github.com/tclasen/classwork/blob/12d29b3ae730c565135604f027b502b87b225758/.agents/skills/okf-knowledge-synthesis/SKILL.md), pinned classwork revision.

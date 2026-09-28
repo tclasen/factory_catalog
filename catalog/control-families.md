@@ -8,7 +8,7 @@ status: stable
 
 # Control families
 
-[Catalog](index.md) · [Ontology](ontology.md) · [Controls](controls/index.md)
+[Catalog](index.md) · [Ontology](ontology.md) · [Controls](controls/)
 
 Each control has one primary family and can have several cross-cutting tags. Families classify purpose; they do not imply that a family has complete control coverage.
 
@@ -32,7 +32,7 @@ Add cross-cutting tags where useful: quality, security, privacy, safety, efficie
 
 ## Context questions that change control selection
 
-| Condition | Concern to investigate | Candidate response beyond or within this initial catalog |
+| Condition | Concern to investigate | Candidate response beyond or within this catalog |
 |---|---|---|
 | External or adversarial inputs | Deceptive evidence, prompt injection | Provenance, separation of source content from instructions, enforced permissions |
 | Sensitive data | Disclosure, inappropriate reuse | Access limits, destination restrictions, minimization, retention rules |
@@ -45,4 +45,4 @@ Add cross-cutting tags where useful: quality, security, privacy, safety, efficie
 | Self-modification | Changed or bypassed controls | Protected configuration, independent authorization, regression assessment |
 | Consequential human outcomes | Poor advice, inequitable treatment, misplaced reliance | Outcome measures, expert review, contestability, context-specific obligations |
 
-The three initial catalog controls cover only part of this space. Record gaps explicitly; their presence must not be interpreted as a complete security or compliance program.
+The catalog controls cover only part of this space. Record gaps explicitly; their presence must not be interpreted as a complete security or compliance program.
