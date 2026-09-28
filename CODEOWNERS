@@ -1,3 +1,9 @@
 # Sole code owner for agent instructions and the shared contribution workflow.
 /AGENTS.md @tclasen
 /CONTRIBUTING.md @tclasen
+
+# Changes to the merge gate require the repository owner's review.
+/.github/workflows/ @tclasen
+/scripts/validate_catalog.py @tclasen
+/scripts/test_validate_catalog.py @tclasen
+/CODEOWNERS @tclasen

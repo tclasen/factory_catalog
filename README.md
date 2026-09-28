@@ -54,4 +54,6 @@ steps without presenting invented controls as catalog content.
 
 Human and AI contributors should follow [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow, security controls, and SEMVER release policy. AI contributors must also read [AGENTS.md](AGENTS.md). Extend the ontology and vocabulary through explicit design decisions, preserving adopted identities and references.
 
-With [uv](https://docs.astral.sh/uv/guides/scripts/) on your PATH, validate the bundle with `./scripts/validate_catalog.py`. The executable Python validator uses `uv` script mode with an inline PyYAML dependency and checks the pinned OKF structure plus this catalog's metadata, links, and index coverage. It does not assess operational control effectiveness.
+With [uv](https://docs.astral.sh/uv/guides/scripts/) on your PATH, validate the bundle with `./scripts/validate_catalog.py`. The executable Python validator uses `uv` script mode with inline PyYAML and Markdown parser dependencies and checks the pinned OKF structure plus this catalog's metadata, links, and index coverage. It does not assess operational control effectiveness.
+
+Run `./scripts/test_validate_catalog.py` for validator regression tests. [CI setup and enforcement](CONTRIBUTING.md#ci-and-merge-enforcement) explains how to make the **Catalog validation** check mandatory before merging.

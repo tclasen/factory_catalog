@@ -1,7 +1,7 @@
 #!/usr/bin/env -S uv run --script
 # /// script
 # requires-python = ">=3.11"
-# dependencies = ["PyYAML==6.0.3"]
+# dependencies = ["PyYAML==6.0.3", "markdown-it-py==4.0.0"]
 # ///
 """Validate this catalog against pinned OKF 0.2 and repository conventions.
 
@@ -18,6 +18,10 @@ import sys
 from typing import Any
 
 import yaml
+from markdown_it import MarkdownIt
+
+
+MARKDOWN = MarkdownIt("commonmark")
 
 
 @dataclass(frozen=True)
@@ -101,8 +105,20 @@ def resolve_reference(root: Path, path: Path, target: str) -> Path:
 
 def extract_links(body: str) -> list[str]:
     """Find navigation links, excluding literal examples in fenced blocks."""
-    prose = re.sub(r"^```.*?^```[^\n]*$", "", body, flags=re.MULTILINE | re.DOTALL)
-    return re.findall(r"\[[^\]]*\]\(([^)\s]+)\)", prose)
+    links = []
+
+    def visit(tokens):
+        for token in tokens:
+            attribute = {"link_open": "href", "image": "src"}.get(token.type)
+            if attribute:
+                target = token.attrGet(attribute)
+                if target is not None:
+                    links.append(target)
+            if token.children:
+                visit(token.children)
+
+    visit(MARKDOWN.parse(body))
+    return links
 
 
 def extract_heading_anchors(body: str) -> list[str]:
@@ -169,12 +185,31 @@ def validate_control(document: Document, families: list[str]) -> list[str]:
     errors = []
     if document.metadata.get("family") not in families:
         errors.append("unknown family")
+    tokens = MARKDOWN.parse(document.body)
+    sections = {}
+    for index, token in enumerate(tokens):
+        if token.type != "heading_open" or token.tag != "h2":
+            continue
+        heading = tokens[index + 1].content
+        end = next((
+            pos for pos in range(index + 3, len(tokens))
+            if tokens[pos].type == "heading_open" and tokens[pos].tag in ("h1", "h2")
+        ), len(tokens))
+        # Subheadings and HTML comments alone do not constitute section content.
+        sections[heading] = any(
+            tokens[pos].content.strip()
+            and tokens[pos].type in ("inline", "fence", "code_block")
+            and tokens[pos - 1].type != "heading_open"
+            for pos in range(index + 3, end)
+        )
     for heading in (
         "Purpose and applicability", "Requirement", "Implementation",
         "Expected outcome and assessment", "Dependencies and limitations",
     ):
-        if f"## {heading}\n" not in document.body:
+        if heading not in sections:
             errors.append(f"missing section {heading}")
+        elif not sections[heading]:
+            errors.append(f"empty section {heading}")
     return errors
 
 

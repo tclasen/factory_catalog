@@ -72,3 +72,76 @@ Never report a control as effective, a check as passing, or a baseline as approv
 ## 6. Address review and hand off
 
 Address review feedback and validate any resulting changes. Follow the [security controls](#2-prepare-a-branch-and-follow-security-controls) before an authorized merge. Report what changed, how it was checked, and any remaining blockers or decisions. If work cannot be published or merged, preserve the prepared changes and state what is needed to continue.
+
+## CI and merge enforcement
+
+[Catalog CI](.github/workflows/validate.yml) runs on every pull request, pushes to
+`main`, merge queue groups, and manual dispatch. The **Catalog validation** job
+runs the validator regression tests and checks the complete catalog. It uses a
+GitHub-hosted Ubuntu runner, read-only repository permission, no saved checkout
+credentials, and actions pinned to full commit SHAs. Python and uv versions are
+pinned in the workflow; Python dependencies are pinned in both executable scripts.
+Update both scripts together when changing their shared dependencies.
+
+Run the same checks locally with uv on PATH:
+
+```sh
+./scripts/test_validate_catalog.py
+./scripts/validate_catalog.py
+```
+
+The validator checks catalog structure, metadata, Markdown navigation links,
+index coverage, and required control sections with content. It does not establish
+control effectiveness or compatibility with prior revisions, validate all optional
+OKF fields, check external URLs or repository documentation links, or verify the
+vendored specification checksums. Human review remains necessary. Undefined
+Markdown reference labels render as plain text; only resolved Markdown links are
+checked. Heading anchors use the validator's existing simplified heading rules.
+
+### Enable the workflow
+
+1. Publish this branch and open a pull request. In **Settings → Actions → General**,
+   confirm Actions is enabled and policy allows `actions/checkout` and
+   `astral-sh/setup-uv` at the pinned revisions. Keep default workflow permissions
+   read-only; this workflow needs no secrets or write access.
+2. Let **Catalog CI / Catalog validation** complete successfully on the pull
+   request. A first-time fork contributor may need a maintainer to approve the run.
+   Review workflow changes before granting that approval.
+3. Merge through the normal signed-commit and review process. Manual dispatch is
+   available from the Actions tab once the workflow is on the default branch.
+
+### Require a passing check before merging
+
+A workflow file does not make its result mandatory. A repository administrator
+must configure enforcement separately:
+
+1. Open **Settings → Rules → Rulesets** and edit the active ruleset targeting
+   `main` (or create an active branch ruleset targeting the default branch).
+2. Keep the existing pull request, code owner review, signature, linear history,
+   conversation resolution, deletion, and force-push protections.
+3. Enable **Require status checks to pass** and add the exact check name
+   **Catalog validation**. Select **GitHub Actions** as its expected source when
+   offered. If the check is absent from the picker, first run the workflow
+   successfully on a PR and refresh the settings page.
+4. Enable **Require branches to be up to date before merging**. If using a merge
+   queue, the workflow already handles `merge_group` events.
+5. Keep enforcement **Active** and review bypass entries: anyone allowed to bypass
+   the rule can merge without the check. Avoid bypasses if universal enforcement
+   is intended. Save the ruleset.
+6. Verify with a temporary PR that introduces a broken catalog link: the check
+   should fail and merging should be blocked. Fix the link, rerun, and confirm
+   the status-check requirement is satisfied. Other review rules may still block
+   merging.
+
+For repositories using classic branch protection, add **Catalog validation**
+under **Settings → Branches → main protection → Require status checks to pass
+before merging**, require an up-to-date branch, and apply protection to bypass
+actors as appropriate. Do not remove existing protections to add this check.
+
+Keep the job name stable after making it required. Run on every PR without path
+filters, and do not add `continue-on-error` or job conditions that let validation
+be skipped. Review changes to the workflow, validator, and tests as changes to the
+merge gate; CODEOWNERS includes these paths.
+
+See GitHub's [ruleset setup instructions](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)
+and [available rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets).
