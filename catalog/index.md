@@ -15,10 +15,14 @@ Catalog version **v0.1.0**, early beta. OKF format version **0.2** is independen
 - [Control families](control-families.md) — Eleven control families and contextual questions for selecting controls.
 - [Select, adopt, and assess controls](adoption.md) — Describe a factory, select contextual controls, and preserve pinned adoption and assessment records.
 
+## Source-derived guidance
+
+- [Lessons from Software Factory](software-factory-learnings.md) — Apply source-backed lessons about scope, evidence, recovery, and process improvement to knowledge-work factories.
+
 ## Controls and factories
 
 - [Controls](controls/index.md) — Individually selectable requirements with implementation and assessment procedures.
-- [Factory examples](factories/index.md) — Research, learning, and contract workflows connecting outcomes, authority, risks, and controls.
+- [Factory examples](factories/index.md) — Research, learning, contract, and software delivery workflows connecting outcomes, authority, risks, and controls.
 
 ## History
 
