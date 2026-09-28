@@ -23,4 +23,8 @@ Catalog version **v0.1.0**, early beta. OKF format version **0.2** is independen
 
 ## History
 
-- [Catalog log](log.md) — Changes to this collection.
+- [Historical catalog log](log.md) — Earlier changes; subsequent history is recorded in Git and pull requests.
+
+## Browse all concepts
+
+This is a curated entry point. Browse [this directory](./) for current files; agents should scan Markdown files and read their frontmatter. Complete indexes are generated for distribution by `./scripts/build_catalog.py` from the repository root. Adding a concept does not require editing this page.

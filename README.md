@@ -54,6 +54,12 @@ steps without presenting invented controls as catalog content.
 
 Human and AI contributors should follow [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow, security controls, and SEMVER release policy. AI contributors must also read [AGENTS.md](AGENTS.md). Extend the ontology and vocabulary through explicit design decisions, preserving adopted identities and references.
 
-With [uv](https://docs.astral.sh/uv/guides/scripts/) on your PATH, validate the bundle with `./scripts/validate_catalog.py`. The executable Python validator uses `uv` script mode with inline PyYAML and Markdown parser dependencies and checks the pinned OKF structure plus this catalog's metadata, links, and index coverage. It does not assess operational control effectiveness.
+With [uv](https://docs.astral.sh/uv/guides/scripts/) on your PATH, validate the bundle with `./scripts/validate_catalog.py`. The executable Python validator uses `uv` script mode with inline PyYAML and Markdown parser dependencies and checks the pinned OKF structure plus this catalog's metadata and links. It does not assess operational control effectiveness.
 
 Run `./scripts/test_validate_catalog.py` for validator regression tests.
+
+## Repository layout and parallel work
+
+`catalog/` holds the authored OKF concepts at stable paths. Its checked-in indexes are curated entry points. For a complete inventory, scan all concept files or generate a browsable bundle with `./scripts/build_catalog.py --output build/catalog`. The output directory must be new; `build/` is ignored. The build creates complete directory indexes from frontmatter and validates their coverage. Run `./scripts/build_catalog.py` without arguments to check a temporary build.
+
+Independent PRs add or edit their own concept files without maintaining a shared inventory or changelog. Git and PR history record new changes; `catalog/log.md` retains earlier history. See [parallel contributions](CONTRIBUTING.md#parallel-contributions) for agent isolation, shared-schema coordination, and checks before merge.
