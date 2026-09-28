@@ -270,12 +270,13 @@ def validate_domain_metadata(root: Path, documents: dict[Path, Document]) -> lis
     return errors
 
 
-def validate(root: Path) -> tuple[list[str], int]:
+def validate(root: Path, *, require_index_coverage: bool = False) -> tuple[list[str], int]:
     """Run validation phases in diagnostic order."""
     documents, errors = load_documents(root)
     links = {path: extract_links(document.body) for path, document in documents.items()}
     errors.extend(validate_links(root, documents, links))
-    errors.extend(validate_index_coverage(root, documents, links))
+    if require_index_coverage:
+        errors.extend(validate_index_coverage(root, documents, links))
     errors.extend(validate_domain_metadata(root, documents))
     return errors, len(documents)
 
@@ -286,12 +287,15 @@ def main() -> int:
         "catalog", nargs="?", type=Path,
         default=Path(__file__).resolve().parent.parent / "catalog",
     )
+    parser.add_argument("--require-index-coverage", action="store_true",
+                        help="require exhaustive indexes in a generated bundle")
     args = parser.parse_args()
-    errors, count = validate(args.catalog.resolve())
+    errors, count = validate(args.catalog.resolve(), require_index_coverage=args.require_index_coverage)
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print(f"PASS: {count} Markdown files; OKF structure, catalog metadata, local links, and index coverage.")
+    coverage = ", and index coverage" if args.require_index_coverage else ""
+    print(f"PASS: {count} Markdown files; OKF structure, catalog metadata, local links{coverage}.")
     return 0
 
 

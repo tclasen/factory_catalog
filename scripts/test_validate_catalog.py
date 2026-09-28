@@ -14,6 +14,7 @@ import tempfile
 import unittest
 
 import validate_catalog as validator
+import build_catalog as builder
 
 
 REPOSITORY = Path(__file__).resolve().parent.parent
@@ -99,11 +100,94 @@ class CatalogTests(unittest.TestCase):
 
     def test_unlisted_concept(self):
         shutil.copyfile(self.control, self.control.with_name("unlisted.md"))
-        self.assertTrue(any("unlisted entry unlisted.md" in error for error in self.errors()))
+        self.assertEqual(self.errors(), [])
+        errors, _ = validator.validate(self.root, require_index_coverage=True)
+        self.assertTrue(any("unlisted entry unlisted.md" in error for error in errors))
 
     def test_missing_entry_point(self):
         (self.root / "index.md").unlink()
         self.assertTrue(any("missing bundle entry point" in error for error in self.errors()))
+
+    def snapshot(self, root):
+        return {path.relative_to(root): path.read_bytes() for path in root.rglob("*") if path.is_file()}
+
+    def test_build_is_deterministic_and_does_not_edit_source(self):
+        before = self.snapshot(self.root)
+        first, second = self.root.parent / "first", self.root.parent / "second"
+        builder.build(self.root, first)
+        builder.build(self.root, second)
+        self.assertEqual(self.snapshot(self.root), before)
+        self.assertEqual(self.snapshot(first), self.snapshot(second))
+        self.assertEqual(validator.validate(first, require_index_coverage=True)[0], [])
+        self.assertEqual((first / "controls/bounded-external-action.md").read_bytes(), self.control.read_bytes())
+
+    def test_independent_additions_combine_without_shared_edits(self):
+        baseline = self.snapshot(self.root)
+        additions = {}
+        for name in ("agent-alpha", "agent-beta"):
+            branch = self.root.parent / name
+            shutil.copytree(self.root, branch)
+            control = branch / f"controls/{name}.md"
+            shutil.copyfile(self.control, control)
+            self.assertEqual(validator.validate(branch)[0], [])
+            builder.build(branch, self.root.parent / f"{name}-build")
+            changed = {path: data for path, data in self.snapshot(branch).items() if baseline.get(path) != data}
+            self.assertEqual(set(changed), {Path(f"controls/{name}.md")})
+            self.assertFalse(set(additions) & set(changed))
+            additions.update(changed)
+        for path, data in additions.items():
+            (self.root / path).write_bytes(data)
+        combined = self.root.parent / "combined"
+        builder.build(self.root, combined)
+        index = (combined / "controls/index.md").read_text()
+        for path in additions:
+            self.assertIn(f"]({path.name})", index)
+        self.assertEqual(validator.validate(combined, require_index_coverage=True)[0], [])
+
+    def test_new_nested_concepts_need_no_source_indexes(self):
+        directory = self.root / "guides/nested"
+        directory.mkdir(parents=True)
+        (directory / "new-guide.md").write_text(
+            '---\ntype: Guide\ntitle: "A [guide]"\ndescription: "Use *examples*."\n'
+            'catalog_version: v0.1.0\n---\n\n# A guide\n\nNew guidance.\n'
+        )
+        self.assertEqual(self.errors(), [])
+        output = self.root.parent / "nested-build"
+        builder.build(self.root, output)
+        for path in ("index.md", "guides/index.md", "guides/nested/index.md"):
+            self.assertTrue((output / path).is_file())
+        self.assertIn(r"A \[guide\]", (output / "guides/nested/index.md").read_text())
+        self.assertEqual(validator.validate(output, require_index_coverage=True)[0], [])
+
+    def test_build_rejects_invalid_source_and_unsafe_output(self):
+        with self.assertRaisesRegex(ValueError, "overlap"):
+            builder.build(self.root, self.root / "output")
+        with self.assertRaisesRegex(ValueError, "overlap"):
+            builder.build(self.root, self.root.parent)
+        output = self.root.parent / "existing"
+        output.mkdir()
+        with self.assertRaisesRegex(ValueError, "already exists"):
+            builder.build(self.root, output)
+        self.append("[Broken](missing.md)")
+        with self.assertRaisesRegex(ValueError, "missing.md"):
+            builder.build(self.root, self.root.parent / "invalid")
+        self.assertFalse((self.root.parent / "invalid").exists())
+
+    def test_build_cli_and_strict_index_validation(self):
+        shutil.copyfile(self.control, self.control.with_name("unlisted.md"))
+        command = [sys.executable, str(REPOSITORY / "scripts/validate_catalog.py"), str(self.root)]
+        result = subprocess.run(command + ["--require-index-coverage"], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("unlisted entry unlisted.md", result.stderr)
+        output = self.root.parent / "cli-build"
+        command = [sys.executable, str(REPOSITORY / "scripts/build_catalog.py"),
+                   "--source", str(self.root), "--output", str(output)]
+        result = subprocess.run(command, capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("PASS:", result.stdout)
+        result = subprocess.run(command, capture_output=True, text=True)
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("already exists", result.stderr)
 
     def test_cli_exit_codes_and_diagnostics(self):
         command = [sys.executable, str(REPOSITORY / "scripts/validate_catalog.py"), str(self.root)]

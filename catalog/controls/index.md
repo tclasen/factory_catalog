@@ -7,3 +7,7 @@
 - [Outcome verification](outcome-verification.md) — Distinguish artifact completion from evidence that the intended outcome was achieved.
 
 Each control has a stable concept identity equal to its path without `.md`. Family classification is metadata, so controls can be reclassified without changing their identity. Assess effectiveness in the local implementation; inclusion here is not evidence of effectiveness.
+
+## Browse all concepts
+
+This is a curated entry point. Browse [this directory](./) for current files; agents should scan Markdown files and read their frontmatter. Complete indexes are generated for distribution by `./scripts/build_catalog.py` from the repository root. Adding a concept does not require editing this page.

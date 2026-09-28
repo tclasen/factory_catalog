@@ -37,3 +37,5 @@ jobs:
         run: ./scripts/test_validate_catalog.py
       - name: Validate catalog
         run: ./scripts/validate_catalog.py
+      - name: Build and validate complete indexes
+        run: ./scripts/build_catalog.py

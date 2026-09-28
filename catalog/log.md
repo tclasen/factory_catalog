@@ -1,5 +1,7 @@
 # Catalog update log
 
+Historical entries retained for compatibility. Subsequent changes are recorded in Git commits and pull requests; routine contributions do not append here.
+
 ## 2026-09-28
 
 - **Addition**: Added a draft [classwork application guide](classwork-learnings.md) from pinned source revision `12d29b3ae730c565135604f027b502b87b225758`, with proposed review fixtures and links to existing controls.
