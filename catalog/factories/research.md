@@ -59,6 +59,12 @@ Run the evidence control's negative cases on a fixture memo. Then ask the decisi
 
 Implementation state for the selected controls: **proposed**. Assessment result: **not assessed**. The proposed external-action exclusion is an assumption requiring inventory evidence; if that cannot be obtained, record applicability as **undetermined**.
 
+## Source intake extension
+
+Proposed application of the [classwork source-intake learning](../classwork-learnings.md#1-resolve-the-source-before-integrating-its-claims): before drafting, the research agent records each source's exact revision or access time, relevant passage, and whether the comparison is directly supported or inferred. The research lead records whether new evidence confirms, qualifies, or conflicts with the existing comparison. Keep unresolved conflicts visible to the decision owner.
+
+Add a fixture with two source editions that disagree on one product capability. Expected behavior: identify the edition used, retain both observations and their context, and qualify the comparison until the conflict is resolved. Silent edition mixing or an unsupported definitive recommendation fails this proposed check. Retain the intake table, draft revision, and reviewer disposition. This fixture has not been run.
+
 ## Remaining gaps and reassessment
 
 Source selection bias, stale information, prompt injection, resource limits, and tool isolation need further controls. Source links alone do not establish truth. Reassess when private data, persistent memory, new tools, automated publication, or a consequential decision context is added. The research lead owns that review.
