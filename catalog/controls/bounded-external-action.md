@@ -9,7 +9,7 @@ family: authority-and-access
 
 # Bounded external action
 
-[Controls](index.md) · [Adoption](../adoption.md) · [Control families](../control-families.md)
+[Controls](./) · [Adoption](../adoption.md) · [Control families](../control-families.md)
 
 **Identity:** `controls/bounded-external-action` · **Catalog:** v0.1.0 · **Family:** `authority-and-access`
 

@@ -9,7 +9,7 @@ family: quality-and-validation
 
 # Outcome verification
 
-[Controls](index.md) · [Adoption](../adoption.md) · [Control families](../control-families.md)
+[Controls](./) · [Adoption](../adoption.md) · [Control families](../control-families.md)
 
 **Identity:** `controls/outcome-verification` · **Catalog:** v0.1.0 · **Family:** `quality-and-validation`
 

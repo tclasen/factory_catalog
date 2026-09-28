@@ -101,7 +101,12 @@ class CatalogTests(unittest.TestCase):
     def test_unlisted_concept(self):
         shutil.copyfile(self.control, self.control.with_name("unlisted.md"))
         self.assertEqual(self.errors(), [])
-        errors, _ = validator.validate(self.root, require_index_coverage=True)
+        output = self.root.parent / "coverage-build"
+        builder.build(self.root, output)
+        index = output / "controls/index.md"
+        index.write_text("\n".join(line for line in index.read_text().splitlines()
+                                   if "](unlisted.md)" not in line) + "\n")
+        errors, _ = validator.validate(output, require_index_coverage=True)
         self.assertTrue(any("unlisted entry unlisted.md" in error for error in errors))
 
     def test_missing_entry_point(self):
@@ -178,7 +183,7 @@ class CatalogTests(unittest.TestCase):
         command = [sys.executable, str(REPOSITORY / "scripts/validate_catalog.py"), str(self.root)]
         result = subprocess.run(command + ["--require-index-coverage"], capture_output=True, text=True)
         self.assertEqual(result.returncode, 1)
-        self.assertIn("unlisted entry unlisted.md", result.stderr)
+        self.assertIn("missing directory index", result.stderr)
         output = self.root.parent / "cli-build"
         command = [sys.executable, str(REPOSITORY / "scripts/build_catalog.py"),
                    "--source", str(self.root), "--output", str(output)]

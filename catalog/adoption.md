@@ -8,13 +8,13 @@ status: stable
 
 # Select, adopt, and assess controls
 
-[Catalog](index.md) · [Ontology](ontology.md) · [Controls](controls/index.md)
+[Catalog](index.md) · [Ontology](ontology.md) · [Controls](controls/)
 
 ## Describe the factory
 
 Record its intended outcome, beneficiaries, accountable owner, and exclusions. Identify activities using the [work types](work-types.md), then describe domain, actors, inputs, outputs, workflow, knowledge sources, and persistent state. Record autonomy and authority for each activity, including escalation and stopping conditions.
 
-Describe data sensitivity, external exposure, scale, obligations, consequences, and reversibility. Unknown context stays explicit. The [factory examples](factories/index.md) show how to connect these fields.
+Describe data sensitivity, external exposure, scale, obligations, consequences, and reversibility. Unknown context stays explicit. The [factory examples](factories/) show how to connect these fields.
 
 ## Select controls
 
@@ -59,4 +59,4 @@ The [classwork application guide](classwork-learnings.md#4-connect-provenance-to
 
 Reassess when assumptions, data, actors, tools, authority, workflow, or consequences change. Preserve the prior adoption record when updating to a new source revision. Document changed requirements, local adaptations, and any migration before claiming the new control is implemented or assessed.
 
-The initial collection contains three controls. It does not cover every security, privacy, quality, or operational concern; the examples explicitly identify remaining gaps.
+The catalog does not cover every security, privacy, quality, or operational concern; the examples explicitly identify remaining gaps.
