@@ -12,6 +12,8 @@ The goal is to provide a prioritized selection of reusable controls for building
 
 ## Catalog format
 
+A [review MVP of the proposed ontology](docs/ontology-mvp/index.md) describes factories, work types, controls, and assessment evidence through three worked examples. It is a design proposal, not an approved taxonomy or catalog baseline.
+
 The control taxonomy will be maintained in an OKF bundle under `catalog/`. It targets Open Knowledge Format (OKF) **0.2**; this is separate from the catalog version **v0.1.0**. The [vendored specification](vendor/okf/SPEC.md) and [upstream provenance](vendor/okf/UPSTREAM.md) pin the format used here. The bundle and its control families will be built out after the taxonomy discussion.
 
 ## How to use it
