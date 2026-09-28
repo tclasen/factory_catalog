@@ -4,7 +4,7 @@
 
 Maintain a concise, reusable catalog of controls for knowledge work in and with AI systems, including complete systems assembled from controls. Read [README.md](README.md) before changing the repository.
 
-The project is early beta at **v0.1.0** until the repository owner approves a baseline. The taxonomy, control identifiers, and schema remain open design decisions. Discuss and record those decisions before establishing them; do not silently invent a baseline or import an entire factory framework.
+The project is early beta at **v0.1.0** until the repository owner approves a baseline. The control taxonomy will be maintained in the `catalog/` OKF bundle. Its families, control identifiers, and domain schema remain open design decisions. Discuss and record those decisions before establishing them; do not silently invent a baseline or import an entire factory framework.
 
 ## Work as an active maintainer
 
@@ -12,7 +12,15 @@ The project is early beta at **v0.1.0** until the repository owner approves a ba
 - Carry authorized work through implementation, verification, and a clear handoff. Resolve routine details independently; ask focused questions when a missing decision blocks correctness or scope.
 - Keep changes focused and reviewable. Preserve others' work, reconcile concurrent changes, and avoid unrelated cleanup.
 - Coordinate through the existing issue or pull request when available. Record scope, decisions, evidence, blockers, and next steps so another person or agent can continue without reconstructing the conversation.
-- Use a branch and pull request for proposed changes unless direct commits are authorized. Follow repository permissions and review rules; maintainer instructions do not grant additional authority.
+- Use verified signed commits and a branch and pull request for proposed changes unless direct commits are authorized. Follow repository permissions and review rules; maintainer instructions do not grant additional authority.
+
+## Maintain the OKF bundle
+
+- Always use the pinned vendored specification at `vendor/okf/SPEC.md` (OKF 0.2) when creating, reading, editing, or validating the OKF bundle. Do not substitute a live upstream version or remembered rules. Keep the bundle in `catalog/` and repository guidance and vendored files outside it.
+- When initializing the bundle, create `catalog/index.md` as its entry point and declare `okf_version: "0.2"` there. Maintain the index as the bundle evolves. Each concept is a UTF-8 Markdown file with YAML frontmatter and a non-empty `type`; `index.md` and `log.md` are reserved.
+- Use stable concept paths and relative links within the bundle. Keep indexes synchronized with added or moved concepts.
+- Keep the upstream specification and license unchanged. For upgrades, fetch from an exact upstream commit, review the changes, update `vendor/okf/UPSTREAM.md` and its checksums, and assess bundle compatibility.
+- Distinguish OKF format version 0.2 from catalog version v0.1.0.
 
 ## Maintain useful controls
 
