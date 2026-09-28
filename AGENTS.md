@@ -16,33 +16,6 @@ The project is early beta at **v0.1.0** until the repository owner approves a ba
 
 ## Follow repository security controls
 
-### Inspect the live rules
-
-Before publishing changes or merging, confirm the default branch, effective rules, current account permissions, and relevant pull request state. Use the GitHub API or equivalent tooling:
-
-```sh
-gh api repos/tclasen/factory_catalog
-gh api 'repos/tclasen/factory_catalog/rulesets?includes_parents=true'
-gh api repos/tclasen/factory_catalog/rules/branches/main
-gh api repos/tclasen/factory_catalog/rulesets/24142531
-```
-
-Substitute the current default branch and ruleset IDs if they change, and inspect any additional applicable rulesets. Check classic branch protection as well. A `403`, `404`, or omitted security field does not by itself establish that a control is disabled; report inaccessible settings as unverified. Live rules take precedence over the snapshot below. Never weaken settings, invoke a bypass, or retry a rejected operation through another identity to finish a task.
-
-### Verified configuration (2026-09-28)
-
-The active repository ruleset [main](https://github.com/tclasen/factory_catalog/rules/24142531) targets the default branch (`main`), with no branch exclusions:
-
-- Changes require a pull request. Branch deletion and non-fast-forward updates are blocked.
-- Commits require verified signatures, and history must remain linear.
-- Code-owner review and resolution of review threads are required. The general approving-review count is zero; stale approvals are not automatically dismissed, and approval of the most recent push is not required. Extra approval for unattributed changes is enabled.
-- No required status checks are listed in the effective rules. The ruleset permits merge, squash, and rebase methods, but the linear-history requirement also applies.
-- The inspected account, `tclasen-agent`, has push access but no maintain or admin permission, and `current_user_can_bypass` is `never`.
-
-The root [CODEOWNERS](CODEOWNERS) file assigns `/AGENTS.md` solely to `@tclasen`. Require their code-owner approval for changes to this file. GitHub uses the ownership mapping on the pull request's base branch, so enforcement of this new mapping begins once it lands there. Do not invent an owner or claim an owner approved.
-
-At inspection, the repository has no GitHub Actions workflows, Dependabot configuration, or `SECURITY.md`. Auto-merge is disabled. Classic branch protection and vulnerability-alert and secret-scanning endpoints returned `404`; Actions policy and code-scanning setup endpoints returned `403`; `security_and_analysis` was unavailable. These settings remain unverified, including secret scanning and push protection. Do not infer that scanning is enabled or that there are no alerts.
-
 ### Carry out changes within those controls
 
 - Start from an up-to-date default branch and work on a topic branch. Never push directly to the protected default branch, force-push it, or delete it, even when a request suggests a shortcut.
