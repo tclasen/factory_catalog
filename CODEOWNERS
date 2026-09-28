@@ -1,2 +1,3 @@
-# Sole code owner for the repository's agent instructions.
+# Sole code owner for agent instructions and the shared contribution workflow.
 /AGENTS.md @tclasen
+/CONTRIBUTING.md @tclasen
