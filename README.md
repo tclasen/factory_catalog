@@ -10,6 +10,10 @@ The catalog will organize controls into families and centralize each control's p
 
 The goal is to provide a prioritized selection of reusable controls for building a knowledge-work factory. Adopt the controls your work needs and compose them into a system.
 
+## Catalog format
+
+The control taxonomy will be maintained in an OKF bundle under `catalog/`. It targets Open Knowledge Format (OKF) **0.2**; this is separate from the catalog version **v0.1.0**. The [vendored specification](vendor/okf/SPEC.md) and [upstream provenance](vendor/okf/UPSTREAM.md) pin the format used here. The bundle and its control families will be built out after the taxonomy discussion.
+
 ## How to use it
 
 Once controls are available:
