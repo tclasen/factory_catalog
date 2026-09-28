@@ -21,6 +21,10 @@ This workflow applies to human and AI contributors. Read [README.md](README.md) 
 
 ## 3. Author the contribution
 
+### Scripts
+
+Write scripts in Python with a `#!/usr/bin/env -S uv run --script` shebang and an executable Git file mode. Declare Python requirements and dependencies in inline script metadata so `uv` can manage the script environment. Document direct invocation, such as `./scripts/validate_catalog.py`, without requiring an explicit Python launcher.
+
 ### Maintain the OKF bundle
 
 - Always use the pinned vendored specification at `vendor/okf/SPEC.md` (OKF 0.2) when creating, reading, editing, or validating the OKF bundle. Do not substitute a live upstream version or remembered rules. Keep the bundle in `catalog/` and repository guidance and vendored files outside it.
@@ -59,7 +63,7 @@ Before submitting:
 
 - Review the complete diff for accuracy, clarity, scope, and consistency; run `git diff --check`.
 - Check changed links, references, and examples. For bundle changes, validate against the pinned specification and ensure indexes match the concepts present.
-- Run `ruby scripts/validate_catalog.rb` for bundle or schema changes. It uses Ruby's standard libraries to check OKF structure, catalog metadata, local links, and index coverage; passing it does not establish control effectiveness.
+- Run `./scripts/validate_catalog.py` for bundle or schema changes. It uses `uv` script mode with an inline PyYAML dependency to check OKF structure, catalog metadata, local links, and index coverage; passing it does not establish control effectiveness.
 - Run relevant repository checks when available. For controls, assess whether the procedure can demonstrate the expected outcome and record evidence against its pass/fail criteria.
 - Explain the problem and resulting change in the pull request. Include scope, version impact, compatibility or migration notes, checks actually performed, unverified claims, and the next unresolved decision. Link the relevant issue or prior discussion when available.
 
