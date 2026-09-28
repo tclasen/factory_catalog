@@ -24,6 +24,8 @@ Describe data sensitivity, external exposure, scale, obligations, consequences, 
 4. Prioritize controls by consequence, exposure, expected benefit, dependencies, and implementation cost. Record gaps where the catalog has no adequate control.
 5. Check composition: shared credentials, memory, handoffs, and combined authority can introduce risks not visible in isolated components.
 
+For AI threat scenarios, use the [MITRE ATLAS assessment guide](atlas-threat-assessment.md) to connect external techniques to local risks, partial control coverage, and test evidence. Its mappings support selection; they do not establish adoption or successful assessment.
+
 ## Record the adoption
 
 An adoption is an explicit decision to apply a particular control revision. A relative link in a factory example only selects a control within that bundle revision. Before implementation or copying, record:

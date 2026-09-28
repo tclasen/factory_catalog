@@ -63,6 +63,8 @@ Implementation state for the selected controls: **proposed**. Assessment result:
 
 Source selection bias, stale information, prompt injection, resource limits, and tool isolation need further controls. Source links alone do not establish truth. Reassess when private data, persistent memory, new tools, automated publication, or a consequential decision context is added. The research lead owns that review.
 
+The [MITRE ATLAS assessment guide](../atlas-threat-assessment.md) supplies candidate fixtures for indirect prompt injection and citation manipulation. Apply them to this design only after confirming the read tool and output-rendering paths. Memory fixtures become relevant if persistent memory is added; these are proposed tests, with no change to the assessment states above.
+
 ## Selection and adoption
 
 The selections above link to controls in this bundle revision. They describe a fictional design, not actual adoption or passing evidence. Before implementing a selection, follow the [adoption procedure](../adoption.md) to pin its control identity, catalog version, and exact source URL. The profile owner also owns applicability decisions; the reassessment triggers above apply to those decisions.

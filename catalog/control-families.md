@@ -46,3 +46,5 @@ Add cross-cutting tags where useful: quality, security, privacy, safety, efficie
 | Consequential human outcomes | Poor advice, inequitable treatment, misplaced reliance | Outcome measures, expert review, contestability, context-specific obligations |
 
 The three initial catalog controls cover only part of this space. Record gaps explicitly; their presence must not be interpreted as a complete security or compliance program.
+
+The [MITRE ATLAS assessment guide](atlas-threat-assessment.md) develops selected adversarial-input, memory, tool, disclosure, supply-chain, and resource-consumption scenarios into control mappings and explicit gaps.

@@ -14,6 +14,7 @@ Catalog version **v0.1.0**, early beta. OKF format version **0.2** is independen
 - [Knowledge work types](work-types.md) — Sixteen non-exclusive work labels classified by their intended outcome.
 - [Control families](control-families.md) — Eleven control families and contextual questions for selecting controls.
 - [Select, adopt, and assess controls](adoption.md) — Describe a factory, select contextual controls, and preserve pinned adoption and assessment records.
+- [Use MITRE ATLAS to assess AI threats](atlas-threat-assessment.md) — Connect ATLAS attack scenarios to factory controls, coverage gaps, and local assessment evidence.
 
 ## Controls and factories
 
