@@ -53,6 +53,8 @@ Execute the control's assessment in the declared scope, using safe test environm
 
 Keep artifact acceptance, factory outcome attainment, and control assessment separate. A control can pass by correctly detecting an unmet factory outcome. Documentation checks do not establish operational control effectiveness.
 
+The [classwork application guide](classwork-learnings.md#4-connect-provenance-to-an-explicit-argument) offers review fixtures for checking evidence relevance and explaining the inference from an observation to a claim. Its [agent recovery example](classwork-learnings.md#5-verify-agent-actions-and-bound-recovery) explores how authority checks and outcome checks interact after an ambiguous tool result. These are optional implementation examples, not additional control requirements.
+
 ## Reassess and evolve
 
 Reassess when assumptions, data, actors, tools, authority, workflow, or consequences change. Preserve the prior adoption record when updating to a new source revision. Document changed requirements, local adaptations, and any migration before claiming the new control is implemented or assessed.

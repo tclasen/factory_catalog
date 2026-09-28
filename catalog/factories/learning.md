@@ -61,6 +61,14 @@ Retain criterion versions, sanitized score records, participation counts, rubric
 
 All implementations are **proposed** and assessments **not assessed**. The learner outcome is **unverified**.
 
+## Prerequisites and transfer extension
+
+Proposed application of the [classwork learning-assessment guidance](../classwork-learnings.md#3-assess-capability-under-stated-conditions): define the target capability as recognizing suspicious message cues, explaining the decision, and choosing the approved response. Use an entry task to identify missing knowledge of those cues or the response policy; adapt practice to the observed gap. Keep learner-specific routes and individual performance records outside the shared knowledge bundle, with restricted access.
+
+For the existing seven-day follow-up, use a comparable unseen scenario with different surface details. Record hints, assistance, and the rubric version so assisted practice is distinguishable from independent performance. Missing evidence stays unverified; a failed task identifies what was not demonstrated under those conditions. The existing illustrative improvement threshold remains unchanged and still needs justification before a real pilot.
+
+Add a fixture in which a learner repeats the worked answer but cannot explain a new scenario. The report should show the demonstrated performance and unmet criterion without claiming transfer from lesson completion. Retain sanitized responses, rubric judgments, and follow-up actions. This fixture has not been run.
+
 ## Remaining gaps and reassessment
 
 Privacy, accessibility, fairness of assessment, consent or applicable organizational obligations, and escalation need further design. Employment use, minors, new data sharing, or different learner groups trigger review by the training owner before expansion.
