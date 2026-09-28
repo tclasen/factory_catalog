@@ -51,3 +51,7 @@ Retain the path inventory, grant/configuration revision, test inputs, sanitized 
 ## Dependencies and limitations
 
 Requires trustworthy identity, an enforceable boundary, complete path inventory, and protected authority administration. Prompt instructions alone do not satisfy this requirement. Permission does not establish that an action is wise, accurate, lawful, or recoverable. Duplicate-action protection and recovery need separate controls. This catalog defines the assessment; it does not claim that an implementation has passed it.
+
+## Related guidance
+
+[Lessons from semantic_search](../semantic-search-learnings.md) illustrates local assessment and implementation choices derived from a pinned source repository. It does not change this control’s requirement or establish effectiveness.

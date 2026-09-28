@@ -15,6 +15,10 @@ Catalog version **v0.1.0**, early beta. OKF format version **0.2** is independen
 - [Control families](control-families.md) — Eleven control families and contextual questions for selecting controls.
 - [Select, adopt, and assess controls](adoption.md) — Describe a factory, select contextual controls, and preserve pinned adoption and assessment records.
 
+## Source-derived guidance
+
+- [Lessons from semantic_search](semantic-search-learnings.md) — Apply revision-bound evidence, scoped evaluation, and recoverable knowledge updates to a factory.
+
 ## Controls and factories
 
 - [Controls](controls/index.md) — Individually selectable requirements with implementation and assessment procedures.

@@ -47,3 +47,7 @@ Assess one declared output revision. Inspect all material claims, including thos
 ## Dependencies and limitations
 
 Requires source access, suitable reviewer competence, and an acceptance process that acts on findings. Traceability does not prove source truth, completeness of research, or absence of coordinated misinformation. Review all material claims in the stated scope; sampling supports only a narrower finding. This catalog defines the assessment; it does not claim that an implementation has passed it.
+
+## Related guidance
+
+[Lessons from semantic_search](../semantic-search-learnings.md) illustrates local assessment and implementation choices derived from a pinned source repository. It does not change this control’s requirement or establish effectiveness.

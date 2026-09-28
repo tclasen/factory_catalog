@@ -46,3 +46,7 @@ A control assessment can pass while the factory outcome is unmet: truthful detec
 ## Dependencies and limitations
 
 Requires a meaningful measure, evidence access, and an owner able to act on results. Observing improvement does not by itself establish causation. Long-term or subjective outcomes may remain uncertain; disclose that uncertainty. This catalog defines the assessment; it does not claim that an implementation has passed it.
+
+## Related guidance
+
+[Lessons from semantic_search](../semantic-search-learnings.md) illustrates local assessment and implementation choices derived from a pinned source repository. It does not change this control’s requirement or establish effectiveness.
