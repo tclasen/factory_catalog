@@ -4,7 +4,7 @@ A managed catalog of individually selectable controls for building a knowledge-w
 
 The catalog will organize controls into families and centralize each control's purpose, when to apply it, how to implement it, how to assess whether it works, and the outcomes to expect.
 
-**Status: early beta, v0.1.0.** The taxonomy and initial controls are still to be defined. Stay at v0.1.0 until the repository owner approves a baseline; use exact commit references to distinguish interim revisions.
+**Status: early beta, v0.1.0.** The taxonomy and initial controls are still to be defined. See the [versioning and baseline policy](CONTRIBUTING.md#4-classify-the-version-impact).
 
 ## Why this exists
 
@@ -48,4 +48,6 @@ If the catalog lacks the necessary controls, identify the gaps and propose next
 steps without presenting invented controls as catalog content.
 ```
 
-To contribute to the catalog itself, read [AGENTS.md](AGENTS.md). The next design step is agreeing on the control taxonomy.
+## Contributing
+
+Human and AI contributors should follow [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow, security controls, and SEMVER release policy. AI contributors must also read [AGENTS.md](AGENTS.md). The next design step is agreeing on the control taxonomy.
