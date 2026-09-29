@@ -33,7 +33,7 @@ Confirm impact, contain within existing authority, and select a bounded repair o
 ## Implementation
 
 1. Record the affected service/artifact, observed impact, incident owner, authority, recovery targets, and limits.
-2. Inspect active state before action; reconcile ambiguous activation through [reconciliation before retry](reconciliation-before-retry.md).
+2. Inspect active state before action; reconcile ambiguous activation through [reconcile before retry](reconcile-before-retry.md).
 3. Assess code/data compatibility and later acknowledged changes before rollback; stop when safe recovery cannot be established.
 4. Check real service behavior and data after repair; retain the failed candidate and remaining corrective work in the work record.
 

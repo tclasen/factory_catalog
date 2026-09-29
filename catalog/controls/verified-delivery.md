@@ -35,7 +35,7 @@ Define applicable completion stages and destination before delivery. Verify the 
 1. Bind local acceptance, integration target, remote destination, deployment conditions, and recovery prerequisites to the work item.
 2. Review the staged change and preserve unrelated work; follow the host signing and branch rules.
 3. Confirm the actual revision/artifact at the destination and inspect required remote checks and installed behavior.
-4. Record stage results and justified inapplicability. Use [reconciliation before retry](reconciliation-before-retry.md) for ambiguous publication responses.
+4. Record stage results and justified inapplicability. Use [reconcile before retry](reconcile-before-retry.md) for ambiguous publication responses.
 
 Mechanism: an owned procedure with automated checks where available; record the actual enforcement and bypass paths.
 
@@ -59,7 +59,7 @@ Declare the implementation, revision, scope, evaluator, and applicable paths bef
 
 ## Dependencies and limitations
 
-Requires [bounded external action](bounded-external-action.md), [evidence validity](evidence-validity.md), and observable destinations. This generalizes the source main-integration rule to the adopter’s authorized endpoint; the host’s merge and release authorizations remain binding. Delivery does not establish downstream benefit.
+Requires [bounded external action](bounded-external-action.md), [assessment evidence validity](assessment-evidence-validity.md), and observable destinations. This generalizes the source main-integration rule to the adopter’s authorized endpoint; the host’s merge and release authorizations remain binding. Delivery does not establish downstream benefit.
 
 [^policies-delivery]: [Integration, release and completion](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/delivery.md).
 [^policies-verification]: [Verification and review](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/verification.md).
