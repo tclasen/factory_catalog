@@ -13,6 +13,20 @@ only with a reason. Update current state without erasing failed evidence.
 - Outcome measure, threshold, observation period, evaluator, and failure/unknown disposition:
 - Dependencies and consequential unknowns:
 
+## Current checklist
+
+- Canonical issue/PR URL and parent, if any:
+- Record owner, last reconciliation time and inspected source revision:
+- Current next safe action; pending local updates not yet published:
+
+| Item ID / accepted completion criterion | State | Owner | Dependencies / blocker and resume condition | Evidence / target revision | Next action |
+|---|---|---|---|---|---|
+| Task-local ID; split independently resumable obligations | open / active / blocked / done / cancelled | Accountable role | Link child items and required decisions | Current evidence or explicit gap | Concrete step |
+
+Before yielding, reconcile every accepted obligation, read back the remote record,
+and update the parent after child delivery. Preserve historical evidence separately.
+A completed PR is not evidence that every parent criterion was met.
+
 ## Plan and acceptance
 
 | Criterion | Changed surfaces / implementation | Planned check | Actual evidence and result |

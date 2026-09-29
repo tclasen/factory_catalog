@@ -15,18 +15,40 @@ credential boundaries or start agents.
 
 ## The work record follows the task
 
-Use an existing issue as the work record when available; use the PR body for final
-acceptance and handoff. Before a PR exists, save a short checkpoint in a unique
-ignored path such as `build/work/<branch>.md` using the
-[record fields](work-record.md). Record that path in the session. Copy the current
-state into the PR body when publishing, then use that PR as the canonical record.
-Do not commit per-task journals or edit a shared index for ordinary contributions.
+For work spanning sessions or PRs, use one GitHub issue body as the canonical
+current checklist. Keep that parent open until every accepted criterion is
+reconciled; a merged PR completes only its bounded contribution. Use a PR body
+as the canonical record only for a single-PR task with no remaining parent scope.
+Follow the selected [catalog procedure](../catalog/guides/durable-task-tracking.md).
 
-A local checkpoint survives a session but is not a backup and does not survive
-checkout deletion. Before transfer, make it accessible to the successor through
-the existing issue/PR or an authorized shared artifact. Save intent before a
-consequential action and observation after it. A crash between those saves leaves
-an uncertain effect; reconcile it. Do not put credentials in either location.
+At intake, record the canonical URL in the local checkpoint and every child PR.
+Create an issue when accepted work has none and needs durable tracking. Find it
+on resume through the request, linked PR, or repository open-issue search; if
+several records match, reconcile their scope before writing. Do not make chat
+history the only locator. The [work record](work-record.md) supplies the checklist
+fields. Child issues own bounded criteria; the parent links them and their blockers.
+
+Before edits, map all accepted obligations to checklist rows. Update the current
+issue body after scope changes, meaningful results, failures, delivery, and before
+every handoff/final response. Comments hold dated evidence; they do not replace
+updating stale current state. Mark done only with linked evidence for that item's
+criterion and target revision. Keep blocked and cancelled duties with reasons,
+owners and resume conditions. Reconcile the parent when child work finishes.
+
+Before publication, save a checkpoint under a unique ignored `build/work/` path.
+It is a convenience copy, not a backup or competing source of truth. Publish all
+essential state and verify remote readback before handoff or checkout deletion.
+If GitHub is unavailable, preserve pending local updates, report the unsynchronized
+state and stop only actions that depend on missing shared state. No record or
+procedure schedules a future session. Do not commit per-task journals or catalogs
+of tasks into the product bundle.
+
+Read the latest issue before replacing its body and coordinate any other writer;
+preserve new decisions instead of overwriting them. Keep previous evidence in
+comments/PRs and record material scope/status corrections. Save operation intent
+before consequential effects, then record observed effects and remaining duties.
+A crash between those saves leaves an uncertain effect to reconcile. Keep secrets
+and sensitive source payloads out of public records.
 
 ## Resume, uncertainty, and cancellation
 

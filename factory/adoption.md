@@ -96,3 +96,31 @@ For a control update, compare the pinned requirement and assessment with the
 proposed source, explain local impact in the PR, rerun affected assessments, and
 retain the old adoption through Git history and its PR evidence. Updating this
 record never silently updates prior task evidence or the catalog's release version.
+
+## Durable tracking implementation update
+
+For current multi-session maintenance, reselect **durable work handoff**,
+**acceptance coverage**, and **planning consistency** by reference at published
+source revision `70896c440662d12f38848f9dcde61ef563403327`, version `v0.1.0`
+read at that revision. Their requirements are unchanged from the earlier adoption;
+this update changes the local mechanism, not historical observations.
+
+- [controls/durable-work-handoff](https://github.com/tclasen/factory_catalog/blob/70896c440662d12f38848f9dcde61ef563403327/catalog/controls/durable-work-handoff.md)
+- [controls/acceptance-coverage](https://github.com/tclasen/factory_catalog/blob/70896c440662d12f38848f9dcde61ef563403327/catalog/controls/acceptance-coverage.md)
+- [controls/planning-consistency](https://github.com/tclasen/factory_catalog/blob/70896c440662d12f38848f9dcde61ef563403327/catalog/controls/planning-consistency.md)
+
+Relative dependencies resolve at that same commit. The companion dispositions
+above still apply, including the gaps in resource accounting and writer exclusion.
+Applicability: all three apply because accepted duties span interruptions and
+several PRs. Owner: work lead. Implementation: the [workflow](workflow.md#the-work-record-follows-the-task)
+and [checklist](work-record.md#current-checklist) now use one current issue body,
+owned items, evidence links, update triggers, readback and parent reconciliation.
+The [catalog tracking guide](../catalog/guides/durable-task-tracking.md) supplies
+practical recommendations; local issue/PR placement is this factory's adaptation.
+
+Implementation state: implemented procedure; assessment: **not-assessed** for the
+full controls. Task-specific recovery exercises and limits belong in the change's
+issue/PR. Reassess after a lost obligation, conflicting tracker state, inaccessible
+handoff, changed storage/authority, or a control upgrade. An agent can bypass these
+instructions; no scheduler, automatic completeness proof or storage backup is
+provided by this adoption.

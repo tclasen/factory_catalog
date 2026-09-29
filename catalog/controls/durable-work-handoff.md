@@ -24,7 +24,7 @@ Maintain an accessible, versioned record of accepted intent, owner, relevant rev
 
 ## Implementation
 
-1. Use the existing project record and the [restart and handoff guide](../restart-and-handoff-records.md); assign its owner and permitted readers.
+1. Use the existing project record and the [restart and handoff guide](../restart-and-handoff-records.md); assign its owner and permitted readers. The [task-tracking procedure](../guides/durable-task-tracking.md) shows how to keep remaining obligations discoverable across several deliveries.
 2. Record unrelated edits and outstanding writers/processes that must be preserved. Store references to authority, never credential values.
 3. Use atomic record replacement where supported; state the crash-loss window and which observations may be missing after failure.
 4. Preserve operation identity and intent before effects. Record observed completion separately from remaining acceptance or delivery duties.
