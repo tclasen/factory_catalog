@@ -58,6 +58,8 @@ The binding supplies local context for [accepted work definition](../controls/ac
 
 Walk a second unrelated project: generic requirements remain unchanged, its own grants and paths are used, and unknown commands remain unknown. Then remove a deployment grant: authorized planning can continue while deployment remains blocked. Completion means the binding and unknowns are reviewable; product readiness and control effectiveness still require their own assessments.
 
+The cited onboarding, project-template, and governance pages support the interview, binding fields, and authority boundary described above. The catalog-control mapping and ordered procedure are proposed catalog synthesis; this guide grants no authority and reports no adoption or effectiveness result.
+
 [^workflows-onboarding]: [New-project onboarding interview](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/workflows/onboarding.md).
 [^templates-project]: [Project binding template](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/templates/project.md).
 [^policies-governance]: [Scope, authority and security](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/governance.md).

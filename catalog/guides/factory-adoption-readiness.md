@@ -46,5 +46,7 @@ Keep separate findings for definition usability, local implementation, and obser
 
 This guide is an adoption procedure; the actual selected controls provide their own pass/fail assessments. No trial has been performed for these proposed nodes.
 
+The cited Software Factory pages support the documentation-readiness and host-adoption steps identified above. The control-selection table, composition, and review framing are proposed catalog synthesis; neither the sources nor this paper procedure establish local implementation or operational effectiveness.
+
 [^readiness]: [Adoption and framework readiness](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/readiness.md).
 [^readme]: [Factory overview](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/README.md).

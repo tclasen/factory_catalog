@@ -53,6 +53,8 @@ Trace one accepted documentation correction and one authorized software change t
 
 The walkthrough checks the usability of the process definition. Runtime effectiveness requires assessment of its local implementations.
 
+The cited lifecycle, operating contract, planning, and delivery pages support the stage and responsibility summaries above. The linked-control composition and injected failure walkthrough are proposed catalog synthesis; the sources are written guidance, not evidence that a host process works or is effective.
+
 [^workflows-lifecycle]: [Intent-to-delivery workflow](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/workflows/lifecycle.md).
 [^agents]: [Agent operating contract](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/AGENTS.md).
 [^policies-planning]: [Requirements and planning](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/planning.md).
