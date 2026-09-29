@@ -46,6 +46,6 @@ Test a valid change, a direct violation, two conflicting changes prepared from t
 
 ## Dependencies and limitations
 
-Requires current state, authority over all relevant writers, and observable acceptance. Human procedures need an actual way to prevent overlapping acceptance if that is the claim. Technical aggregate patterns do not make a multi-party human process atomic. Use [outcome verification](outcome-verification.md) separately for beneficiary results and [bounded external action](bounded-external-action.md) for permission. No operational result is asserted.
+Requires current state, authority over all relevant writers, and observable acceptance. Human procedures need an actual way to prevent overlapping acceptance if that is the claim. [Exclusive mutation ownership](exclusive-mutation-ownership.md) addresses competing and stale writers at the write boundary; current ownership alone does not establish that the resulting state satisfies a domain invariant. Technical aggregate patterns do not make a multi-party human process atomic. Use [outcome verification](outcome-verification.md) separately for beneficiary results and [bounded external action](bounded-external-action.md) for permission. No operational result is asserted.
 
 [^vernon]: [Effective Aggregate Design, Part I, Vaughn Vernon, 2011](https://www.dddcommunity.org/wp-content/uploads/files/pdf_articles/Vernon_2011_1.pdf).

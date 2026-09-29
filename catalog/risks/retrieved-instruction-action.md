@@ -23,6 +23,8 @@ sources:
 
 A research activity consumes a page that asks it to publish a draft outside the user's grant. Exposure requires both reachable untrusted content and an execution path; the actor may also pass the instruction to a delegate.
 
+If the induced action sends sensitive content through a permitted tool, it can also cause [prohibited data disclosure](authorized-tool-data-disclosure.md). The action grant and the permitted data-recipient combination need separate assessment: permission to call a tool does not establish that its payload is safe to disclose.
+
 ## Threatened outcomes and affected parties
 
 Draft confidentiality and authorized publication are threatened. The user, draft subjects, and unintended recipients may be affected.

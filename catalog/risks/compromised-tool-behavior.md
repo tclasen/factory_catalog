@@ -20,6 +20,8 @@ sources:
 
 A previously approved integration update acquires new permissions, alters a destination, or returns active content that a downstream component interprets unsafely. The attack crosses a dependency or tool boundary.
 
+If returned content is treated as authority, it can induce the same action-boundary failure as [retrieved instructions](retrieved-instruction-action.md). If that content is saved and reused, it can become [poisoned persistent memory](poisoned-persistent-memory.md). Tool admission, downstream interpretation, and durable state therefore expose distinct boundaries to assess.
+
 ## Threatened outcomes and affected parties
 
 Execution integrity, sensitive artifacts, and authorized outcomes are threatened. Tool users, adjacent workloads, and external parties may be affected.

@@ -40,7 +40,7 @@ O-TTPS 1.2 Part 1 addresses maliciously tainted and counterfeit COTS ICT product
 | Discrepancy and decision | What is unresolved, who owns resolution, who may accept or reject? |
 | Reassessment | Expiry, substitution, incident, or other trigger |
 
-A reviewer should reject a fictional packet where a valid certificate covers another product, where a distributor silently substitutes a component, or where expired evidence is presented as current. An inaccessible source yields an inconclusive finding, not an inferred pass. Retain the packet, review findings, and authorized disposition.
+Use [supplier assurance scope](../controls/supplier-assurance-scope.md) to assess whether each claim covers the purchased item and intended use; the record above supplies the evidence packet for that assessment. A reviewer should reject a fictional packet where a valid certificate covers another product, where a distributor silently substitutes a component, or where expired evidence is presented as current. An inaccessible source yields an inconclusive finding, not an inferred pass. Retain the packet, review findings, and authorized disposition.
 
 ## Dependencies and limits
 

@@ -58,5 +58,7 @@ Declare the implementation, revision, scope, evaluator, and applicable paths bef
 
 Requires inspectable dependency identities and meaningful behavioral checks. Use [approved data processing](approved-data-processing.md) for destination limits. Pinning enables reproducibility but does not itself establish trustworthiness.
 
+[Tool and dependency admission](tool-and-dependency-admission.md) covers approval of dependency identities, permissions, and use scope, including reassessment of material changes. Controlled dependency change covers the update’s effects on behavior, compatibility, acceptance, and recovery; the controls can be selected together when both admission and update qualification apply.
+
 [^workflows-operations]: [Operations, maintenance and retirement](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/workflows/operations.md).
 [^policies-verification]: [Verification and review](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/verification.md).
