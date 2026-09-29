@@ -99,7 +99,7 @@ The revision-publication decision stages and validates immutable revisions befor
 
 Select the relevant lessons for an activity, name its owner, record the local mechanism and acceptance criteria, and retain the resulting evidence. When adopting existing controls, preserve their identities, catalog version, and exact pinned catalog URLs under the [adoption procedure](adoption.md#record-the-adoption). Links in this guide express applicability and derivation, not adoption or a passing assessment.
 
-Lessons on evidence invalidation, recovery, and correction-preserving publication may justify independently selectable controls after design discussion and local assessment. Their boundaries and reusable pass/fail procedures are the next unresolved design decision.
+Apply the existing [assessment evidence validity](controls/assessment-evidence-validity.md), [reconcile before retry](controls/reconcile-before-retry.md), [independent restoration](controls/independent-restoration.md), and [data-preserving migration](controls/data-preserving-migration.md) controls for evidence reuse, uncertain effects, recovery, and correction-preserving transitions. Select them by their stated scope and assess the local implementation; the lessons do not establish an operational pass. Propose a new control only when a concrete requirement remains outside those scopes.
 
 [^execution]: [Execution and recovery protocol](https://github.com/tclasen/semantic_search/blob/0f2c6eead19e01108f97142ce1ded9f32b7a8bcc/docs/process/execution.md).
 [^verification]: [Verification strategy](https://github.com/tclasen/semantic_search/blob/0f2c6eead19e01108f97142ce1ded9f32b7a8bcc/docs/process/verification.md).

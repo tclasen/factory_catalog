@@ -6,7 +6,7 @@ okf_version: "0.2"
 
 Reusable controls and a lightweight ontology for knowledge-work factories: repeatable systems in which people, software, and optionally AI turn inputs into useful artifacts, decisions, or actions, with explicit ways to judge and improve the results.
 
-Catalog version **v0.1.0**, early beta. OKF format version **0.2** is independent of the catalog version. Use exact commit references for interim revisions. Definitions are ready to use; the catalog does not claim that any local implementation has passed an assessment or that a release baseline has been approved.
+Catalog version **v0.1.0**, early beta. OKF format version **0.2** is independent of the catalog version. Use exact commit references for interim revisions. Check each concept’s lifecycle status before use: `draft` definitions are proposals that need review, while `stable` definitions are ready for consumption. Neither status establishes operational effectiveness; the catalog does not claim that any local implementation has passed an assessment or that a release baseline has been approved.
 
 ## Understand and use the catalog
 
