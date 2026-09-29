@@ -50,7 +50,7 @@ Declare the assessed revision, scope, evaluator, and time. A pass requires all s
 
 ## Dependencies and limitations
 
-Requires an owner able to change priorities and access to performance evidence. This supports the planning outcome; it does not establish return on investment or authorize spending. Use [bounded external action](bounded-external-action.md) for purchases and commitments. The [mapping guide](../guides/capability-value-information-mapping.md) supplies a reusable record. Preserve exact revisions through [adoption](../adoption.md).
+Requires an owner able to change priorities and access to performance evidence. This supports the planning outcome; it does not establish return on investment or authorize spending. Use [bounded external action](bounded-external-action.md) for purchases and commitments. The proposal record must retain the ability and beneficiary, current-gap evidence and period, target, accountable owner, affected activities, alternatives and their costs/capacity, dependencies, reviewer disposition, funding limit, and follow-up date. Preserve exact revisions through [adoption](../adoption.md).
 
 ## Source basis
 
