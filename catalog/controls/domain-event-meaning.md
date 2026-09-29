@@ -49,7 +49,7 @@ Test an evidenced occurrence, a request without completion evidence, duplicate d
 
 ## Dependencies and limitations
 
-Requires [identity rules](domain-identity-and-values.md), evidence access, and recipient cooperation. This control checks event meaning; duplicate-effect prevention and reliable delivery need separate mechanisms. Event sourcing rebuilds state from event history and introduces additional design obligations; this control does not require it.[^eventsourcing] No operational effectiveness is claimed.
+Requires [identity rules](domain-identity-and-values.md), evidence access, and recipient cooperation. This control checks event meaning; recognizing repeated delivery as one occurrence does not prevent a repeated external effect. [Reconcile before retry](reconcile-before-retry.md) addresses uncertain effects before repeating a consequential operation. Reliable delivery still needs its own mechanism. Event sourcing rebuilds state from event history and introduces additional design obligations; this control does not require it.[^eventsourcing] No operational effectiveness is claimed.
 
 [^evans]: [Domain-Driven Design Reference, Eric Evans, March 2015](https://www.domainlanguage.com/wp-content/uploads/2016/05/DDD_Reference_2015-03.pdf).
 [^eventsourcing]: [Event Sourcing, Martin Fowler](https://martinfowler.com/eaaDev/EventSourcing.html).
