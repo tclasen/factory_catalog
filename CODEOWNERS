@@ -4,7 +4,5 @@
 
 # Changes to the merge gate require the repository owner's review.
 /.github/workflows/ @tclasen
-/scripts/build_catalog.py @tclasen
-/scripts/validate_catalog.py @tclasen
-/scripts/test_validate_catalog.py @tclasen
+/scripts/ @tclasen
 /CODEOWNERS @tclasen
