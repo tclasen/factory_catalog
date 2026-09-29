@@ -1,0 +1,220 @@
+---
+type: Guide
+title: "Factory implementation trade-offs"
+description: "Compare prose, code, skills, plugins, extensions, and external gates by their roles, costs, failure modes, and evidence."
+catalog_version: "v0.1.0"
+status: stable
+sources:
+  - id: agents-md
+    resource: https://learn.chatgpt.com/docs/agent-configuration/agents-md
+    title: "OpenAI: Custom instructions with AGENTS.md"
+  - id: skills
+    resource: https://agentskills.io/specification
+    title: "Agent Skills specification"
+  - id: plugins
+    resource: https://developers.openai.com/plugins/concepts/plugins
+    title: "OpenAI: Plugin architecture"
+  - id: mcp-security
+    resource: https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices
+    title: "MCP security best practices, 2025-11-25 documentation"
+  - id: hooks
+    resource: https://code.claude.com/docs/en/hooks
+    title: "Claude Code hooks reference"
+  - id: extension-host
+    resource: https://code.visualstudio.com/api/advanced-topics/extension-host
+    title: "VS Code extension host"
+  - id: workspace-trust
+    resource: https://code.visualstudio.com/api/extension-guides/workspace-trust
+    title: "VS Code Workspace Trust extension guide"
+  - id: workflows
+    resource: https://www.anthropic.com/engineering/building-effective-agents
+    title: "Anthropic: Building effective agents"
+  - id: replay
+    resource: https://docs.temporal.io/workflow-execution
+    title: "Temporal Workflow Execution overview"
+  - id: idempotency
+    resource: https://docs.temporal.io/activity-definition
+    title: "Temporal Activity Definition"
+  - id: checks
+    resource: https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks
+    title: "GitHub: Troubleshooting required status checks"
+  - id: environments
+    resource: https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments
+    title: "GitHub: Deployments and environments"
+  - id: actions-security
+    resource: https://docs.github.com/en/actions/reference/security/secure-use
+    title: "GitHub Actions secure use reference"
+  - id: privileged-prs
+    resource: https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target
+    title: "GitHub: Securely using pull_request_target"
+  - id: context-effectiveness
+    resource: https://arxiv.org/html/2602.11988v1
+    title: "Gloaguen et al.: Evaluating AGENTS.md, version 1"
+  - id: context-efficiency
+    resource: https://arxiv.org/html/2601.20404v1
+    title: "Lulla et al.: On the Impact of AGENTS.md Files on the Efficiency of AI Coding Agents, version 1"
+  - id: evals
+    resource: https://developers.openai.com/api/docs/guides/evaluation-best-practices
+    title: "OpenAI: Evaluation best practices"
+---
+
+# Factory implementation trade-offs
+
+## Recommendation and scope
+
+Choose a mechanism for each activity and control, then assess the composition. A useful starting arrangement is prose for purpose and judgment, skills for reusable procedures, deterministic code for precise operations, optional plugins or extensions for delivery and integration, and protected gates for consequential transitions. A small factory may need only a few of these.
+
+This is a design synthesis from 17 primary sources inspected on **2026-09-28**, including two version-pinned empirical papers. Product documentation establishes described behavior; it does not prove a factory's effectiveness. The research was not rerun, and no deployed factory or live security configuration was assessed. Mutable documentation should be checked against the installed product before implementation. The comparisons and recommendations below are catalog inferences; attributed findings are marked with source footnotes.
+
+Use the companion [implementation selection procedure](factory-implementation-selection.md) to apply the findings. This guide specializes the [ontology's Implementation, Assessment, and Evidence concepts](ontology.md#concepts) and complements the existing [Software Factory lessons](software-factory-learnings.md). It adds implementation guidance without changing control requirements or creating new ontology types.
+
+## 1. Separate the choices
+
+These six options overlap. A skill can contain code; a plugin can distribute skills and tools; an extension can invoke a service; GitHub Actions can execute a deterministic validator or a model. Classify the contents and execution boundary as well as the package.
+
+| Design question | What to record | Example |
+|---|---|---|
+| Where is intent expressed? | Requirements, rationale, exceptions, owner | Prose requirement with examples |
+| Who chooses the next step? | Human, model, explicit program, or a mixture | Model chooses research sources; code schedules checks |
+| How is capability delivered? | File, skill, plugin, extension, service | Plugin installs a skill and exposes an MCP tool |
+| Where does it execute? | Process, host, environment, dependencies | Local script or remote workflow runner |
+| What can prevent an effect? | Mandatory boundary, protected configuration, credentials | Destination service rejects an invalid grant |
+| What supports acceptance? | Evaluator, target revision, criteria, retained observations | Review plus tests tied to the delivered artifact |
+
+Here, **extension** means an integration into a host such as an editor, browser, or agent runtime. **Plugin** means an installable bundle of capabilities; vendors may use the two words interchangeably. **External gate** means a decision boundary outside the producing agent's effective control. A remotely hosted check is not independent if the agent can rewrite its criteria, forge its result, or bypass it.
+
+Deterministic code has prescribed behavior for specified inputs and state. Code that calls a model or a changing service still contains uncertain results. A deterministic evaluator may consistently enforce the wrong rule. Specify which component is deterministic and which property it establishes.
+
+## 2. Comparison by mechanism
+
+The relative costs below are engineering judgments, not measured rankings. Existing infrastructure, volume, task variability, and consequences can reverse them.
+
+| Mechanism | Best fit | Main benefit | Cost and failure modes | Evidence to seek |
+|---|---|---|---|---|
+| Prose | Purpose, definitions, judgments, exceptions, changing procedures | Cheap to revise; readable across tools and roles | Repeated context cost; ambiguity, conflicting instructions, missed loading, inconsistent execution | Actual instruction loading and task traces; rubric review; comparisons across representative requests |
+| Deterministic code | Parsing, arithmetic, validation, state transitions, bounded retries | Precise interfaces; repeatable checks; efficient repeated operations | Engineering and dependency upkeep; brittle assumptions; systematic bugs; I/O uncertainty | Unit and integration results, adversarial fixtures, revision and environment identities |
+| Skills | Recurring recognizable tasks with contextual decisions | Reusable workflow with selective loading and bundled resources | Wrong activation, missing activation, instruction drift, script dependencies, host differences | Activation tests separately from completion quality; script tests and permission tests |
+| Plugins | Installable distribution of related workflows and service access | Central packaging and updates; coherent tool interfaces | Installation, authentication, version compatibility, server operations, supply-chain exposure | Installed inventory, component versions, API contracts, permission scope, upgrade/rollback results |
+| Extensions and hooks | Host events, inline feedback, specialized UI, tool interception | Timely feedback and access to host context | Host coupling; activation gaps; disabled or absent installation; local/remote mismatch; error semantics | Host/version matrix; real event coverage; bypass, timeout, and disabled-state tests |
+| External gates | Merge, publication, deployment, spending, acceptance transitions | Can make prerequisites mandatory across clients | Queue delay, outages, administration, false rejection; writable or optional gates; stale evidence | Valid and invalid transition attempts; effective rules, credential paths, evidence binding, observed effects |
+
+### Prose: expressive policy, variable execution
+
+Codex documents a discovery chain for `AGENTS.md`, with scope and precedence rules and a configured size limit. Merely storing instructions somewhere in a repository does not establish that a particular run loaded them.[^agents-md]
+
+Use concise prose where interpretation is useful: intended beneficiaries, acceptable trade-offs, source quality, and escalation under uncertainty. Put frequently changing project facts in authoritative records with clear references. Duplicating the same requirement in several instruction files adds reconciliation work.
+
+Prose can describe an entire human-operated factory. In an agent-operated factory it relies on the model, tools, and host to execute that description. It cannot itself remove a credential or prevent an unauthorized effect. The existing [bounded external action control](controls/bounded-external-action.md) explicitly requires enforcement at execution paths.
+
+### Code: precise operations and explicit state
+
+Anthropic distinguishes workflows with prescribed code paths from agents that choose their processes dynamically. Its engineering guidance recommends increasing complexity only when task performance justifies the additional cost and latency. This is experience-based guidance, not a controlled comparison of all six mechanisms.[^workflows]
+
+Move stable calculations, schema rules, comparisons, and repetitive transformations into small callable functions. Give them explicit inputs, outputs, errors, and versioned dependencies. Preserve the reason for each rule in prose. Keep a human or model judgment where the acceptance rule cannot be stated adequately; a format validator cannot determine whether a source actually supports an argument.
+
+Durability requires additional design. Temporal, for example, resumes workflow execution by checking generated commands against recorded event history.[^replay] Its activities may retry if a completed effect was not reported; the documentation recommends idempotency, including destination-enforced operation keys.[^idempotency] A loop with retries does not establish one intended external effect. Retain uncertainty after lost responses and reconcile destination state, as described in the [recovery lessons](semantic-search-learnings.md#4-reconcile-uncertain-effects-before-retrying).
+
+### Skills: reusable procedures with a discovery dependency
+
+The Agent Skills specification combines metadata and instructions in `SKILL.md` with optional scripts, references, and assets. It describes progressive loading from metadata to instructions to resources; its experimental `allowed-tools` support varies by implementation.[^skills]
+
+This makes a skill useful for recurring work such as evidence review or preparing a release record. Evaluate two separate questions: did the correct procedure activate, and was it executed correctly? Test explicit invocation, indirect requests, similar tasks that should not activate it, and unavailable dependencies. Packaging a validator in a skill does not make invoking it mandatory. Authority still comes from the host and service configuration.
+
+Prefer one coherent procedure over a skill containing every factory activity. A large skill can recreate the context and ambiguity costs of a large instruction file. Conversely, many tiny skills can make selection and handoffs harder. Choose the boundary through observed activation and task performance.
+
+### Plugins: distribution and capability composition
+
+OpenAI describes plugins that contain skills, MCP tools, or combinations, with optional UI and lifecycle hooks. Capabilities can be surface-specific. Its MCP server role includes tool schemas, authentication and authorization requirements, structured results, and independently operated server behavior.[^plugins]
+
+A plugin is useful when multiple users need the same tested components or when a factory needs authenticated service access. Evaluate each component separately: procedural guidance, executable logic, remote service, credentials, and any UI. Record both the installed package revision and the service/API configuration; pinning a local package does not freeze a remote server.
+
+The MCP security guidance forbids token passthrough without proper audience validation and describes how it can bypass controls and obscure accountability.[^mcp-security] For this catalog, the inference is to enforce grants where tools execute, including alternate API paths. Installing a plugin is neither a factory-specific authority grant nor proof of an assessed control. A narrowly scoped CLI may be simpler when distribution and live service integration add no benefit.
+
+### Extensions and hooks: close to the work, limited by the host
+
+VS Code distinguishes local, remote, and browser extension hosts with different runtimes and installation locations.[^extension-host] Its Workspace Trust guide warns that hiding a command in the UI does not prevent invocation; execution must also be checked or left unregistered.[^workspace-trust]
+
+Hooks require equally precise treatment. Claude Code documents blocking behavior for `PreToolUse`, while `PostToolUse` runs after the tool has executed. It also distinguishes blocking exit codes and timeout behavior: a timed-out command hook continues through the normal permission flow.[^hooks] These are host-specific examples, not universal hook contracts.
+
+Use extensions to make the right action convenient and to expose review evidence at the point of work. A synchronous hook may reject a covered operation, but first establish event coverage, configuration protection, and failure behavior. A post-action notification can detect an unwanted effect; it cannot prevent the effect already observed. Test direct API and shell paths as well as the integrated UI. Move indispensable restrictions to a boundary that all those paths must traverse.
+
+### External gates: mandatory only with protected paths
+
+GitHub documents that required checks apply to the relevant latest revision, with head versus test-merge behavior. A conditionally skipped job can report success, whereas an entire workflow skipped by filters can leave checks pending. Merge queues need the `merge_group` trigger, and checks can be restricted to an expected GitHub App.[^checks]
+
+Environment protection applies to jobs referencing that environment. GitHub supports required reviewers, optional prevention of self-review, and configurable administrator bypass; availability depends on plan and repository visibility.[^environments]
+
+Therefore, assess the entire transition: candidate, evaluator, required result, repository rules, credentials, and destination. An Actions workflow that runs a linter is an automated check. It becomes part of an enforced merge boundary when effective repository rules require it and relevant bypasses are controlled. A merge gate does not cover direct deployment, data export, or email sent before merge.
+
+For Actions, use least-privilege job permissions, reviewed dependencies pinned to full commit SHAs, and safe handling of untrusted event data.[^actions-security] GitHub specifically warns against building or running untrusted PR code with secrets or a privileged token in `pull_request_target` workflows.[^privileged-prs] Protect the evaluator and credentials while allowing contributors to test proposed changes in an unprivileged environment. Remote execution alone does not supply that separation.
+
+## 3. What empirical evidence does and does not establish
+
+| Primary research | Finding in the inspected version | Limits for factory design |
+|---|---|---|
+| Gloaguen et al., AGENTS.md evaluation | Across the evaluated agents, generated context files slightly reduced task success; developer-written files gave a small average improvement, while context files increased cost and exploration | AGENTbench includes 138 tasks from 12 repositories, supplemented by SWE-bench Lite; evaluation is heavily Python-focused and does not establish security or performance for every instruction design.[^context-effectiveness] |
+| Lulla et al., AGENTS.md efficiency | On 124 PR tasks from 10 repositories, instructions were associated with 28.64% lower median runtime and 16.58% fewer median output tokens | Full semantic correctness was outside scope; a manual sanity check on 50 tasks checked for nontrivial work. Faster termination is not proof of equivalent correctness.[^context-efficiency] |
+
+These findings address different tasks, instruction sets, agent configurations, and measures. They do not establish a universal winner or justify removing required instructions. Our inference is to retain necessary policy, minimize redundant guidance, and measure each proposed change against an unchanged baseline. Separate outcome quality, compliance, runtime, token use, and human rework.
+
+OpenAI's evaluation guidance locates evaluation needs at sources of nondeterminism, including instruction following, model outputs, tool selection, and handoffs.[^evals] Apply that distinction to mixed factories: deterministic unit tests assess precise logic; repeated agent evaluations assess behavior over a defined sample; boundary tests assess enforcement. None substitutes for all the others.
+
+## 4. Can one mechanism implement the whole factory?
+
+The following are conditional design judgments derived from the distinctions above.
+
+| Predominant implementation | When it can be enough | What still has to exist |
+|---|---|---|
+| Prose and human procedure | Low-volume work with changing judgments and accountable people executing and reviewing each step | People, tools, records, and actual authority restrictions where required; the document is the specification |
+| Deterministic application | Inputs, transitions, and acceptable outputs are sufficiently specified | Dependency management, exception handling, observation of external effects, and an owner for changing requirements |
+| One skill | A bounded recurring task on an existing capable host | Reliable activation, available tools, state/evidence retention, and separately enforced permissions |
+| One plugin | A coherent installable product can package the needed components | Host, service operations, credentials, and assessment of each component and their composition |
+| One extension | Work is deliberately confined to a supported host and its interfaces | Host lifecycle support and restrictions covering any out-of-host actions |
+| External workflow platform | Work naturally follows event-triggered jobs and managed transitions | Domain logic, judgment where needed, durable records, and destination controls; a gate alone does not produce the work |
+
+A factory can be delivered as one package while using several mechanisms internally. Avoid making “everything in a plugin” an architectural conclusion before identifying which parts are prose, code, services, and enforcement.
+
+## 5. Lifecycle and economic trade-offs
+
+Compare total cost over an agreed horizon: design and migration effort, execution, human review and rework, dependency upgrades, incident recovery, and retirement. Count accepted outcomes as well as attempts. Lower token use can be offset by more review work; cheaper validation can be offset by false rejection and queues. No source inspected supports a universal cost ratio across these mechanisms.
+
+- **Move prose into code** when a rule is precise, repeated, testable, and stable enough to maintain. Keep ambiguous cases explicit rather than silently encoding a weak proxy.
+- **Extract a skill** when a recognizable workflow recurs and loading its procedure selectively is useful. Keep always-applicable requirements in the host's reliably loaded instruction path.
+- **Package a plugin** when installation, reuse, or service access warrants release management. Separate component versions and credential scopes.
+- **Build an extension** when host events or UI measurably improve completion or review. Preserve a usable service or command interface when other clients are required.
+- **Add a protected gate** when a transition must be withheld despite producer error or noncompliance. Check availability and exception handling so authorized work can proceed.
+
+Reuse one tested validator across local feedback and remote acceptance where possible. Protect the acceptance revision of that validator independently if the producer can edit the local copy. Avoid duplicating policy logic in prose, scripts, plugins, and workflows without an owner and a reconciliation method. Keep distinct evaluators where correlated errors would defeat the required assurance.
+
+## 6. Connections to the knowledge graph
+
+These are explanatory relationships using the [existing ontology](ontology.md#relationships); they do not assert adoption or a successful assessment.
+
+| Existing concept | Relationship expressed by this guide | Application |
+|---|---|---|
+| [Bounded external action](controls/bounded-external-action.md) | Implementation choices help realize its enforcement requirement | Put grant checks at covered execution boundaries and inventory alternate paths |
+| [Evidence traceability](controls/evidence-traceability.md) | Mechanism selection determines which evidence can be inspected | Link claims to traces, source revisions, validator outputs, and reviewer dispositions |
+| [Outcome verification](controls/outcome-verification.md) | Comparison measures instantiate local assessment criteria | Compare accepted outcomes and failures, including unknown outcomes and false rejection |
+| [Software delivery factory](factories/software-delivery.md) | Provides an activity context for a mixed implementation | Pair iterative development with checks and separately authorized delivery |
+| [Research factory](factories/research.md) | Provides a context where semantic review remains necessary | Code checks citation structure; a qualified reviewer assesses evidential support |
+| [Implementation selection](factory-implementation-selection.md) | Applies this research to a local decision | Record mechanisms, ownership, bypasses, assessment plans, and reassessment triggers |
+
+Evaluator independence, durable execution, package supply chains, and host compatibility remain local design obligations or candidates for future controls. The three linked controls do not fully specify them. Follow [adoption](adoption.md#record-the-adoption) before claiming an implementation of a catalog control.
+
+[^agents-md]: OpenAI, Custom instructions with AGENTS.md; discovery and instruction-chain behavior.
+[^skills]: Agent Skills specification; directory structure, progressive disclosure, and experimental allowed-tools field.
+[^plugins]: OpenAI, Plugin architecture; component roles and surface-specific capabilities.
+[^mcp-security]: MCP security best practices; token passthrough and trust-boundary risks.
+[^hooks]: Claude Code hooks reference; per-event decision control, exit codes, and timeouts.
+[^extension-host]: VS Code extension host; execution locations and runtime requirements.
+[^workspace-trust]: VS Code Workspace Trust extension guide; command invocation and execution checks.
+[^workflows]: Anthropic, Building effective agents; workflow/agent distinction and complexity trade-offs. Originally published 2024-12-19; the page notes subsequent tooling changes.
+[^replay]: Temporal Workflow Execution overview; replay and recorded event history.
+[^idempotency]: Temporal Activity Definition; retries, unreported effects, and destination-enforced idempotency.
+[^checks]: GitHub, Troubleshooting required status checks; revision, skipping, merge queues, and expected sources.
+[^environments]: GitHub, Deployments and environments; protected jobs, reviews, bypass, and availability limits.
+[^actions-security]: GitHub Actions secure use reference; permissions, untrusted data, and dependency pinning.
+[^privileged-prs]: GitHub, Securely using pull_request_target; privileged execution of untrusted PR content.
+[^context-effectiveness]: Gloaguen et al., arXiv:2602.11988v1, sections 3–5; task resolution, costs, and limitations.
+[^context-efficiency]: Lulla et al., arXiv:2601.20404v1, sections 3.1.8 and 4; efficiency measures and correctness limitations.
+[^evals]: OpenAI, Evaluation best practices; evaluation at sources of nondeterminism.
