@@ -2,7 +2,6 @@
 type: Control
 title: "Cumulative execution limits"
 description: "Preserve and enforce applicable resource allowances across retries, restarts, and handoffs."
-catalog_version: "v0.1.0"
 status: stable
 family: reliability-and-recovery
 sources:
@@ -14,8 +13,6 @@ sources:
 # Cumulative execution limits
 
 [Controls](./) · [Adoption](../adoption.md) · [Families](../control-families.md)
-
-**Identity:** `controls/cumulative-execution-limits` · **Catalog:** v0.1.0 · **Family:** `reliability-and-recovery`
 
 ## Purpose and applicability
 

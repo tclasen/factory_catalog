@@ -2,7 +2,6 @@
 type: Control
 title: "Outcome verification"
 description: "Distinguish artifact completion from evidence that the intended outcome was achieved."
-catalog_version: "v0.1.0"
 status: stable
 family: quality-and-validation
 ---
@@ -10,8 +9,6 @@ family: quality-and-validation
 # Outcome verification
 
 [Controls](./) · [Adoption](../adoption.md) · [Control families](../control-families.md)
-
-**Identity:** `controls/outcome-verification` · **Catalog:** v0.1.0 · **Family:** `quality-and-validation`
 
 ## Purpose and applicability
 

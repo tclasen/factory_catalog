@@ -2,7 +2,6 @@
 type: Control
 title: "Safe work resumption"
 description: "Reconcile ownership, current state, and remaining obligations before interrupted work resumes."
-catalog_version: "v0.1.0"
 status: draft
 family: workflow-and-coordination
 sources:
@@ -17,8 +16,6 @@ sources:
 # Safe work resumption
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/safe-work-resumption` · **Catalog:** v0.1.0 · **Family:** `workflow-and-coordination`
 
 Draft requirement adapted from the source factory policies.[^policies-execution][^templates-work-item] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

@@ -2,7 +2,6 @@
 type: Control
 title: "Tool and dependency admission"
 description: "Admit reviewed tool and dependency revisions and reassess material changes before use."
-catalog_version: "v0.1.0"
 status: stable
 family: change-and-dependencies
 sources:
@@ -20,8 +19,6 @@ sources:
 # Tool and dependency admission
 
 [Controls](./) · [Adoption](../adoption.md) · [ATLAS assessment guide](../atlas-threat-assessment.md)
-
-**Identity:** `controls/tool-and-dependency-admission` · **Catalog:** v0.1.0 · **Family:** `change-and-dependencies`
 
 ## Purpose and applicability
 

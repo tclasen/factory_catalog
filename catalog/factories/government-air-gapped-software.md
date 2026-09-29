@@ -2,7 +2,6 @@
 type: Factory Example
 title: "Government software factory across an air gap"
 description: "A government contract develops sensitive software in low-side and air-gapped AI factories with controlled file transfer and auditable acceptance."
-catalog_version: "v0.1.0"
 status: draft
 example: true
 domain: "Government software delivery"
@@ -94,7 +93,7 @@ There is no automatic return path from the air-gapped factory. Code, logs, scree
 
 ## Selected controls and proposed implementation
 
-All selections are applicable, proposed, and not assessed. The delivery lead owns the selection record with the security and acceptance owners. Before implementation, use the [adoption record](../adoption.md#record-the-adoption) to pin every selected control's identity, catalog v0.1.0, exact catalog commit, and source URL. Resolve dependencies at that same revision.
+All selections are applicable, proposed, and not assessed. The delivery lead owns the selection record with the security and acceptance owners. Before implementation, use the [adoption record](../adoption.md#record-the-adoption) to pin every selected control's identity, catalog version from the adopted revision, exact catalog commit, and source URL. Resolve dependencies at that same revision.
 
 | Risk / control | Owner and proposed mechanism |
 |---|---|

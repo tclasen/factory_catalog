@@ -2,7 +2,6 @@
 type: Guide
 title: "Restart and handoff records"
 description: "Preserve intent, ownership, uncertain effects, remaining limits, and the next safe action across sessions."
-catalog_version: "v0.1.0"
 status: stable
 sources:
   - id: software-factory

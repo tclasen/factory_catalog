@@ -2,7 +2,6 @@
 type: Guide
 title: "Qualify AI factory infrastructure against workloads"
 description: "Connect infrastructure capacity, reliability, cost, and energy measurements to accepted factory work."
-catalog_version: "v0.1.0"
 status: draft
 tags: [ai-factory, infrastructure, assessment]
 sources:
@@ -89,7 +88,7 @@ Retain the workload/configuration record, raw client and platform measurements, 
 
 The study covers selected vendor guidance and an energy paper abstract, without reproducing benchmarks or commissioning a facility. These fixtures test a local implementation within its scope; they are not a complete data-center safety, cybersecurity, or compliance program. Use [supplier assurance records](supplier-assurance-records.md) for externally supplied evidence and [approved data processing](../controls/approved-data-processing.md) for every telemetry destination.
 
-Adopt linked controls by exact revision with catalog v0.1.0 under the [adoption procedure](../adoption.md#record-the-adoption). Record guide adaptations and unresolved measures alongside the assessment.
+Adopt linked controls using the [adoption procedure](../adoption.md#record-the-adoption). Record guide adaptations and unresolved measures alongside the assessment.
 
 [^nvidia-factory]: [NVIDIA enterprise AI factory guidance](https://docs.nvidia.com/enterprise-reference-architectures/white-paper/latest/building-ai-factories-for-the-enterprise.html).
 [^supermicro-ra]: [Reference architecture, revision 1.0.1](https://www.supermicro.com/solutions/validated-design/NVIDIA-Enterprise-AI-Factory-Reference-Architecture-SMCI-Spectro-Cloud.pdf), overview and component sections reviewed.

@@ -2,7 +2,6 @@
 type: Factory Example
 title: "Workplace learning factory"
 description: "A learning workflow that separates lesson delivery from improved ability."
-catalog_version: "v0.1.0"
 status: stable
 example: true
 domain: "Workplace learning"

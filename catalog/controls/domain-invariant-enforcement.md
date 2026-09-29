@@ -2,7 +2,6 @@
 type: Control
 title: "Domain invariant enforcement"
 description: "Enforce declared business rules at the point where a change becomes accepted."
-catalog_version: "v0.1.0"
 status: draft
 tags: [domain-driven-design, knowledge, coordination]
 family: quality-and-validation
@@ -13,8 +12,6 @@ sources:
 ---
 
 # Domain invariant enforcement
-
-**Identity:** `controls/domain-invariant-enforcement` · **Catalog:** v0.1.0 · **Family:** `quality-and-validation`
 
 [Adoption](../adoption.md) · [DDD research](../domain-driven-design.md)
 

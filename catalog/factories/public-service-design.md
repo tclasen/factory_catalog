@@ -2,7 +2,6 @@
 type: Factory Example
 title: "Public service design factory"
 description: "A fictional team produces and evaluates a cross-agency service design grounded in resident needs."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: g236

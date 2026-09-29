@@ -2,7 +2,6 @@
 type: Guide
 title: "AI research sources: Model platforms"
 description: "Select and apply relevant learning from ten corporate sources on model platforms."
-catalog_version: "v0.1.0"
 status: draft
 tags: [ai-research, source-review]
 sources:

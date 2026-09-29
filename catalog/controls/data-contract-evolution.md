@@ -2,7 +2,6 @@
 type: Control
 title: "Data contract evolution"
 description: "Protect consumers when product meaning, interfaces, or availability change."
-catalog_version: "v0.1.0"
 status: draft
 tags: [data-mesh, data-stewardship]
 family: change-and-dependencies
@@ -15,8 +14,6 @@ sources:
 # Data contract evolution
 
 [Adoption](../adoption.md) · [Data mesh research](../data-mesh-architectures.md)
-
-**Identity:** `controls/data-contract-evolution` · **Catalog:** v0.1.0 · **Family:** `change-and-dependencies`
 
 ## Purpose and applicability
 

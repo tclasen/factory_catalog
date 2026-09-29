@@ -2,7 +2,6 @@
 type: Control
 title: "Protected acceptance"
 description: "Keep consequential acceptance criteria and evaluation outside the producer’s effective write authority."
-catalog_version: "v0.1.0"
 status: stable
 family: quality-and-validation
 sources:
@@ -14,8 +13,6 @@ sources:
 # Protected acceptance
 
 [Controls](./) · [Adoption](../adoption.md) · [Families](../control-families.md)
-
-**Identity:** `controls/protected-acceptance` · **Catalog:** v0.1.0 · **Family:** `quality-and-validation`
 
 ## Purpose and applicability
 

@@ -2,7 +2,6 @@
 type: Control
 title: "Environmental measurement reconciliation"
 description: "Preserve boundaries, units, methods, and missing data when assembling environmental reports."
-catalog_version: "v0.1.0"
 status: draft
 family: knowledge-and-evidence
 sources:
@@ -17,8 +16,6 @@ sources:
 # Environmental measurement reconciliation
 
 [Adoption](../adoption.md) · [Control families](../control-families.md)
-
-**Identity:** `controls/environmental-measurement-reconciliation` · **Catalog:** v0.1.0 · **Family:** `knowledge-and-evidence`
 
 ## Purpose and applicability
 

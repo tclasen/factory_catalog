@@ -2,7 +2,6 @@
 type: Control
 title: "Contextual domain language"
 description: "Keep material terms and rules consistent within their declared domain context."
-catalog_version: "v0.1.0"
 status: draft
 tags: [domain-driven-design, knowledge, coordination]
 family: knowledge-and-evidence
@@ -13,8 +12,6 @@ sources:
 ---
 
 # Contextual domain language
-
-**Identity:** `controls/contextual-domain-language` · **Catalog:** v0.1.0 · **Family:** `knowledge-and-evidence`
 
 [Adoption](../adoption.md) · [DDD research](../domain-driven-design.md)
 

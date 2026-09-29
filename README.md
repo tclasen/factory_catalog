@@ -4,7 +4,7 @@ A managed catalog of individually selectable controls for building a knowledge-w
 
 The catalog organizes controls into families and describes each control's purpose, applicability, implementation, assessment, and expected outcomes. A lightweight ontology connects factories, activities, authority, outcomes, controls, and evidence.
 
-**Status: early beta, v0.1.0.** Start at the [catalog entry point](catalog/index.md). See the [versioning and baseline policy](CONTRIBUTING.md#4-classify-the-version-impact).
+See the [catalog version](catalog/VERSION) and [baseline status](CONTRIBUTING.md#4-classify-the-version-impact). Start at the [catalog entry point](catalog/index.md).
 
 ## Why this exists
 
@@ -12,7 +12,7 @@ The goal is to provide a prioritized selection of reusable controls for building
 
 ## Catalog format
 
-The catalog is an OKF bundle under `catalog/`, targeting Open Knowledge Format (OKF) **0.2**; this is separate from the catalog version **v0.1.0**. The [vendored specification](vendor/okf/SPEC.md) and [upstream provenance](vendor/okf/UPSTREAM.md) pin the format used here.
+The catalog is an OKF bundle under `catalog/`, targeting Open Knowledge Format (OKF) **0.2**; this is separate from the [catalog version](catalog/VERSION). The [vendored specification](vendor/okf/SPEC.md) and [upstream provenance](vendor/okf/UPSTREAM.md) pin the format used here.
 
 The [ontology](catalog/ontology.md) defines concepts and relationships. Browse [work types](catalog/work-types.md), [control families](catalog/control-families.md), [controls](catalog/controls/), and [factory examples](catalog/factories/). The examples are fictional designs, not claims of deployed or effective systems.
 
@@ -37,7 +37,7 @@ Use https://github.com/tclasen/factory_catalog to help build a knowledge-work
 factory for [project or system] that achieves [outcomes], subject to [constraints].
 
 Read the README and inspect the available controls. Record the exact catalog
-commit and version used; the current early-beta version is v0.1.0.
+commit and the value of catalog/VERSION at that same commit.
 Recommend a prioritized selection of applicable controls with rationale,
 dependencies, implementation steps, expected outcomes, and assessment evidence.
 

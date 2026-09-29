@@ -1,8 +1,7 @@
 ---
 type: Taxonomy
 title: "Control families"
-description: "Eleven control families and contextual questions for selecting controls."
-catalog_version: "v0.1.0"
+description: "Control families and contextual questions for selecting controls."
 status: stable
 ---
 

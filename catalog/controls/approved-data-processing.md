@@ -2,7 +2,6 @@
 type: Control
 title: "Approved data processing"
 description: "Keep sensitive data and credentials within their authorized processing and disclosure scope."
-catalog_version: "v0.1.0"
 status: draft
 family: information-protection
 sources:
@@ -14,8 +13,6 @@ sources:
 # Approved data processing
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/approved-data-processing` · **Catalog:** v0.1.0 · **Family:** `information-protection`
 
 Draft requirement adapted from the source factory policies.[^policies-governance] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

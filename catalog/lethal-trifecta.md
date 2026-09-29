@@ -2,7 +2,6 @@
 type: Guide
 title: "The lethal trifecta in AI workflows"
 description: "Research and design guidance for private data, untrusted content, and external communication in connected AI workflows."
-catalog_version: "v0.1.0"
 status: draft
 tags: [security, privacy, prompt-injection, lethal-trifecta]
 sources:

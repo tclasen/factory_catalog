@@ -2,7 +2,6 @@
 type: Control
 title: "Instruction change control"
 description: "Update canonical instructions from observed evidence without silently changing authority or acceptance."
-catalog_version: "v0.1.0"
 status: draft
 family: monitoring-and-improvement
 sources:
@@ -14,8 +13,6 @@ sources:
 # Instruction change control
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/instruction-change-control` · **Catalog:** v0.1.0 · **Family:** `monitoring-and-improvement`
 
 Draft requirement adapted from the source factory policies.[^policies-instructions] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

@@ -2,7 +2,6 @@
 type: Control
 title: "Data semantic interoperability"
 description: "Validate shared meanings and joins before combining data products."
-catalog_version: "v0.1.0"
 status: draft
 tags: [data-mesh, data-stewardship]
 family: quality-and-validation
@@ -15,8 +14,6 @@ sources:
 # Data semantic interoperability
 
 [Adoption](../adoption.md) · [Data mesh research](../data-mesh-architectures.md)
-
-**Identity:** `controls/data-semantic-interoperability` · **Catalog:** v0.1.0 · **Family:** `quality-and-validation`
 
 ## Purpose and applicability
 

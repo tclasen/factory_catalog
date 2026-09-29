@@ -2,7 +2,6 @@
 type: Control
 title: "Security event traceability"
 description: "Preserve protected event records that connect security decisions to observed effects."
-catalog_version: "v0.1.0"
 status: stable
 family: monitoring-and-improvement
 sources:
@@ -14,8 +13,6 @@ sources:
 # Security event traceability
 
 [Controls](./) · [Adoption](../adoption.md) · [ATLAS assessment guide](../atlas-threat-assessment.md)
-
-**Identity:** `controls/security-event-traceability` · **Catalog:** v0.1.0 · **Family:** `monitoring-and-improvement`
 
 ## Purpose and applicability
 

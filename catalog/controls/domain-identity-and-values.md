@@ -2,7 +2,6 @@
 type: Control
 title: "Domain identity and values"
 description: "Distinguish continuing identities from equal values before matching or combining records."
-catalog_version: "v0.1.0"
 status: draft
 tags: [domain-driven-design, knowledge, coordination]
 family: knowledge-and-evidence
@@ -13,8 +12,6 @@ sources:
 ---
 
 # Domain identity and values
-
-**Identity:** `controls/domain-identity-and-values` · **Catalog:** v0.1.0 · **Family:** `knowledge-and-evidence`
 
 [Adoption](../adoption.md) · [DDD research](../domain-driven-design.md)
 

@@ -2,7 +2,6 @@
 type: Guide
 title: "Factory delivery lifecycle"
 description: "Compose intake, execution, verification, delivery, and operational controls around one accountable owner."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: workflows-lifecycle

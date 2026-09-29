@@ -2,7 +2,6 @@
 type: Control
 title: "Durable work handoff"
 description: "Preserve enough current intent and state for another session to resume work correctly."
-catalog_version: "v0.1.0"
 status: stable
 family: workflow-and-coordination
 sources:
@@ -14,8 +13,6 @@ sources:
 # Durable work handoff
 
 [Controls](./) · [Adoption](../adoption.md) · [Families](../control-families.md)
-
-**Identity:** `controls/durable-work-handoff` · **Catalog:** v0.1.0 · **Family:** `workflow-and-coordination`
 
 ## Purpose and applicability
 

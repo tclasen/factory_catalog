@@ -2,7 +2,6 @@
 type: Control
 title: "Cancellation enforcement"
 description: "Stop new effects after cancellation and reconcile in-flight work without reopening cancelled intent."
-catalog_version: "v0.1.0"
 status: stable
 family: workflow-and-coordination
 sources:
@@ -14,8 +13,6 @@ sources:
 # Cancellation enforcement
 
 [Controls](./) · [Adoption](../adoption.md) · [Families](../control-families.md)
-
-**Identity:** `controls/cancellation-enforcement` · **Catalog:** v0.1.0 · **Family:** `workflow-and-coordination`
 
 ## Purpose and applicability
 

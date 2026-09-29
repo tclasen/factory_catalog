@@ -2,7 +2,6 @@
 type: Guide
 title: "Optional dispatcher and lead handoff"
 description: "Describe a constrained dispatcher arrangement with safe lead succession and explicit return states."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: policies-execution

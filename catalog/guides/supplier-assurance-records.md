@@ -2,7 +2,6 @@
 type: Guide
 title: "Maintain scoped supplier assurance records"
 description: "Connect supplier claims to product scope, lifecycle evidence, discrepancies, and procurement decisions."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: c225-1

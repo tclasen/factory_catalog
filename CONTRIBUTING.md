@@ -34,6 +34,18 @@ Use one topic branch and a separate checkout or worktree per agent. Never share 
 
 This layout removes mandatory shared-file edits for independent additions. Concurrent changes to the same requirements, identities, or schema still need review and coordination.
 
+### Keep changes local
+
+Before adding metadata, boilerplate, or a new requirement, identify its authoritative source and which files a future change would touch. A release, taxonomy label change, repository move, or policy clarification should not require rewriting unrelated concepts.
+
+- Store the catalog version only in `catalog/VERSION`, as one `vMAJOR.MINOR.PATCH` value (optional SemVer prerelease/build suffixes). Read it at the consumed commit; the build carries the file unchanged. Version changes still require owner authorization under the baseline policy. Do not hardcode the current value in concepts, examples, prompts, documentation, validators, or fixtures.
+- Derive concept identity from its path and family from its frontmatter. Do not duplicate these in authored summary headers. Keep paths independent of mutable family labels. Generate display metadata, counts, inventories, and reverse links from the combined tree.
+- Link to shared adoption and contribution procedures instead of restating their full policy in every item. Preserve control-specific requirements, assessment criteria, limitations, and source attribution so controls remain individually usable.
+- Keep license text at the repository root and copy it into distributions. Do not add per-concept copies of bundle-wide owners, release dates, repository URLs, schema versions, or build information. Use relative internal links; derive distribution details when building or consuming the bundle.
+- Keep actual evidence local: lifecycle status, source revisions, inspection dates, verification events, and historical adoption records describe a particular concept or observation. Never bulk-refresh them for a release or centralize them into a mutable value that rewrites their meaning.
+- Treat required schema changes as migrations: first consider an optional field, a derived value, or a consumer default with an explicit meaning. If an incompatible change is necessary, document why and its affected consumers in the PR. Do not weaken meaningful requirements just to avoid edits.
+- Add regression coverage when tooling can enforce these boundaries. Test that changing the bundle version needs only its one file and that independent additions need no shared edits. Review prose for duplicated policy and stale counts; automated checks cannot prove every statement has one authority.
+
 ### Scripts
 
 Write scripts in Python with a `#!/usr/bin/env -S uv run --script` shebang and an executable Git file mode. Declare Python requirements and dependencies in inline script metadata so `uv` can manage the script environment. Document direct invocation, such as `./scripts/validate_catalog.py`, without requiring an explicit Python launcher.
@@ -46,7 +58,7 @@ Write scripts in Python with a `#!/usr/bin/env -S uv run --script` shebang and a
 - Run `./scripts/build_catalog.py` to build and validate in a temporary directory. To retain a browsable copy, use `./scripts/build_catalog.py --output build/catalog` with a new output directory; choose a fresh path for subsequent builds. `build/` is ignored. Distribute this generated bundle when consumers need complete progressive-disclosure indexes. Consumers of the source tree must scan files for a complete inventory.
 - OKF §9 makes logs optional. Do not add historical logs, compatibility placeholders, or migration narratives to the bundle. Retain source provenance and evidence limits that support current guidance.
 - Keep the upstream specification and license unchanged. For upgrades, fetch from an exact upstream commit, review the changes, update `vendor/okf/UPSTREAM.md` and its checksums, and assess bundle compatibility.
-- Distinguish OKF format version 0.2 from catalog version v0.1.0.
+- Distinguish the pinned OKF format version from the catalog version in `catalog/VERSION`.
 
 ### Write useful controls
 
@@ -72,13 +84,13 @@ Use **Semantic Versioning (SEMVER)** in `MAJOR.MINOR.PATCH` form, following [Sem
 
 **From v1:** classify by the effect on adopters. An extension that introduces an incompatible requirement is a major change even if it edits only one definition. For changes spanning categories, use the highest required level. A major release resets minor and patch to zero; a minor release resets patch to zero.
 
-**Current baseline hold:** the project remains early beta at **v0.1.0** until the repository owner explicitly approves a baseline. Use exact commit SHAs to identify interim revisions. Describe the intended version impact in pull requests, but do not bump the version or publish a release during this hold. Baseline approval and all release/version changes require explicit repository-owner decisions; this guide does not approve them. Never move published version tags or alter an already released version's contents.
+**Current baseline hold:** the project remains early beta at the version declared in [catalog/VERSION](catalog/VERSION) until the repository owner explicitly approves a baseline. Use exact commit SHAs to identify interim revisions. Describe the intended version impact in pull requests, but do not bump the version or publish a release during this hold. Baseline approval and all release/version changes require explicit repository-owner decisions; this guide does not approve them. Never move published version tags or alter an already released version's contents.
 
 ## 5. Verify and open a pull request
 
 Before submitting, run `./scripts/check_catalog.py --github`. CI runs this same command. It fails on regression failures, invalid structure or provenance, broken local links or heading anchors, incomplete generated navigation, missing distribution license, and whitespace errors. Duplicate YAML keys are rejected at every mapping level. Footnotes must have definitions and matching source IDs. Source entries must supply a resource; explicit relative or absolute bundle paths and whitespace-free resources containing `/` or `.` are checked as local paths. URI resources and scope descriptions remain valid; use `./` for an otherwise ambiguous local filename.
 
-The generated bundle includes the repository LICENSE unchanged, control maturity and family labels, and a complete family view. These are derived from files and metadata; authors do not maintain an inventory.
+The generated bundle includes the source VERSION and repository LICENSE unchanged, control maturity and family labels, and a complete family view. These are derived from files and metadata; authors do not maintain an inventory.
 
 Whitespace checks cover the full tracked working tree, including committed content in a clean or shallow CI checkout, plus staged and unstaged changes. The full-tree scan excludes only `vendor/okf/SPEC.md` and `vendor/okf/LICENSE.md`, whose upstream whitespace must remain unchanged. Stage new files before running the final check so Git includes them. No base branch or network fetch is needed for this scan.
 

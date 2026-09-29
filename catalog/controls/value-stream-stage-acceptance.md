@@ -2,7 +2,6 @@
 type: Control
 title: "Value stream stage acceptance"
 description: "Define the value, evidence, and acceptance conditions at each stage of a service."
-catalog_version: "v0.1.0"
 status: draft
 family: workflow-and-coordination
 sources:
@@ -17,8 +16,6 @@ sources:
 # Value stream stage acceptance
 
 [Adoption](../adoption.md) · [Control families](../control-families.md)
-
-**Identity:** `controls/value-stream-stage-acceptance` · **Catalog:** v0.1.0 · **Family:** `workflow-and-coordination`
 
 ## Purpose and applicability
 

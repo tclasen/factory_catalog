@@ -2,7 +2,6 @@
 type: Control
 title: "Measurement basis validation"
 description: "Check units, boundaries, periods, and conversion methods before measurements are combined or reported."
-catalog_version: "v0.1.0"
 status: draft
 family: quality-and-validation
 sources:
@@ -15,8 +14,6 @@ sources:
 ---
 
 # Measurement basis validation
-
-**Identity:** `controls/measurement-basis-validation` · **Catalog:** v0.1.0 · **Family:** `quality-and-validation`
 
 [Adoption](../adoption.md) · [Research map](../open-group-standards-opportunities.md)
 

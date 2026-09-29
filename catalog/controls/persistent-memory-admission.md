@@ -2,7 +2,6 @@
 type: Control
 title: "Persistent memory admission"
 description: "Authorize durable memory changes and preserve their origin before later sessions can use them."
-catalog_version: "v0.1.0"
 status: stable
 family: knowledge-and-evidence
 sources:
@@ -17,8 +16,6 @@ sources:
 # Persistent memory admission
 
 [Controls](./) · [Adoption](../adoption.md) · [ATLAS assessment guide](../atlas-threat-assessment.md)
-
-**Identity:** `controls/persistent-memory-admission` · **Catalog:** v0.1.0 · **Family:** `knowledge-and-evidence`
 
 ## Purpose and applicability
 

@@ -2,7 +2,6 @@
 type: Factory Example
 title: "Mining investment planning factory"
 description: "A fictional decision-support workflow connecting exploration and mining capability gaps to investment options."
-catalog_version: "v0.1.0"
 status: draft
 example: true
 domain: "Exploration and mining investment planning"
@@ -73,7 +72,7 @@ Retain the brief, capability definitions/versions, observations, estimates, alte
 
 This decision-support example does not supply geological/reserve assurance, safety engineering, environmental permitting, community consultation, financial due diligence, or purchasing authority. Existing observations and supplier claims may be biased or stale. Reassess after material operating incidents, price/constraint changes, new suppliers, changed assumptions, or expanded agent authority; the planning director owns applicability decisions.
 
-All four selections remain applicable/proposed/not-assessed. Follow [adoption](../adoption.md#record-the-adoption) to pin each identity, catalog v0.1.0, and exact source revision before implementing. Recommendation acceptance and authority to execute a funded change remain separate decisions.
+All four selections remain applicable/proposed/not-assessed. Follow [adoption](../adoption.md#record-the-adoption) to pin each identity, catalog version from the adopted revision, and exact source revision before implementing. Recommendation acceptance and authority to execute a funded change remain separate decisions.
 
 [^c135]: The Open Group, The Exploration & Mining Business Reference Model; public publication description and metadata inspected 2026-09-28. Full licensed text was not reviewed.
 [^c143]: The Open Group, The Exploration & Mining Business Capability Reference Map; public publication description and metadata inspected 2026-09-28. Full licensed text was not reviewed.

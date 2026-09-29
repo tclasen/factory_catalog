@@ -2,7 +2,6 @@
 type: Control
 title: "Lethal trifecta separation"
 description: "Interrupt paths that connect untrusted content, private data, and unauthorized disclosure across an AI workflow."
-catalog_version: "v0.1.0"
 status: draft
 family: information-protection
 tags: [security, privacy, prevent, technical-restriction, lethal-trifecta]
@@ -15,8 +14,6 @@ sources:
 # Lethal trifecta separation
 
 [Adoption](../adoption.md) · [Research](../lethal-trifecta.md) · [Assessment procedure](../guides/lethal-trifecta-assessment.md)
-
-**Identity:** `controls/lethal-trifecta-separation` · **Catalog:** v0.1.0 · **Family:** `information-protection`
 
 This is a proposed catalog requirement derived from the research synthesis.[^research] It has not been operationally assessed.
 

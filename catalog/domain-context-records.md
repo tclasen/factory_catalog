@@ -2,7 +2,6 @@
 type: Guide
 title: "Domain context and translation records"
 description: "Record model scope, inter-context influence, and semantic handoffs without changing the catalog schema."
-catalog_version: "v0.1.0"
 status: draft
 tags: [domain-driven-design, knowledge, coordination]
 sources:

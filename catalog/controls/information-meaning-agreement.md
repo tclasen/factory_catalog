@@ -2,7 +2,6 @@
 type: Control
 title: "Information meaning agreement"
 description: "Resolve differences in business meaning before exchanging or combining information."
-catalog_version: "v0.1.0"
 status: draft
 family: knowledge-and-evidence
 sources:
@@ -17,8 +16,6 @@ sources:
 # Information meaning agreement
 
 [Adoption](../adoption.md) · [Control families](../control-families.md)
-
-**Identity:** `controls/information-meaning-agreement` · **Catalog:** v0.1.0 · **Family:** `knowledge-and-evidence`
 
 ## Purpose and applicability
 

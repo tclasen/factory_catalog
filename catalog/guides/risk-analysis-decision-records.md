@@ -2,7 +2,6 @@
 type: Guide
 title: "Record risk analyses for inspectable decisions"
 description: "Separate scenarios, estimates, uncertainty, control assumptions, and authority to accept risk."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: c250

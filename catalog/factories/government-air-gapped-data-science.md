@@ -2,7 +2,6 @@
 type: Factory Example
 title: "Government data science factory across an air gap"
 description: "A government contract gathers low-side insights, transfers auditable files, and continues analysis and fusion with restricted data in an air-gapped AI factory."
-catalog_version: "v0.1.0"
 status: draft
 example: true
 domain: "Government data science and evidence fusion"
@@ -105,7 +104,7 @@ Follow-up requests to the low side require a separately approved question or art
 
 ## Selected controls and proposed implementation
 
-All selections are applicable, proposed, and not assessed. The research lead owns the selections with the data and evaluation owners. Before implementation, [record adoption](../adoption.md#record-the-adoption) with each control's identity, catalog v0.1.0, exact catalog commit, and pinned source URL; resolve dependencies at that revision.
+All selections are applicable, proposed, and not assessed. The research lead owns the selections with the data and evaluation owners. Before implementation, [record adoption](../adoption.md#record-the-adoption) with each control's identity, catalog version from the adopted revision, exact catalog commit, and pinned source URL; resolve dependencies at that revision.
 
 | Risk / control | Owner and proposed mechanism |
 |---|---|

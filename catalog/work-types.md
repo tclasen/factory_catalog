@@ -1,8 +1,7 @@
 ---
 type: Taxonomy
 title: "Knowledge work types"
-description: "Sixteen non-exclusive work labels classified by their intended outcome."
-catalog_version: "v0.1.0"
+description: "Non-exclusive work labels classified by their intended outcome."
 status: stable
 ---
 

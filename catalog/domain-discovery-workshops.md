@@ -2,7 +2,6 @@
 type: Guide
 title: "Collaborative domain discovery"
 description: "Elicit and challenge domain models using concrete stories, events, and practitioner review."
-catalog_version: "v0.1.0"
 status: draft
 tags: [domain-driven-design, knowledge, coordination]
 sources:

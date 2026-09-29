@@ -2,7 +2,6 @@
 type: Control
 title: "Data product service objectives"
 description: "Measure data quality and delivery against consumer needs and act on breaches."
-catalog_version: "v0.1.0"
 status: draft
 tags: [data-mesh, data-stewardship]
 family: monitoring-and-improvement
@@ -15,8 +14,6 @@ sources:
 # Data product service objectives
 
 [Adoption](../adoption.md) · [Data mesh research](../data-mesh-architectures.md)
-
-**Identity:** `controls/data-product-service-objectives` · **Catalog:** v0.1.0 · **Family:** `monitoring-and-improvement`
 
 ## Purpose and applicability
 

@@ -2,7 +2,6 @@
 type: Guide
 title: "Lessons from Software Factory"
 description: "Apply source-backed lessons about scope, evidence, recovery, and process improvement to knowledge-work factories."
-catalog_version: "v0.1.0"
 status: stable
 sources:
   - id: overview
@@ -136,7 +135,7 @@ These definitions separate mechanisms that can succeed or fail independently. Se
 
 Use [assessment evidence records](assessment-evidence-records.md), [restart and handoff records](restart-and-handoff-records.md), and [process experiment records](process-experiment-records.md) as local implementation aids. These guides reuse existing document types and do not impose a new frontmatter schema on run records.
 
-The [software delivery example](factories/software-delivery.md) illustrates application and remaining implementation gaps. The catalog remains v0.1.0; baseline approval is a separate owner decision.
+The [software delivery example](factories/software-delivery.md) illustrates application and remaining implementation gaps. Baseline approval is a separate owner decision.
 
 [^overview]: [Software Factory overview](https://github.com/tclasen/software-factory/blob/0a429827a595712ce1fa3069528565c72da2a549/README.md).
 [^planning]: [Requirements and planning](https://github.com/tclasen/software-factory/blob/0a429827a595712ce1fa3069528565c72da2a549/skills/software-factory/references/policies/planning.md).

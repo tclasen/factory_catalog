@@ -2,7 +2,6 @@
 type: Control
 title: "Reconcile before retry"
 description: "Resolve uncertain external effects before repeating a consequential operation."
-catalog_version: "v0.1.0"
 status: stable
 family: reliability-and-recovery
 sources:
@@ -20,8 +19,6 @@ sources:
 # Reconcile before retry
 
 [Controls](./) · [Adoption](../adoption.md) · [Families](../control-families.md)
-
-**Identity:** `controls/reconcile-before-retry` · **Catalog:** v0.1.0 · **Family:** `reliability-and-recovery`
 
 ## Purpose and applicability
 

@@ -2,7 +2,6 @@
 type: Risk Scenario
 title: "Poisoned memory influences later work"
 description: "Adversary-controlled content is persisted as a preference, instruction, or summary and later reused."
-catalog_version: "v0.1.0"
 status: stable
 sources:
   - id: AML.T0080.000
@@ -19,8 +18,6 @@ sources:
 # Poisoned memory influences later work
 
 [ATLAS assessment guide](../atlas-threat-assessment.md) · [Ontology](../ontology.md) · [Adoption](../adoption.md)
-
-**Identity:** `risks/poisoned-persistent-memory` · **Catalog:** v0.1.0
 
 ## Cause and enabling conditions
 

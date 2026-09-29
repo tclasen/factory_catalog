@@ -6,3 +6,6 @@
 /.github/workflows/ @tclasen
 /scripts/ @tclasen
 /CODEOWNERS @tclasen
+
+# Catalog version changes require the repository owner’s decision.
+/catalog/VERSION @tclasen

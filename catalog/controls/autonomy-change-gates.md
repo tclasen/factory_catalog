@@ -2,7 +2,6 @@
 type: Control
 title: "Autonomy change gates"
 description: "Require scoped evidence and independent authorization to expand autonomy, with tested reduction, suspension, and recovery rules."
-catalog_version: "v0.1.0"
 status: draft
 family: change-and-dependencies
 sources:
@@ -14,8 +13,6 @@ sources:
 # Autonomy change gates
 
 [Adoption](../adoption.md) · [Research and allocation guide](../human-ai-authority.md)
-
-**Identity:** `controls/autonomy-change-gates` · **Catalog:** v0.1.0 · **Family:** `change-and-dependencies`
 
 ## Purpose and applicability
 

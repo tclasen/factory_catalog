@@ -2,7 +2,6 @@
 type: Guide
 title: "Process experiment records"
 description: "Plan and record a bounded comparison before adopting a claimed process improvement."
-catalog_version: "v0.1.0"
 status: stable
 sources:
   - id: software-factory

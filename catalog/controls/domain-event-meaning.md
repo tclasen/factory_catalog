@@ -2,7 +2,6 @@
 type: Control
 title: "Domain event meaning"
 description: "Separate requested actions from evidenced occurrences and define their downstream meaning."
-catalog_version: "v0.1.0"
 status: draft
 tags: [domain-driven-design, knowledge, coordination]
 family: workflow-and-coordination
@@ -16,8 +15,6 @@ sources:
 ---
 
 # Domain event meaning
-
-**Identity:** `controls/domain-event-meaning` · **Catalog:** v0.1.0 · **Family:** `workflow-and-coordination`
 
 [Adoption](../adoption.md) · [DDD research](../domain-driven-design.md)
 

@@ -2,7 +2,6 @@
 type: Guide
 title: "Use The Open Group standards to extend the knowledge-work graph"
 description: "A research map of enterprise, environmental, industrial, risk, and interoperability standards with scoped catalog opportunities."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: c202
@@ -156,7 +155,7 @@ Graph edges have named meaning in surrounding prose: a guide proposes an impleme
 4. Validate non-security use of the risk guide, environmental calculation methods, and industrial safety boundaries with competent domain owners.
 5. Recheck sources when adopting, when a linked edition changes, and before relying on time-limited snapshots. Preserve source access dates separately from publication dates.
 
-Adopt a catalog control only with its identity, v0.1.0 catalog version, and [exact-commit source reference](adoption.md#record-the-adoption). This research does not approve a release baseline or certify compliance with any external standard.
+Adopt a catalog control only with its identity, catalog version, and [exact-commit source reference](adoption.md#record-the-adoption). This research does not approve a release baseline or certify compliance with any external standard.
 
 [^c220]: The Open Group, The TOGAF® Standard, 10th Edition; public publication description and metadata inspected 2026-09-28. Full licensed text was not reviewed.
 [^c260]: The Open Group, ArchiMate® 4 Specification; public publication description and metadata inspected 2026-09-28. Full licensed text was not reviewed.

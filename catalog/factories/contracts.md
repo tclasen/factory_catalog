@@ -2,7 +2,6 @@
 type: Factory Example
 title: "Contract operations factory"
 description: "A contract workflow with distinct drafting, negotiation, signing, and records authority."
-catalog_version: "v0.1.0"
 status: stable
 example: true
 domain: "Procurement and contracts"

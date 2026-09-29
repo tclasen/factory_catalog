@@ -2,7 +2,6 @@
 type: Guide
 title: "Factory implementation trade-offs"
 description: "Compare prose, code, skills, plugins, extensions, and external gates by their roles, costs, failure modes, and evidence."
-catalog_version: "v0.1.0"
 status: stable
 sources:
   - id: agents-md

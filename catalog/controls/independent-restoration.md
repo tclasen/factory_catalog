@@ -2,7 +2,6 @@
 type: Control
 title: "Independent restoration"
 description: "Demonstrate restoration from the claimed backup while preserving acknowledged changes and deletion obligations."
-catalog_version: "v0.1.0"
 status: draft
 family: reliability-and-recovery
 sources:
@@ -14,8 +13,6 @@ sources:
 # Independent restoration
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/independent-restoration` · **Catalog:** v0.1.0 · **Family:** `reliability-and-recovery`
 
 Draft requirement adapted from the source factory policies.[^workflows-operations] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

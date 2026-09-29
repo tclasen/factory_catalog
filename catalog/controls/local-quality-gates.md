@@ -2,7 +2,6 @@
 type: Control
 title: "Local quality gates"
 description: "Enforce configured static checks and relevant behavioral tests before code acceptance."
-catalog_version: "v0.1.0"
 status: draft
 family: quality-and-validation
 sources:
@@ -17,8 +16,6 @@ sources:
 # Local quality gates
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/local-quality-gates` · **Catalog:** v0.1.0 · **Family:** `quality-and-validation`
 
 Draft requirement adapted from the source factory policies.[^policies-verification][^templates-project] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

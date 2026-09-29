@@ -2,7 +2,6 @@
 type: Guide
 title: "Select and assess factory implementation mechanisms"
 description: "Allocate factory activities across implementation mechanisms, record the decision, and test the composed boundaries."
-catalog_version: "v0.1.0"
 status: stable
 sources:
   - id: tradeoffs

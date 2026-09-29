@@ -2,7 +2,6 @@
 type: Control
 title: "Bounded external action"
 description: "Enforce scoped authority before an action affects an external party or system."
-catalog_version: "v0.1.0"
 status: stable
 family: authority-and-access
 ---
@@ -10,8 +9,6 @@ family: authority-and-access
 # Bounded external action
 
 [Controls](./) · [Adoption](../adoption.md) · [Control families](../control-families.md)
-
-**Identity:** `controls/bounded-external-action` · **Catalog:** v0.1.0 · **Family:** `authority-and-access`
 
 ## Purpose and applicability
 

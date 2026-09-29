@@ -2,7 +2,6 @@
 type: Control
 title: "Decision rights and accountability"
 description: "Assign decision rights and accountable owners with demonstrated means to review, intervene, and address effects."
-catalog_version: "v0.1.0"
 status: draft
 family: purpose-and-accountability
 sources:
@@ -14,8 +13,6 @@ sources:
 # Decision rights and accountability
 
 [Adoption](../adoption.md) · [Research and allocation guide](../human-ai-authority.md)
-
-**Identity:** `controls/decision-rights-and-accountability` · **Catalog:** v0.1.0 · **Family:** `purpose-and-accountability`
 
 ## Purpose and applicability
 

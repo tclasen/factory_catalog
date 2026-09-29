@@ -2,7 +2,6 @@
 type: Factory Example
 title: "Industrial modernization procurement factory"
 description: "A fictional planning team prepares a multi-supplier modernization recommendation with scoped assurance and interface evidence."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: g182

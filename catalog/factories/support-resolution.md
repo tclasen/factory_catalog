@@ -2,7 +2,6 @@
 type: Factory Example
 title: "Support resolution with evolving autonomy"
 description: "A fictional support factory assigns action-specific rights and expands or reduces refund autonomy using explicit evidence gates."
-catalog_version: "v0.1.0"
 status: draft
 example: true
 domain: "Customer support for a digital subscription service"
@@ -88,7 +87,7 @@ The on-call operator inventories pending and completed transactions from the aut
 
 ## Controls and assessment plan
 
-All five selections are applicable, proposed, and not assessed. Before use, retain each control's identity, catalog v0.1.0, full published source commit, pinned URL, scope, owner, and adaptations as specified in [adoption](../adoption.md#record-the-adoption). Resolve cross-control references against the same revision.
+All five selections are applicable, proposed, and not assessed. Before use, retain each control's identity, catalog version from the adopted revision, full published source commit, pinned URL, scope, owner, and adaptations as specified in [adoption](../adoption.md#record-the-adoption). Resolve cross-control references against the same revision.
 
 | Selected control / local owner | Evidence to produce |
 |---|---|

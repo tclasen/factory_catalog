@@ -2,7 +2,6 @@
 type: Guide
 title: "Assess semantic answer caches"
 description: "Test whether cached AI answers remain authorized, current, and equivalent for the requesting task."
-catalog_version: "v0.1.0"
 status: draft
 tags: [retrieval, cache, privacy, assessment]
 sources:
@@ -74,7 +73,7 @@ Retain fixture labels, users and grants, source/policy revisions, match decision
 
 The reuse contract and fixtures are catalog interpretations, not vendor requirements or proven mitigations. Matching tests cannot establish all future semantic equivalences. Invalidation depends on complete lineage and functioning enforcement; document inaccessible stores and untested paths. Reuse the broader [corpus integrity](../controls/retrieval-corpus-integrity.md) and [state recovery](../controls/persistent-state-recovery.md) assessments for those dependencies.
 
-Retain linked control identities, catalog v0.1.0, and exact source commit URLs under the [adoption procedure](../adoption.md#record-the-adoption). No product-specific threshold or implementation is prescribed.
+Retain linked control identities, catalog version from the adopted revision, and exact source commit URLs under the [adoption procedure](../adoption.md#record-the-adoption). No product-specific threshold or implementation is prescribed.
 
 [^redis-cache]: [Redis: What is semantic caching?](https://redis.io/blog/what-is-semantic-caching/).
 [^platform-cache]: [Chip Huyen: Building A Generative AI Platform](https://huyenchip.com/2024/07/25/genai-platform.html).

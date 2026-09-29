@@ -2,7 +2,6 @@
 type: Control
 title: "Data product contract"
 description: "Agree and check the meaning and delivery conditions of a shared data product."
-catalog_version: "v0.1.0"
 status: draft
 tags: [data-mesh, data-stewardship]
 family: intake-and-work-definition
@@ -15,8 +14,6 @@ sources:
 # Data product contract
 
 [Adoption](../adoption.md) · [Data mesh research](../data-mesh-architectures.md)
-
-**Identity:** `controls/data-product-contract` · **Catalog:** v0.1.0 · **Family:** `intake-and-work-definition`
 
 ## Purpose and applicability
 

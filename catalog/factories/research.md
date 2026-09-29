@@ -2,7 +2,6 @@
 type: Factory Example
 title: "Public research factory"
 description: "A public-source research workflow with claim review and explicit unknowns."
-catalog_version: "v0.1.0"
 status: stable
 example: true
 domain: "Product research"

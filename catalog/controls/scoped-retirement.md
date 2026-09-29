@@ -2,7 +2,6 @@
 type: Control
 title: "Scoped retirement"
 description: "Verify authorized retirement while preserving shared assets and retention obligations."
-catalog_version: "v0.1.0"
 status: draft
 family: information-protection
 sources:
@@ -17,8 +16,6 @@ sources:
 # Scoped retirement
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/scoped-retirement` · **Catalog:** v0.1.0 · **Family:** `information-protection`
 
 Draft requirement adapted from the source factory policies.[^workflows-operations][^policies-governance] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

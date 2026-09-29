@@ -2,7 +2,6 @@
 type: Guide
 title: "Decompose the semantic_search factory"
 description: "Map the source factory folder to individually selectable draft controls and supporting guides."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: readme
@@ -129,7 +128,7 @@ The source's templates become guides for local records. Create separate Actor, I
 - **Keep configuration choices current:** model and effort selection records available options and uncertainty; no model name, fixed budget, or universal tier ranking is imported. Numerical budget heuristics are local parameters under bounded execution.
 - **Preserve provenance without copying the kit:** the source's whole-folder copy instruction becomes selection of pinned controls and required supporting concepts under [catalog adoption](adoption.md).
 
-Review these draft boundaries and requirements before treating their definitions as stable. Catalog version remains v0.1.0; this proposal changes neither the ontology nor an approved baseline. The next decision is which draft definitions to adopt or refine, followed by assessments of actual local implementations.
+Review these draft boundaries and requirements before treating their definitions as stable. This proposal changes neither the ontology nor an approved baseline. The next decision is which draft definitions to adopt or refine, followed by assessments of actual local implementations.
 
 [^readme]: [Factory overview](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/README.md).
 [^agents]: [Agent operating contract](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/AGENTS.md).

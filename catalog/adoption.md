@@ -2,7 +2,6 @@
 type: Guide
 title: "Select, adopt, and assess controls"
 description: "Describe a factory, select contextual controls, and preserve pinned adoption and assessment records."
-catalog_version: "v0.1.0"
 status: stable
 ---
 
@@ -31,7 +30,7 @@ An adoption is an explicit decision to apply a particular control revision. A re
 | Field | Required content |
 |---|---|
 | Control identity | Bundle-relative concept path without `.md`, such as `controls/evidence-traceability` |
-| Catalog version | `v0.1.0` during the baseline hold |
+| Catalog version | Value of [VERSION](VERSION) at the source revision actually adopted |
 | Source revision | Full commit SHA of the catalog revision actually read |
 | Pinned source URL | `https://github.com/tclasen/factory_catalog/blob/` + that SHA + `/catalog/` + the control identity + `.md` |
 | Scope and owner | Factory/activity coverage and person accountable for implementation |
@@ -42,6 +41,8 @@ An adoption is an explicit decision to apply a particular control revision. A re
 To obtain a source revision from a checkout, use `git rev-parse HEAD` and confirm that the selected files have no local edits with `git status --short -- catalog`. Confirm the commit and file exist on the published repository before using its URL. A SHA identifies the committed contents, not unstaged edits. For a downloaded bundle, obtain the distributor's exact source revision rather than guessing it.
 
 For by-reference adoption, retain the identity, version, and pinned URL in the local record. For by-value adoption, retain those fields alongside the copied control, preserve the reusable requirement and assessment, and distinguish local adaptations from source text. Resolve any relative cross-control references against the same source revision and retain their identities, versions, and pinned URLs too. Do not substitute moving branch URLs.
+
+Read the version once per adopted bundle revision. A local adoption record may share that version and SHA across controls from the same revision; keep separate records when revisions differ. For a copied control, retain the adoption record alongside the text. Never refresh historical adoption versions just because a newer catalog exists.
 
 No self-referential source SHA is embedded in a control: the adoption record pins the published revision consumed. This avoids claiming that a later revision is the content an earlier adopter used.
 

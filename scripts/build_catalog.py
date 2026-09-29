@@ -28,6 +28,9 @@ def markdown_text(value: str) -> str:
 def validate_distribution(source: Path, destination: Path) -> list[str]:
     """Check packaging and generated control discovery independently of the writer."""
     errors = []
+    bundled_version = destination / "VERSION"
+    if not bundled_version.is_file() or bundled_version.read_bytes() != (source / "VERSION").read_bytes():
+        errors.append("generated bundle must include the unchanged source VERSION")
     license_path = source.parent / "LICENSE"
     bundled = destination / "LICENSE"
     if not bundled.is_file() or bundled.read_bytes() != license_path.read_bytes():

@@ -2,7 +2,6 @@
 type: Risk Scenario
 title: "A compromised tool changes execution behavior"
 description: "A tool or dependency changes its advertised interface, executable behavior, or returned data to influence the worker or downstream system."
-catalog_version: "v0.1.0"
 status: stable
 sources:
   - id: AML.T0010
@@ -16,8 +15,6 @@ sources:
 # A compromised tool changes execution behavior
 
 [ATLAS assessment guide](../atlas-threat-assessment.md) · [Ontology](../ontology.md) · [Adoption](../adoption.md)
-
-**Identity:** `risks/compromised-tool-behavior` · **Catalog:** v0.1.0
 
 ## Cause and enabling conditions
 

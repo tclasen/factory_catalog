@@ -2,7 +2,6 @@
 type: Control
 title: "Context translation contracts"
 description: "Preserve meaning and expose information loss at domain handoffs."
-catalog_version: "v0.1.0"
 status: draft
 tags: [domain-driven-design, knowledge, coordination]
 family: workflow-and-coordination
@@ -13,8 +12,6 @@ sources:
 ---
 
 # Context translation contracts
-
-**Identity:** `controls/context-translation-contracts` · **Catalog:** v0.1.0 · **Family:** `workflow-and-coordination`
 
 [Adoption](../adoption.md) · [DDD research](../domain-driven-design.md)
 

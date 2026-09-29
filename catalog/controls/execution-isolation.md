@@ -2,7 +2,6 @@
 type: Control
 title: "Execution isolation"
 description: "Restrict workload access to files, networks, credentials, and other execution contexts."
-catalog_version: "v0.1.0"
 status: stable
 family: authority-and-access
 sources:
@@ -14,8 +13,6 @@ sources:
 # Execution isolation
 
 [Controls](./) · [Adoption](../adoption.md) · [ATLAS assessment guide](../atlas-threat-assessment.md)
-
-**Identity:** `controls/execution-isolation` · **Catalog:** v0.1.0 · **Family:** `authority-and-access`
 
 ## Purpose and applicability
 

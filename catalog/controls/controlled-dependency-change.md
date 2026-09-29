@@ -2,7 +2,6 @@
 type: Control
 title: "Controlled dependency change"
 description: "Qualify changed tools, models, dependencies, and configuration before relying on them."
-catalog_version: "v0.1.0"
 status: draft
 family: change-and-dependencies
 sources:
@@ -17,8 +16,6 @@ sources:
 # Controlled dependency change
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/controlled-dependency-change` · **Catalog:** v0.1.0 · **Family:** `change-and-dependencies`
 
 Draft requirement adapted from the source factory policies.[^workflows-operations][^policies-verification] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

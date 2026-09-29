@@ -2,7 +2,6 @@
 type: Risk Scenario
 title: "Retrieval poisoning corrupts a decision"
 description: "An adversary inserts or changes indexed content that later appears relevant to a legitimate query."
-catalog_version: "v0.1.0"
 status: stable
 sources:
   - id: AML.T0070
@@ -16,8 +15,6 @@ sources:
 # Retrieval poisoning corrupts a decision
 
 [ATLAS assessment guide](../atlas-threat-assessment.md) · [Ontology](../ontology.md) · [Adoption](../adoption.md)
-
-**Identity:** `risks/retrieval-poisoning` · **Catalog:** v0.1.0
 
 ## Cause and enabling conditions
 

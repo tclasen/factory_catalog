@@ -2,7 +2,6 @@
 type: Control
 title: "Exclusive mutation ownership"
 description: "Prevent conflicting or stale workers from mutating the same protected resource."
-catalog_version: "v0.1.0"
 status: stable
 family: workflow-and-coordination
 sources:
@@ -14,8 +13,6 @@ sources:
 # Exclusive mutation ownership
 
 [Controls](./) · [Adoption](../adoption.md) · [Families](../control-families.md)
-
-**Identity:** `controls/exclusive-mutation-ownership` · **Catalog:** v0.1.0 · **Family:** `workflow-and-coordination`
 
 ## Purpose and applicability
 

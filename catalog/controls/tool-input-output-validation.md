@@ -2,7 +2,6 @@
 type: Control
 title: "Tool input and output validation"
 description: "Validate tool arguments and returned data before execution, rendering, or downstream use."
-catalog_version: "v0.1.0"
 status: stable
 family: quality-and-validation
 sources:
@@ -17,8 +16,6 @@ sources:
 # Tool input and output validation
 
 [Controls](./) · [Adoption](../adoption.md) · [ATLAS assessment guide](../atlas-threat-assessment.md)
-
-**Identity:** `controls/tool-input-output-validation` · **Catalog:** v0.1.0 · **Family:** `quality-and-validation`
 
 ## Purpose and applicability
 

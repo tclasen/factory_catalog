@@ -2,7 +2,6 @@
 type: Guide
 title: "Evaluate Agent Patterns additions"
 description: "Prioritize gaps in retrieval, context preservation, tool usability, and evaluation without duplicating existing factory controls."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: ap-about
