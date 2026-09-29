@@ -81,18 +81,18 @@ Low-side access is limited to data and processing approved for that environment.
 
 ## Two factories and their handoff
 
+Use the [air-gapped artifact transfer procedure](../guides/air-gapped-artifact-transfer.md) for packaging, admission, internal requalification, and audit continuity. The following stages specialize it for this contract.
+
 | Stage / owner | Work performed | Required gate and retained output |
 |---|---|---|
 | Question definition / customer and data owners | Define questions, permitted collection, material claims, and internal fusion needs without disclosing restricted details to the low side | Approved low-side brief and separately protected internal acceptance criteria |
 | Low-side research and development / first AI factory | Gather evidence, clean observations, develop analysis code, run experiments, and draft insights with or without human analysts | Deterministic schema, type, range, duplicate, missingness, unit, timestamp, code-quality, and computation tests; retain source identity, collection time, transformations, and claim support |
-| Package / research lead | Freeze transferable source material, code, environments, results, assumptions, uncertainty, and limitations | Complete file manifest and digests, dependency closure, source-use permissions, handling labels, check results, and authorization for the exact package/destination |
-| Transfer and admission / custodian and receiving service | Carry files through the customer-approved media or file-transfer procedure; quarantine before use | Custody records, signature/trust and inventory verification, content and malware inspection with tool/freshness records, and receiving package identity; mismatches or unknown handling status block admission |
+| Package / research lead | Freeze transferable source material, code, environments, results, assumptions, uncertainty, and limitations | Apply [package qualification](../guides/air-gapped-artifact-transfer.md#package-and-admit), including source-use permissions, to the analytical package |
+| Transfer and admission / authorized custodian and receiving service | Carry the package through the customer-approved procedure | Apply [custody, quarantine, and admission gates](../guides/air-gapped-artifact-transfer.md#package-and-admit); retain receiving package identity |
 | Internal processing and fusion / second AI factory | Re-run admitted analysis; develop new transformations, resolve identities, combine approved internal data, revise hypotheses, and evaluate new insights with or without human analysts | Deterministic pipeline and data checks repeat against local snapshots; protected fusion fixtures test joins, units, temporal alignment, missing data, and claimed results; each changed dataset/code/model/configuration is a new candidate |
 | Internal acceptance / evaluator and customer analysis owner | Review evidence, uncertainty, and analytical fitness; authorize delivery to named internal recipients | Protected verdict, complete lineage, disclosed conflicts and limits, verified delivered artifact, and question-by-question acceptance |
 
 The low-side result is a preliminary input. Internal analysis can confirm, qualify, or reject it. For example, a regional outage pattern may disappear after matching public events to internal asset identities and correcting observation windows; both findings and the reason for revision stay in the internal record.
-
-Notebooks and source documents are untrusted content, not instructions to alter policy or run arbitrary commands. Disable active remote resources during preview and inspect executable content before authorized execution. Admit required libraries, models, and data snapshots through the same controlled process; missing dependencies do not justify a temporary external connection.
 
 ## Human participation, autonomy, and authority
 
@@ -100,7 +100,7 @@ Each side independently permits human-assisted or unattended AI work for named a
 
 Agents may explore approved data and create internal candidates, but cannot authorize transfer, broaden source use, change handling labels, or release conclusions beyond the named audience. A successful schema check cannot decide whether two variables mean the same thing, and repeatable code cannot establish that a hypothesis is true.
 
-Follow-up requests to the low side require a separately approved question or artifact released under the customer's rules. Internal prompts, embeddings, model weights adapted to restricted data, aggregate statistics, logs, and inferred relationships remain protected derived data unless explicitly cleared for the destination. Neither removing identifiers nor aggregation automatically authorizes disclosure. Media reuse is also governed by the transfer procedure.
+Apply the [separate return-transfer procedure](../guides/air-gapped-artifact-transfer.md#separately-authorize-return-transfers) to follow-up questions and artifacts. Internal prompts, embeddings, model weights adapted to restricted data, aggregate statistics, logs, and inferred relationships remain protected derived data unless explicitly cleared for the destination.
 
 ## Selected controls and proposed implementation
 
@@ -125,7 +125,7 @@ All selections are applicable, proposed, and not assessed. The research lead own
 
 The internal audit chain links the transferred package to original source revisions, collection windows, filters, missingness decisions, code and dependency versions, model configuration, seeds where relevant, actual run identifiers, internal dataset snapshots, mappings, and final claims. Record deterministic evaluator versions, expected results/tolerances, observed outputs, reviewer/grant identities, and exception dispositions. Fixed seeds alone do not guarantee repeatability across runtimes; define which computations must reproduce exactly and which require explicit numerical tolerances. Keep AI-generated narrative claims tied to inspectable evidence even when generation varies.
 
-Keep sensitive lineage identifiers, source extracts, and analytical outputs in approved internal evidence storage. Transfer only approved low-side evidence with the package; no shared external audit service connects the factories. Protect records from producer alteration, define retention and authorized auditor access, correlate events when clocks differ, and detect missing records. Required logging failure stops transfer, acceptance, and delivery until continuity is restored and affected work is reassessed.
+Apply [audit continuity](../guides/air-gapped-artifact-transfer.md#preserve-audit-continuity), keeping sensitive lineage identifiers, source extracts, and analytical outputs in approved internal evidence storage.
 
 Run the full assessments of selected controls and these integrated exercises with synthetic sources and internal datasets:
 
