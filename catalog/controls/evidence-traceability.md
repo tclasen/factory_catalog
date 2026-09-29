@@ -44,6 +44,8 @@ Assess one declared output revision. Inspect all material claims, including thos
 - **Inconclusive:** necessary sources or review records cannot be inspected; do not treat this as acceptance.
 - **Evidence:** assessed revision, claim table, reviewer identity, source references, negative-case results, and dispositions.
 
+For the [retrieval-poisoning scenario](../risks/retrieval-poisoning.md), use a reachable citation to an altered policy that contradicts the memo. The existing source-support check must still withhold acceptance. Successful link resolution does not satisfy the check; corpus admission is assessed separately under [retrieval corpus integrity](retrieval-corpus-integrity.md).
+
 ## Dependencies and limitations
 
 Requires source access, suitable reviewer competence, and an acceptance process that acts on findings. Traceability does not prove source truth, completeness of research, or absence of coordinated misinformation. Review all material claims in the stated scope; sampling supports only a narrower finding. This catalog defines the assessment; it does not claim that an implementation has passed it.
