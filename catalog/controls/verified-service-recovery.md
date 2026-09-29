@@ -17,7 +17,7 @@ sources:
 
 [Adoption](../adoption.md) · [Delivery lifecycle](../guides/factory-delivery-lifecycle.md)
 
-Draft requirement adapted from the source factory policies.[^workflows-operations][^policies-delivery] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
+The requirement and assessment below are catalog-proposed synthesis. The cited source files were unavailable at their pinned revision when checked, so their contents have not been verified and this is not a substantiated adaptation claim.[^workflows-operations][^policies-delivery]
 
 ## Purpose and applicability
 
@@ -56,7 +56,7 @@ Declare the implementation, revision, scope, evaluator, and applicable paths bef
 
 ## Dependencies and limitations
 
-Requires observable health, defined invariants, and a safe isolated assessment target. [Independent restoration](independent-restoration.md) addresses backup recovery. Simulated recovery cannot qualify the production environment.
+Requires observable health, defined invariants, and a safe isolated assessment target. Backup restoration is outside this control’s boundary; [independent restoration](independent-restoration.md) is a separate draft proposal, not a required stable dependency. Simulated recovery cannot qualify the production environment.
 
-[^workflows-operations]: [Operations, maintenance and retirement](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/workflows/operations.md).
-[^policies-delivery]: [Integration, release and completion](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/delivery.md).
+[^workflows-operations]: [Operations, maintenance and retirement](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/workflows/operations.md), cited at commit `70cfad0de635197f36f14e5276dec145483c5128`. This exact path returned HTTP 404 on 2026-09-29; the source content and its relationship to this proposal remain unverified.
+[^policies-delivery]: [Integration, release and completion](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/delivery.md), cited at commit `70cfad0de635197f36f14e5276dec145483c5128`. This exact path returned HTTP 404 on 2026-09-29; the source content and its relationship to this proposal remain unverified.

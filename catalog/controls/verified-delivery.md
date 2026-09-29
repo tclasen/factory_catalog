@@ -17,7 +17,7 @@ sources:
 
 [Adoption](../adoption.md) · [Delivery lifecycle](../guides/factory-delivery-lifecycle.md)
 
-Draft requirement adapted from the source factory policies.[^policies-delivery][^policies-verification] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
+The requirement and assessment below are catalog-proposed synthesis. The cited source files were unavailable at their pinned revision when checked, so their contents have not been verified and this is not a substantiated adaptation claim.[^policies-delivery][^policies-verification]
 
 ## Purpose and applicability
 
@@ -56,9 +56,9 @@ Declare the implementation, revision, scope, evaluator, and applicable paths bef
 
 ## Dependencies and limitations
 
-Requires [bounded external action](bounded-external-action.md), [assessment evidence validity](assessment-evidence-validity.md), and observable destinations. This generalizes the source main-integration rule to the adopter’s authorized endpoint; the host’s merge and release authorizations remain binding. Delivery does not establish downstream benefit.
+Requires [bounded external action](bounded-external-action.md), [assessment evidence validity](assessment-evidence-validity.md), and observable destinations. The proposed requirement applies to the adopter’s authorized endpoint; the host’s merge and release authorizations remain binding. The cited source rule could not be checked. Delivery does not establish downstream benefit.
 
 For artifact comparison at the destination, [qualified artifact promotion](qualified-artifact-promotion.md) describes immutable identities, complete file comparisons, and packaging changes. Verified delivery covers the agreed completion stages, including required remote checks and installed behavior.
 
-[^policies-delivery]: [Integration, release and completion](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/delivery.md).
-[^policies-verification]: [Verification and review](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/verification.md).
+[^policies-delivery]: [Integration, release and completion](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/delivery.md), cited at commit `70cfad0de635197f36f14e5276dec145483c5128`. This exact path returned HTTP 404 on 2026-09-29; the source content and its relationship to this proposal remain unverified.
+[^policies-verification]: [Verification and review](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/verification.md), cited at commit `70cfad0de635197f36f14e5276dec145483c5128`. This exact path returned HTTP 404 on 2026-09-29; the source content and its relationship to this proposal remain unverified.

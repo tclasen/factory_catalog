@@ -23,7 +23,7 @@ Apply before allowing an agent or human operator to rely on a new or changed too
 
 ## Requirement
 
-Qualify the interface with representative intended callers and tasks on a pinned tool, caller, instructions, and environment configuration. Predeclare task outcomes, repetitions, acceptable selection/repair errors, and mandatory identity and authority invariants. Test selection, arguments, result interpretation, continuation, and recovery. Withhold qualification when a required criterion fails or evidence is unavailable; requalify affected behavior after changes.
+Qualify the interface with intended callers and tasks on a pinned tool, caller, instructions, and environment configuration. Before observing results, describe the intended caller population and explain how selected roles, model/harness variants, skill levels, and task contexts represent it; state exclusions and known gaps. Set outcomes, repetitions, acceptable selection/repair errors, and mandatory identity and authority invariants in advance, with a rationale tied to task variability and consequence. Proxy or synthetic callers may supplement observations but cannot by themselves establish fit to an unobserved population. Test selection, arguments, result interpretation, continuation, and recovery. Withhold qualification when a required criterion fails or evidence is unavailable; requalify affected behavior after changes.
 
 ## Implementation
 
@@ -47,7 +47,7 @@ Include similarly named tools, same-name objects with different IDs, paginated a
 
 Use [tool input/output validation](tool-input-output-validation.md) for contracts and [dependency admission](tool-and-dependency-admission.md) for trusted artifacts. This control tests usability for the declared callers; it does not replace enforced permissions or prove general reliability from a small task set.
 
-Adapted from Agent Patterns' tool guidance, CC BY 4.0.[^ap-tools][^ap-descriptions] Proposed assessment, not an executed qualification.
+The interface-design guidance is adapted from Agent Patterns, CC BY 4.0.[^ap-tools][^ap-descriptions] Caller-representation decisions, qualification thresholds, and assessment cases are catalog proposals that adopters must justify for their own task and risk; they are not validated by the cited design guidance. No qualification has been executed.
 
 [^ap-tools]: Agent Patterns, pinned semantic tool output guidance; rewritten adaptation under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 [^ap-descriptions]: Agent Patterns, pinned tool description quality guidance.
