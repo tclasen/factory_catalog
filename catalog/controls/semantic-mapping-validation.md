@@ -21,13 +21,15 @@ sources:
 
 Prevent a syntactically valid translation from silently changing meaning. Apply when a factory maps fields, categories, model elements, identifiers, or reference data between organizations, schemas, or standards. O-DEF supports common vocabulary/classification, while Open UDDL describes formal data modeling; this control is a catalog adaptation, not their conformance test.[^c223][^c231]
 
+This control assesses the semantic relationship between source and target meanings. [Context translation contracts](context-translation-contracts.md) addresses the surrounding handoff agreement, ownership, and accepted revisions. [Data semantic interoperability](data-semantic-interoperability.md) applies to cross-product results, where join cardinality and population reconciliation need assessment beyond the field mapping.
+
 ## Requirement
 
 Before accepting an information mapping, identify the source and target definitions and revisions, transformation rules, scope, and owner. State whether each material mapping is equivalent, narrower, broader, lossy, or unresolved, with rationale. A competent reviewer must test meaning with representative and boundary cases and confirm that unmapped, ambiguous, or lossy values are rejected or visibly qualified before downstream reliance. Matching names or valid schemas alone must not establish equivalence.
 
 ## Implementation
 
-1. Declare the exchange's intended use and material fields. Retain source/target vocabulary definitions, versions, identifiers, units, cardinality, null semantics, and relevant reference conditions.
+1. Declare the exchange's intended use and material fields. [Domain identity and values](domain-identity-and-values.md) explains identity and equality rules that help distinguish an identifier mapping from a value conversion. Retain source/target vocabulary definitions, versions, identifiers, units, cardinality, null semantics, and relevant reference conditions.
 2. Build an explicit mapping table with transformation, semantic relationship, evidence, known loss, owner, and reassessment trigger.
 3. Include representative, boundary, unknown, and conflicting values. Test inverse/round-trip behavior where reversibility is claimed; where loss is intentional, test its disclosure and permitted use.
 4. Have source and target domain expertise review the intended meaning. Check all material fields, including fields omitted from the mapping table.

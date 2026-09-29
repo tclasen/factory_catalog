@@ -35,7 +35,7 @@ Where prevention depends on human review or intervention, demonstrate that the p
 3. Give reviewers and owners access to relevant evidence, protected reporting, stop mechanisms, and a route to resources for correction. Define an accessible challenge route for affected parties appropriate to the activity.
 4. Specify which decisions use a standing grant, which require approval of an exact action, and which are reserved. Enforce external permissions using [bounded external action](bounded-external-action.md); role documentation alone does not enforce them.
 5. Declare severe-error detection criteria, permitted review errors, response deadlines, staffing/queue limits, and the safe behavior on absent approval or unavailable supervision. Explain why those values fit the potential effects. If prevention cannot fit the available time, change the action boundary or use preventive restrictions.
-6. Exercise valid and invalid proposals, reviewer absence, disputed outcomes, and handoffs. Retain observations and correct defects. Reassess after changes to roles, workload, interfaces, consequence, or authority; use [autonomy change gates](autonomy-change-gates.md) when discretion changes.
+6. Exercise valid and invalid proposals, reviewer absence, disputed outcomes, and handoffs; the [human oversight assessment procedure](../guides/human-oversight-assessment.md) provides timing and workload guidance. Retain observations and correct defects. Reassess after changes to roles, workload, interfaces, consequence, or authority; use [autonomy change gates](autonomy-change-gates.md) when discretion changes.
 
 ## Expected outcome and assessment
 
@@ -59,6 +59,6 @@ Retain the activity and path inventory, role and grant revisions, competence and
 
 ## Dependencies and limitations
 
-Requires trustworthy identities, observable effects, enforceable permissions, available staff where assigned, and resourced incident/appeal handling. Human procedure and technical restrictions implement different parts of this control. Technical enforcement, outcome quality, and evidence integrity need their own assessments. A successful drill supports only its tested conditions; it does not prove that a person will detect every future failure. No operational effectiveness is asserted by this document.
+Requires trustworthy identities, observable effects, enforceable permissions, available staff where assigned, and resourced incident/appeal handling. Human procedure and technical restrictions implement different parts of this control. For queued or delegated work, [cancellation enforcement](cancellation-enforcement.md) assesses stopping new effects and reconciling in-flight work. Technical enforcement, outcome quality, and evidence integrity need their own assessments. A successful drill supports only its tested conditions; it does not prove that a person will detect every future failure. No operational effectiveness is asserted by this document.
 
 [^allocation]: [Research, source limitations, and allocation procedure](../human-ai-authority.md).
