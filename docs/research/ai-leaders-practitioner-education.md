@@ -55,7 +55,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Adds context, guardrails, routing, caching, and actions as needs arise.[^chip-huyen]
 
-**Catalog use — guide:** Evaluate each added component and its interactions; this is a design synthesis, not a universal stack. Use [semantic cache assessment](../../catalog/guides/semantic-cache-assessment.md).
+**Catalog use — guide:** Evaluate each added component and its interactions; this is a design synthesis, not a universal stack. Use [semantic cache assessment](../proposals/guides/semantic-cache-assessment.md).
 
 ## Hamel Husain
 
@@ -63,7 +63,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Builds a loop of task-specific tests, trace inspection, human/model evaluation, and online comparisons.[^hamel-husain]
 
-**Catalog use — guide:** Use failures from real tasks and keep changes separate from final acceptance evidence. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Use failures from real tasks and keep changes separate from final acceptance evidence. Use [agent evaluation coverage](../proposals/guides/agent-evaluation-coverage.md).
 
 ## Lilian Weng
 
@@ -71,7 +71,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Explains planning, memory, and tools with research examples and limitations.[^lilian-weng]
 
-**Catalog use — apply:** Treat reflection and memory as hypotheses to test, not independent evidence of correctness. Use [planning consistency](../../catalog/controls/planning-consistency.md).
+**Catalog use — apply:** Treat reflection and memory as hypotheses to test, not independent evidence of correctness. Use [planning consistency](../proposals/controls/planning-consistency.md).
 
 ## Andrej Karpathy
 
@@ -95,7 +95,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Reports task-dependent gains and limits from AI assistance on consulting tasks.[^ethan-mollick]
 
-**Catalog use — apply:** Use the existing guide to allocate work by task class; do not extrapolate a study average to every job. Use [human ai authority](../../catalog/human-ai-authority.md).
+**Catalog use — apply:** Use the existing guide to allocate work by task class; do not extrapolate a study average to every job. Use [human ai authority](../proposals/human-ai-authority.md).
 
 ## Simon Willison
 
@@ -103,7 +103,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Identifies the combination of private data, untrusted content, and external communication as an exfiltration risk.[^simon-willison]
 
-**Catalog use — apply:** Already covered in the catalog; reuse its enforcement and assessment rather than add another slogan. Use [lethal trifecta separation](../../catalog/controls/lethal-trifecta-separation.md).
+**Catalog use — apply:** Already covered in the catalog; reuse its enforcement and assessment rather than add another slogan. Use [lethal trifecta separation](../proposals/controls/lethal-trifecta-separation.md).
 
 ## Sebastian Raschka
 
@@ -111,7 +111,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Explains major evaluation approaches and how their results differ.[^sebastian-raschka]
 
-**Catalog use — guide:** Keep benchmark, preference, judge, and task evidence distinct. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Keep benchmark, preference, judge, and task evidence distinct. Use [agent evaluation coverage](../proposals/guides/agent-evaluation-coverage.md).
 
 ## Eugene Yan
 

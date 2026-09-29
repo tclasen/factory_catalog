@@ -55,7 +55,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Separates fixed workflows from agents that choose actions; recommends increasing complexity only when evaluation supports the tradeoff.[^anthropic]
 
-**Catalog use — apply:** Use its patterns as comparison candidates; vendor experience does not prove a local benefit. Use [task configuration selection](../../catalog/controls/task-configuration-selection.md).
+**Catalog use — apply:** Use its patterns as comparison candidates; vendor experience does not prove a local benefit. Use [task configuration selection](../proposals/controls/task-configuration-selection.md).
 
 ## OpenAI
 
@@ -79,7 +79,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Compares direct calls, a single agent, workflows, and multiple agents with coordination costs.[^microsoft]
 
-**Catalog use — apply:** Choose a pattern from task dependencies and measured outcomes. Use [planning consistency](../../catalog/controls/planning-consistency.md).
+**Catalog use — apply:** Choose a pattern from task dependencies and measured outcomes. Use [planning consistency](../proposals/controls/planning-consistency.md).
 
 ## Meta
 
@@ -95,7 +95,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Links model operation to data quality, monitoring, and lifecycle improvement.[^amazon-web-services]
 
-**Catalog use — apply:** Translate broad architecture advice into owned service objectives and recovery evidence. Use [data product service objectives](../../catalog/controls/data-product-service-objectives.md).
+**Catalog use — apply:** Translate broad architecture advice into owned service objectives and recovery evidence. Use [data product service objectives](../proposals/controls/data-product-service-objectives.md).
 
 ## IBM
 
@@ -103,7 +103,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Discusses oversight, stakeholders, data risks, and lifecycle governance.[^ibm]
 
-**Catalog use — apply:** Use as an intake checklist; broad governance claims do not establish compliance or effectiveness. Use [decision rights and accountability](../../catalog/controls/decision-rights-and-accountability.md).
+**Catalog use — apply:** Use as an intake checklist; broad governance claims do not establish compliance or effectiveness. Use [decision rights and accountability](../proposals/controls/decision-rights-and-accountability.md).
 
 ## Cohere
 
@@ -127,7 +127,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Describes reinforcement learning, cold-start data, distillation, and observed failure modes such as repetition.[^deepseek]
 
-**Catalog use — apply:** Reassess smaller or distilled models on local tasks; release benchmarks remain supplier reports. Use [task configuration selection](../../catalog/controls/task-configuration-selection.md).
+**Catalog use — apply:** Reassess smaller or distilled models on local tasks; release benchmarks remain supplier reports. Use [task configuration selection](../proposals/controls/task-configuration-selection.md).
 
 [^anthropic]: [Building Effective AI Agents \ Anthropic](https://www.anthropic.com/engineering/building-effective-agents).
 [^openai]: [A practical guide to building agents | OpenAI](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/).

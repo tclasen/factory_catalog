@@ -55,7 +55,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Uses explicit definitions and hypotheses to examine conditions for dangerous autonomous behavior.[^yoshua-bengio]
 
-**Catalog use — apply:** Record assumptions and exposure paths; the essay does not supply measured local probabilities. Use [risk estimate assumptions](../../catalog/controls/risk-estimate-assumptions.md).
+**Catalog use — apply:** Record assumptions and exposure paths; the essay does not supply measured local probabilities. Use [risk estimate assumptions](../proposals/controls/risk-estimate-assumptions.md).
 
 ## Yann LeCun
 
@@ -63,7 +63,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** I-JEPA studies predicting image representations from context without hand-crafted augmentations.[^yann-lecun]
 
-**Catalog use — defer:** Abstract reviewed; useful for model alternatives, but it supplies no reusable factory control by itself. Review in the context of [task configuration selection](../../catalog/controls/task-configuration-selection.md).
+**Catalog use — defer:** Abstract reviewed; useful for model alternatives, but it supplies no reusable factory control by itself. Review in the context of [task configuration selection](../proposals/controls/task-configuration-selection.md).
 
 ## Geoffrey Hinton
 
@@ -71,7 +71,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Explores transferring ensemble knowledge into a model that is easier to deploy.[^geoffrey-hinton]
 
-**Catalog use — apply:** Qualify the distilled model separately; this abstract does not prove preservation of all behaviors. Use [task configuration selection](../../catalog/controls/task-configuration-selection.md).
+**Catalog use — apply:** Qualify the distilled model separately; this abstract does not prove preservation of all behaviors. Use [task configuration selection](../proposals/controls/task-configuration-selection.md).
 
 ## Fei-Fei Li
 
@@ -79,7 +79,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** CS231n teaches task setup, model implementation, training, and projects; Li is listed among its instructors.[^fei-fei-li]
 
-**Catalog use — apply:** Curriculum supports practitioner education; individual lessons and assignments were not audited. Use [accepted work definition](../../catalog/controls/accepted-work-definition.md).
+**Catalog use — apply:** Curriculum supports practitioner education; individual lessons and assignments were not audited. Use [accepted work definition](../proposals/controls/accepted-work-definition.md).
 
 ## Demis Hassabis
 
@@ -95,7 +95,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Explores possible benefits from advanced AI and explicitly frames predictions as uncertain.[^dario-amodei]
 
-**Catalog use — defer:** Use as scenario input; do not convert forecasts into accepted outcomes or investment evidence. Review in the context of [risk estimate assumptions](../../catalog/controls/risk-estimate-assumptions.md).
+**Catalog use — defer:** Use as scenario input; do not convert forecasts into accepted outcomes or investment evidence. Review in the context of [risk estimate assumptions](../proposals/controls/risk-estimate-assumptions.md).
 
 ## Sam Altman
 
@@ -103,7 +103,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Offers views about scaling resources, declining use costs, and economic effects.[^sam-altman]
 
-**Catalog use — defer:** Treat these as dated claims; measure current task economics independently. Review in the context of [measurement basis validation](../../catalog/controls/measurement-basis-validation.md).
+**Catalog use — defer:** Treat these as dated claims; measure current task economics independently. Review in the context of [measurement basis validation](../proposals/controls/measurement-basis-validation.md).
 
 ## Ilya Sutskever
 
@@ -111,7 +111,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** SSI's founding statement links safety and capability development as its mission.[^ilya-sutskever]
 
-**Catalog use — defer:** Mission intent supplies no inspectable implementation or assessment procedure. Review in the context of [autonomy change gates](../../catalog/controls/autonomy-change-gates.md).
+**Catalog use — defer:** Mission intent supplies no inspectable implementation or assessment procedure. Review in the context of [autonomy change gates](../proposals/controls/autonomy-change-gates.md).
 
 ## Richard Sutton
 
@@ -119,7 +119,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Argues that scalable search and learning have repeatedly outperformed hand-built domain approaches.[^richard-sutton]
 
-**Catalog use — apply:** Compare scalable and specialized methods empirically; the essay does not waive domain constraints. Use [task configuration selection](../../catalog/controls/task-configuration-selection.md).
+**Catalog use — apply:** Compare scalable and specialized methods empirically; the essay does not waive domain constraints. Use [task configuration selection](../proposals/controls/task-configuration-selection.md).
 
 ## Michael I. Jordan
 

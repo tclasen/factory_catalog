@@ -55,7 +55,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Describes specialized on-device and server models for user tasks.[^apple]
 
-**Catalog use — apply:** Record where each task's data is processed and qualify local/cloud routing. Use [approved data processing](../../catalog/controls/approved-data-processing.md).
+**Catalog use — apply:** Record where each task's data is processed and qualify local/cloud routing. Use [approved data processing](../proposals/controls/approved-data-processing.md).
 
 ## Alibaba
 
@@ -63,7 +63,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Distinguishes thinking and non-thinking modes and multiple model sizes.[^alibaba]
 
-**Catalog use — apply:** Treat reasoning mode as part of the tested configuration and measure its cost and latency. Use [task configuration selection](../../catalog/controls/task-configuration-selection.md).
+**Catalog use — apply:** Treat reasoning mode as part of the tested configuration and measure its cost and latency. Use [task configuration selection](../proposals/controls/task-configuration-selection.md).
 
 ## Tencent
 
@@ -71,7 +71,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Describes active versus total parameters and inference optimizations.[^tencent]
 
-**Catalog use — apply:** Do not substitute active-parameter counts for measured memory, quality, or serving cost. Use [measurement basis validation](../../catalog/controls/measurement-basis-validation.md).
+**Catalog use — apply:** Do not substitute active-parameter counts for measured memory, quality, or serving cost. Use [measurement basis validation](../proposals/controls/measurement-basis-validation.md).
 
 ## Baidu
 
@@ -79,7 +79,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Presents ERNIE variants and training/deployment tooling across text and visual tasks.[^baidu]
 
-**Catalog use — apply:** Qualify each modality and supported runtime; release results do not establish local acceptance. Use [controlled dependency change](../../catalog/controls/controlled-dependency-change.md).
+**Catalog use — apply:** Qualify each modality and supported runtime; release results do not establish local acceptance. Use [controlled dependency change](../proposals/controls/controlled-dependency-change.md).
 
 ## ByteDance
 
@@ -103,7 +103,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Uses background workspaces so AI can inspect feedback and iterate without disrupting user edits.[^cursor]
 
-**Catalog use — apply:** Isolate mutable work and test promotion into the intended checkout. Use [isolated parallel work](../../catalog/controls/isolated-parallel-work.md).
+**Catalog use — apply:** Isolate mutable work and test promotion into the intended checkout. Use [isolated parallel work](../proposals/controls/isolated-parallel-work.md).
 
 ## Replit
 
@@ -111,7 +111,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Combines offline tasks, online tests, and production traces in an improvement loop.[^replit]
 
-**Catalog use — guide:** Measure user-visible behavior and retain failures before and after release. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Measure user-visible behavior and retain failures before and after release. Use [agent evaluation coverage](../proposals/guides/agent-evaluation-coverage.md).
 
 ## Cognition
 
@@ -119,7 +119,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Describes planning, sandboxed developer tools, progress feedback, and benchmark tasks.[^cognition]
 
-**Catalog use — apply:** Verify the delivered artifact and its environment; demonstrations do not prove broad autonomy. Use [verified delivery](../../catalog/controls/verified-delivery.md).
+**Catalog use — apply:** Verify the delivered artifact and its environment; demonstrations do not prove broad autonomy. Use [verified delivery](../proposals/controls/verified-delivery.md).
 
 ## DeepLearning.AI
 
@@ -127,7 +127,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Covers component and trajectory evaluation, traces, evaluator choices, and structured experiments.[^deeplearning-ai]
 
-**Catalog use — guide:** Course outline reviewed; videos, labs, and claimed learning outcomes were not independently assessed. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Course outline reviewed; videos, labs, and claimed learning outcomes were not independently assessed. Use [agent evaluation coverage](../proposals/guides/agent-evaluation-coverage.md).
 
 [^apple]: [Introducing Apple’s On-Device and Server Foundation Models - Apple Machine Learning Research](https://machinelearning.apple.com/research/introducing-apple-foundation-models).
 [^alibaba]: [Qwen3: Think Deeper, Act Faster | Qwen](https://qwenlm.github.io/blog/qwen3/).

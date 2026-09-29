@@ -523,5 +523,69 @@ class GuidanceTests(unittest.TestCase):
         self.assertEqual(Path(commands[-1][1]).name, "check_guidance_links.py")
 
 
+class ProposalTests(unittest.TestCase):
+    def test_deferred_proposals_stay_outside_bundle_and_local_links_resolve(self):
+        root = REPOSITORY.resolve()
+        catalog = root / "catalog"
+        proposals_root = root / "docs/proposals"
+        all_documents, _ = validator.load_documents(root)
+        catalog_documents, _ = validator.load_documents(catalog)
+        proposal_documents, _ = validator.load_documents(proposals_root)
+
+        concepts = {
+            path: document for path, document in catalog_documents.items()
+            if path.name not in ("index.md", "log.md")
+        }
+        self.assertFalse(
+            [
+                path for path, document in concepts.items()
+                if document.metadata.get("status", "stable") != "stable"
+            ]
+        )
+        deferred = {
+            path: document for path, document in proposal_documents.items()
+            if document.metadata.get("status") == "draft"
+        }
+        self.assertTrue(deferred)
+
+        links = {}
+        for path, document in all_documents.items():
+            targets = validator.extract_links(document.body)
+            if path in deferred or any(
+                not re.match(r"[a-z][a-z0-9+.-]*:", target, re.IGNORECASE)
+                and validator.resolve_reference(
+                    root, path, target.partition("#")[0]
+                ).is_relative_to(proposals_root)
+                for target in targets
+            ):
+                links[path] = targets
+        errors = validator.validate_links(root, all_documents, links)
+
+        families = validator.extract_vocabulary(
+            all_documents.get(catalog / "control-families.md")
+        )
+        for path, document in deferred.items():
+            errors.extend(validator.qualify_errors(
+                root, path, validator.validate_document_structure(root, document)
+            ))
+            errors.extend(validator.qualify_errors(
+                root, path, validator.validate_sources(root, document, all_documents)
+            ))
+            if document.metadata.get("type") == "Control":
+                from_control = validator.validate_control(document, families)
+                errors.extend(validator.qualify_errors(root, path, from_control))
+            elif document.metadata.get("type") == "Factory Example":
+                for selection in document.metadata.get("control_selections", []):
+                    errors.extend(
+                        validator.qualify_errors(
+                            root, path,
+                            validator.validate_control_selection(
+                                root, path, selection, all_documents
+                            ),
+                        )
+                    )
+        self.assertEqual(errors, [])
+
+
 if __name__ == "__main__":
     unittest.main()
