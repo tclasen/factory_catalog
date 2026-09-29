@@ -79,6 +79,8 @@ Completion requires applicable integration and delivery gates plus destination v
 
 ## Coverage gaps
 
-The three controls do not fully specify evaluator protection, verifier qualification, artifact promotion, duplicate prevention, safe rollback, or information protection. The mechanisms above illustrate local design needs; they are not additional catalog controls. Record these gaps before adoption and use the [candidate-control discussion](../software-factory-learnings.md#candidate-controls-for-discussion) to prioritize reusable definitions. Enforced boundary tests and representative operational evidence are still needed.
+The three selected controls do not establish evaluator protection, verifier qualification, artifact promotion, duplicate prevention, safe rollback, or information protection. Additional definitions are available for [protected acceptance](../controls/protected-acceptance.md), [verifier qualification](../controls/verifier-qualification.md), [evidence validity](../controls/assessment-evidence-validity.md), [artifact promotion](../controls/qualified-artifact-promotion.md), [reconciliation](../controls/reconcile-before-retry.md), and [data-preserving migration](../controls/data-preserving-migration.md). Evaluate their applicability before adopting them; they have no proposed implementation or passing assessment merely because this example links to them.
+
+Use the [restart and handoff guide](../restart-and-handoff-records.md) for interruption records and inspect the [individual control collection](../software-factory-learnings.md#individually-selectable-controls) for ownership, cancellation, limits, and guidance requirements. Information protection and context-specific recovery still need local design. Enforced boundary tests and representative operational evidence remain necessary.
 
 [^lessons]: [Lessons from Software Factory](../software-factory-learnings.md), with pinned upstream sources and evidence limits.

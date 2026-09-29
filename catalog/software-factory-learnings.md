@@ -57,7 +57,7 @@ sources:
 
 This guide synthesizes selected guidance from `tclasen/software-factory` at commit `0a429827a595712ce1fa3069528565c72da2a549`, inspected on 2026-09-28. The source is a demonstration instruction package.[^overview] Its reported evaluations concern particular fixtures and package identities; they are not assessments of this catalog's controls. We inspected the guidance and cited records, without rerunning its agent trials.[^validation]
 
-The applications below are catalog interpretations of that guidance. They use the existing ontology, families, and three controls. Additional mechanisms remain proposals for local design or future catalog controls; linking them does not establish adoption or permission.
+The applications below are catalog interpretations of that guidance. They use the existing ontology and families. The individual controls below formalize selected mechanisms; linking them does not establish adoption, implementation, or permission.
 
 ## Lessons and applications
 
@@ -89,7 +89,7 @@ The source records immutable artifact identity and build inputs, checks the obje
 
 The source's restart record retains intent, ownership, revisions, obligations, cumulative limits, and external operation identity/status. Resumption checks actual local and recipient state. A saved checkpoint neither restarts an agent nor guarantees a single external effect.[^resumption]
 
-**Apply:** Distinguish a failed request from an unknown effect. After a lost publication response, query the destination before resubmitting. Preserve attempts and limits across handoffs. [Bounded external action](controls/bounded-external-action.md) still governs permission; duplicate prevention and recovery remain separate gaps. If the recipient cannot resolve uncertainty, block the retry and record the missing evidence.
+**Apply:** Distinguish a failed request from an unknown effect. After a lost publication response, query the destination before resubmitting. Preserve attempts and limits across handoffs. [Bounded external action](controls/bounded-external-action.md) still governs permission; duplicate prevention and recovery need the separately selected controls below. If the recipient cannot resolve uncertainty, block the retry and record the missing evidence.
 
 ### 6. Retrieve by the next action, retain unfinished obligations
 
@@ -115,19 +115,28 @@ These are reports in the pinned source, not trials performed for this catalog:
 
 The transferable lesson is to preserve negative results, protocol deviations, and evidence boundaries alongside successes. Document structure, consistent records, and operational effectiveness require different evidence.
 
-## Candidate controls for discussion
+## Individually selectable controls
 
-These proposed topics have no assigned control identities or adopted requirements. The order prioritizes false acceptance and unsafe repetition before workflow optimization; adopters should reprioritize for their risks.
+These definitions separate mechanisms that can succeed or fail independently. Select by local risk and dependencies; assessment procedures do not imply an implementation has passed. Their identities and scope follow the discussed decomposition of the source guidance.
 
-| Proposed topic | Existing family | Evidence a future assessment should demand |
-|---|---|---|
-| Verifier qualification and protected acceptance | Quality and validation | Valid alternatives accepted; plausible wrong outputs rejected; candidate edits cannot alter protected acceptance where required |
-| Reconciliation before retry | Reliability and recovery | Lost-response case resolves against recipient state; no duplicate effect; cumulative limits survive interruption |
-| Qualified artifact promotion | Release and external action | Destination identity matches the assessed object; substituted or rebuilt artifacts reopen affected checks |
-| Guidance selection and evidence invalidation | Knowledge and evidence | Required procedures remain discoverable and selected; changed inputs reopen affected assessments |
-| Measured process improvement | Monitoring and improvement | Fixed criteria, comparable baseline, retained failures and costs, explicit adoption/reversion decision |
+| Control | Distinct responsibility |
+|---|---|
+| [Verifier qualification](controls/verifier-qualification.md) | Establish whether an evaluator accepts valid alternatives and detects plausible failures |
+| [Protected acceptance](controls/protected-acceptance.md) | Prevent the producer from changing consequential acceptance |
+| [Assessment evidence validity](controls/assessment-evidence-validity.md) | Bind results to inputs and invalidate affected claims after changes |
+| [Reconcile before retry](controls/reconcile-before-retry.md) | Resolve uncertain recipient effects before another mutation |
+| [Durable work handoff](controls/durable-work-handoff.md) | Preserve intent, state, limits, and unfinished obligations across sessions |
+| [Cumulative execution limits](controls/cumulative-execution-limits.md) | Prevent retries or handoffs from creating a new allowance |
+| [Qualified artifact promotion](controls/qualified-artifact-promotion.md) | Verify the delivered object matches the qualified candidate |
+| [Measured process improvement](controls/measured-process-improvement.md) | Keep quality, failures, effort, and uncertainty visible in adoption decisions |
+| [Exclusive mutation ownership](controls/exclusive-mutation-ownership.md) | Reject conflicting or stale writers at shared mutation boundaries |
+| [Cancellation enforcement](controls/cancellation-enforcement.md) | Stop new effects and prevent stale events from reopening cancelled intent |
+| [Data-preserving migration](controls/data-preserving-migration.md) | Preserve acknowledged data and supported consumers through transition and recovery |
+| [Required guidance selection](controls/required-guidance-selection.md) | Find triggered requirements before dependent work and retain open obligations |
 
-Discuss scope, identities, measurable requirements, dependencies, and pass/fail criteria before promoting any topic into a control. The [software delivery example](factories/software-delivery.md) exercises the current controls and makes these coverage gaps explicit. The catalog remains v0.1.0; baseline approval is a separate owner decision.
+Use [assessment evidence records](assessment-evidence-records.md), [restart and handoff records](restart-and-handoff-records.md), and [process experiment records](process-experiment-records.md) as local implementation aids. These guides reuse existing document types and do not impose a new frontmatter schema on run records.
+
+The [software delivery example](factories/software-delivery.md) illustrates application and remaining implementation gaps. The catalog remains v0.1.0; baseline approval is a separate owner decision.
 
 [^overview]: [Software Factory overview](https://github.com/tclasen/software-factory/blob/0a429827a595712ce1fa3069528565c72da2a549/README.md).
 [^planning]: [Requirements and planning](https://github.com/tclasen/software-factory/blob/0a429827a595712ce1fa3069528565c72da2a549/skills/software-factory/references/policies/planning.md).
