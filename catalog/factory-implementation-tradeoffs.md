@@ -20,8 +20,8 @@ sources:
     resource: https://docs.temporal.io/activity-definition
     title: "Temporal Activity Definition"
   - id: context-effectiveness
-    resource: https://arxiv.org/html/2602.11988v1
-    title: "Gloaguen et al.: Evaluating AGENTS.md, version 1"
+    resource: https://arxiv.org/html/2602.11988v2
+    title: "Gloaguen et al.: Evaluating AGENTS.md, version 2"
   - id: context-efficiency
     resource: https://arxiv.org/html/2601.20404v1
     title: "Lulla et al.: On the Impact of AGENTS.md Files on the Efficiency of AI Coding Agents, version 1"
