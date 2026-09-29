@@ -58,19 +58,23 @@ deferred, or meaningfully revised concepts, and carry accepted limitations.
 
 ## Evidence and limitations to carry into publication
 
-Link the full-catalog dispositions, the records for all three usability
-walkthroughs, final checks, source commit, archive checksum, and immutable release
-assets. State known source-access restrictions and unresolved limitations. The
-two required human walkthroughs remain outstanding. Maintainer walkthroughs
-establish scoped usability; they do not establish every control's operational
-effectiveness, exhaustive domain coverage, or fitness for every deployment.
+Link the full-catalog dispositions, programmatic consumer evidence, autonomous
+agent-only task simulation, final checks, source commit, archive checksum, and
+immutable release assets. State known source-access restrictions and unresolved
+limitations. No human walkthroughs were performed for this release; human
+usability has not been empirically validated. The repository owner removed live
+human participation from the 1.0 gate. This limitation must be visible in the
+baseline decision and final release notes. The agent simulation does not establish
+every control's operational effectiveness, exhaustive domain coverage, or fitness
+for every deployment.
 
 ## Unresolved publication fields
 
 - Owner-approved baseline and version; final integrated source commit.
 - Final included concept dispositions and migration impacts.
-- Actual human-only and human-with-agent observations; programmatic observation
-  is recorded against the held-version readiness candidate and must be repeated
-  if the selected candidate changes.
+- Candidate-bound programmatic consumer evidence and autonomous agent-only task
+  simulation; repeat affected procedures if the selected candidate changes.
+- Explicit acknowledgement that no human usability sessions were performed and
+  human usability remains unvalidated.
 - Known limitations accepted for that candidate.
 - Final artifact verification and release URL.
