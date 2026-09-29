@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read
 
 concurrency:
   group: catalog-ci-${{ github.event.pull_request.number || github.ref }}
@@ -33,9 +34,7 @@ jobs:
           version: "0.12.19"
           python-version: "3.11.14"
           enable-cache: false
-      - name: Test validator
-        run: ./scripts/test_validate_catalog.py
-      - name: Validate catalog
-        run: ./scripts/validate_catalog.py
-      - name: Build and validate complete indexes
-        run: ./scripts/build_catalog.py
+      - name: Check catalog and review content
+        run: ./scripts/check_catalog.py --github
+        env:
+          GH_TOKEN: ${{ github.token }}

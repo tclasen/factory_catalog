@@ -56,7 +56,9 @@ Human and AI contributors should follow [CONTRIBUTING.md](CONTRIBUTING.md) for t
 
 With [uv](https://docs.astral.sh/uv/guides/scripts/) on your PATH, validate the bundle with `./scripts/validate_catalog.py`. The executable Python validator uses `uv` script mode with inline PyYAML and Markdown parser dependencies and checks the pinned OKF structure plus this catalog's metadata and links. It does not assess operational control effectiveness.
 
-Run `./scripts/test_validate_catalog.py` for validator regression tests.
+Before pushing, run `./scripts/check_catalog.py --github` for the same regression tests, validation, temporary build, content review scan, and whitespace checks used in CI. Live PR-state review requires authenticated `gh`; omit `--github` for offline checks. Unavailable live checks are explicitly reported. Advisory findings require human review and do not fail the command.
+
+See [verification](CONTRIBUTING.md#5-verify-and-open-a-pull-request) for check coverage and limits. Individual scripts remain available for focused checks.
 
 ## Repository layout and parallel work
 

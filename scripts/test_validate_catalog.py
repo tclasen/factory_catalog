@@ -1,7 +1,7 @@
 #!/usr/bin/env -S uv run --script
 # /// script
 # requires-python = ">=3.11"
-# dependencies = ["PyYAML==6.0.3", "markdown-it-py==4.0.0"]
+# dependencies = ["PyYAML==6.0.3", "markdown-it-py==4.0.0", "mdit-py-plugins==0.5.0"]
 # ///
 """Regression tests for catalog validation; run directly with uv on PATH."""
 
@@ -12,6 +12,9 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
+import review_catalog as reviewer
+import check_catalog as checker
 
 import validate_catalog as validator
 import build_catalog as builder
@@ -30,6 +33,7 @@ class CatalogTests(unittest.TestCase):
         self.addCleanup(temporary.cleanup)
         self.root = Path(temporary.name).resolve() / "catalog"
         shutil.copytree(REPOSITORY / "catalog", self.root)
+        shutil.copyfile(REPOSITORY / "LICENSE", self.root.parent / "LICENSE")
         self.control = self.root / "controls/bounded-external-action.md"
 
     def append(self, text):
@@ -37,6 +41,87 @@ class CatalogTests(unittest.TestCase):
 
     def errors(self):
         return validator.validate(self.root)[0]
+
+    def test_duplicate_yaml_keys(self):
+        for field in ("family: bogus\n", "sources:\n  - resource: a\n    resource: b\n"):
+            with self.subTest(field=field):
+                original = self.control.read_text()
+                self.control.write_text(original.replace("---\n", "---\n" + field, 1))
+                self.assertTrue(any("duplicate YAML key" in error for error in self.errors()))
+                self.control.write_text(original)
+
+    def source_errors(self, sources, body=""):
+        doc = validator.Document(self.control, body, {"sources": sources}, True)
+        return validator.validate_sources(self.root, doc, {})
+
+    def test_source_records(self):
+        for sources, message in (({}, "sources must"), (["bad"], "mapping"),
+                                 ([{}], "resource"), ([{"resource": "x", "id": 2}], "id must"),
+                                 ([{"resource": "x", "id": "a"}] * 2, "duplicate source")):
+            with self.subTest(sources=sources):
+                self.assertTrue(any(message in error for error in self.source_errors(sources)))
+        self.assertEqual(self.source_errors([{"resource": "all queries in project X"},
+                                             {"resource": "https://example.com/a"}]), [])
+
+    def test_local_source_integrity(self):
+        self.assertEqual(self.source_errors([{"resource": "../adoption.md"}]), [])
+        for resource in ("../missing-research.md", "../../README.md"):
+            self.assertTrue(any("out-of-bundle link" in error for error in
+                                self.source_errors([{"resource": resource}])))
+
+    def test_keyed_footnotes(self):
+        sources = [{"id": "research", "resource": "https://example.com"}]
+        body = "Claim.[^research]\n\n[^research]: Evidence."
+        self.assertEqual(self.source_errors(sources, body), [])
+        self.assertTrue(any("undefined footnote" in error for error in self.source_errors(sources, "Claim.[^research]")))
+        self.assertTrue(any("no matching source" in error for error in self.source_errors([], body)))
+        self.assertTrue(any("duplicate footnote" in error for error in
+                            self.source_errors(sources, body + "\n\n[^research]: Again.")))
+        self.assertEqual(self.source_errors([], "`[^missing]`\n\n```md\n[^missing]\n\n[^missing]: Example\n```"), [])
+
+    def test_parsed_heading_anchors(self):
+        body = "```md\n## Phantom\n```\n\nReal heading\n------------\n\n## A *formatted* `heading`\n## Repeat\n## Repeat\n## Repeat-1\n"
+        self.assertEqual(validator.extract_heading_anchors(body),
+                         ["real-heading", "a-formatted-heading", "repeat", "repeat-1", "repeat-1-1"])
+        self.append("[Phantom](#phantom)\n\n```md\n## Phantom\n```")
+        self.assertTrue(any("missing heading" in error for error in self.errors()))
+
+    def test_distribution_integrity(self):
+        output = self.root.parent / "distribution"
+        builder.build(self.root, output)
+        self.assertEqual(builder.validate_distribution(self.root, output), [])
+        (output / "LICENSE").unlink()
+        index = output / "index.md"
+        index.write_text(index.read_text().replace("(controls/bounded-external-action.md)", "(controls/outcome-verification.md)"))
+        listing = output / "controls/index.md"
+        listing.write_text(listing.read_text().replace("[status:", "[maturity:"))
+        errors = builder.validate_distribution(self.root, output)
+        for message in ("LICENSE", "family navigation", "show status"):
+            self.assertTrue(any(message in error for error in errors), errors)
+
+    def test_review_is_advisory_and_remote_lookup_is_optional(self):
+        self.append("Pending proposal https://github.com/tclasen/factory_catalog/pull/99999")
+        with patch.object(reviewer.subprocess, "run") as run:
+            findings = reviewer.review(self.root)
+            run.assert_not_called()
+        self.assertTrue(any("live state not checked" in finding for finding in findings))
+        with patch.object(reviewer.subprocess, "run", return_value=subprocess.CompletedProcess([], 0, '{"state":"closed","merged_at":"2026-01-01"}')):
+            self.assertTrue(any("state merged" in finding for finding in reviewer.review(self.root, github=True)))
+        with patch.object(reviewer.subprocess, "run", side_effect=OSError("offline")):
+            self.assertTrue(any("unavailable" in finding for finding in reviewer.review(self.root, github=True)))
+        self.assertTrue(any("overlapping controls" in finding for finding in findings))
+
+    def test_missing_repository_license_blocks_build(self):
+        (self.root.parent / "LICENSE").unlink()
+        with self.assertRaisesRegex(ValueError, "LICENSE"):
+            builder.build(self.root, self.root.parent / "unlicensed")
+
+    def test_check_command_propagates_failure(self):
+        with patch.object(sys, "argv", ["check_catalog.py"]), patch.object(
+            checker.subprocess, "run", return_value=subprocess.CompletedProcess([], 7)
+        ) as run:
+            self.assertEqual(checker.main(), 7)
+            self.assertEqual(run.call_count, 1)
 
     def test_current_catalog(self):
         self.assertEqual(self.errors(), [])

@@ -76,7 +76,13 @@ Use **Semantic Versioning (SEMVER)** in `MAJOR.MINOR.PATCH` form, following [Sem
 
 ## 5. Verify and open a pull request
 
-Before submitting:
+Before submitting, run `./scripts/check_catalog.py --github`. CI runs this same command. It fails on regression failures, invalid structure or provenance, broken local links or heading anchors, incomplete generated navigation, missing distribution license, and whitespace errors. Duplicate YAML keys are rejected at every mapping level. Footnotes must have definitions and matching source IDs. Source entries must supply a resource; explicit relative or absolute bundle paths and whitespace-free resources containing `/` or `.` are checked as local paths. URI resources and scope descriptions remain valid; use `./` for an otherwise ambiguous local filename.
+
+The generated bundle includes the repository LICENSE unchanged, control maturity and family labels, and a complete family view. These are derived from files and metadata; authors do not maintain an inventory.
+
+`review_catalog.py` emits advisory findings for similar control titles within a family, blanket readiness claims alongside drafts, selected blanket implementation claims inconsistent with metadata, and proposal/pending wording around PR links. `--github` uses authenticated, read-only `gh api` calls to check this repository's referenced PR states. Offline mode and failed live lookups explicitly report that state was not checked. Warnings do not fail CI: title similarity cannot establish duplication, and a merged PR can still be discussed legitimately. Arbitrary prose contradictions, evidence quality, control effectiveness, and policy decisions still need human review. These heuristics are deliberately narrow and are not a complete semantic audit.
+
+Individual checks and review requirements:
 
 - Review the complete diff for accuracy, clarity, scope, and consistency; run `git diff --check`.
 - Check changed links, references, and examples. For bundle changes, validate against the pinned specification and ensure the generated indexes cover the concepts present.

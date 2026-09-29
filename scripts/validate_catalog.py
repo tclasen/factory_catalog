@@ -1,7 +1,7 @@
 #!/usr/bin/env -S uv run --script
 # /// script
 # requires-python = ">=3.11"
-# dependencies = ["PyYAML==6.0.3", "markdown-it-py==4.0.0"]
+# dependencies = ["PyYAML==6.0.3", "markdown-it-py==4.0.0", "mdit-py-plugins==0.5.0"]
 # ///
 """Validate this catalog against pinned OKF 0.2 and repository conventions.
 
@@ -16,12 +16,34 @@ from pathlib import Path
 import re
 import sys
 from typing import Any
+from urllib.parse import unquote
+import unicodedata
 
 import yaml
 from markdown_it import MarkdownIt
+from mdit_py_plugins.footnote import footnote_plugin
 
 
-MARKDOWN = MarkdownIt("commonmark")
+MARKDOWN = MarkdownIt("commonmark").use(
+    footnote_plugin, inline=False, move_to_end=False, always_match_refs=True,
+)
+
+
+class UniqueKeyLoader(yaml.SafeLoader):
+    """Reject ambiguous mappings, including nested metadata mappings."""
+
+    def construct_mapping(self, node, deep=False):
+        keys = set()
+        for key_node, _ in node.value:
+            key = self.construct_object(key_node, deep=deep)
+            try:
+                if key in keys:
+                    raise ValueError(f"duplicate YAML key {key!r}")
+                keys.add(key)
+            except TypeError as exc:
+                raise ValueError("YAML mapping keys must be scalar") from exc
+        return super().construct_mapping(node, deep=deep)
+
 
 
 @dataclass(frozen=True)
@@ -82,7 +104,7 @@ def load_documents(root: Path) -> tuple[dict[Path, Document], list[str]]:
         data = {}
         if frontmatter:
             try:
-                data = yaml.safe_load(frontmatter[1])
+                data = yaml.load(frontmatter[1], Loader=UniqueKeyLoader)
                 if not isinstance(data, dict):
                     raise ValueError("frontmatter must be a mapping")
             except (yaml.YAMLError, ValueError) as exc:
@@ -122,10 +144,78 @@ def extract_links(body: str) -> list[str]:
 
 
 def extract_heading_anchors(body: str) -> list[str]:
-    return [
-        re.sub(r"[^\w\- ]", "", heading.lower()).replace(" ", "-")
-        for heading in re.findall(r"^#{1,6}\s+(.+)$", body, re.MULTILINE)
-    ]
+    """Derive heading IDs from parsed Markdown, with GitHub duplicate suffixes."""
+    def plain(tokens):
+        return "".join(
+            plain(token.children) if token.children else
+            token.content if token.type in ("text", "code_inline") else
+            " " if token.type in ("softbreak", "hardbreak") else ""
+            for token in tokens
+        )
+
+    anchors = []
+    tokens = MARKDOWN.parse(body)
+    for pos, token in enumerate(tokens):
+        if token.type != "heading_open":
+            continue
+        text = plain(tokens[pos + 1].children or []).lower()
+        slug = "".join(c for c in text if c in "-_ " or
+                       unicodedata.category(c)[0] not in "PSCZ").replace(" ", "-")
+        anchor, suffix = slug, 0
+        while anchor in anchors:
+            suffix += 1
+            anchor = f"{slug}-{suffix}"
+        anchors.append(anchor)
+    return anchors
+
+
+def validate_sources(root: Path, document: Document, documents: dict[Path, Document]) -> list[str]:
+    """Check source records and keyed attribution, ignoring literal code examples."""
+    errors, ids, local = [], set(), []
+    sources = document.metadata.get("sources", [])
+    if not isinstance(sources, list):
+        return ["sources must be a list"]
+    for source in sources:
+        if not isinstance(source, dict):
+            errors.append("source must be a mapping")
+            continue
+        resource = source.get("resource")
+        if not isinstance(resource, str) or not resource.strip():
+            errors.append("source requires non-empty resource")
+        elif not re.match(r"[a-z][a-z0-9+.-]*:", resource, re.I) and (
+            resource.startswith(("./", "../", "/")) or
+            (not re.search(r"\s", resource) and ("/" in resource or "." in resource))
+        ):
+            local.append(resource)
+        if "id" in source:
+            label = source["id"]
+            if not isinstance(label, str) or not label.strip():
+                errors.append("source id must be a non-empty string")
+            elif label in ids:
+                errors.append(f"duplicate source id {label}")
+            else:
+                ids.add(label)
+    definitions, references = [], []
+
+    def visit(tokens):
+        for token in tokens:
+            if token.type == "footnote_reference_open":
+                definitions.append(token.meta["label"])
+            elif token.type == "footnote_ref":
+                references.append(token.meta["label"])
+            if token.children:
+                visit(token.children)
+
+    visit(MARKDOWN.parse(document.body))
+    for label in sorted(set(definitions + references)):
+        if label not in ids:
+            errors.append(f"footnote {label} has no matching source id")
+        if label in references and label not in definitions:
+            errors.append(f"undefined footnote {label}")
+        if definitions.count(label) > 1:
+            errors.append(f"duplicate footnote definition {label}")
+    errors.extend(validate_links(root, documents, {document.path: local}))
+    return errors
 
 
 def validate_links(
@@ -138,6 +228,7 @@ def validate_links(
             if re.match(r"[a-z][a-z0-9+.-]*:", target, re.IGNORECASE):
                 continue
             file, separator, anchor = target.partition("#")
+            file, anchor = unquote(file), unquote(anchor)
             dest = resolve_reference(root, path, file) if file else path
             if not dest.is_relative_to(root) or not dest.exists():
                 errors.extend(qualify_errors(root, path, [f"missing or out-of-bundle link {target}"]))
@@ -278,6 +369,8 @@ def validate(root: Path, *, require_index_coverage: bool = False) -> tuple[list[
     if require_index_coverage:
         errors.extend(validate_index_coverage(root, documents, links))
     errors.extend(validate_domain_metadata(root, documents))
+    for path, document in documents.items():
+        errors.extend(qualify_errors(root, path, validate_sources(root, document, documents)))
     return errors, len(documents)
 
 
