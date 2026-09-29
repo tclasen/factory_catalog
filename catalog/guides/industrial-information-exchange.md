@@ -38,7 +38,7 @@ Use this guide for engineering information exchange, supplier handoffs, asset in
 3. Build an interface record with identifiers, schema revision, field meanings, units, coordinate/reference systems where relevant, time basis, access rules, quality flags, and missing-data behavior.
 4. Apply [semantic mapping validation](../controls/semantic-mapping-validation.md) and [measurement basis validation](../controls/measurement-basis-validation.md). Schema acceptance establishes structure only; demonstrate that both sides interpret the information consistently.
 5. Plan an isolated trial with a positive exchange, unsupported version, unknown identifier, missing field, unit mismatch, delayed/duplicate message, and loss of connection as applicable. Predeclare acceptable effects and recovery behavior with the engineering owner.
-6. Preserve the exact configuration, fixtures, observations, discrepancies, and owner disposition. A passing exchange is scoped to tested endpoints and profiles; broader interoperability needs additional evidence.
+6. Use [interoperability acceptance](../controls/interoperability-acceptance.md) to assess the combined exchange boundary, including participating parties, receiving responsibilities, and failure handling, alongside the mapping and measurement checks above. Preserve the exact configuration, fixtures, observations, discrepancies, and owner disposition. A passing exchange is scoped to tested endpoints and profiles; broader interoperability needs additional evidence.
 
 ## Graph relationships
 

@@ -27,7 +27,7 @@ TOGAF provides architecture method/content/governance guidance; ArchiMate suppli
 
 1. Name the beneficiary, observable outcome, planning horizon, constraints, and accountable decision owner. State whether the work recommends a change or can authorize it.
 2. Describe the present ability to deliver that outcome. Separate a capability (what the organization can do) from an activity (work it performs), team, tool, and funded initiative. Record evidence rather than assigning an unexplained maturity score.
-3. Identify the desired ability and the measured gap. Connect each candidate initiative to the gap it is expected to reduce; document dependencies and contrary evidence.
+3. Identify the desired ability and the measured gap. Use [capability investment alignment](../controls/capability-investment-alignment.md) to assess the connection between each candidate investment and the gap it is expected to reduce; document dependencies and contrary evidence.
 4. Apply [architecture decision traceability](../controls/architecture-decision-traceability.md) to material choices. Record rejected options and unresolved assumptions, including a do-nothing option where meaningful.
 5. Define an observation plan using [outcome verification](../controls/outcome-verification.md). Delivery of a model or system is an artifact milestone; improved organizational performance requires separate measurement.
 6. Review after changes to the objective, operating constraints, source model, or material assumptions. Reopen the decision if the trace no longer supports it.
@@ -44,7 +44,7 @@ TOGAF provides architecture method/content/governance guidance; ArchiMate suppli
 | Options and dependencies | Cost/effort assumptions, sequencing, alternatives, unresolved constraints |
 | Decision and assessment | Decision revision, supporting sources, outcome test, reassessment trigger |
 
-These are embedded records under the existing ontology. A capability model can organize activities and outcomes without declaring every external term a new catalog type. If importing ArchiMate, pin the language edition and document mappings explicitly: Version 4 changes elements compared with 3.2.[^c260] Test the mappings with [semantic mapping validation](../controls/semantic-mapping-validation.md).
+For a record connecting capabilities to service stages, actors, and shared information, use [Map capabilities, value, and information](capability-value-information-mapping.md). These are embedded records under the existing ontology. A capability model can organize activities and outcomes without declaring every external term a new catalog type. If importing ArchiMate, pin the language edition and document mappings explicitly: Version 4 changes elements compared with 3.2.[^c260] Test the mappings with [semantic mapping validation](../controls/semantic-mapping-validation.md).
 
 ## Example and review
 
