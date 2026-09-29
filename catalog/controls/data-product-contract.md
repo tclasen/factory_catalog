@@ -13,7 +13,7 @@ sources:
 
 # Data product contract
 
-[Adoption](../adoption.md) · [Data mesh research](../data-mesh-architectures.md)
+[Adoption](../adoption.md) · [Data product design](../guides/data-product-design.md)
 
 ## Purpose and applicability
 

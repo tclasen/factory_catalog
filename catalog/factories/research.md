@@ -5,7 +5,7 @@ description: "A public-source research workflow with claim review and explicit u
 status: stable
 example: true
 domain: "Product research"
-work_types: ["research-and-discovery", "analysis-and-diagnosis", "content-and-media-production", "evaluation-and-assurance"]
+activities: ["collect comparison evidence", "review material claims", "resolve contradictions", "deliver a research memo"]
 control_selections:
   - control: ../controls/evidence-traceability.md
     applicability: applicable
@@ -32,7 +32,7 @@ control_selections:
 | Field | Design |
 |---|---|
 | Why / owner | Help a product team compare three options; research lead owns scope and acceptance |
-| Domain / work types | Product research; research and discovery, analysis and diagnosis, content production, evaluation |
+| Domain / activities | Product research; research and discovery, analysis and diagnosis, content production, evaluation |
 | Inputs → artifacts | Approved question and public sources → evidence table and comparison memo |
 | Outcome | Decision owner can compare all three options against the agreed criteria and identify unresolved questions |
 | Measure | Before accepting the memo, decision owner confirms every criterion has a supported comparison or an explicit unknown; this is usability, not proof of a better decision |
@@ -60,7 +60,7 @@ Evidence traceability and outcome verification have implementation state **propo
 
 ## Source intake extension
 
-Proposed application of the [classwork source-intake learning](../classwork-learnings.md#1-resolve-the-source-before-integrating-its-claims): before drafting, the research agent records each source's exact revision or access time, relevant passage, and whether the comparison is directly supported or inferred. The research lead records whether new evidence confirms, qualifies, or conflicts with the existing comparison. Keep unresolved conflicts visible to the decision owner.
+Proposed application of the [source integration procedure](../guides/knowledge-source-integration.md): before drafting, the research agent records each source's exact revision or access time, relevant passage, and whether the comparison is directly supported or inferred. The research lead records whether new evidence confirms, qualifies, or conflicts with the existing comparison. Keep unresolved conflicts visible to the decision owner.
 
 Add a fixture with two source editions that disagree on one product capability. Expected behavior: identify the edition used, retain both observations and their context, and qualify the comparison until the conflict is resolved. Silent edition mixing or an unsupported definitive recommendation fails this proposed check. Retain the intake table, draft revision, and reviewer disposition. This fixture has not been run.
 

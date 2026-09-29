@@ -17,7 +17,7 @@ sources:
 
 # Record risk analyses for inspectable decisions
 
-[Research map](../open-group-standards-opportunities.md) · [Ontology](../ontology.md)
+[Ontology](../ontology.md)
 
 ## Source and boundary
 

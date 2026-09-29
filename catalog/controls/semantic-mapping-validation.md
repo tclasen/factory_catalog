@@ -15,7 +15,7 @@ sources:
 
 # Semantic mapping validation
 
-[Adoption](../adoption.md) · [Research map](../open-group-standards-opportunities.md)
+[Adoption](../adoption.md)
 
 ## Purpose and applicability
 

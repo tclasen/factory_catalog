@@ -12,7 +12,7 @@ sources:
     title: "O-PAS Adoption Guide, Version 2.0"
 example: true
 domain: "Industrial procurement and modernization planning"
-work_types: ["strategy-and-planning", "research-and-discovery", "analysis-and-diagnosis", "design-and-specification", "evaluation-and-assurance", "decision-making-and-adjudication"]
+activities: ["define modernization needs", "compare supplier assurance", "validate interface evidence", "recommend a procurement decision"]
 control_selections:
   - control: ../controls/capability-investment-alignment.md
     applicability: applicable
@@ -48,7 +48,7 @@ control_selections:
 
 **Fictional design; proposed implementations; no operational assessments performed.**
 
-[Ontology](../ontology.md) · [Adoption](../adoption.md) · [Research basis](../open-group-guides-research.md)
+[Ontology](../ontology.md) · [Adoption](../adoption.md)
 
 ## Factory profile
 

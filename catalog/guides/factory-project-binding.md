@@ -17,7 +17,7 @@ sources:
 
 # Factory project binding
 
-[Factory decomposition](../semantic-search-factory-decomposition.md) · [Adoption](../adoption.md)
+[Delivery lifecycle](factory-delivery-lifecycle.md) · [Adoption](../adoption.md)
 
 ## Purpose and trigger
 

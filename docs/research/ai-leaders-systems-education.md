@@ -39,11 +39,13 @@ sources:
 
 # AI research sources: Systems education
 
-[Research method and priorities](../ai-leaders-research.md) · [Adoption](../adoption.md)
+Contributor research: use this material to develop controls and task-focused guides. It is outside the distributed OKF bundle; consult current control requirements before reuse.
+
+[Research method and priorities](ai-leaders-research.md) · [Adoption](../../catalog/adoption.md)
 
 ## How to use these sources
 
-This is an annotated selection from the 100-entry research set, inspected on **2026-09-28 (America/Los_Angeles)**. Choose a source for the problem in its entry, inspect its stated limits, then apply the linked catalog guidance. Order is thematic, not a rank. The [research method](../ai-leaders-research.md#selection-and-review-method) defines review depth and selection limits.
+This is an annotated selection from the 100-entry research set, inspected on **2026-09-28 (America/Los_Angeles)**. Choose a source for the problem in its entry, inspect its stated limits, then apply the linked catalog guidance. Order is thematic, not a rank. The [research method](ai-leaders-research.md#selection-and-review-method) defines review depth and selection limits.
 
 “Learning” summarizes the cited material; “Catalog use” is our interpretation. Links indicate supporting material or applicability, not endorsement, adoption, or a successful assessment. Papers are credited to the named contributor and coauthors; company/team material is not assumed to have been personally written by a leader. Historical material remains dated evidence, and mutable documentation must be rechecked before implementation.
 
@@ -53,7 +55,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Offers hands-on model training and deployment for people with coding experience.[^jeremy-howard]
 
-**Catalog use — apply:** Use as role training; curriculum coverage does not demonstrate operator competence. Use [accepted work definition](../controls/accepted-work-definition.md).
+**Catalog use — apply:** Use as role training; curriculum coverage does not demonstrate operator competence. Use [accepted work definition](../../catalog/controls/accepted-work-definition.md).
 
 ## Rachel Thomas
 
@@ -61,7 +63,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Uses case studies to examine consequences of choices in data and model development.[^rachel-thomas]
 
-**Catalog use — apply:** Add affected parties and escalation to design reviews; the course overview is not a compliance checklist. Use [decision rights and accountability](../controls/decision-rights-and-accountability.md).
+**Catalog use — apply:** Add affected parties and escalation to design reviews; the course overview is not a compliance checklist. Use [decision rights and accountability](../../catalog/controls/decision-rights-and-accountability.md).
 
 ## Sebastian Ruder
 
@@ -69,7 +71,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Explains transferring knowledge between source and target tasks and domains.[^sebastian-ruder]
 
-**Catalog use — apply:** A source-domain result needs requalification for a different target context. Use [assessment evidence validity](../controls/assessment-evidence-validity.md).
+**Catalog use — apply:** A source-domain result needs requalification for a different target context. Use [assessment evidence validity](../../catalog/controls/assessment-evidence-validity.md).
 
 ## Jay Alammar
 
@@ -77,7 +79,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Explains attention and encoder/decoder architecture visually.[^jay-alammar]
 
-**Catalog use — defer:** Useful background for implementers; architecture explanation supplies no operational control by itself. Review in the context of [required guidance selection](../controls/required-guidance-selection.md).
+**Catalog use — defer:** Useful background for implementers; architecture explanation supplies no operational control by itself. Review in the context of [required guidance selection](../../catalog/controls/required-guidance-selection.md).
 
 ## Vicki Boykis
 
@@ -85,7 +87,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Introduces a generalist learning resource about representations and recommendation systems.[^vicki-boykis]
 
-**Catalog use — defer:** Landing page reviewed; the linked book was not audited, so no algorithm claim is adopted. Review in the context of [semantic mapping validation](../controls/semantic-mapping-validation.md).
+**Catalog use — defer:** Landing page reviewed; the linked book was not audited, so no algorithm claim is adopted. Review in the context of [semantic mapping validation](../../catalog/controls/semantic-mapping-validation.md).
 
 ## Goku Mohandas
 
@@ -93,7 +95,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Connects design, development, deployment, and iteration using software-engineering practices.[^goku-mohandas]
 
-**Catalog use — apply:** Use exercises to design checks; production implementation and test evidence remain separate. Use [controlled dependency change](../controls/controlled-dependency-change.md).
+**Catalog use — apply:** Use exercises to design checks; production implementation and test evidence remain separate. Use [controlled dependency change](../../catalog/controls/controlled-dependency-change.md).
 
 ## Harrison Chase
 
@@ -101,7 +103,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Argues that frameworks evolve with models while observability should remain independent of framework choice.[^harrison-chase]
 
-**Catalog use — apply:** Preserve diagnostics across harness changes and requalify the whole agent system. Use [security event traceability](../controls/security-event-traceability.md).
+**Catalog use — apply:** Preserve diagnostics across harness changes and requalify the whole agent system. Use [security event traceability](../../catalog/controls/security-event-traceability.md).
 
 ## Jerry Liu
 
@@ -109,7 +111,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Combines question/answer examples with source context for use-case evaluation.[^jerry-liu]
 
-**Catalog use — guide:** Inspect representativeness and synthetic labels before using community datasets for acceptance. Use [agent evaluation coverage](../guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Inspect representativeness and synthetic labels before using community datasets for acceptance. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
 
 ## Shreya Shankar
 
@@ -117,7 +119,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Studies human alignment of generated evaluators and changes in criteria while reviewing outputs.[^shreya-shankar]
 
-**Catalog use — guide:** Version revised rubrics and rerun comparisons; criterion discovery must not silently change a release gate. Use [agent evaluation coverage](../guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Version revised rubrics and rerun comparisons; criterion discovery must not silently change a release gate. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
 
 ## Tri Dao
 
@@ -125,7 +127,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** FlashAttention-2 studies GPU work partitioning and communication costs.[^tri-dao]
 
-**Catalog use — guide:** Abstract reviewed; kernel performance claims need whole-workload validation. Use [ai factory workload qualification](../guides/ai-factory-workload-qualification.md).
+**Catalog use — guide:** Abstract reviewed; kernel performance claims need whole-workload validation. Use [ai factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md).
 
 [^jeremy-howard]: [Practical Deep Learning for Coders - Practical Deep Learning](https://course.fast.ai/).
 [^rachel-thomas]: [Practical Deep Learning for Coders - Bonus: Data ethics](https://course.fast.ai/Lessons/lesson8a.html).

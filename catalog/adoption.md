@@ -11,14 +11,14 @@ status: stable
 
 ## Describe the factory
 
-Record its intended outcome, beneficiaries, accountable owner, and exclusions. Identify activities using the [work types](work-types.md), then describe domain, actors, inputs, outputs, workflow, knowledge sources, and persistent state. Record autonomy and authority for each activity, including escalation and stopping conditions.
+Record its intended outcome, beneficiaries, accountable owner, and exclusions. Describe the actual activities, domain, actors, inputs, outputs, workflow, knowledge sources, and persistent state. Activities can include research, teaching, analysis, negotiation, publication, or software delivery. Record autonomy and authority for each activity, including escalation and stopping conditions.
 
 Describe data sensitivity, external exposure, scale, obligations, consequences, and reversibility. Unknown context stays explicit. The [factory examples](factories/) show how to connect these fields.
 
 ## Select controls
 
 1. Identify desired outcomes and risk scenarios: cause or threat, enabling condition, unwanted outcome, and affected parties.
-2. Use [control families](control-families.md) to find relevant requirements. Work type and domain suggest candidates; actual context determines applicability.
+2. Use [control families](control-families.md) to find relevant requirements. Actual context determines applicability; family membership alone does not require adoption.
 3. Record `applicable`, `not-applicable`, or `undetermined`, with rationale, assumptions, decision owner, and a reassessment date or trigger. Do not equate missing implementation with non-applicability.
 4. Prioritize controls by consequence, exposure, expected benefit, dependencies, and implementation cost. Record gaps where the catalog has no adequate control.
 5. Check composition: shared credentials, memory, handoffs, and combined authority can introduce risks not visible in isolated components.
@@ -44,8 +44,6 @@ For by-reference adoption, retain the identity, version, and pinned URL in the l
 
 Read the version once per adopted bundle revision. A local adoption record may share that version and SHA across controls from the same revision; keep separate records when revisions differ. For a copied control, retain the adoption record alongside the text. Never refresh historical adoption versions just because a newer catalog exists.
 
-No self-referential source SHA is embedded in a control: the adoption record pins the published revision consumed. This avoids claiming that a later revision is the content an earlier adopter used.
-
 ## Implement and assess
 
 Set the implementation state independently from applicability: `not-planned`, `proposed`, `implemented`, or `retired`. Identify whether the mechanism is instructions, a human procedure, an automated check, or a technical restriction. Record incomplete coverage and bypass paths.
@@ -54,7 +52,6 @@ Execute the control's assessment in the declared scope, using safe test environm
 
 Keep artifact acceptance, factory outcome attainment, and control assessment separate. A control can pass by correctly detecting an unmet factory outcome. Documentation checks do not establish operational control effectiveness.
 
-The [classwork application guide](classwork-learnings.md#4-connect-provenance-to-an-explicit-argument) offers review fixtures for checking evidence relevance and explaining the inference from an observation to a claim. Its [agent recovery example](classwork-learnings.md#5-verify-agent-actions-and-bound-recovery) explores how authority checks and outcome checks interact after an ambiguous tool result. These are optional implementation examples, not additional control requirements.
 
 ## Reassess and evolve
 

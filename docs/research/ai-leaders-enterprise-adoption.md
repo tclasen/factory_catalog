@@ -39,11 +39,13 @@ sources:
 
 # AI research sources: Enterprise adoption
 
-[Research method and priorities](../ai-leaders-research.md) · [Adoption](../adoption.md)
+Contributor research: use this material to develop controls and task-focused guides. It is outside the distributed OKF bundle; consult current control requirements before reuse.
+
+[Research method and priorities](ai-leaders-research.md) · [Adoption](../../catalog/adoption.md)
 
 ## How to use these sources
 
-This is an annotated selection from the 100-entry research set, inspected on **2026-09-28 (America/Los_Angeles)**. Choose a source for the problem in its entry, inspect its stated limits, then apply the linked catalog guidance. Order is thematic, not a rank. The [research method](../ai-leaders-research.md#selection-and-review-method) defines review depth and selection limits.
+This is an annotated selection from the 100-entry research set, inspected on **2026-09-28 (America/Los_Angeles)**. Choose a source for the problem in its entry, inspect its stated limits, then apply the linked catalog guidance. Order is thematic, not a rank. The [research method](ai-leaders-research.md#selection-and-review-method) defines review depth and selection limits.
 
 “Learning” summarizes the cited material; “Catalog use” is our interpretation. Links indicate supporting material or applicability, not endorsement, adoption, or a successful assessment. Papers are credited to the named contributor and coauthors; company/team material is not assumed to have been personally written by a leader. Historical material remains dated evidence, and mutable documentation must be rechecked before implementation.
 
@@ -53,7 +55,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Replays conversation history and evaluates subsequent turns against expected behavior.[^salesforce]
 
-**Catalog use — guide:** Include corrections and topic switches, and inspect actual tool effects alongside answers. Use [agent evaluation coverage](../guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Include corrections and topic switches, and inspect actual tool effects alongside answers. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
 
 ## ServiceNow
 
@@ -61,7 +63,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Describes an inventory of AI assets linked to owners, services, runtime monitoring, and business value.[^servicenow]
 
-**Catalog use — apply:** Treat inventory as an implementation input; advertised complete visibility requires local testing. Use [decision rights and accountability](../controls/decision-rights-and-accountability.md).
+**Catalog use — apply:** Treat inventory as an implementation input; advertised complete visibility requires local testing. Use [decision rights and accountability](../../catalog/controls/decision-rights-and-accountability.md).
 
 ## SAP
 
@@ -69,7 +71,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Organizes responsible AI around ethics, security, compliance, and governance responsibilities.[^sap]
 
-**Catalog use — apply:** Map actual data flows and owners; principles alone cannot enforce processing restrictions. Use [approved data processing](../controls/approved-data-processing.md).
+**Catalog use — apply:** Map actual data flows and owners; principles alone cannot enforce processing restrictions. Use [approved data processing](../../catalog/controls/approved-data-processing.md).
 
 ## Oracle
 
@@ -77,7 +79,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Describes context retention, retrieval, SQL tools, guardrails, and agent orchestration.[^oracle]
 
-**Catalog use — apply:** Separate permission to read from permission to execute database changes. Use [bounded external action](../controls/bounded-external-action.md).
+**Catalog use — apply:** Separate permission to read from permission to execute database changes. Use [bounded external action](../../catalog/controls/bounded-external-action.md).
 
 ## Siemens
 
@@ -85,7 +87,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Illustrates code generation, troubleshooting, digital twins, and integration with production systems.[^siemens]
 
-**Catalog use — apply:** Keep simulation and engineering evidence distinct from authorization to change physical operations. Use [qualified artifact promotion](../controls/qualified-artifact-promotion.md).
+**Catalog use — apply:** Keep simulation and engineering evidence distinct from authorization to change physical operations. Use [qualified artifact promotion](../../catalog/controls/qualified-artifact-promotion.md).
 
 ## ABB
 
@@ -93,7 +95,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Combines shop-floor, enterprise, and unstructured data with role-specific interfaces.[^abb]
 
-**Catalog use — apply:** Validate units, asset identity, and domain meaning before acting on combined data. Use [context translation contracts](../controls/context-translation-contracts.md).
+**Catalog use — apply:** Validate units, asset identity, and domain meaning before acting on combined data. Use [context translation contracts](../../catalog/controls/context-translation-contracts.md).
 
 ## Palantir
 
@@ -101,7 +103,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Connects agents and workflows to an ontology, evaluation tools, security, and audit infrastructure.[^palantir]
 
-**Catalog use — apply:** Model object relationships and permissions explicitly; importing a platform does not validate local semantics. Use [domain model boundaries](../controls/domain-model-boundaries.md).
+**Catalog use — apply:** Model object relationships and permissions explicitly; importing a platform does not validate local semantics. Use [domain model boundaries](../../catalog/controls/domain-model-boundaries.md).
 
 ## UiPath
 
@@ -109,7 +111,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Combines automation, agents, people, process models, and business rules.[^uipath]
 
-**Catalog use — apply:** Identify the owner, required evidence, and authority at each actor transition. Use [durable work handoff](../controls/durable-work-handoff.md).
+**Catalog use — apply:** Identify the owner, required evidence, and authority at each actor transition. Use [durable work handoff](../../catalog/controls/durable-work-handoff.md).
 
 ## Intercom
 
@@ -117,7 +119,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Explains why agent value can include work completed before a required human handoff.[^intercom]
 
-**Catalog use — apply:** Define customer outcomes beyond autonomous resolution or conversation closure. Use [outcome verification](../controls/outcome-verification.md).
+**Catalog use — apply:** Define customer outcomes beyond autonomous resolution or conversation closure. Use [outcome verification](../../catalog/controls/outcome-verification.md).
 
 ## Thomson Reuters
 
@@ -125,7 +127,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** States expectations for privacy, security, accountable use, and trustworthy products.[^thomson-reuters]
 
-**Catalog use — apply:** In professional work, retain source support and competent review; policy statements are not performance evidence. Use [evidence traceability](../controls/evidence-traceability.md).
+**Catalog use — apply:** In professional work, retain source support and competent review; policy statements are not performance evidence. Use [evidence traceability](../../catalog/controls/evidence-traceability.md).
 
 [^salesforce]: [Automate Multi-Turn Agent Testing with Conversation History in Agentforce | Salesforce Developers Blog](https://developer.salesforce.com/blogs/2025/11/automate-multi-turn-agent-testing-with-conversation-history-in-agentforce).
 [^servicenow]: [AI Control Tower - ServiceNow](https://www.servicenow.com/products/ai-control-tower.html).

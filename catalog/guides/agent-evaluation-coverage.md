@@ -27,7 +27,7 @@ sources:
 
 # Evaluate agent coverage across tasks and conditions
 
-[Research basis](../ai-leaders-research.md) · [Assessment records](../assessment-evidence-records.md) · [Adoption](../adoption.md)
+[Assessment records](../assessment-evidence-records.md) · [Adoption](../adoption.md)
 
 ## Purpose and applicability
 

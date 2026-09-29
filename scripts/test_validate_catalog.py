@@ -42,6 +42,31 @@ class CatalogTests(unittest.TestCase):
     def errors(self):
         return validator.validate(self.root)[0]
 
+    def test_examples_do_not_require_contributor_taxonomy(self):
+        self.assertFalse((self.root / "work-types.md").exists())
+        self.assertFalse((self.root.parent / "docs").exists())
+        example = self.root / "factories/learning.md"
+        text = example.read_text()
+        example.write_text(re.sub(r"activities: .*", 'activities: ["assess a new community mediation exercise"]', text))
+        self.assertEqual(self.errors(), [])
+        output = self.root.parent / "standalone"
+        builder.build(self.root, output)
+        self.assertEqual(validator.validate(output, require_index_coverage=True)[0], [])
+        self.assertFalse((output / "work-types.md").exists())
+        self.assertFalse((output / "research").exists())
+
+    def test_example_activity_descriptions_are_required(self):
+        example = self.root / "factories/learning.md"
+        original = example.read_text()
+        for value in ('[]', '[""]', '[42]', '"teaching"', 'null'):
+            with self.subTest(value=value):
+                example.write_text(re.sub(r"activities: .*", "activities: " + value, original))
+                self.assertTrue(any("activities must" in e for e in self.errors()))
+        example.write_text(original.replace("activities:", "work_types:"))
+        self.assertTrue(any("replace work_types" in e for e in self.errors()))
+        example.write_text(original.replace("../controls/outcome-verification.md", "../adoption.md"))
+        self.assertTrue(any("selection does not reference a Control" in e for e in self.errors()))
+
     def test_duplicate_yaml_keys(self):
         for field in ("family: bogus\n", "sources:\n  - resource: a\n    resource: b\n"):
             with self.subTest(field=field):

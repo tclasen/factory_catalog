@@ -20,7 +20,7 @@ sources:
 
 # Map capabilities, value, and information
 
-[Ontology](../ontology.md) · [Research basis](../open-group-guides-research.md) · [Adoption](../adoption.md)
+[Ontology](../ontology.md) · [Adoption](../adoption.md)
 
 ## Purpose and source boundary
 
@@ -61,7 +61,7 @@ Fictional planning example; no implementation or assessment has occurred.
 
 - **Factory seeks outcome:** adult learners can complete a supported application task, assessed by observed practice during the program. Publishing a workbook is an artifact milestone.
 - **Needed ability:** explain and practice the task with accessible materials; current gap evidence would come from learner observation and feedback, not a proposed software purchase.
-- **Factory performs activities:** intake needs, prepare material, facilitate practice, assess task completion. Classify them using [work types](../work-types.md), including teaching and capability development and evaluation and assurance.
+- **Factory performs activities:** intake needs, prepare material, facilitate practice, assess task completion. Describe each activity by its intended result, such as improved learner capability or an assessment of independent performance.
 - **Actors perform activities:** librarians facilitate; learners practice; a program lead owns acceptance. Any application submission needs separate authority.
 - **Activities consume/produce artifacts:** learner brief, lesson material, practice record, assessment result. Retain only information necessary for the stated purpose under applicable access and retention rules.
 - **Control supports outcome:** outcome verification assesses observed ability. **Control addresses risk:** information meaning agreement prevents “attended” being silently reported as “can perform the task”.

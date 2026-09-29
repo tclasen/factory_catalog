@@ -14,7 +14,7 @@ sources:
 
 # Optional dispatcher and lead handoff
 
-[Factory decomposition](../semantic-search-factory-decomposition.md) · [Work record](factory-work-record.md)
+[Delivery lifecycle](factory-delivery-lifecycle.md) · [Work record](factory-work-record.md)
 
 ## Applicability and source boundary
 

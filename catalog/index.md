@@ -10,15 +10,16 @@ The catalog version is recorded in [VERSION](VERSION). The OKF format version is
 
 ## Understand and use the catalog
 
-- [Factory ontology](ontology.md) — Concepts, relationships, and record conventions for describing factories and their controls.
-- [Knowledge work types](work-types.md) — Non-exclusive work labels classified by their intended outcome.
+- [Definitions and record schema](ontology.md) — Shared meanings and metadata needed to use controls.
 - [Control families](control-families.md) — Control families and contextual questions for selecting controls.
 - [Select, adopt, and assess controls](adoption.md) — Describe a factory, select contextual controls, and preserve pinned adoption and assessment records.
 
-## Controls and factories
+## Build and assess a factory
 
+- [Implementation selection](factory-implementation-selection.md) — Allocate human procedures, software, and AI to activities.
+- [Implementation and assessment guides](guides/) — Concrete procedures and local records.
 - [Controls](controls/) — Individually selectable requirements with implementation and assessment procedures.
-- [Factory examples](factories/) — Fictional workflows connecting outcomes, authority, risks, and controls.
+- [Factory examples](factories/) — Optional fictional applications illustrating distinct domains and operating constraints; select an example relevant to the factory being built.
 
 ## Browse all concepts
 

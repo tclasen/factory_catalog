@@ -16,7 +16,7 @@ sources:
 
 # Domain event meaning
 
-[Adoption](../adoption.md) · [DDD research](../domain-driven-design.md)
+[Adoption](../adoption.md) · [Domain model selection](../guides/domain-model-selection.md)
 
 ## Purpose and applicability
 

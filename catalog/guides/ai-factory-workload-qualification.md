@@ -24,7 +24,7 @@ sources:
 
 # Qualify AI factory infrastructure against workloads
 
-[Research basis](../ai-leaders-research.md) · [Implementation selection](../factory-implementation-selection.md) · [Adoption](../adoption.md)
+[Implementation selection](../factory-implementation-selection.md) · [Adoption](../adoption.md)
 
 ## Purpose and boundary
 

@@ -5,7 +5,7 @@ description: "A fictional workflow for inspectable site-energy totals and enviro
 status: draft
 example: true
 domain: "Environmental reporting"
-work_types: [knowledge-organization-and-stewardship, analysis-and-diagnosis, evaluation-and-assurance, content-and-media-production]
+activities: ["collect activity measurements", "reconcile reporting boundaries", "review and publish environmental totals"]
 control_selections:
   - control: ../controls/environmental-measurement-reconciliation.md
     applicability: applicable
@@ -49,7 +49,7 @@ sources:
 
 # Environmental reporting factory
 
-[Ontology](../ontology.md) · [Adoption](../adoption.md) · [Standards research](../open-group-standards-opportunities.md) · [Guides research](../open-group-guides-research.md)
+[Ontology](../ontology.md) · [Adoption](../adoption.md)
 
 **Fictional design; all implementations proposed; no assessments performed.** Open Footprint provides an environmental data-model reference; Energistics provides unit-dictionary resources.[^c267][^v244] This example does not implement those schemas or claim compliant emissions accounting.
 

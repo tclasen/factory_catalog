@@ -18,7 +18,7 @@ sources:
 
 # Data mesh platform selection
 
-[Research and evidence](data-mesh-architectures.md) · [Adoption](adoption.md)
+[Data product design](guides/data-product-design.md) · [Adoption](adoption.md)
 
 ## Basis and applicability
 

@@ -15,7 +15,7 @@ sources:
 
 # Collaborative domain discovery
 
-[DDD research](domain-driven-design.md) · [Context records](domain-context-records.md)
+[Domain model selection](guides/domain-model-selection.md) · [Context records](domain-context-records.md)
 
 ## Purpose and source limits
 

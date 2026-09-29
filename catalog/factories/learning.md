@@ -5,7 +5,7 @@ description: "A learning workflow that separates lesson delivery from improved a
 status: stable
 example: true
 domain: "Workplace learning"
-work_types: ["design-and-specification", "content-and-media-production", "translation-and-adaptation", "teaching-and-capability-development", "evaluation-and-assurance"]
+activities: ["diagnose prerequisite knowledge", "deliver practice", "assess independent performance", "check transfer to an unseen task"]
 control_selections:
   - control: ../controls/evidence-traceability.md
     applicability: applicable
@@ -32,7 +32,7 @@ control_selections:
 | Field | Design |
 |---|---|
 | Why / owner | Help staff recognize phishing; training owner is accountable for instructional quality |
-| Domain / work types | Workplace learning; design, content production, adaptation, teaching, evaluation |
+| Domain / activities | Workplace learning; design, content production, adaptation, teaching, evaluation |
 | Inputs → artifacts | Approved policy and learner needs → lesson, practice exercises, assessment, feedback |
 | Outcome | Learners improve their ability to identify suspicious messages and choose the appropriate response |
 | Measure | Illustrative pilot criterion: mean score improves by at least 20 percentage points on a comparable unseen assessment after seven days; report participation and missing observations separately |
@@ -62,7 +62,7 @@ All implementations are **proposed** and assessments **not assessed**. The learn
 
 ## Prerequisites and transfer extension
 
-Proposed application of the [classwork learning-assessment guidance](../classwork-learnings.md#3-assess-capability-under-stated-conditions): define the target capability as recognizing suspicious message cues, explaining the decision, and choosing the approved response. Use an entry task to identify missing knowledge of those cues or the response policy; adapt practice to the observed gap. Keep learner-specific routes and individual performance records outside the shared knowledge bundle, with restricted access.
+Proposed application of the [learning assessment procedure](../guides/learning-assessment.md): define the target capability as recognizing suspicious message cues, explaining the decision, and choosing the approved response. Use an entry task to identify missing knowledge of those cues or the response policy; adapt practice to the observed gap. Keep learner-specific routes and individual performance records outside the shared knowledge bundle, with restricted access.
 
 For the existing seven-day follow-up, use a comparable unseen scenario with different surface details. Record hints, assistance, and the rubric version so assisted practice is distinguishable from independent performance. Missing evidence stays unverified; a failed task identifies what was not demonstrated under those conditions. The existing illustrative improvement threshold remains unchanged and still needs justification before a real pilot.
 

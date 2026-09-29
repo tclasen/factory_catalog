@@ -38,7 +38,7 @@ Choose a mechanism for each activity and control, then assess the composition. A
 
 This guide and its linked mechanism notes synthesize primary sources inspected on **2026-09-28**, including two version-pinned empirical papers. Product documentation establishes described behavior; it does not prove a factory's effectiveness. The research was not rerun, and no deployed factory or live security configuration was assessed. Mutable documentation should be checked against the installed product before implementation. The comparisons and recommendations below are catalog inferences; attributed findings are marked with source footnotes.
 
-Use the companion [implementation selection procedure](factory-implementation-selection.md) to apply the findings. This guide specializes the [ontology's Implementation, Assessment, and Evidence concepts](ontology.md#concepts) and complements the existing [Software Factory lessons](software-factory-learnings.md). It adds implementation guidance without changing control requirements or creating new ontology types.
+Use the companion [implementation selection procedure](factory-implementation-selection.md) to apply the findings. This guide specializes the [ontology's Implementation, Assessment, and Evidence concepts](ontology.md#concepts). It adds implementation guidance without changing control requirements or creating new ontology types.
 
 ## 1. Separate the choices
 
@@ -78,7 +78,7 @@ Anthropic distinguishes workflows with prescribed code paths from agents that ch
 
 Move stable calculations, schema rules, comparisons, and repetitive transformations into small callable functions. Give them explicit inputs, outputs, errors, and versioned dependencies. Preserve the reason for each rule in prose. Keep a human or model judgment where the acceptance rule cannot be stated adequately; a format validator cannot determine whether a source actually supports an argument.
 
-Durability requires additional design. Temporal, for example, resumes workflow execution by checking generated commands against recorded event history.[^replay] Its activities may retry if a completed effect was not reported; the documentation recommends idempotency, including destination-enforced operation keys.[^idempotency] A loop with retries does not establish one intended external effect. Retain uncertainty after lost responses and reconcile destination state, as described in the [recovery lessons](semantic-search-learnings.md#4-reconcile-uncertain-effects-before-retrying).
+Durability requires additional design. Temporal, for example, resumes workflow execution by checking generated commands against recorded event history.[^replay] Its activities may retry if a completed effect was not reported; the documentation recommends idempotency, including destination-enforced operation keys.[^idempotency] A loop with retries does not establish one intended external effect. Retain uncertainty after lost responses and reconcile destination state, as described in the [reconcile before retry](controls/reconcile-before-retry.md).
 
 ### Plugins: distribution and capability composition
 

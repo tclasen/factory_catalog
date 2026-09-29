@@ -17,7 +17,7 @@ sources:
 
 # Plan enterprise capabilities with traceable architecture decisions
 
-[Research map](../open-group-standards-opportunities.md) · [Ontology](../ontology.md)
+[Ontology](../ontology.md)
 
 ## Source and applicability
 

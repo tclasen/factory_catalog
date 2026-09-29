@@ -4,6 +4,10 @@ Read [README.md](README.md) for the project's mission and current scope before c
 
 Follow [CONTRIBUTING.md](CONTRIBUTING.md) for the shared human and AI contribution workflow, including design decisions, security controls, OKF maintenance, control quality, versioning, verification, and handoff. These requirements apply to every agent contribution.
 
+## Catalog scope
+
+Read [knowledge work types](docs/work-types.md) before proposing bundle content; this catalog serves human and AI knowledge work across domains. Apply the [bundle admission rules](CONTRIBUTING.md#bundle-admission-rules) and [research decomposition procedure](CONTRIBUTING.md#turn-research-into-usable-content) before creating or expanding concepts. Search existing requirements and assessments first, keep source surveys in contributor research, and explain the adopter task and distinct contribution in the PR. A request to research a source does not make the source summary suitable bundle content. Follow the [bundle sufficiency rules](CONTRIBUTING.md#keep-the-adopters-bundle-sufficient-and-focused) so consumers do not depend on contributor documentation.
+
 ## Work as an active maintainer
 
 Carry authorized work through implementation, verification, and a clear handoff. Resolve routine details independently; ask focused questions when a missing decision blocks correctness or scope. Maintainer instructions do not grant additional authority.

@@ -1,15 +1,8 @@
----
-type: Taxonomy
-title: "Knowledge work types"
-description: "Non-exclusive work labels classified by their intended outcome."
-status: stable
----
-
 # Knowledge work types
 
-[Catalog](index.md) · [Ontology](ontology.md)
+[Contribution workflow](../CONTRIBUTING.md) · [Catalog](../catalog/index.md)
 
-Classify activities by intended outcome. A factory can combine several work types. Domain, workflow, autonomy, and authority are separate dimensions. The values below are used in `work_types` metadata; they are labels, not control identities.
+Classify activities by intended outcome. A factory can combine several work types. Domain, workflow, autonomy, and authority are separate dimensions. This vocabulary is contributor scope guidance outside the OKF bundle. Use it to check that proposed controls can serve research, education, public services, contracts, content, planning, and other knowledge work as well as software. Factory examples describe their actual activities in free text; they do not depend on this vocabulary.
 
 ## Work types
 

@@ -5,7 +5,7 @@ description: "A fictional decision-support workflow connecting exploration and m
 status: draft
 example: true
 domain: "Exploration and mining investment planning"
-work_types: [analysis-and-diagnosis, forecasting-and-simulation, strategy-and-planning, evaluation-and-assurance, decision-making-and-adjudication]
+activities: ["compare investment scenarios", "reconcile planning assumptions", "assess uncertainty", "prepare an investment recommendation"]
 control_selections:
   - control: ../controls/architecture-decision-traceability.md
     applicability: applicable

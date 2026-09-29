@@ -15,7 +15,7 @@ sources:
 
 # Risk estimate assumptions
 
-[Adoption](../adoption.md) · [Research map](../open-group-standards-opportunities.md)
+[Adoption](../adoption.md)
 
 ## Purpose and applicability
 

@@ -18,7 +18,7 @@ sources:
 
 # Data product records
 
-[Data mesh research](data-mesh-architectures.md) · [Ontology](ontology.md)
+[Data product design](guides/data-product-design.md) · [Ontology](ontology.md)
 
 ## Purpose and representation
 

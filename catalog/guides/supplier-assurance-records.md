@@ -14,7 +14,7 @@ sources:
 
 # Maintain scoped supplier assurance records
 
-[Research map](../open-group-standards-opportunities.md) · [Ontology](../ontology.md)
+[Ontology](../ontology.md)
 
 ## Source and scope
 

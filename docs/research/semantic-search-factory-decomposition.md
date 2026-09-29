@@ -50,7 +50,9 @@ sources:
 
 # Decompose the semantic_search factory
 
-[Catalog](index.md) · [Ontology](ontology.md) · [Earlier product lessons](semantic-search-learnings.md)
+Contributor research: use this material to develop controls and task-focused guides. It is outside the distributed OKF bundle; consult current control requirements before reuse.
+
+[Catalog](../../catalog/index.md) · [Ontology](../../catalog/ontology.md) · [Earlier product lessons](semantic-search-learnings.md)
 
 ## Source and design boundary
 
@@ -64,31 +66,31 @@ The folder was marked historical at [e7a16d1](https://github.com/tclasen/semanti
 
 | Control | Existing primary family |
 |---|---|
-| [Accepted work definition](controls/accepted-work-definition.md) | `intake-and-work-definition` |
-| [Planning consistency](controls/planning-consistency.md) | `change-and-dependencies` |
-| [Assessment evidence validity](controls/assessment-evidence-validity.md) | `knowledge-and-evidence` |
-| [Acceptance coverage](controls/acceptance-coverage.md) | `quality-and-validation` |
-| [Local quality gates](controls/local-quality-gates.md) | `quality-and-validation` |
-| [Verified delivery](controls/verified-delivery.md) | `release-and-external-action` |
-| [Bounded execution](controls/bounded-execution.md) | `reliability-and-recovery` |
-| [Safe work resumption](controls/safe-work-resumption.md) | `workflow-and-coordination` |
-| [Reconcile before retry](controls/reconcile-before-retry.md) | `reliability-and-recovery` |
-| [Isolated parallel work](controls/isolated-parallel-work.md) | `workflow-and-coordination` |
-| [Task configuration selection](controls/task-configuration-selection.md) | `workflow-and-coordination` |
-| [Instruction change control](controls/instruction-change-control.md) | `monitoring-and-improvement` |
-| [Verified service recovery](controls/verified-service-recovery.md) | `reliability-and-recovery` |
-| [Independent restoration](controls/independent-restoration.md) | `reliability-and-recovery` |
-| [Controlled dependency change](controls/controlled-dependency-change.md) | `change-and-dependencies` |
-| [Scoped retirement](controls/scoped-retirement.md) | `information-protection` |
-| [Approved data processing](controls/approved-data-processing.md) | `information-protection` |
+| [Accepted work definition](../../catalog/controls/accepted-work-definition.md) | `intake-and-work-definition` |
+| [Planning consistency](../../catalog/controls/planning-consistency.md) | `change-and-dependencies` |
+| [Assessment evidence validity](../../catalog/controls/assessment-evidence-validity.md) | `knowledge-and-evidence` |
+| [Acceptance coverage](../../catalog/controls/acceptance-coverage.md) | `quality-and-validation` |
+| [Local quality gates](../../catalog/controls/local-quality-gates.md) | `quality-and-validation` |
+| [Verified delivery](../../catalog/controls/verified-delivery.md) | `release-and-external-action` |
+| [Bounded execution](../../catalog/controls/bounded-execution.md) | `reliability-and-recovery` |
+| [Safe work resumption](../../catalog/controls/safe-work-resumption.md) | `workflow-and-coordination` |
+| [Reconcile before retry](../../catalog/controls/reconcile-before-retry.md) | `reliability-and-recovery` |
+| [Isolated parallel work](../../catalog/controls/isolated-parallel-work.md) | `workflow-and-coordination` |
+| [Task configuration selection](../../catalog/controls/task-configuration-selection.md) | `workflow-and-coordination` |
+| [Instruction change control](../../catalog/controls/instruction-change-control.md) | `monitoring-and-improvement` |
+| [Verified service recovery](../../catalog/controls/verified-service-recovery.md) | `reliability-and-recovery` |
+| [Independent restoration](../../catalog/controls/independent-restoration.md) | `reliability-and-recovery` |
+| [Controlled dependency change](../../catalog/controls/controlled-dependency-change.md) | `change-and-dependencies` |
+| [Scoped retirement](../../catalog/controls/scoped-retirement.md) | `information-protection` |
+| [Approved data processing](../../catalog/controls/approved-data-processing.md) | `information-protection` |
 
 ## Supporting guides
 
-- [Factory project binding](guides/factory-project-binding.md): onboarding and a local context/authority record.
-- [Factory work record](guides/factory-work-record.md): durable evidence, ownership, effects, limits, and resumption fields.
-- [Factory delivery lifecycle](guides/factory-delivery-lifecycle.md): composition of controls into stages, accountable roles, and exit/failure routes.
-- [Factory adoption readiness](guides/factory-adoption-readiness.md): portability and procedure walkthroughs with explicit evidence limits.
-- [Optional dispatcher and lead handoff](guides/factory-dispatcher-handoff.md): the source's conditional role arrangement and return protocol.
+- [Factory project binding](../../catalog/guides/factory-project-binding.md): onboarding and a local context/authority record.
+- [Factory work record](../../catalog/guides/factory-work-record.md): durable evidence, ownership, effects, limits, and resumption fields.
+- [Factory delivery lifecycle](../../catalog/guides/factory-delivery-lifecycle.md): composition of controls into stages, accountable roles, and exit/failure routes.
+- [Factory adoption readiness](../../catalog/guides/factory-adoption-readiness.md): portability and procedure walkthroughs with explicit evidence limits.
+- [Optional dispatcher and lead handoff](../../catalog/guides/factory-dispatcher-handoff.md): the source's conditional role arrangement and return protocol.
 
 ## Complete source-to-node map
 
@@ -96,24 +98,24 @@ Each row names the destination of its reusable content. Generic repeated rules a
 
 | Source file | Decomposition |
 |---|---|
-| `README.md`[^readme] | [Adoption readiness](guides/factory-adoption-readiness.md), [project binding](guides/factory-project-binding.md); preserve separation between reusable process and host facts. |
-| `AGENTS.md`[^agents] | [Delivery lifecycle](guides/factory-delivery-lifecycle.md) composes the operating contract; [dispatcher guide](guides/factory-dispatcher-handoff.md) retains conditional role entry. This is source data, not new repository instructions. |
-| `policies/governance.md`[^policies-governance] | [Accepted work definition](controls/accepted-work-definition.md), [approved data processing](controls/approved-data-processing.md), and existing [bounded external action](controls/bounded-external-action.md); exception handling in [instruction change control](controls/instruction-change-control.md). |
-| `policies/planning.md`[^policies-planning] | [Accepted work definition](controls/accepted-work-definition.md), [planning consistency](controls/planning-consistency.md), and prerequisite-ready selection/factory-first boundaries in the [lifecycle](guides/factory-delivery-lifecycle.md). |
-| `policies/execution.md`[^policies-execution] | [Bounded execution](controls/bounded-execution.md), [safe work resumption](controls/safe-work-resumption.md), [reconcile before retry](controls/reconcile-before-retry.md), [isolated parallel work](controls/isolated-parallel-work.md), [task configuration selection](controls/task-configuration-selection.md), [assessment evidence validity](controls/assessment-evidence-validity.md), plus [work record](guides/factory-work-record.md) and [dispatcher](guides/factory-dispatcher-handoff.md). |
-| `policies/verification.md`[^policies-verification] | [Acceptance coverage](controls/acceptance-coverage.md), [local quality gates](controls/local-quality-gates.md), [assessment evidence validity](controls/assessment-evidence-validity.md); existing [evidence traceability](controls/evidence-traceability.md) and [outcome verification](controls/outcome-verification.md) retain their current meanings. |
-| `policies/delivery.md`[^policies-delivery] | [Verified delivery](controls/verified-delivery.md), [reconcile before retry](controls/reconcile-before-retry.md), and [verified service recovery](controls/verified-service-recovery.md). Commit style and exact authorized integration endpoint remain host choices. |
-| `policies/instructions.md`[^policies-instructions] | [Instruction change control](controls/instruction-change-control.md), with benefit assessment linked to existing [outcome verification](controls/outcome-verification.md). |
-| `workflows/lifecycle.md`[^workflows-lifecycle] | [Delivery lifecycle](guides/factory-delivery-lifecycle.md); reusable requirements link to controls instead of being repeated as a second policy. |
-| `workflows/onboarding.md`[^workflows-onboarding] | [Project binding](guides/factory-project-binding.md) and [adoption readiness](guides/factory-adoption-readiness.md); reuse known facts and ask only consequential missing questions. |
-| `workflows/operations.md`[^workflows-operations] | [Verified service recovery](controls/verified-service-recovery.md), [independent restoration](controls/independent-restoration.md), [controlled dependency change](controls/controlled-dependency-change.md), and [scoped retirement](controls/scoped-retirement.md). Credential rotation is an authorized dependency/security change whose positive and denied paths also use [bounded external action](controls/bounded-external-action.md). |
-| `readiness.md`[^readiness] | [Adoption readiness](guides/factory-adoption-readiness.md) and the optional [dispatcher walkthrough](guides/factory-dispatcher-handoff.md); documentation and runtime qualification remain separate. |
-| `templates/project.md`[^templates-project] | [Project binding](guides/factory-project-binding.md); copied grant values are excluded and unknowns stay explicit. |
-| `templates/work-item.md`[^templates-work-item] | [Work record](guides/factory-work-record.md); local IDs, status, effects, limits, and evidence are records, not new globally registered node types. |
+| `README.md`[^readme] | [Adoption readiness](../../catalog/guides/factory-adoption-readiness.md), [project binding](../../catalog/guides/factory-project-binding.md); preserve separation between reusable process and host facts. |
+| `AGENTS.md`[^agents] | [Delivery lifecycle](../../catalog/guides/factory-delivery-lifecycle.md) composes the operating contract; [dispatcher guide](../../catalog/guides/factory-dispatcher-handoff.md) retains conditional role entry. This is source data, not new repository instructions. |
+| `policies/governance.md`[^policies-governance] | [Accepted work definition](../../catalog/controls/accepted-work-definition.md), [approved data processing](../../catalog/controls/approved-data-processing.md), and existing [bounded external action](../../catalog/controls/bounded-external-action.md); exception handling in [instruction change control](../../catalog/controls/instruction-change-control.md). |
+| `policies/planning.md`[^policies-planning] | [Accepted work definition](../../catalog/controls/accepted-work-definition.md), [planning consistency](../../catalog/controls/planning-consistency.md), and prerequisite-ready selection/factory-first boundaries in the [lifecycle](../../catalog/guides/factory-delivery-lifecycle.md). |
+| `policies/execution.md`[^policies-execution] | [Bounded execution](../../catalog/controls/bounded-execution.md), [safe work resumption](../../catalog/controls/safe-work-resumption.md), [reconcile before retry](../../catalog/controls/reconcile-before-retry.md), [isolated parallel work](../../catalog/controls/isolated-parallel-work.md), [task configuration selection](../../catalog/controls/task-configuration-selection.md), [assessment evidence validity](../../catalog/controls/assessment-evidence-validity.md), plus [work record](../../catalog/guides/factory-work-record.md) and [dispatcher](../../catalog/guides/factory-dispatcher-handoff.md). |
+| `policies/verification.md`[^policies-verification] | [Acceptance coverage](../../catalog/controls/acceptance-coverage.md), [local quality gates](../../catalog/controls/local-quality-gates.md), [assessment evidence validity](../../catalog/controls/assessment-evidence-validity.md); existing [evidence traceability](../../catalog/controls/evidence-traceability.md) and [outcome verification](../../catalog/controls/outcome-verification.md) retain their current meanings. |
+| `policies/delivery.md`[^policies-delivery] | [Verified delivery](../../catalog/controls/verified-delivery.md), [reconcile before retry](../../catalog/controls/reconcile-before-retry.md), and [verified service recovery](../../catalog/controls/verified-service-recovery.md). Commit style and exact authorized integration endpoint remain host choices. |
+| `policies/instructions.md`[^policies-instructions] | [Instruction change control](../../catalog/controls/instruction-change-control.md), with benefit assessment linked to existing [outcome verification](../../catalog/controls/outcome-verification.md). |
+| `workflows/lifecycle.md`[^workflows-lifecycle] | [Delivery lifecycle](../../catalog/guides/factory-delivery-lifecycle.md); reusable requirements link to controls instead of being repeated as a second policy. |
+| `workflows/onboarding.md`[^workflows-onboarding] | [Project binding](../../catalog/guides/factory-project-binding.md) and [adoption readiness](../../catalog/guides/factory-adoption-readiness.md); reuse known facts and ask only consequential missing questions. |
+| `workflows/operations.md`[^workflows-operations] | [Verified service recovery](../../catalog/controls/verified-service-recovery.md), [independent restoration](../../catalog/controls/independent-restoration.md), [controlled dependency change](../../catalog/controls/controlled-dependency-change.md), and [scoped retirement](../../catalog/controls/scoped-retirement.md). Credential rotation is an authorized dependency/security change whose positive and denied paths also use [bounded external action](../../catalog/controls/bounded-external-action.md). |
+| `readiness.md`[^readiness] | [Adoption readiness](../../catalog/guides/factory-adoption-readiness.md) and the optional [dispatcher walkthrough](../../catalog/guides/factory-dispatcher-handoff.md); documentation and runtime qualification remain separate. |
+| `templates/project.md`[^templates-project] | [Project binding](../../catalog/guides/factory-project-binding.md); copied grant values are excluded and unknowns stay explicit. |
+| `templates/work-item.md`[^templates-work-item] | [Work record](../../catalog/guides/factory-work-record.md); local IDs, status, effects, limits, and evidence are records, not new globally registered node types. |
 
 ## Graph relationships and composition
 
-An adopter's factory **performs** activities described by the lifecycle. A local implementation **implements** a pinned control revision and **applies within** an activity. An assessment **evaluates** that implementation and **uses** retained evidence. These reuse the existing [ontology relationships](ontology.md#relationships).
+An adopter's factory **performs** activities described by the lifecycle. A local implementation **implements** a pinned control revision and **applies within** an activity. An assessment **evaluates** that implementation and **uses** retained evidence. These reuse the existing [ontology relationships](../../catalog/ontology.md#relationships).
 
 For example, a proposed release consumes a candidate artifact, applies evidence validity and acceptance coverage, and then uses verified delivery under bounded external action. An ambiguous destination response invokes reconciliation before retry. Interruption invokes safe work resumption, while a failed installed release may require service recovery. Backup recovery additionally depends on independent restoration. Links specify intended composition, not successful assessment or adoption.
 
@@ -126,7 +128,7 @@ The source's templates become guides for local records. Create separate Actor, I
 - **Generalize delivery scope:** the source defaults to main integration. Verified delivery uses the agreed authorized endpoint, so a catalog PR does not grant merge authority. Exact commit style, tool choices, grants, and destinations remain in the host binding.
 - **Make structure optional:** fresh-context dispatcher/lead operation is a guide for an explicitly selected arrangement. It does not require this repository to launch agents or adopt an execution framework.
 - **Keep configuration choices current:** model and effort selection records available options and uncertainty; no model name, fixed budget, or universal tier ranking is imported. Numerical budget heuristics are local parameters under bounded execution.
-- **Preserve provenance without copying the kit:** the source's whole-folder copy instruction becomes selection of pinned controls and required supporting concepts under [catalog adoption](adoption.md).
+- **Preserve provenance without copying the kit:** the source's whole-folder copy instruction becomes selection of pinned controls and required supporting concepts under [catalog adoption](../../catalog/adoption.md).
 
 Review these draft boundaries and requirements before treating their definitions as stable. This proposal changes neither the ontology nor an approved baseline. The next decision is which draft definitions to adopt or refine, followed by assessments of actual local implementations.
 

@@ -18,7 +18,9 @@ sources:
 
 # Apply research from 100 AI leaders and corporate sources
 
-[Catalog](index.md) · [Ontology](ontology.md) · [Adoption](adoption.md)
+Contributor research: use this material to develop controls and task-focused guides. It is outside the distributed OKF bundle; consult current control requirements before reuse.
+
+[Catalog](../../catalog/index.md) · [Ontology](../../catalog/ontology.md) · [Adoption](../../catalog/adoption.md)
 
 ## What to use first
 
@@ -26,9 +28,9 @@ Use the three assessment guides below to turn published ideas into local evidenc
 
 | Priority | Addition | Decision it supports | Existing coverage it applies |
 |---|---|---|---|
-| 1 | [Agent evaluation coverage](guides/agent-evaluation-coverage.md) | Whether an agent improvement holds across relevant tasks, users, conversation turns, and failure classes | Acceptance coverage, protected acceptance, verifier qualification, measured process improvement |
-| 2 | [AI factory workload qualification](guides/ai-factory-workload-qualification.md) | Whether a combined infrastructure stack can deliver accepted work under normal load, bursts, and failure | Task configuration selection, resource budgets, dependency change, service recovery |
-| 3 | [Semantic cache assessment](guides/semantic-cache-assessment.md) | Whether answer reuse preserves permission, meaning, freshness, and quality | Approved data processing, corpus integrity, persistent-state recovery |
+| 1 | [Agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md) | Whether an agent improvement holds across relevant tasks, users, conversation turns, and failure classes | Acceptance coverage, protected acceptance, verifier qualification, measured process improvement |
+| 2 | [AI factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md) | Whether a combined infrastructure stack can deliver accepted work under normal load, bursts, and failure | Task configuration selection, resource budgets, dependency change, service recovery |
+| 3 | [Semantic cache assessment](../../catalog/guides/semantic-cache-assessment.md) | Whether answer reuse preserves permission, meaning, freshness, and quality | Approved data processing, corpus integrity, persistent-state recovery |
 
 Priority is an editorial judgment about the catalog's needs, based on applicability and a feasible assessment. It is not a ranking of published effectiveness. The existing [Agent Patterns review](agentpatterns-opportunities.md) already identifies retrieval coverage, tool usability, and compaction opportunities; this research complements those proposals.
 
@@ -61,22 +63,22 @@ Each linked guide contains ten annotated entries, source frontmatter, keyed attr
 
 | Research area | Entries | Useful for |
 |---|---:|---|
-| [Model platforms](research/ai-leaders-model-platforms.md) | 10 corporate | Agent patterns, model evidence, tool access, production ML |
-| [AI factory infrastructure](research/ai-leaders-infrastructure.md) | 10 corporate | Compute, network, storage, facilities, operational telemetry |
-| [Data and retrieval](research/ai-leaders-data-retrieval.md) | 10 corporate | Retrieval, graph meaning, evaluation data, caching |
-| [Agent engineering](research/ai-leaders-agent-engineering.md) | 10 corporate | Persistence, serving, tracing, evaluation, ingestion |
-| [Enterprise adoption](research/ai-leaders-enterprise-adoption.md) | 10 corporate | Business processes, industrial systems, human handoffs |
-| [Applied AI products](research/ai-leaders-applied-products.md) | 10 corporate | Model variants, coding systems, search, education |
-| [Practitioner education](research/ai-leaders-practitioner-education.md) | 10 people | Evaluation, architecture, security, task allocation |
-| [Research leadership](research/ai-leaders-research-leadership.md) | 10 people | Research methods, scientific assessment, strategy assumptions |
-| [Systems education](research/ai-leaders-systems-education.md) | 10 people | Production ML, representations, evaluation, hardware efficiency |
-| [Evaluation and society](research/ai-leaders-evaluation-society.md) | 10 people | Documentation, subgroup evaluation, reproducibility, resource impacts |
+| [Model platforms](ai-leaders-model-platforms.md) | 10 corporate | Agent patterns, model evidence, tool access, production ML |
+| [AI factory infrastructure](ai-leaders-infrastructure.md) | 10 corporate | Compute, network, storage, facilities, operational telemetry |
+| [Data and retrieval](ai-leaders-data-retrieval.md) | 10 corporate | Retrieval, graph meaning, evaluation data, caching |
+| [Agent engineering](ai-leaders-agent-engineering.md) | 10 corporate | Persistence, serving, tracing, evaluation, ingestion |
+| [Enterprise adoption](ai-leaders-enterprise-adoption.md) | 10 corporate | Business processes, industrial systems, human handoffs |
+| [Applied AI products](ai-leaders-applied-products.md) | 10 corporate | Model variants, coding systems, search, education |
+| [Practitioner education](ai-leaders-practitioner-education.md) | 10 people | Evaluation, architecture, security, task allocation |
+| [Research leadership](ai-leaders-research-leadership.md) | 10 people | Research methods, scientific assessment, strategy assumptions |
+| [Systems education](ai-leaders-systems-education.md) | 10 people | Production ML, representations, evaluation, hardware efficiency |
+| [Evaluation and society](ai-leaders-evaluation-society.md) | 10 people | Documentation, subgroup evaluation, reproducibility, resource impacts |
 
 ## Findings and boundaries
 
-**Choose a system for the task.** Anthropic's agent guidance favors simple compositions and explicit performance/cost tradeoffs.[^agents] The catalog already supports this through [implementation selection](factory-implementation-selection.md) and [task configuration selection](controls/task-configuration-selection.md). A new agent taxonomy would add little here.
+**Choose a system for the task.** Anthropic's agent guidance favors simple compositions and explicit performance/cost tradeoffs.[^agents] The catalog already supports this through [implementation selection](../../catalog/factory-implementation-selection.md) and [task configuration selection](../../catalog/controls/task-configuration-selection.md). A new agent taxonomy would add little here.
 
-**Measure accepted work.** Husain's product evaluation account connects task-specific tests, trace inspection, and product experiments.[^evals] The evaluation guide adds records for coverage, changing rubrics, and comparisons across deployment conditions. It does not replace [outcome verification](controls/outcome-verification.md).
+**Measure accepted work.** Husain's product evaluation account connects task-specific tests, trace inspection, and product experiments.[^evals] The evaluation guide adds records for coverage, changing rubrics, and comparisons across deployment conditions. It does not replace [outcome verification](../../catalog/controls/outcome-verification.md).
 
 **Connect the two meanings of AI factory.** NVIDIA uses the term for an integrated compute and software platform constrained by data-center conditions.[^factory] This catalog describes systems for producing knowledge-work outcomes. The infrastructure platform can support factory activities, but GPU utilization, token throughput, or a vendor reference design cannot establish that the resulting work is correct, authorized, or valuable. The workload guide connects platform evidence to outcome evidence without redefining the ontology.
 
@@ -84,11 +86,11 @@ Each linked guide contains ten annotated entries, source frontmatter, keyed attr
 
 ## Apply and maintain the research
 
-1. Select a concrete outcome and an accountable owner using [accepted work definition](controls/accepted-work-definition.md).
+1. Select a concrete outcome and an accountable owner using [accepted work definition](../../catalog/controls/accepted-work-definition.md).
 2. Follow relevant source entries, distinguish source claims from our proposed application, and inspect deeper material where the review depth is insufficient for the decision.
-3. Reuse the linked controls. For adoption, retain their identities, catalog version from the adopted revision, and exact source commit under the [adoption procedure](adoption.md#record-the-adoption).
+3. Reuse the linked controls. For adoption, retain their identities, catalog version from the adopted revision, and exact source commit under the [adoption procedure](../../catalog/adoption.md#record-the-adoption).
 4. Define local fixtures and acceptance criteria before assessing a candidate. Preserve failed, inconclusive, and missing results.
-5. Revisit source applicability after model, data, evaluator, workload, permission, or infrastructure changes. Add new research at its own concept path; generated navigation discovers it without a shared registry.
+5. Revisit source applicability after model, data, evaluator, workload, permission, or infrastructure changes. Keep additional source surveys under `docs/research/`; publish concrete controls and assessment procedures in the bundle.
 
 The catalog comparison used the concept files at `c074a864b457cc2407da6724624bc84133a60fdd`, with targeted reading of relevant controls and guides. The resulting procedures are proposed applications awaiting local assessment. Review should decide whether these guide boundaries are useful and whether deeper primary-method review is needed for a particular adoption. There is no new release baseline or implied authority to merge, deploy, or buy a product.
 

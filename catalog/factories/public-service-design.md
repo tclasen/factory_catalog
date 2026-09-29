@@ -9,7 +9,7 @@ sources:
     title: "GovStack Ecosystem Reference Architecture"
 example: true
 domain: "Public administration"
-work_types: ["research-and-discovery", "strategy-and-planning", "design-and-specification", "coordination-and-relationship-work", "evaluation-and-assurance"]
+activities: ["elicit stakeholder concerns", "map service activities", "compare service options", "review acceptance evidence"]
 control_selections:
   - control: ../controls/stakeholder-concern-validation.md
     applicability: applicable
@@ -45,7 +45,7 @@ control_selections:
 
 **Fictional design; proposed implementations; no operational assessments performed.**
 
-[Ontology](../ontology.md) · [Adoption](../adoption.md) · [Research basis](../open-group-guides-research.md)
+[Ontology](../ontology.md) · [Adoption](../adoption.md)
 
 ## Factory profile
 
