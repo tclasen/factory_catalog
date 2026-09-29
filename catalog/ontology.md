@@ -74,6 +74,7 @@ This bundle uses OKF 0.2. Its domain-specific fields extend OKF; they do not red
 | Ontology | Definitions and relationships | None |
 | Taxonomy | Enumerated browsing vocabulary | None |
 | Guide | A reusable procedure for using the catalog | None |
+| Risk Scenario | A reusable threat scenario connecting conditions, harms, and candidate controls | None; body records cause, enabling conditions, threatened outcomes/artifacts, affected parties, candidate controls, assessment example, and reassessment triggers |
 | Control | A reusable, assessable requirement | `family`: a value from the control-family taxonomy |
 | Factory Example | A fictional factory profile | `example: true`, `domain`, `work_types`, `control_selections` |
 
@@ -87,6 +88,8 @@ This bundle uses OKF 0.2. Its domain-specific fields extend OKF; they do not red
 | `assessment_result` | `not-assessed`, `pass`, `fail`, or `inconclusive` |
 
 The body records rationale, assumptions, owner, scope, implementation details, evidence expectations, and reassessment triggers. `not-planned` records no planned implementation; it does not imply that a control is unnecessary. Partial implementation is described explicitly and does not earn a passing result. Real adoption adds the [pinned adoption record](adoption.md#record-the-adoption); selection alone is not adoption.
+
+A standalone `Risk Scenario` represents a reusable hypothetical scenario, not an observed incident or a local applicability decision. Its identity is its path under `risks/`. It uses the existing risk-to-outcome and control-to-risk relationships; sources and keyed footnotes distinguish external ATLAS behavior from catalog interpretations. Local ownership, applicability, implementation, and assessment remain separate records.
 
 Each concept is a Markdown file. Small local objects such as grants and outcomes can be tables or structured blocks in that concept. Split them into independently linked concepts when they need their own identity, reuse, or lifecycle. The conceptual ontology is broader than the document types needed for this catalog.
 
