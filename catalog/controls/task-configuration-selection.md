@@ -14,7 +14,7 @@ sources:
 
 [Adoption](../adoption.md) · [Delivery lifecycle](../guides/factory-delivery-lifecycle.md)
 
-Draft requirement adapted from the source factory policies.[^policies-execution] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
+The requirement and assessment below are catalog-proposed synthesis. The cited source was unavailable at its pinned revision when checked, so its contents have not been verified and this is not a substantiated adaptation claim.[^policies-execution]
 
 ## Purpose and applicability
 
@@ -57,4 +57,4 @@ Requires trustworthy comparable evidence where available; model rankings and pri
 
 When measured savings or other comparative benefits justify adopting a configuration change, [measured process improvement](measured-process-improvement.md) describes comparison design and cost/quality accounting. Task configuration selection also supports a provisional assignment-level choice with disclosed uncertainty; it does not require a benchmark campaign.
 
-[^policies-execution]: [Ownership, execution and recovery](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md).
+[^policies-execution]: [Ownership, execution and recovery](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md), cited at commit `70cfad0de635197f36f14e5276dec145483c5128`. This exact path returned HTTP 404 on 2026-09-29; the source content and its relationship to this proposal remain unverified.

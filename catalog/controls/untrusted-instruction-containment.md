@@ -26,7 +26,7 @@ Record the authorized task, acceptance criteria, and policy sources independentl
 
 1. Inventory ingestion, transformation, delegation, memory, and rendering paths. Preserve origin/trust labels through summaries and handoffs.
 2. Bind scope and criteria in a protected work record. Validate proposed changes through an authorized channel; quoted source text cannot act as approval.
-3. Restrict capabilities and mediate actions using [bounded external action](bounded-external-action.md) and [execution isolation](execution-isolation.md). Use [lethal trifecta separation](lethal-trifecta-separation.md) when private information can flow to recipients.
+3. Restrict capabilities and mediate actions using [bounded external action](bounded-external-action.md) and [execution isolation](execution-isolation.md). Apply [sensitive data egress](sensitive-data-egress.md) to disclosure policy. The separate [lethal trifecta separation](lethal-trifecta-separation.md) proposal is draft and optional when analyzing private-information flows; it is not a required dependency.
 4. Compare outputs and effects with the authorized objective using protected criteria. Quarantine suspect persistent instructions under [memory admission](persistent-memory-admission.md).
 
 ## Expected outcome and assessment
