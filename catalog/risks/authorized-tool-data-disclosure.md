@@ -20,6 +20,8 @@ sources:
 
 A contract activity can update a shared document but includes private terms in an update to an unauthorized audience. Sensitive information may also travel through generated links, search parameters, or logs.
 
+[Retrieved instructions](retrieved-instruction-action.md) are one possible way to influence the outgoing payload. This scenario focuses on the data and recipient even when the tool itself is permitted; denying an out-of-grant action alone does not test that boundary.
+
 ## Threatened outcomes and affected parties
 
 Private artifacts and confidentiality commitments are threatened. Contract parties, data subjects, and the accountable organization may be affected.
