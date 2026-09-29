@@ -123,6 +123,8 @@ Use **Semantic Versioning (SEMVER)** in `MAJOR.MINOR.PATCH` form, following [Sem
 | **Minor** | Add new content or controls while preserving compatibility with existing definitions and references. | Add a new control or a new guide. |
 | **Patch** | Clarify or extend existing definitions without changing their requirements or invalidating existing implementations or assessments. | Explain an ambiguous term or add an example to an existing definition. |
 
+The [consumer contract](catalog/consumer-contract.md) defines the public file, metadata, and semantic interfaces covered by this policy. Breaking metadata shapes, existing selection states, family vocabulary, or assessment meanings require a major release even if paths stay unchanged. Follow the [release procedure](docs/releasing.md) for content review, walkthroughs, packaging, and owner decisions.
+
 **Before v1:** backwards compatibility is not required. Breaking changes are permitted; describe their effect in the PR and repair links in the current tree. For a future pre-v1 release, classify breaking or additive changes as minor and corrections as patch. The baseline hold below still applies.
 
 **From v1:** classify by the effect on adopters. An extension that introduces an incompatible requirement is a major change even if it edits only one definition. For changes spanning categories, use the highest required level. A major release resets minor and patch to zero; a minor release resets patch to zero.

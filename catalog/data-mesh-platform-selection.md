@@ -49,7 +49,7 @@ Separate central product discovery from data location. Avoid copying restricted 
 
 ## 3. Make the operating model concrete
 
-Adopt [accountability](controls/data-product-accountability.md), [contracts](controls/data-product-contract.md), and [federated policy enforcement](controls/federated-data-policy-enforcement.md). State which decisions domains can make independently and which need shared approval. Give producers access to a supported path for ordinary tasks and document exceptions.
+Evaluate [accountability](controls/data-product-accountability.md), [contracts](controls/data-product-contract.md), and [federated policy enforcement](controls/federated-data-policy-enforcement.md) for applicability; record the selection rationale and any gaps. This guide does not make every linked control mandatory. State which decisions domains can make independently and which need shared approval. Give producers access to a supported path for ordinary tasks and document exceptions.
 
 Zalando's report describes manual token onboarding during its sharing pilot and subsequent work on recipient management.[^zalando] The local lesson is to measure actual manual intervention and support effort before describing a capability as self-service. Do not assume that the same authentication arrangement is appropriate elsewhere.
 

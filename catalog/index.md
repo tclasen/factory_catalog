@@ -12,6 +12,7 @@ The catalog version is recorded in [VERSION](VERSION). The OKF format version is
 
 - [Definitions and record schema](ontology.md) — Shared meanings and metadata needed to use controls.
 - [Control families](control-families.md) — Control families and contextual questions for selecting controls.
+- [Consumer contract](consumer-contract.md) — File interfaces, provenance, and upgrade compatibility.
 - [Select, adopt, and assess controls](adoption.md) — Describe a factory, select contextual controls, and preserve pinned adoption and assessment records.
 
 ## Build and assess a factory
