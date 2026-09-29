@@ -252,7 +252,7 @@ def validate_index_coverage(
             errors.extend(qualify_errors(root, index, ["missing directory index"]))
             continue
         targets = [
-            resolve_reference(root, index, link.partition("#")[0])
+            resolve_reference(root, index, unquote(link.partition("#")[0]))
             for link in links.get(index, [])
         ]
         for child in sorted(directory.iterdir()):

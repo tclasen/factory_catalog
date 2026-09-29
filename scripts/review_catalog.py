@@ -18,9 +18,10 @@ import validate_catalog as validator
 
 
 def review(root: Path, *, github: bool = False) -> list[str]:
-    documents, errors = validator.load_documents(root)
+    errors, _ = validator.validate(root)
     if errors:
         raise ValueError("\n".join(errors))
+    documents, _ = validator.load_documents(root)
     warnings = []
     controls = [doc for doc in documents.values() if doc.metadata.get("type") == "Control"]
     for left, right in combinations(controls, 2):

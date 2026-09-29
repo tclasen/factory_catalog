@@ -118,12 +118,79 @@ class CatalogTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "LICENSE"):
             builder.build(self.root, self.root.parent / "unlicensed")
 
+    def test_absent_status_defaults_to_stable(self):
+        self.control.write_text(re.sub(r"^status:.*\n", "", self.control.read_text(), flags=re.MULTILINE))
+        output = self.root.parent / "default-status"
+        builder.build(self.root, output)
+        listing = output / "controls/index.md"
+        self.assertIn("[status: stable;", next(line for line in listing.read_text().splitlines()
+                                             if "](bounded-external-action.md)" in line))
+        listing.write_text(listing.read_text().replace("[status: stable;", "[status: unspecified;"))
+        self.assertTrue(any("show status" in error for error in builder.validate_distribution(self.root, output)))
+
+    def test_generated_links_encode_filenames(self):
+        directory = self.root / "guides" / "space # % (é)"
+        directory.mkdir(parents=True)
+        name = "guide # % (é).md"
+        (directory / name).write_text(
+            "---\ntype: Guide\ntitle: Guide\ndescription: Example\ncatalog_version: v0.1.0\n---\n# Guide\n"
+        )
+        shutil.copyfile(self.control, self.control.with_name(name))
+        output = self.root.parent / "encoded-links"
+        builder.build(self.root, output)
+        self.assertEqual(validator.validate(output, require_index_coverage=True)[0], [])
+        self.assertEqual(builder.validate_distribution(self.root, output), [])
+        listing = output / "controls/index.md"
+        self.assertIn("guide%20%23%20%25%20%28%C3%A9%29.md", listing.read_text())
+        listing.write_text("\n".join(line for line in listing.read_text().splitlines()
+                                   if "guide%20" not in line) + "\n")
+        self.assertTrue(any("unlisted entry" in error for error in
+                            validator.validate(output, require_index_coverage=True)[0]))
+
+    def test_review_reports_invalid_selection_without_traceback(self):
+        example = self.root / "factories/research.md"
+        example.write_text(re.sub(r"control_selections:\n(?:[ \t].*\n)+", "control_selections: null\n",
+                                  example.read_text()))
+        result = subprocess.run([sys.executable, str(REPOSITORY / "scripts/review_catalog.py"), str(self.root)],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("missing control selections", result.stderr)
+        self.assertNotIn("Traceback", result.stderr)
+
+    def test_whitespace_in_clean_checkout_and_staged_changes(self):
+        repo = self.root.parent / "git-fixture"
+        repo.mkdir()
+
+        def git(*args):
+            return subprocess.run(["git", "-c", "core.hooksPath=/dev/null", *args], cwd=repo,
+                                  check=True, capture_output=True, text=True)
+
+        git("init")
+        document = repo / "document.md"
+        document.write_text("bad trailing space \n")
+        git("add", ".")
+        git("-c", "commit.gpgsign=false", "-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid",
+            "commit", "-m", "Whitespace fixture")
+        self.assertEqual(git("status", "--porcelain").stdout, "")
+        self.assertNotEqual(checker.check_whitespace(repo), 0)
+        document.write_text("clean\n")
+        git("add", ".")
+        self.assertEqual(checker.check_whitespace(repo), 0)
+        document.write_text("staged error \n")
+        git("add", ".")
+        document.write_text("clean\n")
+        self.assertNotEqual(checker.check_whitespace(repo), 0)
+
     def test_check_command_propagates_failure(self):
         with patch.object(sys, "argv", ["check_catalog.py"]), patch.object(
             checker.subprocess, "run", return_value=subprocess.CompletedProcess([], 7)
         ) as run:
             self.assertEqual(checker.main(), 7)
             self.assertEqual(run.call_count, 1)
+        with patch.object(sys, "argv", ["check_catalog.py"]), patch.object(
+            checker.subprocess, "run", return_value=subprocess.CompletedProcess([], 0)
+        ), patch.object(checker, "check_whitespace", return_value=2):
+            self.assertEqual(checker.main(), 2)
 
     def test_current_catalog(self):
         self.assertEqual(self.errors(), [])

@@ -15,6 +15,7 @@ import re
 import shutil
 import sys
 import tempfile
+from urllib.parse import quote, unquote
 
 import validate_catalog as validator
 
@@ -34,7 +35,7 @@ def validate_distribution(source: Path, destination: Path) -> list[str]:
     documents, _ = validator.load_documents(source)
     index = (destination / "index.md").read_text(encoding="utf-8")
     section = index.partition("## Controls by family\n")[2]
-    targets = validator.extract_links(section)
+    targets = [unquote(link) for link in validator.extract_links(section)]
     groups = {}
     listings = {}
     for path, document in documents.items():
@@ -44,14 +45,15 @@ def validate_distribution(source: Path, destination: Path) -> list[str]:
         family = document.metadata["family"]
         if family not in groups:
             group = section.partition(f"### {family}\n")[2].split("\n### ")[0]
-            groups[family] = validator.extract_links(group)
+            groups[family] = [unquote(link) for link in validator.extract_links(group)]
         if targets.count(target) != 1 or target not in groups[family]:
             errors.append(f"family navigation must list {target} exactly once under {family}")
         if path.parent not in listings:
-            listings[path.parent] = (destination / path.parent.relative_to(source) / "index.md").read_text()
-        listing = listings[path.parent]
-        entry = next((line for line in listing.splitlines() if f"]({path.name})" in line), "")
-        status = document.metadata.get("status", "unspecified")
+            listing = (destination / path.parent.relative_to(source) / "index.md").read_text()
+            listings[path.parent] = {unquote(link): line for line in listing.splitlines()
+                                     for link in validator.extract_links(line)}
+        entry = listings[path.parent].get(path.name, "")
+        status = document.metadata.get("status", "stable")
         if f"[status: {status}; family: {family}]" not in entry:
             errors.append(f"generated entry must show status and family for {target}")
     return errors
@@ -86,16 +88,16 @@ def build(source: Path, destination: Path) -> int:
             if child.name == "index.md":
                 continue
             if child.is_dir() and child in directories:
-                entries.append(f"- [{markdown_text(child.name)}]({child.name}/index.md)")
+                entries.append(f"- [{markdown_text(child.name)}]({quote(child.name)}/index.md)")
             elif child in documents:
                 document = documents[child]
                 title = document.metadata.get("title", child.stem)
                 description = document.metadata.get("description", "")
                 suffix = f" — {markdown_text(description)}" if description else ""
                 if document.metadata.get("type") == "Control":
-                    suffix += (f" [status: {document.metadata.get('status', 'unspecified')}; "
+                    suffix += (f" [status: {document.metadata.get('status', 'stable')}; "
                                f"family: {document.metadata['family']}]")
-                entries.append(f"- [{markdown_text(title)}]({child.name}){suffix}")
+                entries.append(f"- [{markdown_text(title)}]({quote(child.name)}){suffix}")
         index.write_text(preface + "\n\n## Directory contents\n\n" + "\n".join(entries) + "\n", encoding="utf-8")
     root_index = destination / "index.md"
     family_lines = ["", "## Controls by family", ""]
@@ -105,7 +107,7 @@ def build(source: Path, destination: Path) -> int:
         for path, document in sorted(documents.items()):
             if document.metadata.get("type") == "Control" and document.metadata.get("family") == family:
                 family_lines.append(f"- [{markdown_text(document.metadata['title'])}]"
-                                    f"({path.relative_to(destination).as_posix()})")
+                                    f"({quote(path.relative_to(destination).as_posix())})")
         family_lines.append("")
     root_index.write_text(root_index.read_text() + "\n".join(family_lines), encoding="utf-8")
     errors, count = validator.validate(destination, require_index_coverage=True)
