@@ -2,7 +2,6 @@
 type: Control
 title: "Semantic mapping validation"
 description: "Verify that information exchanged between models preserves its intended meaning."
-catalog_version: "v0.1.0"
 status: draft
 family: knowledge-and-evidence
 sources:
@@ -15,8 +14,6 @@ sources:
 ---
 
 # Semantic mapping validation
-
-**Identity:** `controls/semantic-mapping-validation` · **Catalog:** v0.1.0 · **Family:** `knowledge-and-evidence`
 
 [Adoption](../adoption.md) · [Research map](../open-group-standards-opportunities.md)
 

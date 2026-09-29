@@ -2,7 +2,6 @@
 type: Control
 title: "Supplier assurance scope"
 description: "Match supplier assurance claims to the exact offering, version, service boundary, and acceptance decision."
-catalog_version: "v0.1.0"
 status: draft
 family: change-and-dependencies
 sources:
@@ -20,8 +19,6 @@ sources:
 # Supplier assurance scope
 
 [Adoption](../adoption.md) · [Control families](../control-families.md)
-
-**Identity:** `controls/supplier-assurance-scope` · **Catalog:** v0.1.0 · **Family:** `change-and-dependencies`
 
 ## Purpose and applicability
 

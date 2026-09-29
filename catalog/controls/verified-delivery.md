@@ -2,7 +2,6 @@
 type: Control
 title: "Verified delivery"
 description: "Verify the agreed destination and completion stages before reporting delivery."
-catalog_version: "v0.1.0"
 status: draft
 family: release-and-external-action
 sources:
@@ -17,8 +16,6 @@ sources:
 # Verified delivery
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/verified-delivery` · **Catalog:** v0.1.0 · **Family:** `release-and-external-action`
 
 Draft requirement adapted from the source factory policies.[^policies-delivery][^policies-verification] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

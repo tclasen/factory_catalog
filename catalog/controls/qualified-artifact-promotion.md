@@ -2,7 +2,6 @@
 type: Control
 title: "Qualified artifact promotion"
 description: "Verify that the published object is the artifact whose acceptance evidence was qualified."
-catalog_version: "v0.1.0"
 status: stable
 family: release-and-external-action
 sources:
@@ -14,8 +13,6 @@ sources:
 # Qualified artifact promotion
 
 [Controls](./) · [Adoption](../adoption.md) · [Families](../control-families.md)
-
-**Identity:** `controls/qualified-artifact-promotion` · **Catalog:** v0.1.0 · **Family:** `release-and-external-action`
 
 ## Purpose and applicability
 

@@ -2,7 +2,6 @@
 type: Control
 title: "Data-preserving migration"
 description: "Verify compatibility, concurrent writes, and recovery before changing durable data or active interfaces."
-catalog_version: "v0.1.0"
 status: stable
 family: change-and-dependencies
 sources:
@@ -14,8 +13,6 @@ sources:
 # Data-preserving migration
 
 [Controls](./) · [Adoption](../adoption.md) · [Families](../control-families.md)
-
-**Identity:** `controls/data-preserving-migration` · **Catalog:** v0.1.0 · **Family:** `change-and-dependencies`
 
 ## Purpose and applicability
 

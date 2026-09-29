@@ -2,7 +2,6 @@
 type: Risk Scenario
 title: "Delegated work exhausts shared resources"
 description: "An adversary or faulty workflow induces repeated operations, retries, or recursive delegation."
-catalog_version: "v0.1.0"
 status: stable
 sources:
   - id: AML.T0034.002
@@ -16,8 +15,6 @@ sources:
 # Delegated work exhausts shared resources
 
 [ATLAS assessment guide](../atlas-threat-assessment.md) · [Ontology](../ontology.md) · [Adoption](../adoption.md)
-
-**Identity:** `risks/delegated-resource-exhaustion` · **Catalog:** v0.1.0
 
 ## Cause and enabling conditions
 

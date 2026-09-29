@@ -2,7 +2,6 @@
 type: Control
 title: "Sensitive data egress"
 description: "Enforce permitted data and destination combinations before information leaves a protected scope."
-catalog_version: "v0.1.0"
 status: stable
 family: information-protection
 sources:
@@ -17,8 +16,6 @@ sources:
 # Sensitive data egress
 
 [Controls](./) · [Adoption](../adoption.md) · [ATLAS assessment guide](../atlas-threat-assessment.md)
-
-**Identity:** `controls/sensitive-data-egress` · **Catalog:** v0.1.0 · **Family:** `information-protection`
 
 ## Purpose and applicability
 

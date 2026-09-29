@@ -133,7 +133,7 @@ class CatalogTests(unittest.TestCase):
         directory.mkdir(parents=True)
         name = "guide # % (é).md"
         (directory / name).write_text(
-            "---\ntype: Guide\ntitle: Guide\ndescription: Example\ncatalog_version: v0.1.0\n---\n# Guide\n"
+            "---\ntype: Guide\ntitle: Guide\ndescription: Example\n---\n# Guide\n"
         )
         shutil.copyfile(self.control, self.control.with_name(name))
         output = self.root.parent / "encoded-links"
@@ -194,6 +194,57 @@ class CatalogTests(unittest.TestCase):
 
     def test_current_catalog(self):
         self.assertEqual(self.errors(), [])
+
+    def test_version_change_needs_only_one_source_edit(self):
+        baseline = self.snapshot(self.root)
+        version = self.root / "VERSION"
+        version.write_text("v2.3.4-rc.1+test.7\n")
+        self.assertEqual(self.errors(), [])
+        output = self.root.parent / "version-build"
+        builder.build(self.root, output)
+        self.assertEqual({path for path, data in self.snapshot(self.root).items()
+                          if baseline.get(path) != data}, {Path("VERSION")})
+        self.assertEqual((output / "VERSION").read_bytes(), version.read_bytes())
+        self.assertEqual((output / self.control.relative_to(self.root)).read_bytes(),
+                         self.control.read_bytes())
+        for replacement in ("v9.0.0\n", None):
+            if replacement is None:
+                (output / "VERSION").unlink()
+            else:
+                (output / "VERSION").write_text(replacement)
+            self.assertTrue(any("VERSION" in error for error in
+                                builder.validate_distribution(self.root, output)))
+
+    def test_invalid_or_missing_bundle_version(self):
+        version = self.root / "VERSION"
+        for value in ("", "v01.2.3\n", "v1.2\n", "v1.2.3\nv2.0.0\n",
+                      "v1.2.3-01\n", "v1.2.3+\n", " v1.2.3\n"):
+            with self.subTest(value=value):
+                version.write_text(value)
+                self.assertTrue(any("VERSION:" in error for error in self.errors()))
+        version.unlink()
+        self.assertTrue(any("VERSION: cannot read" in error for error in self.errors()))
+
+    def test_reject_duplicate_bundle_metadata_and_summary_headers(self):
+        original = self.control.read_text()
+        self.control.write_text(original.replace("---\n", "---\ncatalog_version: v9.0.0\n", 1))
+        self.assertTrue(any("catalog_version belongs only" in error for error in self.errors()))
+        self.control.write_text(original)
+        self.append("```md\n**Identity:** `example`\n```")
+        self.assertEqual(self.errors(), [])
+        self.append("**Identity:** `controls/stale-name` · **Family:** `stale-family`")
+        self.assertTrue(any("do not repeat summary headers" in error for error in self.errors()))
+
+    def test_family_change_needs_no_body_summary_update(self):
+        original = self.control.read_text()
+        self.control.write_text(re.sub(r"^family:.*$", "family: quality-and-validation",
+                                       original, flags=re.MULTILINE))
+        self.assertEqual(self.errors(), [])
+        output = self.root.parent / "family-build"
+        builder.build(self.root, output)
+        listing = (output / "controls/index.md").read_text()
+        entry = next(line for line in listing.splitlines() if "](bounded-external-action.md)" in line)
+        self.assertIn("family: quality-and-validation", entry)
 
     def test_missing_inline_link(self):
         self.append("[Missing](missing.md)")
@@ -308,7 +359,7 @@ class CatalogTests(unittest.TestCase):
         directory.mkdir(parents=True)
         (directory / "new-guide.md").write_text(
             '---\ntype: Guide\ntitle: "A [guide]"\ndescription: "Use *examples*."\n'
-            'catalog_version: v0.1.0\n---\n\n# A guide\n\nNew guidance.\n'
+            '---\n\n# A guide\n\nNew guidance.\n'
         )
         self.assertEqual(self.errors(), [])
         output = self.root.parent / "nested-build"

@@ -2,7 +2,6 @@
 type: Control
 title: "Verified service recovery"
 description: "Verify actual service and data recovery within incident authority."
-catalog_version: "v0.1.0"
 status: draft
 family: reliability-and-recovery
 sources:
@@ -17,8 +16,6 @@ sources:
 # Verified service recovery
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/verified-service-recovery` · **Catalog:** v0.1.0 · **Family:** `reliability-and-recovery`
 
 Draft requirement adapted from the source factory policies.[^workflows-operations][^policies-delivery] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

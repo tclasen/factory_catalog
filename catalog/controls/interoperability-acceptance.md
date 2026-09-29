@@ -2,7 +2,6 @@
 type: Control
 title: "Interoperability acceptance"
 description: "Verify the shared meaning, operating responsibilities, and behavior of an exchange before relying on it."
-catalog_version: "v0.1.0"
 status: draft
 family: quality-and-validation
 sources:
@@ -17,8 +16,6 @@ sources:
 # Interoperability acceptance
 
 [Adoption](../adoption.md) · [Control families](../control-families.md)
-
-**Identity:** `controls/interoperability-acceptance` · **Catalog:** v0.1.0 · **Family:** `quality-and-validation`
 
 ## Purpose and applicability
 

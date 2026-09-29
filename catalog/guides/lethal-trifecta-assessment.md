@@ -2,7 +2,6 @@
 type: Guide
 title: "Assess lethal trifecta paths"
 description: "Map and test information flows across tools, rendering, delegation, and persistent state using synthetic data."
-catalog_version: "v0.1.0"
 status: draft
 tags: [security, privacy, assessment, lethal-trifecta]
 sources:

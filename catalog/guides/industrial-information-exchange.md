@@ -2,7 +2,6 @@
 type: Guide
 title: "Plan industrial information exchange and integration evidence"
 description: "Connect industry reference models to versioned interfaces, data meanings, and bounded integration assessments."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: c230

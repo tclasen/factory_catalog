@@ -2,7 +2,6 @@
 type: Guide
 title: "AI research sources: Agent engineering"
 description: "Select and apply relevant learning from ten corporate sources on agent engineering."
-catalog_version: "v0.1.0"
 status: draft
 tags: [ai-research, source-review]
 sources:

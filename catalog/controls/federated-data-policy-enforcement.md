@@ -2,7 +2,6 @@
 type: Control
 title: "Federated data policy enforcement"
 description: "Make shared data policies enforceable across domains with explicit decision rights."
-catalog_version: "v0.1.0"
 status: draft
 tags: [data-mesh, data-stewardship]
 family: authority-and-access
@@ -15,8 +14,6 @@ sources:
 # Federated data policy enforcement
 
 [Adoption](../adoption.md) · [Data mesh research](../data-mesh-architectures.md)
-
-**Identity:** `controls/federated-data-policy-enforcement` · **Catalog:** v0.1.0 · **Family:** `authority-and-access`
 
 ## Purpose and applicability
 

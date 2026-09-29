@@ -2,7 +2,6 @@
 type: Control
 title: "Workflow resource budgets"
 description: "Enforce aggregate resource limits across a job, its retries, and delegated work."
-catalog_version: "v0.1.0"
 status: stable
 family: reliability-and-recovery
 sources:
@@ -17,8 +16,6 @@ sources:
 # Workflow resource budgets
 
 [Controls](./) · [Adoption](../adoption.md) · [ATLAS assessment guide](../atlas-threat-assessment.md)
-
-**Identity:** `controls/workflow-resource-budgets` · **Catalog:** v0.1.0 · **Family:** `reliability-and-recovery`
 
 ## Purpose and applicability
 

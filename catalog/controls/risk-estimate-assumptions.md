@@ -2,7 +2,6 @@
 type: Control
 title: "Risk estimate assumptions"
 description: "Make quantitative risk estimates reproducible and expose uncertainty that can change the decision."
-catalog_version: "v0.1.0"
 status: draft
 family: quality-and-validation
 sources:
@@ -15,8 +14,6 @@ sources:
 ---
 
 # Risk estimate assumptions
-
-**Identity:** `controls/risk-estimate-assumptions` · **Catalog:** v0.1.0 · **Family:** `quality-and-validation`
 
 [Adoption](../adoption.md) · [Research map](../open-group-standards-opportunities.md)
 

@@ -2,7 +2,6 @@
 type: Guide
 title: "Apply research from 100 AI leaders and corporate sources"
 description: "Use an annotated research set to choose evidence and assessments for agents, enterprise AI, and AI factory infrastructure."
-catalog_version: "v0.1.0"
 status: draft
 tags: [ai-research, assessment, adoption]
 sources:
@@ -87,7 +86,7 @@ Each linked guide contains ten annotated entries, source frontmatter, keyed attr
 
 1. Select a concrete outcome and an accountable owner using [accepted work definition](controls/accepted-work-definition.md).
 2. Follow relevant source entries, distinguish source claims from our proposed application, and inspect deeper material where the review depth is insufficient for the decision.
-3. Reuse the linked controls. For adoption, retain their identities, catalog v0.1.0, and exact source commit under the [adoption procedure](adoption.md#record-the-adoption).
+3. Reuse the linked controls. For adoption, retain their identities, catalog version from the adopted revision, and exact source commit under the [adoption procedure](adoption.md#record-the-adoption).
 4. Define local fixtures and acceptance criteria before assessing a candidate. Preserve failed, inconclusive, and missing results.
 5. Revisit source applicability after model, data, evaluator, workload, permission, or infrastructure changes. Add new research at its own concept path; generated navigation discovers it without a shared registry.
 

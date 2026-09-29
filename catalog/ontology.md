@@ -2,7 +2,6 @@
 type: Ontology
 title: "Factory ontology"
 description: "Concepts, relationships, and record conventions for describing factories and their controls."
-catalog_version: "v0.1.0"
 status: stable
 ---
 
@@ -67,7 +66,7 @@ Most relationships allow many objects: an activity can have several work types, 
 
 ## Document types and metadata
 
-This bundle uses OKF 0.2. Its domain-specific fields extend OKF; they do not redefine the format's required fields or trust signals. Every concept has `type`, `title`, `description`, and `catalog_version`. Catalog version is `v0.1.0`. An OKF concept's identity is its bundle-relative path without `.md`, for example `controls/evidence-traceability`.
+This bundle uses OKF 0.2. Its domain-specific fields extend OKF; they do not redefine the format's required fields or trust signals. Every concept has `type`, `title`, and `description`. The bundle’s [VERSION](VERSION) file is the sole declaration of its catalog version; concepts do not carry `catalog_version`. Read it at the same source revision as the concept. An OKF concept's identity is its bundle-relative path without `.md`, for example `controls/evidence-traceability`.
 
 | Document type | Purpose | Additional fields |
 |---|---|---|
@@ -101,6 +100,6 @@ Markdown links assert relationships; surrounding prose names their meaning. The 
 
 ## Identity and lifecycle
 
-Control paths stay independent of family names so a classification change does not move the control. Before v1, paths and definitions may change without backwards compatibility. Update current references when removing or moving a concept. For interim revisions, use exact commit SHAs with catalog version v0.1.0.
+Control paths stay independent of family names so a classification change does not move the control. Before v1, paths and definitions may change without backwards compatibility. Update current references when removing or moving a concept. For interim revisions, use exact commit SHAs and read the catalog version from [VERSION](VERSION) at that commit. Derive identity from the path and family from frontmatter; do not repeat them in authored metadata summaries. Generated navigation may display these values.
 
 `status: stable` means that a definition is ready for consumption under OKF. It does not signify an approved release baseline, human verification, implementation, or effectiveness. The absence of `verified` means no document verification event is asserted. Local assessment results remain separate from OKF document verification.

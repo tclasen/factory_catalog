@@ -2,7 +2,6 @@
 type: Guide
 title: "AI research sources: Evaluation and society"
 description: "Select and apply relevant learning from ten individual sources on evaluation and society."
-catalog_version: "v0.1.0"
 status: draft
 tags: [ai-research, source-review]
 sources:

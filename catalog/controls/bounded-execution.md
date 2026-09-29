@@ -2,7 +2,6 @@
 type: Control
 title: "Bounded execution"
 description: "Keep attempts, time, resource use, and concurrency within the work item’s limits."
-catalog_version: "v0.1.0"
 status: draft
 family: reliability-and-recovery
 sources:
@@ -14,8 +13,6 @@ sources:
 # Bounded execution
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/bounded-execution` · **Catalog:** v0.1.0 · **Family:** `reliability-and-recovery`
 
 Draft requirement adapted from the source factory policies.[^policies-execution] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

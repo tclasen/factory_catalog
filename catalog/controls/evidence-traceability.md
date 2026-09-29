@@ -2,7 +2,6 @@
 type: Control
 title: "Evidence traceability"
 description: "Make material factual claims and their supporting evidence inspectable."
-catalog_version: "v0.1.0"
 status: stable
 family: knowledge-and-evidence
 ---
@@ -10,8 +9,6 @@ family: knowledge-and-evidence
 # Evidence traceability
 
 [Controls](./) · [Adoption](../adoption.md) · [Control families](../control-families.md)
-
-**Identity:** `controls/evidence-traceability` · **Catalog:** v0.1.0 · **Family:** `knowledge-and-evidence`
 
 ## Purpose and applicability
 

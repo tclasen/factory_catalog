@@ -2,7 +2,6 @@
 type: Guide
 title: "Evaluate agent coverage across tasks and conditions"
 description: "Design representative agent evaluations with protected comparisons, qualified judges, and visible coverage gaps."
-catalog_version: "v0.1.0"
 status: draft
 tags: [evaluation, quality, ai-research]
 sources:
@@ -83,7 +82,7 @@ Retain the sampling and coverage record, protected case references, labels and d
 
 There is no universal sample size, judge, metric, or confidence threshold. A coverage table can still miss important harm; involve people who understand the tasks and affected users. Full methods and code for the three academic papers were not reproduced in this research; only their abstracts were reviewed. The detailed procedure above is a catalog synthesis, not a procedure claimed by every source.
 
-Record adoption of the linked controls using their identities, catalog v0.1.0, and exact commit URLs under the [adoption procedure](../adoption.md#record-the-adoption). Passing this guide's fixtures does not establish general model safety or authorize deployment.
+Record adoption of the linked controls using their identities, catalog version from the adopted revision, and exact commit URLs under the [adoption procedure](../adoption.md#record-the-adoption). Passing this guide's fixtures does not establish general model safety or authorize deployment.
 
 [^product-evals]: [Hamel Husain: Your AI Product Needs Evals](https://hamel.dev/blog/posts/evals/).
 [^validators]: [Shankar and coauthors: Who Validates the Validators?](https://arxiv.org/abs/2404.12272), abstract reviewed.

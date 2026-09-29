@@ -2,7 +2,6 @@
 type: Risk Scenario
 title: "Authorized tool use discloses prohibited data"
 description: "An adversary influences a payload sent through a tool the worker is otherwise allowed to use."
-catalog_version: "v0.1.0"
 status: stable
 sources:
   - id: AML.T0086
@@ -16,8 +15,6 @@ sources:
 # Authorized tool use discloses prohibited data
 
 [ATLAS assessment guide](../atlas-threat-assessment.md) · [Ontology](../ontology.md) · [Adoption](../adoption.md)
-
-**Identity:** `risks/authorized-tool-data-disclosure` · **Catalog:** v0.1.0
 
 ## Cause and enabling conditions
 

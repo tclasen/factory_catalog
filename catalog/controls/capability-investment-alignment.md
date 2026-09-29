@@ -2,7 +2,6 @@
 type: Control
 title: "Capability investment alignment"
 description: "Tie proposed investments to a defined business ability, an observed gap, and a measurable beneficiary outcome."
-catalog_version: "v0.1.0"
 status: draft
 family: purpose-and-accountability
 sources:
@@ -17,8 +16,6 @@ sources:
 # Capability investment alignment
 
 [Adoption](../adoption.md) · [Control families](../control-families.md)
-
-**Identity:** `controls/capability-investment-alignment` · **Catalog:** v0.1.0 · **Family:** `purpose-and-accountability`
 
 ## Purpose and applicability
 

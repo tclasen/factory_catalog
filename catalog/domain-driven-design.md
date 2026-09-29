@@ -2,7 +2,6 @@
 type: Guide
 title: "Domain-Driven Design for knowledge work"
 description: "Research findings and selectable graph nodes for domain meaning, boundaries, rules, and collaboration."
-catalog_version: "v0.1.0"
 status: draft
 tags: [domain-driven-design, knowledge, coordination]
 sources:

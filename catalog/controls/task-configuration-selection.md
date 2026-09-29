@@ -2,7 +2,6 @@
 type: Control
 title: "Task configuration selection"
 description: "Select model and reasoning settings using task requirements and credible cost-quality evidence."
-catalog_version: "v0.1.0"
 status: draft
 family: workflow-and-coordination
 sources:
@@ -14,8 +13,6 @@ sources:
 # Task configuration selection
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/task-configuration-selection` · **Catalog:** v0.1.0 · **Family:** `workflow-and-coordination`
 
 Draft requirement adapted from the source factory policies.[^policies-execution] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

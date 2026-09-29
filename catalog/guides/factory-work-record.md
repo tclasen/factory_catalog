@@ -2,7 +2,6 @@
 type: Guide
 title: "Factory work record"
 description: "Keep the minimum durable state needed to review, transfer, and resume a bounded work item."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: templates-work-item

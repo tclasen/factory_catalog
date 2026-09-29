@@ -83,8 +83,12 @@ def validate_document_structure(root: Path, document: Document) -> list[str]:
         for key in ("type", "title", "description"):
             if not isinstance(data.get(key), str) or not data[key].strip():
                 errors.append(f"missing non-empty {key}")
-        if data.get("catalog_version") != "v0.1.0":
-            errors.append("catalog_version must be v0.1.0 during baseline hold")
+        if "catalog_version" in data:
+            errors.append("catalog_version belongs only in bundle VERSION, not concept metadata")
+        if any(token.type == "inline" and
+               re.match(r"\*\*(?:Identity|Catalog|Family):\*\*", token.content)
+               for token in MARKDOWN.parse(document.body)):
+            errors.append("derive identity, catalog version, and family; do not repeat summary headers")
         if "status" in data and data["status"] not in ("draft", "stable", "deprecated"):
             errors.append("invalid OKF lifecycle status")
     return errors
@@ -361,9 +365,26 @@ def validate_domain_metadata(root: Path, documents: dict[Path, Document]) -> lis
     return errors
 
 
+def validate_version(root: Path) -> list[str]:
+    """Check the single bundle version without tying validation to a release."""
+    try:
+        value = (root / "VERSION").read_text(encoding="utf-8")
+    except (OSError, UnicodeError) as exc:
+        return [f"VERSION: cannot read bundle version: {exc}"]
+    number = r"(?:0|[1-9][0-9]*)"
+    identifier = rf"(?:{number}|[0-9]*[A-Za-z-][0-9A-Za-z-]*)"
+    semver = (rf"v{number}\.{number}\.{number}"
+              rf"(?:-{identifier}(?:\.{identifier})*)?"
+              r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?\n?")
+    if not re.fullmatch(semver, value):
+        return ["VERSION: expected one vMAJOR.MINOR.PATCH value with optional SemVer suffixes"]
+    return []
+
+
 def validate(root: Path, *, require_index_coverage: bool = False) -> tuple[list[str], int]:
     """Run validation phases in diagnostic order."""
     documents, errors = load_documents(root)
+    errors.extend(validate_version(root))
     links = {path: extract_links(document.body) for path, document in documents.items()}
     errors.extend(validate_links(root, documents, links))
     if require_index_coverage:

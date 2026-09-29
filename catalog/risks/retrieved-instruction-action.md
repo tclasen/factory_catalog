@@ -2,7 +2,6 @@
 type: Risk Scenario
 title: "Retrieved instructions induce an unauthorized action"
 description: "An adversary controls content a worker retrieves; the worker interprets it as authority to invoke an action-capable tool."
-catalog_version: "v0.1.0"
 status: stable
 sources:
   - id: AML.T0051.001
@@ -19,8 +18,6 @@ sources:
 # Retrieved instructions induce an unauthorized action
 
 [ATLAS assessment guide](../atlas-threat-assessment.md) · [Ontology](../ontology.md) · [Adoption](../adoption.md)
-
-**Identity:** `risks/retrieved-instruction-action` · **Catalog:** v0.1.0
 
 ## Cause and enabling conditions
 

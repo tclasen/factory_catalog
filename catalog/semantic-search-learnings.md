@@ -2,7 +2,6 @@
 type: Guide
 title: "Lessons from semantic_search"
 description: "Apply revision-bound evidence, scoped evaluation, and recoverable knowledge updates to a factory."
-catalog_version: "v0.1.0"
 status: stable
 sources:
   - id: execution

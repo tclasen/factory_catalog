@@ -2,7 +2,6 @@
 type: Guide
 title: "AI research sources: Applied AI products"
 description: "Select and apply relevant learning from ten corporate sources on applied ai products."
-catalog_version: "v0.1.0"
 status: draft
 tags: [ai-research, source-review]
 sources:

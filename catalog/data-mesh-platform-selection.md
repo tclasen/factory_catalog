@@ -2,7 +2,6 @@
 type: Guide
 title: "Data mesh platform selection"
 description: "Select shared platform services and evaluate a bounded cross-domain data pilot."
-catalog_version: "v0.1.0"
 status: draft
 tags: [data-mesh, data-stewardship]
 sources:

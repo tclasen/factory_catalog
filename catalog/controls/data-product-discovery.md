@@ -2,7 +2,6 @@
 type: Control
 title: "Data product discovery"
 description: "Keep product descriptions findable and consistent with the interfaces consumers can use."
-catalog_version: "v0.1.0"
 status: draft
 tags: [data-mesh, data-stewardship]
 family: knowledge-and-evidence
@@ -15,8 +14,6 @@ sources:
 # Data product discovery
 
 [Adoption](../adoption.md) · [Data mesh research](../data-mesh-architectures.md)
-
-**Identity:** `controls/data-product-discovery` · **Catalog:** v0.1.0 · **Family:** `knowledge-and-evidence`
 
 ## Purpose and applicability
 

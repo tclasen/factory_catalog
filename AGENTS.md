@@ -25,3 +25,7 @@ If local tests, signing, credentials, permissions, or PR publication are blocked
 ## Parallel work
 
 Follow [Parallel contributions](CONTRIBUTING.md#parallel-contributions). Use an isolated checkout and topic branch per concurrent task. Ordinary concept additions must not require edits to shared indexes, logs, registries, or version files. Discover content from files and frontmatter, and run `./scripts/build_catalog.py` to check generated navigation. Coordinate edits to the same concept or shared schema before merging.
+
+## Avoid catalog-wide maintenance
+
+Follow [Keep changes local](CONTRIBUTING.md#keep-changes-local). Keep bundle facts in one authoritative location, derive navigation and display metadata, and preserve concept-specific evidence. Before adding a field or repeated instruction, check whether changing it would force unrelated files to be rewritten.

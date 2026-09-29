@@ -2,7 +2,6 @@
 type: Guide
 title: "Apply classwork learnings"
 description: "Apply source intake, graph reconciliation, learning assessment, and action evidence to existing catalog controls."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: intake

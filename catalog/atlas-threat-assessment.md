@@ -2,7 +2,6 @@
 type: Guide
 title: "Use MITRE ATLAS to assess AI threats"
 description: "Connect ATLAS attack scenarios to factory controls, coverage gaps, and local assessment evidence."
-catalog_version: "v0.1.0"
 status: stable
 tags: [security, ai, threat-assessment]
 sources:
@@ -17,7 +16,7 @@ sources:
 
 ## Source and scope
 
-[MITRE ATLAS](https://atlas.mitre.org) describes adversary behavior affecting AI systems through tactics, techniques, mitigations, and case studies. This guide uses the **2026.09** data release, accessed **2026-09-28**, pinned to commit `3259f388d19cbcca11bacf12a0ef97f4198f711b`.[^atlas-data] ATLAS content and format versions are independent of this catalog's v0.1.0 and OKF 0.2.
+[MITRE ATLAS](https://atlas.mitre.org) describes adversary behavior affecting AI systems through tactics, techniques, mitigations, and case studies. This guide uses the **2026.09** data release, accessed **2026-09-28**, pinned to commit `3259f388d19cbcca11bacf12a0ef97f4198f711b`.[^atlas-data] ATLAS content and format versions are independent of the catalog version and its OKF format version.
 
 The scenarios, control mappings, and assessment suggestions below are catalog interpretations. They are a selected starting point for knowledge-work factories, not an exhaustive ATLAS import or a MITRE endorsement. Technique presence does not establish local likelihood; a mitigation reference does not establish implementation or effectiveness. Case studies describe particular systems and conditions, not the current vulnerability status of a product.
 

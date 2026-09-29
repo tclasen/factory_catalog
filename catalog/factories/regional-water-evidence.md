@@ -2,7 +2,6 @@
 type: Factory Example
 title: "Regional water evidence network"
 description: "A fictional data mesh application connecting field observations, laboratory results, and regional planning evidence."
-catalog_version: "v0.1.0"
 status: draft
 tags: [data-mesh, scientific-research, public-services]
 example: true

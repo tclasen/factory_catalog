@@ -2,7 +2,6 @@
 type: Control
 title: "Adversarial regression assessment"
 description: "Rerun scoped attack and legitimate-work fixtures after relevant changes and enforce the declared disposition."
-catalog_version: "v0.1.0"
 status: stable
 family: quality-and-validation
 sources:
@@ -14,8 +13,6 @@ sources:
 # Adversarial regression assessment
 
 [Controls](./) · [Adoption](../adoption.md) · [ATLAS assessment guide](../atlas-threat-assessment.md)
-
-**Identity:** `controls/adversarial-regression-assessment` · **Catalog:** v0.1.0 · **Family:** `quality-and-validation`
 
 ## Purpose and applicability
 

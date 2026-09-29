@@ -2,7 +2,6 @@
 type: Control
 title: "Measured process improvement"
 description: "Base adoption of a process change on declared comparisons that retain quality, failures, and operating costs."
-catalog_version: "v0.1.0"
 status: stable
 family: monitoring-and-improvement
 sources:
@@ -14,8 +13,6 @@ sources:
 # Measured process improvement
 
 [Controls](./) · [Adoption](../adoption.md) · [Families](../control-families.md)
-
-**Identity:** `controls/measured-process-improvement` · **Catalog:** v0.1.0 · **Family:** `monitoring-and-improvement`
 
 ## Purpose and applicability
 

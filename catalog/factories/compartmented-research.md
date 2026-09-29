@@ -2,7 +2,6 @@
 type: Factory Example
 title: "Research with private context and public sources"
 description: "A fictional research workflow that separates public browsing, private analysis, and reviewed release."
-catalog_version: "v0.1.0"
 status: draft
 example: true
 domain: "Organizational research"
@@ -76,7 +75,7 @@ If private analysis needs more public information, it stops and requests a newly
 | Malicious source content biases the comparison | [Evidence traceability](../controls/evidence-traceability.md): claim support remains inspectable; reviewer checks important claims against independent evidence where available |
 | Isolation prevents completion of required research | [Outcome verification](../controls/outcome-verification.md): each criterion needs evidence or an accepted explicit unknown; incomplete work remains visible |
 
-These are control selections, not adoption records. Before implementation, pin every selected control's identity, catalog v0.1.0, and exact source commit URL using [adoption](../adoption.md). Applicability is assigned to the stated design; changes belong to the research and information owners for reassessment.
+These are control selections, not adoption records. Before implementation, pin every selected control's identity, catalog version from the adopted revision, and exact source commit URL using [adoption](../adoption.md). Applicability is assigned to the stated design; changes belong to the research and information owners for reassessment.
 
 ## Proposed assessment and evidence
 

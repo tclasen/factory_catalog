@@ -2,7 +2,6 @@
 type: Control
 title: "Assessment evidence validity"
 description: "Bind assessment results to their inputs and prevent stale results from satisfying current acceptance."
-catalog_version: "v0.1.0"
 status: stable
 family: knowledge-and-evidence
 sources:
@@ -20,8 +19,6 @@ sources:
 # Assessment evidence validity
 
 [Controls](./) · [Adoption](../adoption.md) · [Families](../control-families.md)
-
-**Identity:** `controls/assessment-evidence-validity` · **Catalog:** v0.1.0 · **Family:** `knowledge-and-evidence`
 
 ## Purpose and applicability
 

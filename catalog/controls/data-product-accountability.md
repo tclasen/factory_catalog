@@ -2,7 +2,6 @@
 type: Control
 title: "Data product accountability"
 description: "Assign sustained responsibility for data products used across organizational boundaries."
-catalog_version: "v0.1.0"
 status: draft
 tags: [data-mesh, data-stewardship]
 family: purpose-and-accountability
@@ -15,8 +14,6 @@ sources:
 # Data product accountability
 
 [Adoption](../adoption.md) · [Data mesh research](../data-mesh-architectures.md)
-
-**Identity:** `controls/data-product-accountability` · **Catalog:** v0.1.0 · **Family:** `purpose-and-accountability`
 
 ## Purpose and applicability
 

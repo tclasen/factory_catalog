@@ -2,7 +2,6 @@
 type: Factory Example
 title: "Software delivery factory"
 description: "A report-export workflow connecting acceptance, artifact identity, authorized delivery, and interruption recovery."
-catalog_version: "v0.1.0"
 status: stable
 example: true
 domain: "Internal reporting software"
@@ -51,7 +50,7 @@ The implementing agent **performs** development that **produces** a candidate ar
 
 ## Risk scenarios and control selections
 
-All three selections are applicable, proposed, and not assessed. Before real implementation, create the [adoption record](../adoption.md#record-the-adoption) with each control's identity, catalog v0.1.0, exact catalog commit, and pinned source URL. Resolve cross-control references against that same revision.
+All three selections are applicable, proposed, and not assessed. Before real implementation, create the [adoption record](../adoption.md#record-the-adoption) with each control's identity, catalog version from the adopted revision, exact catalog commit, and pinned source URL. Resolve cross-control references against that same revision.
 
 | Scenario | Control / owner | Proposed implementation and reassessment trigger |
 |---|---|---|

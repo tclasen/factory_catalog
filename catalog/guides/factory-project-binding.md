@@ -2,7 +2,6 @@
 type: Guide
 title: "Factory project binding"
 description: "Bind reusable controls to confirmed project intent, authority, environment, and acceptance."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: workflows-onboarding

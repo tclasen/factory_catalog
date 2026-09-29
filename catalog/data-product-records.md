@@ -2,7 +2,6 @@
 type: Guide
 title: "Data product records"
 description: "Describe products, contracts, distribution interfaces, and assessments without changing the catalog schema."
-catalog_version: "v0.1.0"
 status: draft
 tags: [data-mesh, data-stewardship]
 sources:

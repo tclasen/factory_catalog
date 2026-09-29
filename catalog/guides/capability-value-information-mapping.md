@@ -2,7 +2,6 @@
 type: Guide
 title: "Map capabilities, value, and information"
 description: "Connect a beneficiary outcome to business abilities, service stages, participating actors, and shared information."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: g211

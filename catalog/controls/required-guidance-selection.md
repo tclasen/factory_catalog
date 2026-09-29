@@ -2,7 +2,6 @@
 type: Control
 title: "Required guidance selection"
 description: "Select applicable instructions before dependent actions and keep unresolved requirements visible."
-catalog_version: "v0.1.0"
 status: stable
 family: knowledge-and-evidence
 sources:
@@ -14,8 +13,6 @@ sources:
 # Required guidance selection
 
 [Controls](./) · [Adoption](../adoption.md) · [Families](../control-families.md)
-
-**Identity:** `controls/required-guidance-selection` · **Catalog:** v0.1.0 · **Family:** `knowledge-and-evidence`
 
 ## Purpose and applicability
 

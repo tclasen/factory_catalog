@@ -2,7 +2,6 @@
 type: Control
 title: "Risk estimate transparency"
 description: "Make the assumptions, uncertainty, and decision sensitivity of risk estimates inspectable."
-catalog_version: "v0.1.0"
 status: draft
 family: quality-and-validation
 sources:
@@ -20,8 +19,6 @@ sources:
 # Risk estimate transparency
 
 [Adoption](../adoption.md) · [Control families](../control-families.md)
-
-**Identity:** `controls/risk-estimate-transparency` · **Catalog:** v0.1.0 · **Family:** `quality-and-validation`
 
 ## Purpose and applicability
 

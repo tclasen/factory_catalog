@@ -2,7 +2,6 @@
 type: Control
 title: "Acceptance coverage"
 description: "Account for every required criterion before claiming acceptance."
-catalog_version: "v0.1.0"
 status: draft
 family: quality-and-validation
 sources:
@@ -14,8 +13,6 @@ sources:
 # Acceptance coverage
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/acceptance-coverage` · **Catalog:** v0.1.0 · **Family:** `quality-and-validation`
 
 Draft requirement adapted from the source factory policies.[^policies-verification] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

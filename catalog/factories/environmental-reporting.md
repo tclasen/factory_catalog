@@ -2,7 +2,6 @@
 type: Factory Example
 title: "Environmental reporting factory"
 description: "A fictional workflow for inspectable site-energy totals and environmental reporting inputs."
-catalog_version: "v0.1.0"
 status: draft
 example: true
 domain: "Environmental reporting"
@@ -104,7 +103,7 @@ These are planned tests; no operational effectiveness or compliance result is as
 
 Accuracy/calibration, emissions-factor selection, organizational accounting boundaries, regulatory requirements, privacy, and independent assurance need additional domain decisions. Energy totals alone are not emissions totals. Reassess after site/period/method changes, new sources, corrections, or added publishing tools; reporting lead owns applicability review.
 
-Every selected control is applicable to this proposed workflow, proposed for implementation, and not-assessed. Before use, retain the control identity, v0.1.0, and exact-commit adoption URL under the [adoption procedure](../adoption.md#record-the-adoption). Neither the example nor its sources establish a passing reporting system.
+Every selected control is applicable to this proposed workflow, proposed for implementation, and not-assessed. Before use, retain the control identity, catalog version, and exact-commit adoption URL under the [adoption procedure](../adoption.md#record-the-adoption). Neither the example nor its sources establish a passing reporting system.
 
 [^c267]: The Open Group, The Open Footprint® Standard, Edition 1.0; public publication description and metadata inspected 2026-09-28. Full licensed text was not reviewed.
 [^v244]: The Open Group, Energistics Unit of Measure (UOM) Standard v1.0.1; public publication description and metadata inspected 2026-09-28. Full licensed text was not reviewed.

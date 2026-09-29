@@ -2,7 +2,6 @@
 type: Guide
 title: "Plan enterprise capabilities with traceable architecture decisions"
 description: "Connect objectives, capability gaps, activities, owners, and outcome evidence for organizational change."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: c220

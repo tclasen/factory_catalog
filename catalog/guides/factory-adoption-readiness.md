@@ -2,7 +2,6 @@
 type: Guide
 title: "Factory adoption readiness"
 description: "Review a selected factory process for portability, complete handoffs, and honest readiness claims."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: readiness

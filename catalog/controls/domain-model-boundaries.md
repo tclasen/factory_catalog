@@ -2,7 +2,6 @@
 type: Control
 title: "Domain model boundaries"
 description: "Declare where a model applies and who maintains its meaning and interfaces."
-catalog_version: "v0.1.0"
 status: draft
 tags: [domain-driven-design, knowledge, coordination]
 family: purpose-and-accountability
@@ -16,8 +15,6 @@ sources:
 ---
 
 # Domain model boundaries
-
-**Identity:** `controls/domain-model-boundaries` · **Catalog:** v0.1.0 · **Family:** `purpose-and-accountability`
 
 [Adoption](../adoption.md) · [DDD research](../domain-driven-design.md)
 

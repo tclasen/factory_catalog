@@ -2,7 +2,6 @@
 type: Guide
 title: "Allocate human and AI authority across a factory"
 description: "Research and a practical method for assigning decision rights, accountable owners, oversight, and changing autonomy over time."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: automation

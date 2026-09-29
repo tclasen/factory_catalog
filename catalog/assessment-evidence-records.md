@@ -2,7 +2,6 @@
 type: Guide
 title: "Assessment evidence records"
 description: "Record an assessment’s target, method, observations, limits, and conditions for reuse."
-catalog_version: "v0.1.0"
 status: stable
 sources:
   - id: software-factory

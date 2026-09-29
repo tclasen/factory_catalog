@@ -2,7 +2,6 @@
 type: Control
 title: "Architecture decision traceability"
 description: "Retain the link from material design choices to objectives, constraints, alternatives, and accountable decisions."
-catalog_version: "v0.1.0"
 status: draft
 family: purpose-and-accountability
 sources:
@@ -12,8 +11,6 @@ sources:
 ---
 
 # Architecture decision traceability
-
-**Identity:** `controls/architecture-decision-traceability` · **Catalog:** v0.1.0 · **Family:** `purpose-and-accountability`
 
 [Adoption](../adoption.md) · [Research map](../open-group-standards-opportunities.md)
 

@@ -2,7 +2,6 @@
 type: Control
 title: "Stakeholder concern validation"
 description: "Check that a proposed service or change addresses affected parties and preserves unresolved concerns."
-catalog_version: "v0.1.0"
 status: draft
 family: intake-and-work-definition
 sources:
@@ -20,8 +19,6 @@ sources:
 # Stakeholder concern validation
 
 [Adoption](../adoption.md) · [Control families](../control-families.md)
-
-**Identity:** `controls/stakeholder-concern-validation` · **Catalog:** v0.1.0 · **Family:** `intake-and-work-definition`
 
 ## Purpose and applicability
 

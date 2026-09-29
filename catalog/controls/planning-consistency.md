@@ -2,7 +2,6 @@
 type: Control
 title: "Planning consistency"
 description: "Reconcile affected requirements, plans, and checks when scope or assumptions change."
-catalog_version: "v0.1.0"
 status: draft
 family: change-and-dependencies
 sources:
@@ -14,8 +13,6 @@ sources:
 # Planning consistency
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/planning-consistency` · **Catalog:** v0.1.0 · **Family:** `change-and-dependencies`
 
 Draft requirement adapted from the source factory policies.[^policies-planning] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

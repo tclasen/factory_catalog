@@ -2,7 +2,6 @@
 type: Guide
 title: "Open Group guides: opportunities for knowledge-work factories"
 description: "A scoped research synthesis linking Open Group guide descriptions to reusable controls and non-software factory designs."
-catalog_version: "v0.1.0"
 status: draft
 sources:
   - id: g211

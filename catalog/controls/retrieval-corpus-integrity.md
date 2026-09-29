@@ -2,7 +2,6 @@
 type: Control
 title: "Retrieval corpus integrity"
 description: "Authorize corpus changes and keep retrieval aligned with admitted document revisions and withdrawals."
-catalog_version: "v0.1.0"
 status: stable
 family: knowledge-and-evidence
 sources:
@@ -17,8 +16,6 @@ sources:
 # Retrieval corpus integrity
 
 [Controls](./) · [Adoption](../adoption.md) · [ATLAS assessment guide](../atlas-threat-assessment.md)
-
-**Identity:** `controls/retrieval-corpus-integrity` · **Catalog:** v0.1.0 · **Family:** `knowledge-and-evidence`
 
 ## Purpose and applicability
 

@@ -2,7 +2,6 @@
 type: Guide
 title: "Data mesh architectures and graph opportunities"
 description: "Research synthesis and assessable graph additions for data stewardship across knowledge-work domains."
-catalog_version: "v0.1.0"
 status: draft
 tags: [data-mesh, data-stewardship]
 sources:

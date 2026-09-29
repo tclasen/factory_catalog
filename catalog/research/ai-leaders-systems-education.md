@@ -2,7 +2,6 @@
 type: Guide
 title: "AI research sources: Systems education"
 description: "Select and apply relevant learning from ten individual sources on systems education."
-catalog_version: "v0.1.0"
 status: draft
 tags: [ai-research, source-review]
 sources:

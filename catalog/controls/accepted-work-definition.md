@@ -2,7 +2,6 @@
 type: Control
 title: "Accepted work definition"
 description: "Record accepted scope and observable criteria before starting dependent work."
-catalog_version: "v0.1.0"
 status: draft
 family: intake-and-work-definition
 sources:
@@ -17,8 +16,6 @@ sources:
 # Accepted work definition
 
 [Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
-
-**Identity:** `controls/accepted-work-definition` · **Catalog:** v0.1.0 · **Family:** `intake-and-work-definition`
 
 Draft requirement adapted from the source factory policies.[^policies-planning][^policies-governance] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

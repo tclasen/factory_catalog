@@ -2,7 +2,6 @@
 type: Control
 title: "Persistent state recovery"
 description: "Quarantine contaminated state and restore a declared clean revision across dependent stores."
-catalog_version: "v0.1.0"
 status: stable
 family: reliability-and-recovery
 sources:
@@ -14,8 +13,6 @@ sources:
 # Persistent state recovery
 
 [Controls](./) · [Adoption](../adoption.md) · [ATLAS assessment guide](../atlas-threat-assessment.md)
-
-**Identity:** `controls/persistent-state-recovery` · **Catalog:** v0.1.0 · **Family:** `reliability-and-recovery`
 
 ## Purpose and applicability
 
