@@ -19,6 +19,8 @@ sources:
 
 Apply when combining products, comparing indicators, or exchanging data across domains. FAIR calls for shared knowledge representation, qualified references, and domain standards.[^fair]
 
+This control assesses the combined product result, including join cardinality, matched populations, losses, and duplicates. [Semantic mapping validation](semantic-mapping-validation.md) addresses the meaning of individual mappings; [context translation contracts](context-translation-contracts.md) addresses the agreement between producers and consumers, including ownership and accepted revisions. A correct field mapping can still produce an incorrect total when a join duplicates records.
+
 ## Requirement
 
 Before accepting a cross-product result, document and test mappings for identifiers, record-grain, units, time, populations, and term meanings. Name the owners approving each mapping and its valid scope. Unresolved ambiguity or a failed mapping must block the affected result or be visibly excluded with its effect stated.
@@ -26,7 +28,7 @@ Before accepting a cross-product result, document and test mappings for identifi
 ## Implementation
 
 1. List the products and revisions being combined. Define the business question and the expected join cardinality, matched population, and allowed losses or duplicates before running the join.
-2. Document local meanings and explicit transformations. Keep incompatible definitions distinct; a common field name does not establish equivalence.
+2. Document local meanings and explicit transformations; [domain identity and values](domain-identity-and-values.md) explains the distinction between continuing identity and equal values. Keep incompatible definitions distinct; a common field name does not establish equivalence.
 3. Construct reference cases including legitimate unmatched records, duplicate identifiers, missing values, differing time zones, and unit conversions. Have domain specialists establish expected results.
 4. Reassess mappings when definitions or reference data change. Show excluded records and uncertainty with the result.
 
