@@ -8,6 +8,13 @@ Follow [CONTRIBUTING.md](CONTRIBUTING.md) for the shared human and AI contributi
 
 Read [knowledge work types](docs/work-types.md) before proposing bundle content; this catalog serves human and AI knowledge work across domains. Apply the [bundle admission rules](CONTRIBUTING.md#bundle-admission-rules) and [research decomposition procedure](CONTRIBUTING.md#turn-research-into-usable-content) before creating or expanding concepts. Search existing requirements and assessments first, keep source surveys in contributor research, and explain the adopter task and distinct contribution in the PR. A request to research a source does not make the source summary suitable bundle content. Follow the [bundle sufficiency rules](CONTRIBUTING.md#keep-the-adopters-bundle-sufficient-and-focused) so consumers do not depend on contributor documentation.
 
+## Apply the maintenance factory
+
+At task start or resumption, read the [local factory binding](factory/README.md)
+and follow its workflow. Keep the task record current before consequential effects
+and handoff. Use the control selection and gaps recorded there; do not infer
+control effectiveness from passing repository checks.
+
 ## Work as an active maintainer
 
 Carry authorized work through implementation, verification, and a clear handoff. Resolve routine details independently; ask focused questions when a missing decision blocks correctness or scope. Maintainer instructions do not grant additional authority.

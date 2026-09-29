@@ -2,6 +2,14 @@
 
 This workflow applies to human and AI contributors. Read [README.md](README.md) for the project's purpose and usage, and follow applicable [agent instructions](AGENTS.md) when working with an AI contributor.
 
+## Local maintenance factory
+
+For each maintenance request, use the [factory binding](factory/README.md),
+[workflow](factory/workflow.md), and [work record](factory/work-record.md). Keep
+intent, criteria, current state, and evidence in the task’s issue/PR, with a local
+checkpoint before publication. The binding applies selected catalog controls to
+this repository; the policies below remain authoritative.
+
 ## 1. Define the change
 
 - Inspect current files, applicable instructions, and relevant issues or pull requests. Identify the requested outcome and the smallest useful change.
