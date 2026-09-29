@@ -19,6 +19,8 @@ sources:
 
 Prevent a handoff from changing the meaning of a decision or artifact without detection. Apply when two contexts exchange terms, statuses, identifiers, measurements, or rules. Evans describes an anticorruption layer as an adapter that protects a receiving model, and a published language as a documented interchange vocabulary.[^evans] The requirements below are a catalog adaptation and can be implemented as a reviewed human procedure.
 
+This control defines the agreement at a handoff: who owns each meaning, which revisions are accepted, and how loss or unsupported input is handled. [Semantic mapping validation](semantic-mapping-validation.md) provides complementary review of whether a mapping preserves its declared meaning. For combinations of data products, [data semantic interoperability](data-semantic-interoperability.md) addresses join cardinality, populations, and reconciliation of the combined result.
+
 ## Requirement
 
 For every interface in the adopted scope, identify producer, consumer, owners, applicable revisions, required meanings, mapping rules, information loss, and handling of unsupported input. Accept a translated result only when its required meaning is preserved or the receiving owner explicitly accepts a disclosed limitation under local authority.
