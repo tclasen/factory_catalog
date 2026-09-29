@@ -15,6 +15,7 @@ import unittest
 from unittest.mock import patch
 import review_catalog as reviewer
 import check_catalog as checker
+import check_guidance_links as guidance
 
 import validate_catalog as validator
 import build_catalog as builder
@@ -434,6 +435,92 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(result.returncode, 1)
         self.assertIn("controls/bounded-external-action.md:", result.stderr)
         self.assertNotIn("PASS:", result.stdout)
+
+
+
+class GuidanceTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name).resolve()
+
+    def write(self, name, body):
+        path = self.root / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(body, encoding="utf-8")
+        return path
+
+    def test_discovery_and_cross_directory_links(self):
+        self.write("README.md", "[policy](docs/nested/policy.md#scope)")
+        self.write("docs/nested/policy.md", "# Scope\n[control](/catalog/control.md#requirement)")
+        self.write("factory/README.md", "[root](../README.md)")
+        self.write("catalog/control.md", "---\ntype: Control\n---\n# Requirement")
+        self.write("build/generated.md", "[excluded](missing.md)")
+        self.write("vendor/spec.md", "[excluded](missing.md)")
+        self.assertEqual(guidance.validate(self.root), ([], 3))
+
+    def test_missing_file_and_heading_fail_with_source(self):
+        self.write("AGENTS.md", "[file](missing.md) [heading](#absent)")
+        errors, count = guidance.validate(self.root)
+        self.assertEqual(count, 1)
+        self.assertEqual(len(errors), 2)
+        self.assertIn("AGENTS.md: missing or out-of-repository link missing.md", errors)
+        self.assertIn("AGENTS.md: missing heading #absent", errors)
+
+    def test_encoded_reference_images_queries_and_duplicate_headings(self):
+        self.write("README.md", "[guide][g] ![image](docs/picture.svg)\n\n"
+                   "[g]: docs/a%20b.md?plain=1#r%C3%A9sum%C3%A9-1")
+        self.write("docs/a b.md", "# Résumé\n# Résumé\n[here](#r%C3%A9sum%C3%A9)")
+        self.write("docs/picture.svg", "<svg/>")
+        self.assertEqual(guidance.validate(self.root), ([], 2))
+        (self.root / "docs/picture.svg").unlink()
+        self.assertIn("picture.svg", guidance.validate(self.root)[0][0])
+
+    def test_external_code_and_non_markdown_fragments(self):
+        self.write("README.md", "[web](https://example.com/a#b) [cdn](//example.com/a) "
+                   "[email](mailto:user@example.com) [pdf](file.pdf#page=2) "
+                   "[top](#) ` [literal](missing.md) `\n\n"
+                   "```markdown\n[example](missing.md)\n```")
+        self.write("file.pdf", "fixture")
+        self.assertEqual(guidance.validate(self.root), ([], 1))
+
+    def test_traversal_and_symlink_escape_fail(self):
+        self.write("README.md", "[escape](../outside.md) [symlink](docs/escape.md)")
+        path = self.root / "docs/escape.md"
+        path.parent.mkdir()
+        path.symlink_to(self.root.parent / "outside.md")
+        errors, _ = guidance.validate(self.root)
+        self.assertTrue(any("out-of-repository link ../outside.md" in e for e in errors))
+        self.assertTrue(any("out-of-repository link docs/escape.md" in e for e in errors))
+        self.assertTrue(any("source resolves outside repository" in e for e in errors))
+
+    def test_unreadable_destination_fails(self):
+        self.write("README.md", "[bad](catalog/bad.md#heading)")
+        self.write("catalog/bad.md", "").write_bytes(b"\xff")
+        self.assertIn("cannot check link catalog/bad.md#heading", guidance.validate(self.root)[0][0])
+
+    def test_frontmatter_is_not_heading_or_navigation(self):
+        self.write("README.md", "---\n# Fake\nlink: '[x](missing.md)'\n---\n# Real\n[x](#fake)")
+        self.assertEqual(guidance.validate(self.root)[0], ["README.md: missing heading #fake"])
+
+    def test_cli_failure_and_required_command_integration(self):
+        self.write("README.md", "[broken](absent.md)")
+        result = subprocess.run([sys.executable, str(REPOSITORY / "scripts/check_guidance_links.py"),
+                                 str(self.root)], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("absent.md", result.stderr)
+        commands = []
+
+        def run(command, **kwargs):
+            commands.append(command)
+            code = 1 if Path(command[1]).name == "check_guidance_links.py" else 0
+            return subprocess.CompletedProcess(command, code)
+
+        with patch.object(sys, "argv", ["check_catalog.py"]), patch.object(
+            checker.subprocess, "run", side_effect=run
+        ):
+            self.assertEqual(checker.main(), 1)
+        self.assertEqual(Path(commands[-1][1]).name, "check_guidance_links.py")
 
 
 if __name__ == "__main__":

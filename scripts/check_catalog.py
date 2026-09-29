@@ -38,7 +38,8 @@ def main() -> int:
     args = parser.parse_args()
     root = Path(__file__).resolve().parent.parent
     commands = [[sys.executable, str(root / "scripts" / name)] for name in (
-        "test_validate_catalog.py", "validate_catalog.py", "build_catalog.py", "review_catalog.py",
+        "test_validate_catalog.py", "validate_catalog.py", "build_catalog.py",
+        "check_guidance_links.py", "review_catalog.py",
     )]
     if args.github:
         commands[-1].append("--github")
