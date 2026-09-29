@@ -165,45 +165,11 @@ Use the following questions instead of averaging everything into an autonomy sco
 | Human capacity | Does the reviewer have skill, evidence, available time, authority, and a manageable queue? |
 | Governance and remedy | Who can challenge the outcome, obtain correction, revoke authority, and resource the response? |
 
-## Make human participation effective
+## Assess oversight and changes in autonomy
 
-For a review boundary, supply the actual proposal, evidence, alternatives, uncertainty, destination, consequences, and the remaining time. Give the person a clear way to reject, edit, stop, or escalate. Preserve the reason and the action actually executed. Use [bounded external action](controls/bounded-external-action.md) to bind any action-specific approval.
+Human participation is useful only when the assigned person has evidence, competence, capacity, and authority to act within the available time. [Assess human oversight](guides/human-oversight-assessment.md) covers review fixtures, intervention timing, no-response behavior, and practiced handoff and fallback.
 
-Test review with plausible wrong proposals, missing evidence, and valid alternatives under realistic workload. Measure missed errors, unnecessary rejection, response times, queue age, and outcomes after override. Approval rate and number of clicks are weak evidence of oversight quality. Preserve occasional independent judgments before revealing the AI recommendation where appropriate to assess reliance.
-
-For supervision, a useful design check is:
-
-**detection time + notification time + human decision time + enforcement time < time available to prevent the effect.**
-
-Use conservative measured values, relevant tail latency, and margin; averages alone hide slow cases. If a message leaves immediately, a person reading an alert minutes later cannot veto it. If supervisory coverage disappears, route to a preauthorized safe state. Silence only permits continuation when the standing grant explicitly allows that behavior; it never supplies a missing approval.
-
-Maintain practice for tasks people must take over. Test handoff with a summary of current state, completed effects, pending actions, uncertainty, and available recovery options. A manual fallback that staff cannot perform is an unimplemented fallback. Periodic audit may suffice for a bounded low-consequence action even when real-time supervision adds little value.
-
-## Evolve autonomy with evidence
-
-Use [autonomy change gates](controls/autonomy-change-gates.md) to make changes explicit. A useful sequence is offline comparison → shadow operation without effects → bounded pilot → routine operation. Shadow results cannot prove execution, recovery, or real operator behavior; test those separately. Stages may be combined when justified, and a successful trial may correctly end with no expansion.
-
-Define the evidence package for each proposed change:
-
-- Exact model, tools, prompts, data/retrieval, workflow, grant, and enforcement revisions; known supplier changes or unknown version details.
-- Action population, exclusions, case mix, observation window, sample size, and relevant baseline.
-- Artifact quality and beneficiary outcomes; severity-specific failures and subgroup results where relevant; uncertainty and unobserved harms.
-- Review performance, intervention latency, unauthorized attempts, bypass tests, aggregate consumption, and exercised recovery.
-- Decision-maker, accepted residual risk, scope and duration of the resulting grant, and explicit conditions for reducing or stopping it.
-
-Do not promote based on an uneventful calendar interval or a single accuracy average. Successful easy cases say little about rare severe failures. Select sample sizes and statistical methods for the tolerated failure rate and dependence between observations. Repeated cases from the same template or incident may provide much less evidence than their count suggests. No universal accuracy percentage justifies every delegation.
-
-| Trigger | Recommended immediate disposition | Evidence needed before restoring or expanding scope |
-|---|---|---|
-| Unauthorized action, bypass, or protected configuration change | Contain affected paths; revoke or narrow grants; preserve records | Cause, effect reconciliation, corrected enforcement and negative tests |
-| Quality drift, novel case mix, rising appeals, or unequal harm | Restrict affected classes; route to qualified review or pause | Representative reassessment and remedy of affected outcomes |
-| Reviewer overload, absence, or failed intervention drill | Reduce throughput, switch to safe bounded behavior, or pause dependent work | Available staffing, practiced handoff, demonstrated timing |
-| Model, supplier, prompt, tool, retrieval, memory policy, or workflow change | Identify affected claims; withhold unsupported expanded scope | Relevant comparisons, regression checks, and refreshed grants |
-| Monitoring loss, unknown effects, or stale evidence | Apply predeclared safe state; reconcile before retries | Restored observability and known destination state |
-| New legal or contractual constraint, changed beneficiaries or purpose | Reassess affected permissions before continued use | Applicable obligation review and authorized scope decision |
-| Stronger results under unchanged scope | Consider a separate expansion proposal | Evidence covering the proposed additional consequences and limits |
-
-Automatic mode switches can implement a preauthorized policy inside a tested envelope. An agent may reduce its activity or stop under that policy. It cannot treat its own confidence, a new model, or a favorable self-evaluation as permission to enlarge the envelope. Restore suspended authority only through the recorded recovery gate.
+Treat each change in autonomy as a scoped decision supported by evidence. [Evidence for changing autonomy](guides/autonomy-change-evidence.md) covers trial stages, the evidence package, interpretation limits, reduction and suspension triggers, and restoration boundaries. Successful results under an existing grant do not themselves authorize expansion.
 
 ## Document this in an OKF bundle
 

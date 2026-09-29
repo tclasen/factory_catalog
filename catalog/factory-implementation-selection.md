@@ -21,9 +21,9 @@ For each activity, answer these questions in order:
 
 1. **Can its essential operation be specified precisely?** Use ordinary code for exact transformations and predicates. Record which parts still require interpretation or uncertain inputs.
 2. **Does it need adaptable judgment?** Use a human or model with concise prose criteria and explicit handling of uncertainty. Keep those criteria reviewable outside the implementation.
-3. **Does a recognizable procedure recur?** Consider a skill to package the procedure, examples, and tested scripts. Verify discovery as well as execution.
+3. **Does a recognizable procedure recur?** Consider a skill to package the procedure, examples, and tested scripts. Verify [discovery as well as execution](guides/instruction-and-skill-selection.md).
 4. **Does it need shared installation or authenticated capabilities?** Consider a plugin; inventory its components and service dependencies. Use existing tools when packaging adds no useful capability.
-5. **Does work depend on a host event or specialized interface?** Consider an extension or hook. Name the supported host and versions, event timing, and behavior when absent or failing.
+5. **Does work depend on a host event or specialized interface?** Consider an extension or hook. Name the supported host and versions, [event timing, and behavior when absent or failing](guides/extension-and-hook-boundaries.md).
 6. **Must a transition be prevented when prerequisites fail?** Place a protected check at the transition, with credentials and configuration the producer cannot bypass. Include external APIs and direct clients in coverage.
 
 Multiple answers can apply. A skill might call a shared validator, an extension might display its findings, and a remote gate might require a trusted run before publication. Avoid adding all six mechanisms merely to fill the categories.
@@ -102,7 +102,7 @@ Apply this allocation to the [software delivery factory](factories/software-deli
 | Integrate and deploy | Required repository checks plus a separately scoped delivery service or protected environment | Match the qualified artifact and destination; direct deployment credentials must obey the same grant |
 | Observe analysts completing the task | Human observation and a structured evidence record | Passing code tests does not establish the user outcome |
 
-For a GitHub implementation, inspect effective repository rules, expected check producer, supported events, skipped-job behavior, bypass permissions, environment rules, and all deployment credentials using the [research on external gates](factory-implementation-tradeoffs.md#external-gates-mandatory-only-with-protected-paths). A YAML file alone cannot establish this boundary.
+For a GitHub implementation, inspect effective repository rules, expected check producer, supported events, skipped-job behavior, bypass permissions, environment rules, and all deployment credentials using the [research on external gates](guides/external-acceptance-gates.md). A YAML file alone cannot establish this boundary.
 
 ### Research and publication
 
