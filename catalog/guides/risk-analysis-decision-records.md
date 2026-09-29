@@ -29,7 +29,7 @@ Open FAIR pairs a risk analysis standard with a risk taxonomy for information-se
 2. Separate observed incidents, estimates, and assumptions. Define exposure units, event counting rules, loss categories, and whether consequences overlap.
 3. Apply [risk estimate assumptions](../controls/risk-estimate-assumptions.md). Preserve input ranges/distributions, sources, calculation revision, and sensitivity analysis. An ordinal high/medium/low label is not a measured probability.
 4. Compare alternatives on a common horizon and basis. Explain which mechanism might change event occurrence or consequence and what evidence supports that assumption. Selecting a control is not evidence of its effect.
-5. Present uncertainty and missing evidence to the decision owner. Record the owner's decision separately from the analyst's estimate and separately from any [authority grant](../controls/bounded-external-action.md).
+5. Use [risk estimate transparency](../controls/risk-estimate-transparency.md) for the decision-facing comparison and disposition. Present uncertainty and missing evidence to the decision owner. Record the owner's decision separately from the analyst's estimate and separately from any [authority grant](../controls/bounded-external-action.md).
 6. Set reassessment triggers: new incident data, altered exposure, changed supplier, control failure, or revised decision horizon.
 
 ## Record shape and graph links
@@ -48,7 +48,7 @@ Use [evidence traceability](../controls/evidence-traceability.md) for cited inpu
 
 Suppose a procurement team estimates two delivery interruptions per year and 10–30 staff-hours of rework per interruption. Under a deliberately simple fixed-frequency model, expected annual rework lies between 20 and 60 hours. These are invented inputs, not observed rates, a probability interval, or an Open FAIR implementation. Show the independence and linearity assumptions; clustered interruptions, capacity constraints, and overlapping rework can invalidate the calculation.
 
-Before a real decision, test a changed horizon, overlapping loss categories, a missing source, and a treatment option with no effectiveness evidence. The estimate must expose or reject these issues under the linked control. Monetary valuation, safety judgments, and formal risk acceptance require their own authorized expertise. No operational risk analysis was executed for this guide.
+Before a real decision, test a changed horizon, overlapping loss categories, a missing source, and a treatment option with no effectiveness evidence. The estimate must expose or reject these issues under [risk estimate assumptions](../controls/risk-estimate-assumptions.md). Monetary valuation, safety judgments, and formal risk acceptance require their own authorized expertise. No operational risk analysis was executed for this guide.
 
 [^c250]: The Open Group, Risk Analysis (O-RA), Version 2.1; public publication description and metadata inspected 2026-09-28. Full licensed text was not reviewed.
 [^c251]: The Open Group, Risk Taxonomy (O-RT), Version 3.1; public publication description and metadata inspected 2026-09-28. Full licensed text was not reviewed.
