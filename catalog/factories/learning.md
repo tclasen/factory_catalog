@@ -35,7 +35,7 @@ control_selections:
 | Domain / activities | Workplace learning; design, content production, adaptation, teaching, evaluation |
 | Inputs → artifacts | Approved policy and learner needs → lesson, practice exercises, assessment, feedback |
 | Outcome | Learners improve their ability to identify suspicious messages and choose the appropriate response |
-| Measure | Illustrative pilot criterion: mean score improves by at least 20 percentage points on a comparable unseen assessment after seven days; report participation and missing observations separately |
+| Measure | Illustrative review fixture: among learners with both observations, mean score on a comparable unseen assessment improves by at least 20 percentage points from the pre-lesson baseline to the seven-day follow-up; report the scoring scale, paired-observation count, participation, and missing observations separately |
 | Actors | Curriculum author, tutor agent, human facilitator, assessment reviewer |
 | Workflow | Needs assessment → lesson design → factual review → tutoring → unseen assessment → follow-up |
 | Autonomy | Tutor adapts exercises within approved material; escalates policy ambiguities and learner distress |

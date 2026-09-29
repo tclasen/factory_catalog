@@ -10,12 +10,14 @@ status: stable
 ## Select controls for the failure
 
 Use [durable work handoff](../controls/durable-work-handoff.md) when a session,
-conversation summary, notebook, or worker may disappear. Use
-[acceptance coverage](../controls/acceptance-coverage.md) to account for every
-accepted obligation, and [planning consistency](../controls/planning-consistency.md)
-when the plan changes. This guide supplies an implementation of those controls;
-it adds no control or mandatory tracker product. Pin selected controls and their
-dependencies through [adoption](../adoption.md).
+conversation summary, notebook, or worker may disappear. The optional draft
+[acceptance coverage](../controls/acceptance-coverage.md) and
+[planning consistency](../controls/planning-consistency.md) controls address,
+respectively, accounting for accepted obligations and reconciling plans after a
+change. They are not part of the stable bundle or prerequisites for this guide;
+the record fields and steps below state the task-tracking procedure directly. The
+guide adds no control or mandatory tracker product. Pin selected controls and
+their dependencies through [adoption](../adoption.md).
 
 The failure addressed is a saved history that cannot answer “what remains?”
 without reconstructing a conversation. Examples include a research report whose
@@ -79,8 +81,10 @@ external effect and its recorded observation leaves an unknown effect to reconci
    Inspect relevant child records; do not require reading every historical comment.
 3. Reconcile claims against actual files, deliveries, approvals and revisions.
    Missing evidence cannot establish done; a merged PR establishes only its scope.
-4. Follow [safe work resumption](../controls/safe-work-resumption.md) for ownership
-   and [reconcile before retry](../controls/reconcile-before-retry.md) for uncertain
+4. Reconcile ownership and current state before resuming. The optional draft
+   [safe work resumption](../controls/safe-work-resumption.md) control is not part
+   of the stable bundle or a prerequisite for this step. Use stable
+   [reconcile before retry](../controls/reconcile-before-retry.md) for uncertain
    effects. Resolve conflicting records through authoritative observations; stop
    only dependent actions when essential state remains unknown.
 5. Restore a current next action and save/read back the reconciled record before
