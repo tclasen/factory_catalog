@@ -329,7 +329,7 @@ def validate_control_selection(
 
 
 def validate_factory_example(
-    root: Path, document: Document, work_types: list[str], documents: dict[Path, Document],
+    root: Path, document: Document, documents: dict[Path, Document],
 ) -> list[str]:
     errors = []
     data = document.metadata
@@ -337,9 +337,12 @@ def validate_factory_example(
         errors.append("example must be true")
     if not isinstance(data.get("domain"), str) or not data["domain"].strip():
         errors.append("missing domain")
-    types = data.get("work_types")
-    if not isinstance(types, list) or not types or any(item not in work_types for item in types):
-        errors.append("missing or unknown work types")
+    activities = data.get("activities")
+    if (not isinstance(activities, list) or not activities
+            or any(not isinstance(item, str) or not item.strip() for item in activities)):
+        errors.append("activities must be a non-empty list of non-empty descriptions")
+    if "work_types" in data:
+        errors.append("replace work_types taxonomy references with free-text activities")
     selections = data.get("control_selections")
     if not isinstance(selections, list) or not selections:
         errors.append("missing control selections")
@@ -353,12 +356,11 @@ def validate_domain_metadata(root: Path, documents: dict[Path, Document]) -> lis
     """Apply catalog-specific checks without rejecting unknown OKF types."""
     errors = []
     families = extract_vocabulary(documents.get(root / "control-families.md"))
-    work_types = extract_vocabulary(documents.get(root / "work-types.md"))
     for path, document in documents.items():
         if document.metadata.get("type") == "Control":
             findings = validate_control(document, families)
         elif document.metadata.get("type") == "Factory Example":
-            findings = validate_factory_example(root, document, work_types, documents)
+            findings = validate_factory_example(root, document, documents)
         else:
             continue
         errors.extend(qualify_errors(root, path, findings))

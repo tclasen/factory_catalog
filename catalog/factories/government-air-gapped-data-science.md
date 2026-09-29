@@ -5,7 +5,7 @@ description: "A government contract gathers low-side insights, transfers auditab
 status: draft
 example: true
 domain: "Government data science and evidence fusion"
-work_types: [research-and-discovery, analysis-and-diagnosis, software-and-computational-development, evaluation-and-assurance]
+activities: ["import approved datasets", "perform isolated analysis", "review results", "export approved evidence"]
 tags: [government, air-gap, security, auditability]
 control_selections:
   - control: ../controls/approved-data-processing.md

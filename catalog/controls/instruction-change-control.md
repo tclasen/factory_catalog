@@ -12,7 +12,7 @@ sources:
 
 # Instruction change control
 
-[Adoption](../adoption.md) · [Factory decomposition](../semantic-search-factory-decomposition.md)
+[Adoption](../adoption.md) · [Delivery lifecycle](../guides/factory-delivery-lifecycle.md)
 
 Draft requirement adapted from the source factory policies.[^policies-instructions] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 

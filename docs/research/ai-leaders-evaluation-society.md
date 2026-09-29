@@ -39,11 +39,13 @@ sources:
 
 # AI research sources: Evaluation and society
 
-[Research method and priorities](../ai-leaders-research.md) · [Adoption](../adoption.md)
+Contributor research: use this material to develop controls and task-focused guides. It is outside the distributed OKF bundle; consult current control requirements before reuse.
+
+[Research method and priorities](ai-leaders-research.md) · [Adoption](../../catalog/adoption.md)
 
 ## How to use these sources
 
-This is an annotated selection from the 100-entry research set, inspected on **2026-09-28 (America/Los_Angeles)**. Choose a source for the problem in its entry, inspect its stated limits, then apply the linked catalog guidance. Order is thematic, not a rank. The [research method](../ai-leaders-research.md#selection-and-review-method) defines review depth and selection limits.
+This is an annotated selection from the 100-entry research set, inspected on **2026-09-28 (America/Los_Angeles)**. Choose a source for the problem in its entry, inspect its stated limits, then apply the linked catalog guidance. Order is thematic, not a rank. The [research method](ai-leaders-research.md#selection-and-review-method) defines review depth and selection limits.
 
 “Learning” summarizes the cited material; “Catalog use” is our interpretation. Links indicate supporting material or applicability, not endorsement, adoption, or a successful assessment. Papers are credited to the named contributor and coauthors; company/team material is not assumed to have been personally written by a leader. Historical material remains dated evidence, and mutable documentation must be rechecked before implementation.
 
@@ -53,7 +55,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Model Cards records intended use, evaluation conditions, and performance across relevant groups.[^margaret-mitchell]
 
-**Catalog use — guide:** Attach conditions and limitations to model-selection evidence. Use [agent evaluation coverage](../guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Attach conditions and limitations to model-selection evidence. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
 
 ## Timnit Gebru
 
@@ -61,7 +63,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Datasheets records why and how data was collected and its recommended uses.[^timnit-gebru]
 
-**Catalog use — apply:** Carry collection context into evaluation and retrieval-data records. Use [data product contract](../controls/data-product-contract.md).
+**Catalog use — apply:** Carry collection context into evaluation and retrieval-data records. Use [data product contract](../../catalog/controls/data-product-contract.md).
 
 ## Joy Buolamwini
 
@@ -69,7 +71,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Gender Shades reports intersectional differences in classification performance for its evaluated systems.[^joy-buolamwini]
 
-**Catalog use — guide:** Test relevant subgroups; do not transplant historical error rates to current systems. Use [agent evaluation coverage](../guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Test relevant subgroups; do not transplant historical error rates to current systems. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
 
 ## Rumman Chowdhury
 
@@ -77,7 +79,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Humane Intelligence describes contextual evaluations, red teaming, and participation by impacted communities.[^rumman-chowdhury]
 
-**Catalog use — guide:** Team material supplies a participation lead; local evaluator expertise and coverage still need evidence. Use [agent evaluation coverage](../guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Team material supplies a participation lead; local evaluator expertise and coverage still need evidence. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
 
 ## Arvind Narayanan
 
@@ -85,7 +87,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Argues for understanding AI through deployment, diffusion, and human institutions.[^arvind-narayanan]
 
-**Catalog use — apply:** Use the existing authority-allocation guide; distinguish this perspective from competing forecasts. Use [human ai authority](../human-ai-authority.md).
+**Catalog use — apply:** Use the existing authority-allocation guide; distinguish this perspective from competing forecasts. Use [human ai authority](../../catalog/human-ai-authority.md).
 
 ## Sayash Kapoor
 
@@ -93,7 +95,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Documents data-leakage failures and separates scientific claims from other ML evaluation settings.[^sayash-kapoor]
 
-**Catalog use — guide:** Check train/test separation and temporal leakage before accepting evidence. Use [agent evaluation coverage](../guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Check train/test separation and temporal leakage before accepting evidence. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
 
 ## Percy Liang
 
@@ -101,7 +103,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** HELM evaluates multiple metrics across scenarios and explicitly identifies coverage gaps.[^percy-liang]
 
-**Catalog use — guide:** Report missing scenarios and tradeoffs rather than one universal ranking. Use [agent evaluation coverage](../guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Report missing scenarios and tradeoffs rather than one universal ranking. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
 
 ## Sarah Hooker
 
@@ -109,7 +111,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** The Hardware Lottery explains how available software and hardware can shape which research ideas succeed.[^sarah-hooker]
 
-**Catalog use — guide:** Separate hardware fit from model merit when comparing alternatives. Use [ai factory workload qualification](../guides/ai-factory-workload-qualification.md).
+**Catalog use — guide:** Separate hardware fit from model merit when comparing alternatives. Use [ai factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md).
 
 ## Emily M. Bender
 
@@ -117,7 +119,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Distinguishes language form from meaning and cautions against unsupported understanding claims.[^emily-m-bender]
 
-**Catalog use — apply:** Test task-specific interpretation and consequences instead of inferring correctness from fluency. Use [contextual domain language](../controls/contextual-domain-language.md).
+**Catalog use — apply:** Test task-specific interpretation and consequences instead of inferring correctness from fluency. Use [contextual domain language](../../catalog/controls/contextual-domain-language.md).
 
 ## Sasha Luccioni
 
@@ -125,7 +127,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Compares energy and emissions across task-specific and general-purpose inference systems.[^sasha-luccioni]
 
-**Catalog use — guide:** Measure a stated workload and accounting boundary; paper results are not current procurement estimates. Use [ai factory workload qualification](../guides/ai-factory-workload-qualification.md).
+**Catalog use — guide:** Measure a stated workload and accounting boundary; paper results are not current procurement estimates. Use [ai factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md).
 
 [^margaret-mitchell]: [1810.03993 Model Cards for Model Reporting](https://arxiv.org/abs/1810.03993).
 [^timnit-gebru]: [1803.09010 Datasheets for Datasets](https://arxiv.org/abs/1803.09010).

@@ -5,7 +5,7 @@ description: "A contract workflow with distinct drafting, negotiation, signing, 
 status: stable
 example: true
 domain: "Procurement and contracts"
-work_types: ["analysis-and-diagnosis", "content-and-media-production", "evaluation-and-assurance", "coordination-and-relationship-work", "decision-making-and-adjudication", "case-and-transaction-processing", "knowledge-organization-and-stewardship"]
+activities: ["compare contract terms", "negotiate proposed changes", "authorize signature", "record accepted obligations"]
 control_selections:
   - control: ../controls/evidence-traceability.md
     applicability: applicable
@@ -32,7 +32,7 @@ control_selections:
 | Field | Design |
 |---|---|
 | Why / owner | Prepare an authorized agreement and track its obligations; procurement owner coordinates the process |
-| Domain / work types | Procurement and contracts; analysis, drafting, evaluation, coordination, adjudication, case processing, stewardship |
+| Domain / activities | Procurement and contracts; analysis, drafting, evaluation, coordination, adjudication, case processing, stewardship |
 | Inputs → artifacts | Approved brief and counterparty draft → comparison, revised draft, approval record, executed document, obligation register |
 | Outcome | Authorized parties execute the intended agreement, and each identified obligation has an owner and due date or recorded interpretation issue |
 | Measure | Before case closure, authorized reviewer reconciles the executed revision to approval and every identified obligation to the register; unresolved material issues prevent closure |

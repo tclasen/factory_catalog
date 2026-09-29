@@ -39,11 +39,13 @@ sources:
 
 # AI research sources: AI factory infrastructure
 
-[Research method and priorities](../ai-leaders-research.md) · [Adoption](../adoption.md)
+Contributor research: use this material to develop controls and task-focused guides. It is outside the distributed OKF bundle; consult current control requirements before reuse.
+
+[Research method and priorities](ai-leaders-research.md) · [Adoption](../../catalog/adoption.md)
 
 ## How to use these sources
 
-This is an annotated selection from the 100-entry research set, inspected on **2026-09-28 (America/Los_Angeles)**. Choose a source for the problem in its entry, inspect its stated limits, then apply the linked catalog guidance. Order is thematic, not a rank. The [research method](../ai-leaders-research.md#selection-and-review-method) defines review depth and selection limits.
+This is an annotated selection from the 100-entry research set, inspected on **2026-09-28 (America/Los_Angeles)**. Choose a source for the problem in its entry, inspect its stated limits, then apply the linked catalog guidance. Order is thematic, not a rank. The [research method](ai-leaders-research.md#selection-and-review-method) defines review depth and selection limits.
 
 “Learning” summarizes the cited material; “Catalog use” is our interpretation. Links indicate supporting material or applicability, not endorsement, adoption, or a successful assessment. Papers are credited to the named contributor and coauthors; company/team material is not assumed to have been personally written by a leader. Historical material remains dated evidence, and mutable documentation must be rechecked before implementation.
 
@@ -53,7 +55,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Connects compute, networking, storage, data pipelines, software, security, and facility constraints.[^nvidia]
 
-**Catalog use — guide:** Qualify the combined stack with the intended workload; a reference design is a starting point. Use [ai factory workload qualification](../guides/ai-factory-workload-qualification.md).
+**Catalog use — guide:** Qualify the combined stack with the intended workload; a reference design is a starting point. Use [ai factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md).
 
 ## AMD
 
@@ -61,7 +63,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Distinguishes runtime and libraries from driver, deployment, monitoring, and cluster operations.[^amd]
 
-**Catalog use — apply:** Record supported hardware/software combinations and reassess upgrades. Use [controlled dependency change](../controls/controlled-dependency-change.md).
+**Catalog use — apply:** Record supported hardware/software combinations and reassess upgrades. Use [controlled dependency change](../../catalog/controls/controlled-dependency-change.md).
 
 ## Intel
 
@@ -69,7 +71,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Describes model conversion and optimization across deployment environments and Intel hardware.[^intel]
 
-**Catalog use — apply:** Measure quality after conversion or quantization along with latency and throughput. Use [task configuration selection](../controls/task-configuration-selection.md).
+**Catalog use — apply:** Measure quality after conversion or quantization along with latency and throughput. Use [task configuration selection](../../catalog/controls/task-configuration-selection.md).
 
 ## Dell Technologies
 
@@ -77,7 +79,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Starts with business use cases and combines data, infrastructure, software, and deployment services.[^dell-technologies]
 
-**Catalog use — guide:** Separate outcome selection from procurement and require a workload acceptance record. Use [ai factory workload qualification](../guides/ai-factory-workload-qualification.md).
+**Catalog use — guide:** Separate outcome selection from procurement and require a workload acceptance record. Use [ai factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md).
 
 ## Hewlett Packard Enterprise
 
@@ -85,7 +87,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** QuickSpecs describes a pre-integrated private AI system, its component roles, lifecycle management, and capacity monitoring.[^hewlett-packard-enterprise]
 
-**Catalog use — apply:** Overview and feature sections reviewed. Product claims and internal comparisons require local acceptance evidence. Use [architecture decision traceability](../controls/architecture-decision-traceability.md).
+**Catalog use — apply:** Overview and feature sections reviewed. Product claims and internal comparisons require local acceptance evidence. Use [architecture decision traceability](../../catalog/controls/architecture-decision-traceability.md).
 
 ## Cisco
 
@@ -93,7 +95,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Surfaces fabric deployment, distributed clusters, heterogeneous GPUs, and tenant isolation topics.[^cisco]
 
-**Catalog use — guide:** Treat article summaries as discovery leads; individual network designs need deeper review. Use [ai factory workload qualification](../guides/ai-factory-workload-qualification.md).
+**Catalog use — guide:** Treat article summaries as discovery leads; individual network designs need deeper review. Use [ai factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md).
 
 ## Schneider Electric
 
@@ -101,7 +103,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Offers power sizing, power-usage effectiveness, monitoring, and pre-engineered data-center resources.[^schneider-electric]
 
-**Catalog use — guide:** Bring facility capacity assumptions into workload acceptance; this page is not a design calculation. Use [ai factory workload qualification](../guides/ai-factory-workload-qualification.md).
+**Catalog use — guide:** Bring facility capacity assumptions into workload acceptance; this page is not a design calculation. Use [ai factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md).
 
 ## Vertiv
 
@@ -109,7 +111,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Organizes retrofit and new-build reference designs around density, scale, and cooling choices.[^vertiv]
 
-**Catalog use — guide:** Retain design boundaries and involve qualified facilities owners before production changes. Use [ai factory workload qualification](../guides/ai-factory-workload-qualification.md).
+**Catalog use — guide:** Retain design boundaries and involve qualified facilities owners before production changes. Use [ai factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md).
 
 ## Supermicro
 
@@ -117,7 +119,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** The Spectro Cloud document specifies component versions, sizing, and network/storage configuration for Supermicro systems.[^supermicro]
 
-**Catalog use — apply:** Record the January 2026 revision and local deviations; vendor validation does not transfer automatically. Use [architecture decision traceability](../controls/architecture-decision-traceability.md).
+**Catalog use — apply:** Record the January 2026 revision and local deviations; vendor validation does not transfer automatically. Use [architecture decision traceability](../../catalog/controls/architecture-decision-traceability.md).
 
 ## CoreWeave
 
@@ -125,7 +127,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Shows workload health and resource capacity, requests, limits, and utilization at cluster and node levels.[^coreweave]
 
-**Catalog use — guide:** Correlate capacity telemetry with accepted jobs and queue latency. Use [ai factory workload qualification](../guides/ai-factory-workload-qualification.md).
+**Catalog use — guide:** Correlate capacity telemetry with accepted jobs and queue latency. Use [ai factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md).
 
 [^nvidia]: [Building AI Factories for the Enterprise](https://docs.nvidia.com/enterprise-reference-architectures/white-paper/latest/building-ai-factories-for-the-enterprise.html).
 [^amd]: [AMD ROCm — AMD ROCm 10.0.0](https://rocm.docs.amd.com/en/latest/).

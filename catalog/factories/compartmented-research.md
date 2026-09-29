@@ -5,7 +5,7 @@ description: "A fictional research workflow that separates public browsing, priv
 status: draft
 example: true
 domain: "Organizational research"
-work_types: [research-and-discovery, analysis-and-diagnosis, evaluation-and-assurance]
+activities: ["gather public evidence", "analyze private records in a restricted compartment", "review and release an approved report"]
 tags: [security, privacy, lethal-trifecta]
 control_selections:
   - control: ../controls/lethal-trifecta-separation.md

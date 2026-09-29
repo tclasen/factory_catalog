@@ -62,6 +62,8 @@ Write scripts in Python with a `#!/usr/bin/env -S uv run --script` shebang and a
 
 ### Write useful controls
 
+Read [knowledge work types](docs/work-types.md) to preserve coverage beyond software. Keep source surveys and candidate backlogs in `docs/research/`; publish their usable requirements, implementation guidance, or assessment procedures in the bundle with source attribution. Supporting concepts must serve a concrete factory design, implementation, or assessment decision.
+
 Each control should have a stable identity and family, a clear purpose, applicability guidance, implementation instructions, measurable expected outcomes, and an assessment with evidence and pass/fail criteria. Follow the [catalog ontology](catalog/ontology.md) and [control families](catalog/control-families.md). Make dependencies and limitations explicit.
 
 Keep controls individually selectable and usable both by URL and by copying their content. Separate reusable requirements from project-specific examples. Prefer observable behavior over vague advice, and distinguish proposed guidance from verified results.

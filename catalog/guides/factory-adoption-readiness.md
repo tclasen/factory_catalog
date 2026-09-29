@@ -14,7 +14,7 @@ sources:
 
 # Factory adoption readiness
 
-[Factory decomposition](../semantic-search-factory-decomposition.md) · [Project binding](factory-project-binding.md)
+[Delivery lifecycle](factory-delivery-lifecycle.md) · [Project binding](factory-project-binding.md)
 
 ## Purpose and trigger
 

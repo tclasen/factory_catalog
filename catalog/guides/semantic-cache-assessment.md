@@ -15,7 +15,7 @@ sources:
 
 # Assess semantic answer caches
 
-[Research basis](../ai-leaders-research.md) · [Retrieval poisoning](../risks/retrieval-poisoning.md) · [Adoption](../adoption.md)
+[Retrieval poisoning](../risks/retrieval-poisoning.md) · [Adoption](../adoption.md)
 
 ## Purpose and applicability
 

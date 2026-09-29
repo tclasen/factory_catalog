@@ -14,7 +14,7 @@ The goal is to provide a prioritized selection of reusable controls for building
 
 The catalog is an OKF bundle under `catalog/`, targeting Open Knowledge Format (OKF) **0.2**; this is separate from the [catalog version](catalog/VERSION). The [vendored specification](vendor/okf/SPEC.md) and [upstream provenance](vendor/okf/UPSTREAM.md) pin the format used here.
 
-The [ontology](catalog/ontology.md) defines concepts and relationships. Browse [work types](catalog/work-types.md), [control families](catalog/control-families.md), [controls](catalog/controls/), and [factory examples](catalog/factories/). The examples are fictional designs, not claims of deployed or effective systems.
+The [ontology](catalog/ontology.md) defines concepts and relationships. Browse [control families](catalog/control-families.md), [controls](catalog/controls/), and [factory examples](catalog/factories/). The examples are fictional designs, not claims of deployed or effective systems.
 
 ## How to use it
 
@@ -51,6 +51,8 @@ steps without presenting invented controls as catalog content.
 ```
 
 ## Contributing
+
+The [knowledge work types](docs/work-types.md) describe the full domain scope for contributors. [Research inputs](docs/research/) stay outside the OKF bundle. The bundle contains controls and the procedures, records, scenarios, and examples needed to build and assess a factory.
 
 Human and AI contributors should follow [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow, security controls, and SEMVER release policy. AI contributors must also read [AGENTS.md](AGENTS.md). Extend the ontology and vocabulary through explicit design decisions. Before v1, paths and definitions may change without compatibility shims; pin adoption to an exact commit.
 

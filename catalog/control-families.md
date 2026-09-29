@@ -9,7 +9,7 @@ status: stable
 
 [Catalog](index.md) · [Ontology](ontology.md) · [Controls](controls/)
 
-Each control has one primary family and can have several cross-cutting tags. Families classify purpose; they do not imply that a family has complete control coverage.
+Each control has one primary family and can have several cross-cutting tags. Families classify purpose; they do not imply complete control coverage. The generated bundle groups actual controls by family and displays each definition’s lifecycle status. Scan control frontmatter when using this source tree; the taxonomy is not an inventory.
 
 ## Families
 

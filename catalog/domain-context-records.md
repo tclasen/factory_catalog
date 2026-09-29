@@ -15,7 +15,7 @@ sources:
 
 # Domain context and translation records
 
-[DDD research](domain-driven-design.md) · [Ontology](ontology.md) · [Adoption](adoption.md)
+[Domain model selection](guides/domain-model-selection.md) · [Ontology](ontology.md) · [Adoption](adoption.md)
 
 ## Purpose and representation
 

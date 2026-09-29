@@ -5,7 +5,7 @@ description: "A fictional support factory assigns action-specific rights and exp
 status: draft
 example: true
 domain: "Customer support for a digital subscription service"
-work_types: ["analysis-and-diagnosis", "content-and-media-production", "case-and-transaction-processing", "decision-making-and-adjudication", "monitoring-and-operational-response"]
+activities: ["diagnose a support case", "prepare a response", "authorize the remedy", "verify case resolution"]
 control_selections:
   - control: ../controls/decision-rights-and-accountability.md
     applicability: applicable

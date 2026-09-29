@@ -4,6 +4,10 @@ Read [README.md](README.md) for the project's mission and current scope before c
 
 Follow [CONTRIBUTING.md](CONTRIBUTING.md) for the shared human and AI contribution workflow, including design decisions, security controls, OKF maintenance, control quality, versioning, verification, and handoff. These requirements apply to every agent contribution.
 
+## Catalog scope
+
+Read [knowledge work types](docs/work-types.md) before proposing bundle content. The catalog serves all listed knowledge work, including human procedures and non-software factories. Keep contributor research in `docs/research/`. Bundle concepts must provide a selectable control or a concrete procedure, record, scenario, or example needed to design, implement, or assess a factory. Decompose useful findings into those concepts and retain their source attribution; do not add source surveys or contribution proposals to the bundle.
+
 ## Work as an active maintainer
 
 Carry authorized work through implementation, verification, and a clear handoff. Resolve routine details independently; ask focused questions when a missing decision blocks correctness or scope. Maintainer instructions do not grant additional authority.

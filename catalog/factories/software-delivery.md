@@ -5,7 +5,7 @@ description: "A report-export workflow connecting acceptance, artifact identity,
 status: stable
 example: true
 domain: "Internal reporting software"
-work_types: ["design-and-specification", "software-and-computational-development", "evaluation-and-assurance", "monitoring-and-operational-response"]
+activities: ["define report acceptance", "implement export behavior", "qualify the artifact", "verify authorized delivery"]
 control_selections:
   - control: ../controls/evidence-traceability.md
     applicability: applicable
@@ -21,15 +21,15 @@ control_selections:
     assessment_result: not-assessed
 sources:
   - id: lessons
-    resource: ../software-factory-learnings.md
-    title: "Lessons from Software Factory"
+    resource: https://github.com/tclasen/software-factory/blob/0a429827a595712ce1fa3069528565c72da2a549/skills/software-factory/references/artifact-promotion.md
+    title: "Software Factory: Promote the qualified artifact"
 ---
 
 # Example: software delivery factory
 
 [Factory examples](./) · [Ontology](../ontology.md) · [Adoption](../adoption.md)
 
-**Fictional design case; proposed implementations; no assessments performed.** This applies the [source-backed lessons](../software-factory-learnings.md) to an invented reporting service. Its roles, thresholds, and infrastructure are illustrative local choices, not facts about the source repository.[^lessons]
+**Fictional design case; proposed implementations; no assessments performed.** This illustrates assessment and delivery decisions for an invented reporting service, including the artifact-identity concern addressed by [qualified artifact promotion](../controls/qualified-artifact-promotion.md). Its roles, thresholds, and infrastructure are illustrative local choices, not facts about the source repository.[^lessons]
 
 ## Factory profile
 
@@ -80,6 +80,6 @@ Completion requires applicable integration and delivery gates plus destination v
 
 The three selected controls do not establish evaluator protection, verifier qualification, artifact promotion, duplicate prevention, safe rollback, or information protection. Additional definitions are available for [protected acceptance](../controls/protected-acceptance.md), [verifier qualification](../controls/verifier-qualification.md), [assessment evidence validity](../controls/assessment-evidence-validity.md), [artifact promotion](../controls/qualified-artifact-promotion.md), [reconciliation](../controls/reconcile-before-retry.md), and [data-preserving migration](../controls/data-preserving-migration.md). Evaluate their applicability before adopting them; they have no proposed implementation or passing assessment merely because this example links to them.
 
-Use the [restart and handoff guide](../restart-and-handoff-records.md) for interruption records and inspect the [individual control collection](../software-factory-learnings.md#individually-selectable-controls) for ownership, cancellation, limits, and guidance requirements. Information protection and context-specific recovery still need local design. Enforced boundary tests and representative operational evidence remain necessary.
+Use the [restart and handoff guide](../restart-and-handoff-records.md) for interruption records and inspect the [delivery lifecycle](../guides/factory-delivery-lifecycle.md) for ownership, cancellation, limits, and guidance requirements. Information protection and context-specific recovery still need local design. Enforced boundary tests and representative operational evidence remain necessary.
 
-[^lessons]: [Lessons from Software Factory](../software-factory-learnings.md), with pinned upstream sources and evidence limits.
+[^lessons]: Pinned Software Factory artifact promotion guidance; this fictional application has not been assessed.

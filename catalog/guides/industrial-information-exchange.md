@@ -23,7 +23,7 @@ sources:
 
 # Plan industrial information exchange and integration evidence
 
-[Research map](../open-group-standards-opportunities.md) · [Ontology](../ontology.md)
+[Ontology](../ontology.md)
 
 ## Sources and applicability
 

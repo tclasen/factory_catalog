@@ -39,11 +39,13 @@ sources:
 
 # AI research sources: Model platforms
 
-[Research method and priorities](../ai-leaders-research.md) · [Adoption](../adoption.md)
+Contributor research: use this material to develop controls and task-focused guides. It is outside the distributed OKF bundle; consult current control requirements before reuse.
+
+[Research method and priorities](ai-leaders-research.md) · [Adoption](../../catalog/adoption.md)
 
 ## How to use these sources
 
-This is an annotated selection from the 100-entry research set, inspected on **2026-09-28 (America/Los_Angeles)**. Choose a source for the problem in its entry, inspect its stated limits, then apply the linked catalog guidance. Order is thematic, not a rank. The [research method](../ai-leaders-research.md#selection-and-review-method) defines review depth and selection limits.
+This is an annotated selection from the 100-entry research set, inspected on **2026-09-28 (America/Los_Angeles)**. Choose a source for the problem in its entry, inspect its stated limits, then apply the linked catalog guidance. Order is thematic, not a rank. The [research method](ai-leaders-research.md#selection-and-review-method) defines review depth and selection limits.
 
 “Learning” summarizes the cited material; “Catalog use” is our interpretation. Links indicate supporting material or applicability, not endorsement, adoption, or a successful assessment. Papers are credited to the named contributor and coauthors; company/team material is not assumed to have been personally written by a leader. Historical material remains dated evidence, and mutable documentation must be rechecked before implementation.
 
@@ -53,7 +55,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Separates fixed workflows from agents that choose actions; recommends increasing complexity only when evaluation supports the tradeoff.[^anthropic]
 
-**Catalog use — apply:** Use its patterns as comparison candidates; vendor experience does not prove a local benefit. Use [task configuration selection](../controls/task-configuration-selection.md).
+**Catalog use — apply:** Use its patterns as comparison candidates; vendor experience does not prove a local benefit. Use [task configuration selection](../../catalog/controls/task-configuration-selection.md).
 
 ## OpenAI
 
@@ -61,7 +63,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Organizes agent design around model decisions, tools, instructions, failure handling, and human handoff.[^openai]
 
-**Catalog use — apply:** Test permissions and the stop/handoff path independently of output quality. Use [bounded external action](../controls/bounded-external-action.md).
+**Catalog use — apply:** Test permissions and the stop/handoff path independently of output quality. Use [bounded external action](../../catalog/controls/bounded-external-action.md).
 
 ## Google
 
@@ -69,7 +71,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Emphasizes simple baselines and robust pipelines before adding model complexity.[^google]
 
-**Catalog use — apply:** Record a baseline and infrastructure failures before attributing gains to a model. Use [measured process improvement](../controls/measured-process-improvement.md).
+**Catalog use — apply:** Record a baseline and infrastructure failures before attributing gains to a model. Use [measured process improvement](../../catalog/controls/measured-process-improvement.md).
 
 ## Microsoft
 
@@ -77,7 +79,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Compares direct calls, a single agent, workflows, and multiple agents with coordination costs.[^microsoft]
 
-**Catalog use — apply:** Choose a pattern from task dependencies and measured outcomes. Use [planning consistency](../controls/planning-consistency.md).
+**Catalog use — apply:** Choose a pattern from task dependencies and measured outcomes. Use [planning consistency](../../catalog/controls/planning-consistency.md).
 
 ## Meta
 
@@ -85,7 +87,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Documents benchmark prompts, shot counts, output parsing, and generation limits for Llama 3.1.[^meta]
 
-**Catalog use — apply:** Preserve evaluation settings; a benchmark score alone cannot select a factory configuration. Use [assessment evidence validity](../controls/assessment-evidence-validity.md).
+**Catalog use — apply:** Preserve evaluation settings; a benchmark score alone cannot select a factory configuration. Use [assessment evidence validity](../../catalog/controls/assessment-evidence-validity.md).
 
 ## Amazon Web Services
 
@@ -93,7 +95,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Links model operation to data quality, monitoring, and lifecycle improvement.[^amazon-web-services]
 
-**Catalog use — apply:** Translate broad architecture advice into owned service objectives and recovery evidence. Use [data product service objectives](../controls/data-product-service-objectives.md).
+**Catalog use — apply:** Translate broad architecture advice into owned service objectives and recovery evidence. Use [data product service objectives](../../catalog/controls/data-product-service-objectives.md).
 
 ## IBM
 
@@ -101,7 +103,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Discusses oversight, stakeholders, data risks, and lifecycle governance.[^ibm]
 
-**Catalog use — apply:** Use as an intake checklist; broad governance claims do not establish compliance or effectiveness. Use [decision rights and accountability](../controls/decision-rights-and-accountability.md).
+**Catalog use — apply:** Use as an intake checklist; broad governance claims do not establish compliance or effectiveness. Use [decision rights and accountability](../../catalog/controls/decision-rights-and-accountability.md).
 
 ## Cohere
 
@@ -109,7 +111,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Demonstrates generating answers from supplied documents with inline citations.[^cohere]
 
-**Catalog use — apply:** Check whether each citation supports its claim and whether the source is authorized and current. Use [evidence traceability](../controls/evidence-traceability.md).
+**Catalog use — apply:** Check whether each citation supports its claim and whether the source is authorized and current. Use [evidence traceability](../../catalog/controls/evidence-traceability.md).
 
 ## Mistral AI
 
@@ -117,7 +119,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Introduces agents that plan, use tools, and collaborate to pursue goals.[^mistral-ai]
 
-**Catalog use — apply:** Translate capabilities into an explicit tool inventory and scoped grants before use. Use [tool and dependency admission](../controls/tool-and-dependency-admission.md).
+**Catalog use — apply:** Translate capabilities into an explicit tool inventory and scoped grants before use. Use [tool and dependency admission](../../catalog/controls/tool-and-dependency-admission.md).
 
 ## DeepSeek
 
@@ -125,7 +127,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Describes reinforcement learning, cold-start data, distillation, and observed failure modes such as repetition.[^deepseek]
 
-**Catalog use — apply:** Reassess smaller or distilled models on local tasks; release benchmarks remain supplier reports. Use [task configuration selection](../controls/task-configuration-selection.md).
+**Catalog use — apply:** Reassess smaller or distilled models on local tasks; release benchmarks remain supplier reports. Use [task configuration selection](../../catalog/controls/task-configuration-selection.md).
 
 [^anthropic]: [Building Effective AI Agents \ Anthropic](https://www.anthropic.com/engineering/building-effective-agents).
 [^openai]: [A practical guide to building agents | OpenAI](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/).

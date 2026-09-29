@@ -50,7 +50,9 @@ sources:
 
 # Lessons from Software Factory
 
-[Catalog](index.md) · [Ontology](ontology.md) · [Adoption](adoption.md) · [Software delivery example](factories/software-delivery.md)
+Contributor research: use this material to develop controls and task-focused guides. It is outside the distributed OKF bundle; consult current control requirements before reuse.
+
+[Catalog](../../catalog/index.md) · [Ontology](../../catalog/ontology.md) · [Adoption](../../catalog/adoption.md) · [Software delivery example](../../catalog/factories/software-delivery.md)
 
 ## Source and scope
 
@@ -64,43 +66,43 @@ The applications below are catalog interpretations of that guidance. They use th
 
 The source separates reusable procedures from project scope, acceptance criteria, and authority. It sizes planning to the next useful increment and treats missing permission as a block on the dependent action.[^planning][^governance]
 
-**Apply:** In the [factory description](adoption.md#describe-the-factory), connect each activity to its outcome, accountable actor, constraints, and authority. Keep local settings in the implementation record. A copied procedure or available credential does not expand a grant. [Bounded external action](controls/bounded-external-action.md) supplies the existing requirement for enforcing external authority; instructions alone cannot implement it.
+**Apply:** In the [factory description](../../catalog/adoption.md#describe-the-factory), connect each activity to its outcome, accountable actor, constraints, and authority. Keep local settings in the implementation record. A copied procedure or available credential does not expand a grant. [Bounded external action](../../catalog/controls/bounded-external-action.md) supplies the existing requirement for enforcing external authority; instructions alone cannot implement it.
 
 ### 2. Verify the beneficiary's observable result
 
 Verification is selected from accepted outcomes, affected boundaries, and consequences. The source distinguishes failed, blocked, and unrun checks and requires evidence to match the candidate and relevant configuration.[^verification]
 
-**Apply:** Use [outcome verification](controls/outcome-verification.md) to separate an artifact's acceptance from the intended benefit. For an export feature, producing a file is artifact behavior; the beneficiary completing the intended reporting task is a separate outcome. Declare the measure and observation period first. A missing required tool leaves the check blocked, not passed. These check execution states are recorded in evidence; they do not replace the catalog's assessment-result vocabulary.
+**Apply:** Use [outcome verification](../../catalog/controls/outcome-verification.md) to separate an artifact's acceptance from the intended benefit. For an export feature, producing a file is artifact behavior; the beneficiary completing the intended reporting task is a separate outcome. Declare the measure and observation period first. A missing required tool leaves the check blocked, not passed. These check execution states are recorded in evidence; they do not replace the catalog's assessment-result vocabulary.
 
 ### 3. Test the evaluator and protect consequential acceptance
 
 The source calls for valid alternatives and plausible wrong candidates when qualifying a verifier. Its protected-acceptance profile places criteria and fixtures outside the implementer's effective write scope when consequences or host rules require it. A second agent sharing mutable tests is insufficient.[^verifiers][^acceptance]
 
-**Apply:** Treat the evaluator as a dependency of an assessment. Check both false acceptance and false rejection, including a convincing success report accompanying wrong output. [Evidence traceability](controls/evidence-traceability.md) makes supporting records inspectable; it does not itself enforce evaluator independence. Record the actual protection mechanism and its bypass paths before claiming independence.
+**Apply:** Treat the evaluator as a dependency of an assessment. Check both false acceptance and false rejection, including a convincing success report accompanying wrong output. [Evidence traceability](../../catalog/controls/evidence-traceability.md) makes supporting records inspectable; it does not itself enforce evaluator independence. Record the actual protection mechanism and its bypass paths before claiming independence.
 
 ### 4. Carry evidence with the artifact it qualifies
 
 The source records immutable artifact identity and build inputs, checks the object actually installed, and reopens affected qualification after a rebuild or relevant configuration change.[^promotion]
 
-**Apply:** Connect an assessment to the artifact revision it evaluated and connect publication to the destination artifact. For documents, compare the approved content and attachments; for software, compare the package digest or complete file set. [Bounded external action](controls/bounded-external-action.md) checks authority and any action-specific approval. Artifact matching is an additional release mechanism, and successful upload alone does not establish it.
+**Apply:** Connect an assessment to the artifact revision it evaluated and connect publication to the destination artifact. For documents, compare the approved content and attachments; for software, compare the package digest or complete file set. [Bounded external action](../../catalog/controls/bounded-external-action.md) checks authority and any action-specific approval. Artifact matching is an additional release mechanism, and successful upload alone does not establish it.
 
 ### 5. Reconcile uncertain effects before retrying
 
 The source's restart record retains intent, ownership, revisions, obligations, cumulative limits, and external operation identity/status. Resumption checks actual local and recipient state. A saved checkpoint neither restarts an agent nor guarantees a single external effect.[^resumption]
 
-**Apply:** Distinguish a failed request from an unknown effect. After a lost publication response, query the destination before resubmitting. Preserve attempts and limits across handoffs. [Bounded external action](controls/bounded-external-action.md) still governs permission; duplicate prevention and recovery need the separately selected controls below. If the recipient cannot resolve uncertainty, block the retry and record the missing evidence.
+**Apply:** Distinguish a failed request from an unknown effect. After a lost publication response, query the destination before resubmitting. Preserve attempts and limits across handoffs. [Bounded external action](../../catalog/controls/bounded-external-action.md) still governs permission; duplicate prevention and recovery need the separately selected controls below. If the recipient cannot resolve uncertainty, block the retry and record the missing evidence.
 
 ### 6. Retrieve by the next action, retain unfinished obligations
 
 The source uses task triggers and exit conditions to select relevant guidance. Completed procedures become evidence pointers; pending effects, limits, failures, and recovery duties remain visible. Missing required guidance blocks dependent work while other work can continue.[^context]
 
-**Apply:** Scan the catalog's concept files or use its generated complete indexes to select controls based on [context](control-families.md#context-questions-that-change-control-selection). Selection must still discover every applicable requirement. For a routing change, review a routine correction, a consequential migration, a missing reference, and a stage transition. Link reachability demonstrates discoverability, not correct selection or lower context use.
+**Apply:** Scan the catalog's concept files or use its generated complete indexes to select controls based on [context](../../catalog/control-families.md#context-questions-that-change-control-selection). Selection must still discover every applicable requirement. For a routing change, review a routine correction, a consequential migration, a missing reference, and a stage transition. Link reachability demonstrates discoverability, not correct selection or lower context use.
 
 ### 7. Improve the process through bounded comparisons
 
 The source preserves baseline and treatment, fixed acceptance criteria, task context, failures, review effort, and resource measurements. It keeps project corrections in their canonical owner and requires authority for shared instruction changes.[^measurement][^instructions]
 
-**Apply:** Use [outcome verification](controls/outcome-verification.md) for improvement claims and [evidence traceability](controls/evidence-traceability.md) for their support. Compare representative tasks under declared limits; keep unknown telemetry explicit. A faster run that fails required acceptance does not establish an improvement. Record a keep, revise, or revert decision and a reconsideration trigger. Generalize a local lesson only after checking whether its assumptions transfer.
+**Apply:** Use [outcome verification](../../catalog/controls/outcome-verification.md) for improvement claims and [evidence traceability](../../catalog/controls/evidence-traceability.md) for their support. Compare representative tasks under declared limits; keep unknown telemetry explicit. A faster run that fails required acceptance does not establish an improvement. Record a keep, revise, or revert decision and a reconsideration trigger. Generalize a local lesson only after checking whether its assumptions transfer.
 
 ## What the source evidence supports
 
@@ -120,22 +122,22 @@ These definitions separate mechanisms that can succeed or fail independently. Se
 
 | Control | Distinct responsibility |
 |---|---|
-| [Verifier qualification](controls/verifier-qualification.md) | Establish whether an evaluator accepts valid alternatives and detects plausible failures |
-| [Protected acceptance](controls/protected-acceptance.md) | Prevent the producer from changing consequential acceptance |
-| [Assessment evidence validity](controls/assessment-evidence-validity.md) | Bind results to inputs and invalidate affected claims after changes |
-| [Reconcile before retry](controls/reconcile-before-retry.md) | Resolve uncertain recipient effects before another mutation |
-| [Durable work handoff](controls/durable-work-handoff.md) | Preserve intent, state, limits, and unfinished obligations across sessions |
-| [Cumulative execution limits](controls/cumulative-execution-limits.md) | Prevent retries or handoffs from creating a new allowance |
-| [Qualified artifact promotion](controls/qualified-artifact-promotion.md) | Verify the delivered object matches the qualified candidate |
-| [Measured process improvement](controls/measured-process-improvement.md) | Keep quality, failures, effort, and uncertainty visible in adoption decisions |
-| [Exclusive mutation ownership](controls/exclusive-mutation-ownership.md) | Reject conflicting or stale writers at shared mutation boundaries |
-| [Cancellation enforcement](controls/cancellation-enforcement.md) | Stop new effects and prevent stale events from reopening cancelled intent |
-| [Data-preserving migration](controls/data-preserving-migration.md) | Preserve acknowledged data and supported consumers through transition and recovery |
-| [Required guidance selection](controls/required-guidance-selection.md) | Find triggered requirements before dependent work and retain open obligations |
+| [Verifier qualification](../../catalog/controls/verifier-qualification.md) | Establish whether an evaluator accepts valid alternatives and detects plausible failures |
+| [Protected acceptance](../../catalog/controls/protected-acceptance.md) | Prevent the producer from changing consequential acceptance |
+| [Assessment evidence validity](../../catalog/controls/assessment-evidence-validity.md) | Bind results to inputs and invalidate affected claims after changes |
+| [Reconcile before retry](../../catalog/controls/reconcile-before-retry.md) | Resolve uncertain recipient effects before another mutation |
+| [Durable work handoff](../../catalog/controls/durable-work-handoff.md) | Preserve intent, state, limits, and unfinished obligations across sessions |
+| [Cumulative execution limits](../../catalog/controls/cumulative-execution-limits.md) | Prevent retries or handoffs from creating a new allowance |
+| [Qualified artifact promotion](../../catalog/controls/qualified-artifact-promotion.md) | Verify the delivered object matches the qualified candidate |
+| [Measured process improvement](../../catalog/controls/measured-process-improvement.md) | Keep quality, failures, effort, and uncertainty visible in adoption decisions |
+| [Exclusive mutation ownership](../../catalog/controls/exclusive-mutation-ownership.md) | Reject conflicting or stale writers at shared mutation boundaries |
+| [Cancellation enforcement](../../catalog/controls/cancellation-enforcement.md) | Stop new effects and prevent stale events from reopening cancelled intent |
+| [Data-preserving migration](../../catalog/controls/data-preserving-migration.md) | Preserve acknowledged data and supported consumers through transition and recovery |
+| [Required guidance selection](../../catalog/controls/required-guidance-selection.md) | Find triggered requirements before dependent work and retain open obligations |
 
-Use [assessment evidence records](assessment-evidence-records.md), [restart and handoff records](restart-and-handoff-records.md), and [process experiment records](process-experiment-records.md) as local implementation aids. These guides reuse existing document types and do not impose a new frontmatter schema on run records.
+Use [assessment evidence records](../../catalog/assessment-evidence-records.md), [restart and handoff records](../../catalog/restart-and-handoff-records.md), and [process experiment records](../../catalog/process-experiment-records.md) as local implementation aids. These guides reuse existing document types and do not impose a new frontmatter schema on run records.
 
-The [software delivery example](factories/software-delivery.md) illustrates application and remaining implementation gaps. Baseline approval is a separate owner decision.
+The [software delivery example](../../catalog/factories/software-delivery.md) illustrates application and remaining implementation gaps. Baseline approval is a separate owner decision.
 
 [^overview]: [Software Factory overview](https://github.com/tclasen/software-factory/blob/0a429827a595712ce1fa3069528565c72da2a549/README.md).
 [^planning]: [Requirements and planning](https://github.com/tclasen/software-factory/blob/0a429827a595712ce1fa3069528565c72da2a549/skills/software-factory/references/policies/planning.md).

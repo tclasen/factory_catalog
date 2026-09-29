@@ -20,7 +20,7 @@ sources:
 
 # Factory delivery lifecycle
 
-[Factory decomposition](../semantic-search-factory-decomposition.md) · [Software delivery example](../factories/software-delivery.md)
+[Software delivery example](../factories/software-delivery.md)
 
 ## Purpose and scope
 

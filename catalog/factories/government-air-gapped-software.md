@@ -5,7 +5,7 @@ description: "A government contract develops sensitive software in low-side and 
 status: draft
 example: true
 domain: "Government software delivery"
-work_types: [design-and-specification, software-and-computational-development, evaluation-and-assurance, monitoring-and-operational-response]
+activities: ["import approved dependencies", "build and test offline", "review a release", "transfer approved artifacts"]
 tags: [government, air-gap, security, auditability]
 control_selections:
   - control: ../controls/approved-data-processing.md

@@ -6,7 +6,7 @@ status: draft
 tags: [data-mesh, scientific-research, public-services]
 example: true
 domain: "Environmental research and regional planning"
-work_types: [research-and-discovery, knowledge-organization-and-stewardship, analysis-and-diagnosis, evaluation-and-assurance, monitoring-and-operational-response]
+activities: ["publish producer observations", "reconcile units and coverage", "combine authorized data products", "assess regional evidence"]
 control_selections:
   - control: ../controls/data-product-accountability.md
     applicability: applicable
@@ -56,7 +56,7 @@ control_selections:
 
 # Example: regional water evidence network
 
-[Data mesh research](../data-mesh-architectures.md) · [Product records](../data-product-records.md) · [Adoption](../adoption.md)
+[Data product design](../guides/data-product-design.md) · [Product records](../data-product-records.md) · [Adoption](../adoption.md)
 
 **Fictional design; all implementations proposed; no assessments performed.** This example supports environmental analysis. It does not authorize public health decisions or establish scientific or regulatory adequacy.
 
