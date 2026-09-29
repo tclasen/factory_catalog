@@ -48,7 +48,7 @@ Classwork's intake procedure checks the exact edition, source identity, suitabil
 
 **Application:** use [evidence traceability](../../catalog/controls/evidence-traceability.md) to keep a compact intake record: source revision, claim, supporting location, existing concept, proposed change, and unresolved conflict. Link a source when storing a copy is unnecessary. If retaining an artifact, check redistribution rights and integrity first. A citation to a secondary summary supports what that summary says; it does not establish independent verification of its primary sources.
 
-**Review fixture:** supply two editions with a changed material claim and one conflicting source. Check that the draft identifies the edition actually used, preserves the conflict, and qualifies the conclusion. Withhold acceptance if it silently combines editions or hides contrary evidence. The [research example](../../catalog/factories/research.md#source-intake-extension) applies this to a comparison memo.
+**Review fixture:** supply two editions with a changed material claim and one conflicting source. Check that the draft identifies the edition actually used, preserves the conflict, and qualifies the conclusion. Withhold acceptance if it silently combines editions or hides contrary evidence. The [unfinished research proposal](../proposals/research-source-edition-conflicts.md) preserves this possible comparison-memo application; its fixture has not been run.
 
 ## 2. Reconcile canonical concepts and explain relationships
 

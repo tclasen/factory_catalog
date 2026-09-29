@@ -12,7 +12,7 @@ control_selections:
     implementation_state: proposed
     assessment_result: not-assessed
   - control: ../controls/bounded-external-action.md
-    applicability: not-applicable
+    applicability: undetermined
     implementation_state: not-planned
     assessment_result: not-assessed
   - control: ../controls/outcome-verification.md
@@ -48,21 +48,15 @@ control_selections:
 |---|---|---|
 | Agent turns a vendor assertion into an unsupported comparative claim | [Evidence traceability](../controls/evidence-traceability.md) | Applicable: every material comparison goes in a claim table reviewed by the research lead |
 | A polished memo omits a criterion the team needs | [Outcome verification](../controls/outcome-verification.md) | Applicable: decision owner checks criterion coverage and explicit unknowns |
-| Publishing or committing on the team's behalf | [Bounded external action](../controls/bounded-external-action.md) | Not applicable to the stated design's publication/commitment scope: no such execution path is included; tool inventory must confirm this before operation |
+| Publishing or committing on the team's behalf | [Bounded external action](../controls/bounded-external-action.md) | Undetermined: the fictional design intends to exclude these actions, but no tool-path inventory is supplied to establish that exclusion |
 
-Reading the web still creates network requests. The exclusion above does not cover all network security: restrict the read tool's capability, prevent sensitive query leakage, and treat page instructions as untrusted input. If an action-capable browser or connector is introduced, reassess external-action applicability before use.
+Reading the web still creates network requests. The stated exclusion concerns publishing and commitment actions, not all network security: restrict the read tool's capability, prevent sensitive query leakage, and treat page instructions as untrusted input. The bounded external-action applicability remains undetermined until an inventory confirms whether any tool or alternate path can perform those actions. Reassess when tools or permissions change.
 
 ## Assessment plan and evidence
 
 Run the evidence control's negative cases on a fixture memo. Then ask the decision owner to inspect coverage against the original brief. Retain the brief revision, source table, memo revision, review findings, coverage result, and dispositions.
 
-Evidence traceability and outcome verification have implementation state **proposed**. Bounded external action is **not-planned** because the stated design excludes its execution paths. All three selections have assessment result **not-assessed**. The proposed external-action exclusion is an assumption requiring inventory evidence; if that cannot be obtained, record applicability as **undetermined**.
-
-## Source intake extension
-
-Proposed application of the [source integration procedure](../guides/knowledge-source-integration.md): before drafting, the research agent records each source's exact revision or access time, relevant passage, and whether the comparison is directly supported or inferred. The research lead records whether new evidence confirms, qualifies, or conflicts with the existing comparison. Keep unresolved conflicts visible to the decision owner.
-
-Add a fixture with two source editions that disagree on one product capability. Expected behavior: identify the edition used, retain both observations and their context, and qualify the comparison until the conflict is resolved. Silent edition mixing or an unsupported definitive recommendation fails this proposed check. Retain the intake table, draft revision, and reviewer disposition. This fixture has not been run.
+Evidence traceability and outcome verification have implementation state **proposed**. Bounded external action is **not-planned**, with applicability **undetermined** because no tool-path inventory is provided. All three selections have assessment result **not-assessed**.
 
 ## Remaining gaps and reassessment
 
