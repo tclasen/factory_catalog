@@ -80,6 +80,10 @@ Before submitting, run `./scripts/check_catalog.py --github`. CI runs this same 
 
 The generated bundle includes the repository LICENSE unchanged, control maturity and family labels, and a complete family view. These are derived from files and metadata; authors do not maintain an inventory.
 
+Whitespace checks cover the full tracked working tree, including committed content in a clean or shallow CI checkout, plus staged and unstaged changes. The full-tree scan excludes only `vendor/okf/SPEC.md` and `vendor/okf/LICENSE.md`, whose upstream whitespace must remain unchanged. Stage new files before running the final check so Git includes them. No base branch or network fetch is needed for this scan.
+
+Generated links encode special characters in filenames, and coverage checks decode those links. Per pinned OKF §5.4, a missing lifecycle status is displayed as `stable`. The standalone advisory reviewer validates its input before inspecting prose; malformed metadata fails with validation diagnostics.
+
 `review_catalog.py` emits advisory findings for similar control titles within a family, blanket readiness claims alongside drafts, selected blanket implementation claims inconsistent with metadata, and proposal/pending wording around PR links. `--github` uses authenticated, read-only `gh api` calls to check this repository's referenced PR states. Offline mode and failed live lookups explicitly report that state was not checked. Warnings do not fail CI: title similarity cannot establish duplication, and a merged PR can still be discussed legitimately. Arbitrary prose contradictions, evidence quality, control effectiveness, and policy decisions still need human review. These heuristics are deliberately narrow and are not a complete semantic audit.
 
 Individual checks and review requirements:

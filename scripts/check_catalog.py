@@ -11,6 +11,27 @@ import subprocess
 import sys
 
 
+def check_whitespace(root: Path) -> int:
+    """Check the tracked working tree, including errors already committed in CI."""
+    empty_tree = subprocess.run(["git", "hash-object", "-w", "-t", "tree", "--stdin"],
+                                input="", capture_output=True, text=True, cwd=root)
+    if empty_tree.returncode:
+        print(empty_tree.stderr, file=sys.stderr, end="")
+        return empty_tree.returncode
+    commands = [
+        # These pinned upstream files contain whitespace that must be preserved.
+        ["git", "diff", "--check", empty_tree.stdout.strip(), "--", ".",
+         ":(exclude)vendor/okf/SPEC.md", ":(exclude)vendor/okf/LICENSE.md"],
+        ["git", "diff", "--check"],
+        ["git", "diff", "--cached", "--check"],
+    ]
+    for command in commands:
+        result = subprocess.run(command, cwd=root)
+        if result.returncode:
+            return result.returncode
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--github", action="store_true", help="also check live PR states (requires gh authentication)")
@@ -21,12 +42,13 @@ def main() -> int:
     )]
     if args.github:
         commands[-1].append("--github")
-    commands.append(["git", "diff", "--check"])
-    commands.append(["git", "diff", "--cached", "--check"])
     for command in commands:
         result = subprocess.run(command, cwd=root)
         if result.returncode:
             return result.returncode
+    result = check_whitespace(root)
+    if result:
+        return result
     print("PASS: all blocking catalog checks.")
     return 0
 
