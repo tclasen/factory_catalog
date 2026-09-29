@@ -14,7 +14,7 @@ sources:
 
 # Optional dispatcher and lead handoff
 
-[Delivery lifecycle](factory-delivery-lifecycle.md) · [Work record](factory-work-record.md)
+[Delivery lifecycle](factory-delivery-lifecycle.md) · [Restart and handoff records](../restart-and-handoff-records.md)
 
 ## Applicability and source boundary
 
