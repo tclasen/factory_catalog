@@ -6,7 +6,7 @@ Follow [CONTRIBUTING.md](CONTRIBUTING.md) for the shared human and AI contributi
 
 ## Catalog scope
 
-Read [knowledge work types](docs/work-types.md) before proposing bundle content. The catalog serves all listed knowledge work, including human procedures and non-software factories. Keep contributor research in `docs/research/`. Bundle concepts must provide a selectable control or a concrete procedure, record, scenario, or example needed to design, implement, or assess a factory. Decompose useful findings into those concepts and retain their source attribution; do not add source surveys or contribution proposals to the bundle.
+Read [knowledge work types](docs/work-types.md) before proposing bundle content; this catalog serves human and AI knowledge work across domains. Apply the [bundle admission rules](CONTRIBUTING.md#bundle-admission-rules) and [research decomposition procedure](CONTRIBUTING.md#turn-research-into-usable-content) before creating or expanding concepts. Search existing requirements and assessments first, keep source surveys in contributor research, and explain the adopter task and distinct contribution in the PR. A request to research a source does not make the source summary suitable bundle content. Follow the [bundle sufficiency rules](CONTRIBUTING.md#keep-the-adopters-bundle-sufficient-and-focused) so consumers do not depend on contributor documentation.
 
 ## Work as an active maintainer
 

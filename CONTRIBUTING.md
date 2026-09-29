@@ -21,6 +21,39 @@ This workflow applies to human and AI contributors. Read [README.md](README.md) 
 
 ## 3. Author the contribution
 
+### Bundle admission rules
+
+The product is a reusable control catalog. Every bundle concept must help an adopter select, understand, implement, compose, or assess controls for a concrete factory decision. Apply these rules before adding or expanding content; a valid OKF document is not automatically suitable catalog content.
+
+| Content | Home and admission rule |
+|---|---|
+| Reusable requirement | `catalog/controls/`: independently selectable, with a distinct failure or outcome boundary and an assessable requirement |
+| Implementation or assessment procedure, record, risk scenario, or example | `catalog/`: identify the adopter's task, the controls it supports, and the usable procedure, record fields, or observable assessment it adds |
+| Shared definitions and control families | Existing ontology and taxonomy: add only what actual controls or consumers need; explain the requirement for a schema change |
+| Source surveys, literature reviews, organization/person lists, source-by-source lessons, candidate ideas | `docs/research/`: contributor inputs, with sources and evidence limits; extract usable content before publishing it in the bundle |
+| Knowledge-work vocabulary | `docs/work-types.md`: contributor scope guidance; never a required lookup for a distributed bundle |
+| Contribution policy, design discussion, change history | Repository guidance and the relevant issue/PR; keep maintenance narratives outside the bundle |
+
+**Choose by meaning, not file type.** Calling a survey a Guide, marking it draft, or renaming it after a task does not satisfy admission. Supporting content must do useful work beyond summarizing a source or listing links. Keep source attribution and relevant evidence limits with the resulting control or procedure; those are part of its basis, not research clutter.
+
+### Turn research into usable content
+
+1. Read [knowledge work types](docs/work-types.md) and identify the beneficiary, activity, decision, and failure being addressed. Consider human procedures and non-software settings. A specialized control can remain domain-specific; do not generalize beyond its evidence or create an example for every work type.
+2. Search the current concept files, requirements, assessments, and incoming links for existing coverage. Compare meanings and failure cases, not just titles. Reuse an existing control; extend it when the same requirement needs clarification; create another only when it addresses a separately selectable and assessable concern. Record the boundary in the PR.
+3. Decompose findings by the adopter's task. Put normative requirements and their pass/fail criteria in controls. Use supporting guides for mechanisms, composition, records, and worked assessments. A guide must not silently add mandatory conditions to a linked control; change that control explicitly or propose a separate one.
+4. Preserve exact source revisions where available, attribution, reviewed scope, and uncertainty. A source recommendation, draft definition, or successful repository check is not evidence that a local implementation works. Keep unsupported proposals in research or an issue until a useful requirement or procedure can be stated.
+5. For moved or removed material, identify useful requirements, procedures, examples, and provenance before deleting it. Incorporate distinct useful content, link existing coverage, or explain why it is deferred or unnecessary. Record that disposition in the PR, without adding a permanent migration map or shared inventory to the bundle.
+
+A research request authorizes the requested research; it does not make every finding a bundle addition. Deliver research in its appropriate home and publish only the usable concepts within the authorized scope. Do not copy an entire source framework, taxonomy, or actor directory into the catalog.
+
+### Keep the adopter's bundle sufficient and focused
+
+- The distributed bundle must work without `docs/`, repository instructions, research surveys, or an external work-type taxonomy. Keep operational definitions and required procedures inside it. External primary sources may substantiate a requirement; identify any source access actually needed to implement or assess it.
+- Factory examples describe actual work in free-text `activities`, following the [record schema](catalog/ontology.md#document-types-and-metadata). Do not restore `work_types` vocabulary references or copy the contributor taxonomy into the bundle.
+- Keep an example only when it teaches a distinct selection, implementation, composition, or assessment decision. Prefer a focused section or fixture over another full factory profile when it communicates the same lesson. Examples stay optional and must distinguish invented design from observed results.
+- Keep the ontology limited to meanings and records used by controls and their consumers. Families organize existing requirements; they do not establish coverage or require a control for every category. Avoid speculative schema expansion.
+- Apply the same admission test to edits and research imports as to new files. Remove obsolete duplication when replacing guidance, repair affected references, and preserve adoption provenance under the rules below. Do not add historical stubs solely to keep removed research inside the bundle.
+
 ### Parallel contributions
 
 Use one topic branch and a separate checkout or worktree per agent. Never share a mutable checkout between concurrent tasks. Start independent branches from the default branch; use an explicit dependency when one PR needs another's content.
@@ -62,7 +95,7 @@ Write scripts in Python with a `#!/usr/bin/env -S uv run --script` shebang and a
 
 ### Write useful controls
 
-Read [knowledge work types](docs/work-types.md) to preserve coverage beyond software. Keep source surveys and candidate backlogs in `docs/research/`; publish their usable requirements, implementation guidance, or assessment procedures in the bundle with source attribution. Supporting concepts must serve a concrete factory design, implementation, or assessment decision.
+Apply the [bundle admission rules](#bundle-admission-rules) and [research decomposition procedure](#turn-research-into-usable-content) before authoring a control or supporting concept.
 
 Each control should have a stable identity and family, a clear purpose, applicability guidance, implementation instructions, measurable expected outcomes, and an assessment with evidence and pass/fail criteria. Follow the [catalog ontology](catalog/ontology.md) and [control families](catalog/control-families.md). Make dependencies and limitations explicit.
 
@@ -103,6 +136,9 @@ Generated links encode special characters in filenames, and coverage checks deco
 Individual checks and review requirements:
 
 - Review the complete diff for accuracy, clarity, scope, and consistency; run `git diff --check`.
+- For bundle content, state in the PR the adopter task, why existing content is insufficient, and the contribution's distinct requirement or practical support. For removals or moves, include the useful-content disposition. Scale this explanation to the change; do not maintain another registry.
+- Review admission separately from automated validity: check for source-oriented surveys, duplicated requirements, hidden requirements in guides, unnecessary examples, external contributor-document dependencies, and speculative schema. Resolve these findings before submission; passing checks do not waive the admission rules.
+- For repository guidance or research changes, check affected local links and heading anchors outside `catalog/` as well; the bundle validator does not cover them.
 - Check changed links, references, and examples. For bundle changes, validate against the pinned specification and ensure the generated indexes cover the concepts present.
 - Run `./scripts/validate_catalog.py` for bundle or schema changes. It uses `uv` script mode with inline PyYAML and Markdown parser dependencies to check OKF structure, catalog metadata and local links; passing it does not establish control effectiveness. Source indexes are curated and do not require exhaustive coverage.
 - Run `./scripts/build_catalog.py` and `./scripts/test_validate_catalog.py` for bundle or tooling changes. The build checks complete index coverage in its generated output. The regression suite checks independent additions, generated discovery, and validation failures.

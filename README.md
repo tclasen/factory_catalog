@@ -10,6 +10,8 @@ See the [catalog version](catalog/VERSION) and [baseline status](CONTRIBUTING.md
 
 The goal is to provide a prioritized selection of reusable controls for building a knowledge-work factory. Adopt the controls your work needs and compose them into a system.
 
+The bundle is organized around the adopter's decisions. Supporting content earns its place by helping someone select, implement, or assess controls. Research surveys and contributor vocabulary live outside the bundle; useful findings become controls or practical guidance with their provenance retained. Contributions follow the [bundle admission rules](CONTRIBUTING.md#bundle-admission-rules).
+
 ## Catalog format
 
 The catalog is an OKF bundle under `catalog/`, targeting Open Knowledge Format (OKF) **0.2**; this is separate from the [catalog version](catalog/VERSION). The [vendored specification](vendor/okf/SPEC.md) and [upstream provenance](vendor/okf/UPSTREAM.md) pin the format used here.
