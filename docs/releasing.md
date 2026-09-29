@@ -21,13 +21,16 @@ Use the [consumer contract](../catalog/consumer-contract.md) to review compatibi
 Automation checks structural compatibility and reports normative text changes for
 review; it cannot decide whether two requirements mean the same thing.
 
-Use the [walkthrough protocols](release-walkthroughs.md) and
-[draft release notes](release-notes-draft.md). Record three candidate-bound walkthroughs: a human-only non-software task, a human
-working with an agent on repository maintenance, and a programmatic consumer.
-Together cover by-reference and copied adoption, cross-control dependencies,
-missing evidence, failed criteria, unavailable dependencies, and interrupted
-handoff. An agent-authored paper exercise cannot stand in for observed human
-participation. Keep missing observations open and retain failures and corrections.
+Use the [candidate adoption exercises](release-walkthroughs.md) and
+[draft release notes](release-notes-draft.md). Record candidate-bound evidence
+from a programmatic consumer and an autonomous agent-only task simulation.
+Together they should cover by-reference and copied adoption, cross-control
+dependencies, missing evidence, failed criteria, unavailable dependencies, and
+interrupted handoff. These exercises support a scoped assessment of machine
+consumption and scenario execution; they do not establish empirical human
+usability or control effectiveness. Live human adoption sessions are not a 1.0
+release gate. State clearly when they were not performed, and do not describe
+human usability as validated.
 
 ## Check and package
 
