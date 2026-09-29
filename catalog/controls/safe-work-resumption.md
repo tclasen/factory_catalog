@@ -7,17 +7,17 @@ family: workflow-and-coordination
 sources:
   - id: policies-execution
     resource: https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md
-    title: "Ownership, execution and recovery"
+    title: "Previously cited: Ownership, execution and recovery (unavailable at pinned revision)"
   - id: templates-work-item
     resource: https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/templates/work-item.md
-    title: "Work-item template"
+    title: "Previously cited: Work-item template (unavailable at pinned revision)"
 ---
 
 # Safe work resumption
 
 [Adoption](../adoption.md) · [Delivery lifecycle](../guides/factory-delivery-lifecycle.md)
 
-Draft requirement adapted from the source factory policies.[^policies-execution][^templates-work-item] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
+Draft requirement authored for this catalog. The earlier draft cited semantic_search sources that returned HTTP 404 at their pinned revisions when checked on 2026-09-29; their contents could not be reviewed and are not asserted as support.[^policies-execution][^templates-work-item] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 
 ## Purpose and applicability
 
@@ -60,5 +60,5 @@ This control checks whether actual state permits work to resume. [Durable work h
 
 Requires process or access visibility. Use [reconcile before retry](reconcile-before-retry.md) for uncertain effects and [bounded execution](bounded-execution.md) for limits. A record supports recovery but is not an enforcement mechanism or scheduler.
 
-[^policies-execution]: [Ownership, execution and recovery](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md).
-[^templates-work-item]: [Work-item template](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/templates/work-item.md).
+[^policies-execution]: Previously cited as [Ownership, execution and recovery](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md); the exact pinned URL returned HTTP 404 on 2026-09-29 and was not reviewed.
+[^templates-work-item]: Previously cited as [Work-item template](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/templates/work-item.md); the exact pinned URL returned HTTP 404 on 2026-09-29 and was not reviewed.
