@@ -82,7 +82,7 @@ Durability requires additional design. Temporal, for example, resumes workflow e
 
 ### Plugins: distribution and capability composition
 
-OpenAI describes plugins that contain skills, MCP tools, or combinations, with optional UI and lifecycle hooks. Capabilities can be surface-specific. Its MCP server role includes tool schemas, authentication and authorization requirements, structured results, and independently operated server behavior.[^plugins]
+OpenAI describes plugins that can package skills and an MCP server that exposes tools, with lifecycle hooks and optional UI. Capabilities can be surface-specific. The MCP server defines tool schemas, authentication and authorization requirements, and structured results, and can be operated independently of the installed package.[^plugins]
 
 A plugin is useful when multiple users need the same tested components or when a factory needs authenticated service access. Evaluate each component separately: procedural guidance, executable logic, remote service, credentials, and any UI. Record both the installed package revision and the service/API configuration; pinning a local package does not freeze a remote server.
 
@@ -92,7 +92,7 @@ The MCP security guidance forbids token passthrough without proper audience vali
 
 | Primary research | Finding in the inspected version | Limits for factory design |
 |---|---|---|
-| Gloaguen et al., AGENTS.md evaluation | Across the evaluated agents, generated context files slightly reduced task success; developer-written files gave a small average improvement, while context files increased cost and exploration | AGENTbench includes 138 tasks from 12 repositories, supplemented by SWE-bench Lite; evaluation is heavily Python-focused and does not establish security or performance for every instruction design.[^context-effectiveness] |
+| Gloaguen et al., AGENTS.md evaluation | In v2, generated context files had no statistically significant effect on resolution rates and raised inference costs by 20% on SWE-Bench Lite and 23% on CTXBench; developer-provided files improved average resolution by 2.4% (not statistically significant, p = .21) and also increased steps and cost | CTXBench includes 138 Python tasks from 12 repositories, alongside SWE-Bench Lite; the evaluation uses four agent/model settings and does not establish security or performance for every instruction design.[^context-effectiveness] |
 | Lulla et al., AGENTS.md efficiency | On 124 PR tasks from 10 repositories, instructions were associated with 28.64% lower median runtime and 16.58% fewer median output tokens | Full semantic correctness was outside scope; a manual sanity check on 50 tasks checked for nontrivial work. Faster termination is not proof of equivalent correctness.[^context-efficiency] |
 
 These findings address different tasks, instruction sets, agent configurations, and measures. They do not establish a universal winner or justify removing required instructions. Our inference is to retain necessary policy, minimize redundant guidance, and measure each proposed change against an unchanged baseline. Separate outcome quality, compliance, runtime, token use, and human rework.
@@ -146,6 +146,6 @@ Assess [protected acceptance](controls/protected-acceptance.md) for evaluator in
 [^workflows]: Anthropic, Building effective agents; workflow/agent distinction and complexity trade-offs. Originally published 2024-12-19; the page notes subsequent tooling changes.
 [^replay]: Temporal Workflow Execution overview; replay and recorded event history.
 [^idempotency]: Temporal Activity Definition; retries, unreported effects, and destination-enforced idempotency.
-[^context-effectiveness]: Gloaguen et al., arXiv:2602.11988v1, sections 3–5; task resolution, costs, and limitations.
+[^context-effectiveness]: Gloaguen et al., arXiv:2602.11988v2, sections 3–5; resolution rates, costs, and limitations.
 [^context-efficiency]: Lulla et al., arXiv:2601.20404v1, sections 3.1.8 and 4; efficiency measures and correctness limitations.
 [^evals]: OpenAI, Evaluation best practices; evaluation at sources of nondeterminism.
