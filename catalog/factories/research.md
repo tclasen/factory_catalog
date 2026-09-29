@@ -57,7 +57,7 @@ Reading the web still creates network requests. The exclusion above does not cov
 
 Run the evidence control's negative cases on a fixture memo. Then ask the decision owner to inspect coverage against the original brief. Retain the brief revision, source table, memo revision, review findings, coverage result, and dispositions.
 
-Implementation state for the selected controls: **proposed**. Assessment result: **not assessed**. The proposed external-action exclusion is an assumption requiring inventory evidence; if that cannot be obtained, record applicability as **undetermined**.
+Evidence traceability and outcome verification have implementation state **proposed**. Bounded external action is **not-planned** because the stated design excludes its execution paths. All three selections have assessment result **not-assessed**. The proposed external-action exclusion is an assumption requiring inventory evidence; if that cannot be obtained, record applicability as **undetermined**.
 
 ## Source intake extension
 
