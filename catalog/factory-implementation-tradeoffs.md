@@ -4,27 +4,12 @@ title: "Factory implementation trade-offs"
 description: "Compare prose, code, skills, plugins, extensions, and external gates by their roles, costs, failure modes, and evidence."
 status: stable
 sources:
-  - id: agents-md
-    resource: https://learn.chatgpt.com/docs/agent-configuration/agents-md
-    title: "OpenAI: Custom instructions with AGENTS.md"
-  - id: skills
-    resource: https://agentskills.io/specification
-    title: "Agent Skills specification"
   - id: plugins
     resource: https://developers.openai.com/plugins/concepts/plugins
     title: "OpenAI: Plugin architecture"
   - id: mcp-security
     resource: https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices
     title: "MCP security best practices, 2025-11-25 documentation"
-  - id: hooks
-    resource: https://code.claude.com/docs/en/hooks
-    title: "Claude Code hooks reference"
-  - id: extension-host
-    resource: https://code.visualstudio.com/api/advanced-topics/extension-host
-    title: "VS Code extension host"
-  - id: workspace-trust
-    resource: https://code.visualstudio.com/api/extension-guides/workspace-trust
-    title: "VS Code Workspace Trust extension guide"
   - id: workflows
     resource: https://www.anthropic.com/engineering/building-effective-agents
     title: "Anthropic: Building effective agents"
@@ -34,18 +19,6 @@ sources:
   - id: idempotency
     resource: https://docs.temporal.io/activity-definition
     title: "Temporal Activity Definition"
-  - id: checks
-    resource: https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks
-    title: "GitHub: Troubleshooting required status checks"
-  - id: environments
-    resource: https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments
-    title: "GitHub: Deployments and environments"
-  - id: actions-security
-    resource: https://docs.github.com/en/actions/reference/security/secure-use
-    title: "GitHub Actions secure use reference"
-  - id: privileged-prs
-    resource: https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target
-    title: "GitHub: Securely using pull_request_target"
   - id: context-effectiveness
     resource: https://arxiv.org/html/2602.11988v1
     title: "Gloaguen et al.: Evaluating AGENTS.md, version 1"
@@ -63,7 +36,7 @@ sources:
 
 Choose a mechanism for each activity and control, then assess the composition. A useful starting arrangement is prose for purpose and judgment, skills for reusable procedures, deterministic code for precise operations, optional plugins or extensions for delivery and integration, and protected gates for consequential transitions. A small factory may need only a few of these.
 
-This is a design synthesis from 17 primary sources inspected on **2026-09-28**, including two version-pinned empirical papers. Product documentation establishes described behavior; it does not prove a factory's effectiveness. The research was not rerun, and no deployed factory or live security configuration was assessed. Mutable documentation should be checked against the installed product before implementation. The comparisons and recommendations below are catalog inferences; attributed findings are marked with source footnotes.
+This guide and its linked mechanism notes synthesize primary sources inspected on **2026-09-28**, including two version-pinned empirical papers. Product documentation establishes described behavior; it does not prove a factory's effectiveness. The research was not rerun, and no deployed factory or live security configuration was assessed. Mutable documentation should be checked against the installed product before implementation. The comparisons and recommendations below are catalog inferences; attributed findings are marked with source footnotes.
 
 Use the companion [implementation selection procedure](factory-implementation-selection.md) to apply the findings. This guide specializes the [ontology's Implementation, Assessment, and Evidence concepts](ontology.md#concepts) and complements the existing [Software Factory lessons](software-factory-learnings.md). It adds implementation guidance without changing control requirements or creating new ontology types.
 
@@ -97,13 +70,7 @@ The relative costs below are engineering judgments, not measured rankings. Exist
 | Extensions and hooks | Host events, inline feedback, specialized UI, tool interception | Timely feedback and access to host context | Host coupling; activation gaps; disabled or absent installation; local/remote mismatch; error semantics | Host/version matrix; real event coverage; bypass, timeout, and disabled-state tests |
 | External gates | Merge, publication, deployment, spending, acceptance transitions | Can make prerequisites mandatory across clients | Queue delay, outages, administration, false rejection; writable or optional gates; stale evidence | Valid and invalid transition attempts; effective rules, credential paths, evidence binding, observed effects |
 
-### Prose: expressive policy, variable execution
-
-Codex documents a discovery chain for `AGENTS.md`, with scope and precedence rules and a configured size limit. Merely storing instructions somewhere in a repository does not establish that a particular run loaded them.[^agents-md]
-
-Use concise prose where interpretation is useful: intended beneficiaries, acceptable trade-offs, source quality, and escalation under uncertainty. Put frequently changing project facts in authoritative records with clear references. Duplicating the same requirement in several instruction files adds reconciliation work.
-
-Prose can describe an entire human-operated factory. In an agent-operated factory it relies on the model, tools, and host to execute that description. It cannot itself remove a credential or prevent an unauthorized effect. The existing [bounded external action control](controls/bounded-external-action.md) explicitly requires enforcement at execution paths.
+For instruction loading and procedure activation, see [instruction and skill selection](guides/instruction-and-skill-selection.md). For event timing and alternate execution paths, see [extension and hook boundaries](guides/extension-and-hook-boundaries.md). For mandatory transitions and evaluator protection, see [external acceptance gates](guides/external-acceptance-gates.md).
 
 ### Code: precise operations and explicit state
 
@@ -113,14 +80,6 @@ Move stable calculations, schema rules, comparisons, and repetitive transformati
 
 Durability requires additional design. Temporal, for example, resumes workflow execution by checking generated commands against recorded event history.[^replay] Its activities may retry if a completed effect was not reported; the documentation recommends idempotency, including destination-enforced operation keys.[^idempotency] A loop with retries does not establish one intended external effect. Retain uncertainty after lost responses and reconcile destination state, as described in the [recovery lessons](semantic-search-learnings.md#4-reconcile-uncertain-effects-before-retrying).
 
-### Skills: reusable procedures with a discovery dependency
-
-The Agent Skills specification combines metadata and instructions in `SKILL.md` with optional scripts, references, and assets. It describes progressive loading from metadata to instructions to resources; its experimental `allowed-tools` support varies by implementation.[^skills]
-
-This makes a skill useful for recurring work such as evidence review or preparing a release record. Evaluate two separate questions: did the correct procedure activate, and was it executed correctly? Test explicit invocation, indirect requests, similar tasks that should not activate it, and unavailable dependencies. Packaging a validator in a skill does not make invoking it mandatory. Authority still comes from the host and service configuration.
-
-Prefer one coherent procedure over a skill containing every factory activity. A large skill can recreate the context and ambiguity costs of a large instruction file. Conversely, many tiny skills can make selection and handoffs harder. Choose the boundary through observed activation and task performance.
-
 ### Plugins: distribution and capability composition
 
 OpenAI describes plugins that contain skills, MCP tools, or combinations, with optional UI and lifecycle hooks. Capabilities can be surface-specific. Its MCP server role includes tool schemas, authentication and authorization requirements, structured results, and independently operated server behavior.[^plugins]
@@ -128,24 +87,6 @@ OpenAI describes plugins that contain skills, MCP tools, or combinations, with o
 A plugin is useful when multiple users need the same tested components or when a factory needs authenticated service access. Evaluate each component separately: procedural guidance, executable logic, remote service, credentials, and any UI. Record both the installed package revision and the service/API configuration; pinning a local package does not freeze a remote server.
 
 The MCP security guidance forbids token passthrough without proper audience validation and describes how it can bypass controls and obscure accountability.[^mcp-security] For this catalog, the inference is to enforce grants where tools execute, including alternate API paths. Installing a plugin is neither a factory-specific authority grant nor proof of an assessed control. A narrowly scoped CLI may be simpler when distribution and live service integration add no benefit.
-
-### Extensions and hooks: close to the work, limited by the host
-
-VS Code distinguishes local, remote, and browser extension hosts with different runtimes and installation locations.[^extension-host] Its Workspace Trust guide warns that hiding a command in the UI does not prevent invocation; execution must also be checked or left unregistered.[^workspace-trust]
-
-Hooks require equally precise treatment. Claude Code documents blocking behavior for `PreToolUse`, while `PostToolUse` runs after the tool has executed. It also distinguishes blocking exit codes and timeout behavior: a timed-out command hook continues through the normal permission flow.[^hooks] These are host-specific examples, not universal hook contracts.
-
-Use extensions to make the right action convenient and to expose review evidence at the point of work. A synchronous hook may reject a covered operation, but first establish event coverage, configuration protection, and failure behavior. A post-action notification can detect an unwanted effect; it cannot prevent the effect already observed. Test direct API and shell paths as well as the integrated UI. Move indispensable restrictions to a boundary that all those paths must traverse.
-
-### External gates: mandatory only with protected paths
-
-GitHub documents that required checks apply to the relevant latest revision, with head versus test-merge behavior. A conditionally skipped job can report success, whereas an entire workflow skipped by filters can leave checks pending. Merge queues need the `merge_group` trigger, and checks can be restricted to an expected GitHub App.[^checks]
-
-Environment protection applies to jobs referencing that environment. GitHub supports required reviewers, optional prevention of self-review, and configurable administrator bypass; availability depends on plan and repository visibility.[^environments]
-
-Therefore, assess the entire transition: candidate, evaluator, required result, repository rules, credentials, and destination. An Actions workflow that runs a linter is an automated check. It becomes part of an enforced merge boundary when effective repository rules require it and relevant bypasses are controlled. A merge gate does not cover direct deployment, data export, or email sent before merge.
-
-For Actions, use least-privilege job permissions, reviewed dependencies pinned to full commit SHAs, and safe handling of untrusted event data.[^actions-security] GitHub specifically warns against building or running untrusted PR code with secrets or a privileged token in `pull_request_target` workflows.[^privileged-prs] Protect the evaluator and credentials while allowing contributors to test proposed changes in an unprivileged environment. Remote execution alone does not supply that separation.
 
 ## 3. What empirical evidence does and does not establish
 
@@ -200,20 +141,11 @@ These are explanatory relationships using the [existing ontology](ontology.md#re
 
 Assess [protected acceptance](controls/protected-acceptance.md) for evaluator independence, [durable work handoff](controls/durable-work-handoff.md) for persisted execution state, [tool and dependency admission](controls/tool-and-dependency-admission.md) for supply-chain admission, and [controlled dependency change](controls/controlled-dependency-change.md) for host compatibility changes. Local mechanisms and evidence remain necessary; selecting these controls does not establish their effectiveness. Follow [adoption](adoption.md#record-the-adoption) before claiming an implementation of a catalog control.
 
-[^agents-md]: OpenAI, Custom instructions with AGENTS.md; discovery and instruction-chain behavior.
-[^skills]: Agent Skills specification; directory structure, progressive disclosure, and experimental allowed-tools field.
 [^plugins]: OpenAI, Plugin architecture; component roles and surface-specific capabilities.
 [^mcp-security]: MCP security best practices; token passthrough and trust-boundary risks.
-[^hooks]: Claude Code hooks reference; per-event decision control, exit codes, and timeouts.
-[^extension-host]: VS Code extension host; execution locations and runtime requirements.
-[^workspace-trust]: VS Code Workspace Trust extension guide; command invocation and execution checks.
 [^workflows]: Anthropic, Building effective agents; workflow/agent distinction and complexity trade-offs. Originally published 2024-12-19; the page notes subsequent tooling changes.
 [^replay]: Temporal Workflow Execution overview; replay and recorded event history.
 [^idempotency]: Temporal Activity Definition; retries, unreported effects, and destination-enforced idempotency.
-[^checks]: GitHub, Troubleshooting required status checks; revision, skipping, merge queues, and expected sources.
-[^environments]: GitHub, Deployments and environments; protected jobs, reviews, bypass, and availability limits.
-[^actions-security]: GitHub Actions secure use reference; permissions, untrusted data, and dependency pinning.
-[^privileged-prs]: GitHub, Securely using pull_request_target; privileged execution of untrusted PR content.
 [^context-effectiveness]: Gloaguen et al., arXiv:2602.11988v1, sections 3–5; task resolution, costs, and limitations.
 [^context-efficiency]: Lulla et al., arXiv:2601.20404v1, sections 3.1.8 and 4; efficiency measures and correctness limitations.
 [^evals]: OpenAI, Evaluation best practices; evaluation at sources of nondeterminism.
