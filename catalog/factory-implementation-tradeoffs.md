@@ -199,7 +199,7 @@ These are explanatory relationships using the [existing ontology](ontology.md#re
 | [Research factory](factories/research.md) | Provides a context where semantic review remains necessary | Code checks citation structure; a qualified reviewer assesses evidential support |
 | [Implementation selection](factory-implementation-selection.md) | Applies this research to a local decision | Record mechanisms, ownership, bypasses, assessment plans, and reassessment triggers |
 
-Evaluator independence, durable execution, package supply chains, and host compatibility remain local design obligations or candidates for future controls. The three linked controls do not fully specify them. Follow [adoption](adoption.md#record-the-adoption) before claiming an implementation of a catalog control.
+Assess [protected acceptance](controls/protected-acceptance.md) for evaluator independence, [durable work handoff](controls/durable-work-handoff.md) for persisted execution state, [tool and dependency admission](controls/tool-and-dependency-admission.md) for supply-chain admission, and [controlled dependency change](controls/controlled-dependency-change.md) for host compatibility changes. Local mechanisms and evidence remain necessary; selecting these controls does not establish their effectiveness. Follow [adoption](adoption.md#record-the-adoption) before claiming an implementation of a catalog control.
 
 [^agents-md]: OpenAI, Custom instructions with AGENTS.md; discovery and instruction-chain behavior.
 [^skills]: Agent Skills specification; directory structure, progressive disclosure, and experimental allowed-tools field.

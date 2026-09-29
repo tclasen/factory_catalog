@@ -55,6 +55,6 @@ Declare the implementation, revision, scope, evaluator, and applicable paths bef
 
 ## Dependencies and limitations
 
-Requires [accepted work definition](accepted-work-definition.md) and [evidence validity](evidence-validity.md). This checks completeness against declared criteria; use [outcome verification](outcome-verification.md) to judge whether those criteria demonstrate the intended benefit.
+Requires [accepted work definition](accepted-work-definition.md) and [assessment evidence validity](assessment-evidence-validity.md). This checks completeness against declared criteria; use [outcome verification](outcome-verification.md) to judge whether those criteria demonstrate the intended benefit.
 
 [^policies-verification]: [Verification and review](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/verification.md).

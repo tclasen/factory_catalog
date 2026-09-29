@@ -45,16 +45,18 @@ Mechanism: documented analysis and a review gate. An automated calculation check
 
 Expected outcome: every decision using a scoped risk estimate can inspect its basis and conditions under which the recommendation changes.
 
-Reproduce one analysis. Test a supported estimate, a comparison mixing annual and monthly exposure, and a case where a plausible input change reverses the ranking.
+Reproduce one analysis. Test a supported estimate, a comparison mixing annual and monthly exposure, and a case where a plausible input change reverses the ranking. For qualitative analysis, reproduce the rubric application and its decision rationale; numerical tolerances apply only to quantitative calculations.
 
 Declare the assessed revision, scope, evaluator, and time. A pass requires all scoped records to meet the requirement as well as the fixture results below. Any unmet mandatory requirement is a failure; missing evidence does not override an observed failure. A documented exception must not be reported as satisfying an unmet requirement.
 
-- **Pass:** the supported estimate is reproducible within a predeclared tolerance; the time mismatch blocks comparison until repaired; the reversal is disclosed and receives an explicit decision disposition.
+- **Pass:** the supported estimate is reproducible within a predeclared numerical tolerance or, for qualitative work, follows the declared rubric and rationale; the time mismatch blocks comparison until repaired; the reversal is disclosed and receives an explicit decision disposition.
 - **Fail:** an unsupported point estimate is treated as certain, incompatible quantities are ranked without adjustment, or sensitivity that changes the decision is concealed.
 - **Inconclusive:** input evidence, method, or decision records are unavailable.
 - **Evidence:** scenario, input table, model or rubric revision, reproduction result, sensitivity results, reviewer, and decision disposition.
 
 ## Dependencies and limitations
+
+Use this control for the decision-facing comparison and disposition, including qualitative estimates. [Risk estimate assumptions](risk-estimate-assumptions.md) adds quantitative reproduction and checks on unsupported treatment effects. One evidence packet can serve both assessments when each requirement is covered.
 
 Requires a competent analyst, inspectable evidence, and a decision owner. Model precision does not establish predictive accuracy. Some harms cannot be responsibly reduced to money; keep such constraints explicit. [Evidence traceability](evidence-traceability.md) supports input review. This does not implement or certify the Open FAIR methodology. Preserve adoption references using [adoption](../adoption.md).
 

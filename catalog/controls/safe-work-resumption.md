@@ -59,7 +59,9 @@ Declare the implementation, revision, scope, evaluator, and applicable paths bef
 
 ## Dependencies and limitations
 
-Requires process or access visibility. Use [reconciliation before retry](reconciliation-before-retry.md) for uncertain effects and [bounded execution](bounded-execution.md) for limits. A record supports recovery but is not an enforcement mechanism or scheduler.
+This control checks whether actual state permits work to resume. [Durable work handoff](durable-work-handoff.md) governs maintaining and transferring the record before interruption; [exclusive mutation ownership](exclusive-mutation-ownership.md) enforces the writer boundary. A maintained record alone cannot establish that a predecessor has stopped.
+
+Requires process or access visibility. Use [reconcile before retry](reconcile-before-retry.md) for uncertain effects and [bounded execution](bounded-execution.md) for limits. A record supports recovery but is not an enforcement mechanism or scheduler.
 
 [^policies-execution]: [Ownership, execution and recovery](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md).
 [^templates-work-item]: [Work-item template](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/templates/work-item.md).

@@ -33,7 +33,7 @@ Identify and pin accepted inputs; assess provenance, security, compatibility, re
 ## Implementation
 
 1. Record old/new identities, change purpose, accountable owner, and relevant source/security information.
-2. Use [planning consistency](planning-consistency.md) and [evidence validity](evidence-validity.md) to identify invalidated assumptions and checks.
+2. Use [planning consistency](planning-consistency.md) and [assessment evidence validity](assessment-evidence-validity.md) to identify invalidated assumptions and checks.
 3. Test affected behavior, including compatibility and safe recovery where state changes are possible.
 4. Activate through [verified delivery](verified-delivery.md); retain the recovery route and any justified exceptions.
 

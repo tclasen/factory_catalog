@@ -42,7 +42,7 @@ Use for a work item that needs durable review or safe handoff. Adapted from the 
 2. Update the record at meaningful state changes and before consequential effects or transfer. Reference old evidence instead of recursively copying the record's history.
 3. Keep it short enough to find pending obligations without reading the full conversation. Protect secrets and sensitive payloads through access-controlled references.
 4. Apply [safe work resumption](../controls/safe-work-resumption.md) before successor writes. Reconcile actual files, processes, grants, and remote effects; the record can be stale.
-5. Preserve [bounded execution](../controls/bounded-execution.md) counters and apply [evidence validity](../controls/evidence-validity.md). Separate incomplete, cancelled, blocked, and delivered work in prose without changing the catalog's assessment vocabulary.
+5. Preserve [bounded execution](../controls/bounded-execution.md) counters and apply [assessment evidence validity](../controls/assessment-evidence-validity.md). Separate incomplete, cancelled, blocked, and delivered work in prose without changing the catalog's assessment vocabulary.
 
 ## Review and failure handling
 

@@ -32,7 +32,7 @@ Before dependent work resumes, inventory the current planning set, propagate the
 1. Name the change owner and identify the canonical requirement and all relevant plans, including release and recovery where applicable.
 2. Inspect dependencies in both directions; update affected documents and test expectations together.
 3. Record each relevant item as updated or unaffected with a reason. Resolve disagreement through the owner of the requirement.
-4. Mark invalidated evidence and obtain fresh checks under [evidence validity](evidence-validity.md).
+4. Mark invalidated evidence and obtain fresh checks under [assessment evidence validity](assessment-evidence-validity.md).
 
 Mechanism: an owned procedure with automated checks where available; record the actual enforcement and bypass paths.
 

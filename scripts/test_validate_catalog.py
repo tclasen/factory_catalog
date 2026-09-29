@@ -109,7 +109,9 @@ class CatalogTests(unittest.TestCase):
             self.assertTrue(any("state merged" in finding for finding in reviewer.review(self.root, github=True)))
         with patch.object(reviewer.subprocess, "run", side_effect=OSError("offline")):
             self.assertTrue(any("unavailable" in finding for finding in reviewer.review(self.root, github=True)))
-        self.assertTrue(any("overlapping controls" in finding for finding in findings))
+        # The warning test must not depend on defects remaining in production content.
+        shutil.copyfile(self.control, self.control.with_name("overlapping-fixture.md"))
+        self.assertTrue(any("overlapping controls" in finding for finding in reviewer.review(self.root)))
 
     def test_missing_repository_license_blocks_build(self):
         (self.root.parent / "LICENSE").unlink()

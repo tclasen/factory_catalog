@@ -53,6 +53,8 @@ Declare the assessed revision, scope, evaluator, and time. A pass requires all s
 
 ## Dependencies and limitations
 
+This control reconciles environmental reporting coverage and comparisons across periods. [Measurement basis validation](measurement-basis-validation.md) checks input quantities, conversions, and comparability. Reuse the same ledger where it supplies the evidence required by both controls.
+
 Requires a suitable accounting method and competent domain review. No reporting-standard compliance, assurance opinion, or Open Footprint conformance follows from passing this procedure. [Information meaning agreement](information-meaning-agreement.md) governs shared definitions, [evidence traceability](evidence-traceability.md) governs claims, and [outcome verification](outcome-verification.md) governs claimed improvements. Follow [adoption](../adoption.md).
 
 ## Source basis

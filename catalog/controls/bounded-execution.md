@@ -55,6 +55,8 @@ Declare the implementation, revision, scope, evaluator, and applicable paths bef
 
 ## Dependencies and limitations
 
+This control defines the work boundary and stopping procedure. [Cumulative execution limits](cumulative-execution-limits.md) specifies durable accounting across attempts, while [workflow resource budgets](workflow-resource-budgets.md) requires enforcement across the job tree. Select the applicable scopes and reuse evidence where it satisfies each assessment.
+
 Requires observable usage or conservative time/launch proxies. Account-wide counters cannot establish task cost by themselves. Use [safe work resumption](safe-work-resumption.md); limits do not excuse a false completion claim.
 
 [^policies-execution]: [Ownership, execution and recovery](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md).

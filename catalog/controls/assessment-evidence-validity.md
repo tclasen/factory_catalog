@@ -9,6 +9,12 @@ sources:
   - id: software-factory
     resource: https://github.com/tclasen/software-factory/blob/0a429827a595712ce1fa3069528565c72da2a549/skills/software-factory/references/verification-selection.md
     title: "Software Factory: Assessment evidence validity basis"
+  - id: policies-verification
+    resource: https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/verification.md
+    title: "Verification and review"
+  - id: policies-execution
+    resource: https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md
+    title: "Ownership, execution and recovery"
 ---
 
 # Assessment evidence validity
@@ -23,21 +29,21 @@ Apply whenever an assessment result is reused, summarized, or used to permit acc
 
 ## Requirement
 
-Record the artifact, criteria, evaluator, fixtures, configuration, relevant dependencies, and observation period to which each result applies. Before reuse, compare those inputs with the current target. Invalidate results affected by changes, missing identity, or exceeded freshness conditions; rerun the required checks before relying on them. Preserve unaffected results with their original identities and times. New timestamps alone must not refresh evidence.
+Record the artifact, criteria, evaluator, fixtures, configuration, tools, relevant dependencies and environment, and observation period to which each result applies. Before reuse, compare those inputs with the current target. Invalidate results affected by changes, missing identity, or exceeded freshness conditions; rerun the required checks before relying on them. Preserve unaffected results with their original identities and times. New timestamps alone must not refresh evidence.
 
 ## Implementation
 
 1. Name the assessment owner and map each claim to the checks and inputs on which it depends.
-2. Use immutable revisions or digests where available, with a recorded retrieval time and limitation otherwise. Define freshness conditions for changing external data.
+2. Use immutable revisions or digests where available, with a recorded retrieval time and limitation otherwise. For uncommitted work, retain a tree or patch digest covering the assessed content. Define freshness conditions for changing external data.
 3. Retain execution state separately from assessment result: blocked or unrun checks cannot supply passing observations.
-4. At a proposed reuse, compare bound inputs and explain which changes affect which claims. Treat unknown material dependencies as unresolved.
-5. Run affected checks and required final integration gates. Keep earlier results inspectable and mark which claims they can no longer support.
+4. At the consuming decision, including after integration or installation, compare bound inputs and explain which changes affect which claims. Treat unknown material dependencies as unresolved.
+5. Run affected checks and required final integration gates. Keep failed attempts and coverage gaps visible. Keep earlier results inspectable and mark which claims they can no longer support.
 
 ## Expected outcome and assessment
 
 Expected outcome: every relied-on result applies to the actual target and context, and stale evidence cannot close a current gate.
 
-Use the [assessment evidence record](../assessment-evidence-records.md). Test unchanged inputs; then change the artifact, criteria, evaluator, fixture, configuration, and one relevant dependency in separate cases. Test an expired observation, a missing identity, a blocked check, and an unrelated change that does not affect the claim.
+Use the [assessment evidence record](../assessment-evidence-records.md). Test unchanged inputs; then change the artifact, criteria, evaluator, fixture, configuration, tools, the environment, and one relevant dependency in separate cases. Include an uncommitted candidate whose patch changes before acceptance. Test an expired observation, a missing identity, a blocked check, and an unrelated change that does not affect the claim.
 
 - **Pass:** unchanged and justified unaffected evidence remains usable; each affected, expired, missing, or blocked case cannot satisfy the gate until valid evidence exists; original records are retained.
 - **Fail:** stale evidence satisfies acceptance, an unrun check is reported as passed, or previous evidence is relabeled as a fresh observation. Any other unmet mandatory requirement is also a failure; missing evidence cannot override an observed failure.
@@ -50,6 +56,9 @@ Requires inspectable identities and a credible dependency map. [Evidence traceab
 
 ## Source and adoption
 
-This catalog requirement is adapted from Software Factory guidance.[^software-factory] Its assessment cases are proposed catalog procedures, not reported operational results. Before adoption by reference or copying, retain this identity, catalog version, and the exact published catalog commit URL; pin cross-control references to that same revision using the [adoption procedure](../adoption.md#record-the-adoption).
+This catalog requirement combines Software Factory guidance[^software-factory] with the semantic_search policies.[^policies-execution][^policies-verification] Its assessment cases are proposed catalog procedures, not reported operational results. Before adoption by reference or copying, retain this identity, catalog version, and the exact published catalog commit URL; pin cross-control references to that same revision using the [adoption procedure](../adoption.md#record-the-adoption).
 
 [^software-factory]: [Pinned Software Factory source](https://github.com/tclasen/software-factory/blob/0a429827a595712ce1fa3069528565c72da2a549/skills/software-factory/references/verification-selection.md).
+
+[^policies-verification]: [Verification and review](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/verification.md).
+[^policies-execution]: [Ownership, execution and recovery](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md).
