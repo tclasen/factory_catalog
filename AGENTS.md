@@ -12,7 +12,11 @@ Read [knowledge work types](docs/work-types.md) before proposing bundle content;
 
 At task start or resumption, read the [local factory binding](factory/README.md)
 and follow its workflow. Keep the task record current before consequential effects
-and handoff. Use the control selection and gaps recorded there; do not infer
+and handoff. On every start or resumption, find and read the canonical issue/PR
+from the request, linked PR, or repository open issues using the
+[tracking procedure](factory/workflow.md#the-work-record-follows-the-task).
+Before yielding, update its current checklist and verify remote readback; chat
+history and ignored checkpoints must not be the only record of unfinished work. Use the control selection and gaps recorded there; do not infer
 control effectiveness from passing repository checks.
 
 ## Work as an active maintainer
