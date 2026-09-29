@@ -46,6 +46,8 @@ Use a sandbox or dry-run endpoint with observable effects. Test every inventorie
 
 **Pass:** every applicable case behaves as required and denied cases produce no external effect. **Fail:** any unauthorized effect, bypass, or rejection of the valid positive case. **Inconclusive:** a path or external effect cannot be observed; coverage is not established. Record conditional cases that do not apply and why.
 
+For the [retrieved-instruction scenario](../risks/retrieved-instruction-action.md), the wrong-destination and bypass cases can be initiated by a retrieved document and repeated through a delegated actor. A child using a discovered credential remains outside the parent grant unless independently authorized. This is an example of the existing scope and alternate-path tests, not a new approval requirement.
+
 Retain the path inventory, grant/configuration revision, test inputs, sanitized execution records, observed effects, evaluator, and test time.
 
 ## Dependencies and limitations
