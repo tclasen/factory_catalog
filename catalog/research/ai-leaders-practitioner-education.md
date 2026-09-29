@@ -121,11 +121,11 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 ## Jason Liu
 
-**Selection basis:** Creator's structured-output project. **Review depth:** Sections.
+**Selection basis:** Structured-output project documentation. **Review depth:** Sections.
 
-**Learning:** Instructor documents schema-based extraction, validation, and retries; Liu's own site identifies him as its creator.[^jason-liu]
+**Learning:** Instructor documents schema-based extraction, validation, and retries.[^jason-liu]
 
-**Catalog use — apply:** A schema-valid value can still be wrong; test semantic content and bound retries. The linked RAG course was unavailable. Use [tool input output validation](../controls/tool-input-output-validation.md).
+**Catalog use — apply:** A schema-valid value can still be wrong; test semantic content and bound retries. Use [tool input output validation](../controls/tool-input-output-validation.md).
 
 [^chip-huyen]: [Building A Generative AI Platform](https://huyenchip.com/2024/07/25/genai-platform.html).
 [^hamel-husain]: [Your AI Product Needs Evals – Hamel’s Blog](https://hamel.dev/blog/posts/evals/).
