@@ -7,14 +7,14 @@ family: change-and-dependencies
 sources:
   - id: policies-planning
     resource: https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/planning.md
-    title: "Requirements and planning"
+    title: "Previously cited: Requirements and planning (unavailable at pinned revision)"
 ---
 
 # Planning consistency
 
 [Adoption](../adoption.md) · [Delivery lifecycle](../guides/factory-delivery-lifecycle.md)
 
-Draft requirement adapted from the source factory policies.[^policies-planning] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
+Draft requirement authored for this catalog; the previously cited source could not be reviewed.[^policies-planning] The assessment below is a catalog proposal; no local implementation or operational pass is asserted.
 
 ## Purpose and applicability
 
@@ -54,4 +54,4 @@ Declare the implementation, revision, scope, evaluator, and applicable paths bef
 
 Requires discoverable canonical plans and competent impact review. A complete-looking inventory cannot prove every dependency was found. Connect to [accepted work definition](accepted-work-definition.md).
 
-[^policies-planning]: [Requirements and planning](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/planning.md).
+[^policies-planning]: The earlier draft cited [Requirements and planning](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/planning.md). This exact pinned URL returned HTTP 404 when checked on 2026-09-29; its content could not be reviewed and is not asserted as support for this requirement. The requirement and assessment are catalog-authored synthesis pending source review.
