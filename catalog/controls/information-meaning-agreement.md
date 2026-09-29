@@ -53,6 +53,8 @@ Declare the assessed revision, scope, evaluator, and time. A pass requires all s
 
 ## Dependencies and limitations
 
+This control establishes producer/consumer agreement about intended meaning and use. [Semantic mapping validation](semantic-mapping-validation.md) tests the actual transformation, including loss and reversibility. Agreement alone does not qualify an implemented mapping; one record may support both assessments.
+
 Requires domain knowledge and access to representative data under its access rules. Agreement does not establish that records are true or that reuse is permitted. [Evidence traceability](evidence-traceability.md) addresses support for claims; [interoperability acceptance](interoperability-acceptance.md) addresses the broader exchange. Retain pinned references under [adoption](../adoption.md).
 
 ## Source basis

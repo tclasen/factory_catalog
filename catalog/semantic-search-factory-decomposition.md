@@ -59,7 +59,7 @@ This decomposition covers all 14 Markdown files in `tclasen/semantic_search/fact
 
 The folder was marked historical at [e7a16d1](https://github.com/tclasen/semantic_search/commit/e7a16d103c88c3fc4c289e708255da145e6dd739) and removed at [d0b5f56](https://github.com/tclasen/semantic_search/commit/d0b5f56414d65e3cf2746781b860080d393895ac). The pinned materials below support this decomposition; they are not the source project's current operating instructions. Unlike the earlier product-oriented guide, this guide derives its proposed nodes directly from the requested folder.
 
-**Proposal:** 17 draft controls and five supporting guides, using the existing `Control` and `Guide` types and existing control families. This source map is a sixth Guide. A node groups one selectable requirement with its implementation and assessment. File boundaries in the source are not node boundaries: execution policy yields several controls, while related requirements from several files share one node. Every proposed node has pinned sources and keyed footnotes. Operational assessments have not been run; `status: draft` records definition maturity and no `verified` event is asserted.
+**Coverage:** 17 controls (15 draft definitions and two stable definitions shared with the Software Factory synthesis) and five supporting guides, using the existing `Control` and `Guide` types and existing control families. This source map is a sixth Guide. A node groups one selectable requirement with its implementation and assessment. File boundaries in the source are not node boundaries: execution policy yields several controls, while related requirements from several files share one node. Each linked definition retains pinned sources and keyed footnotes. The shared evidence-validity and retry definitions combine both source bases. Operational assessments have not been run; lifecycle status records definition maturity, and no `verified` event is asserted.
 
 ## Proposed controls
 
@@ -67,13 +67,13 @@ The folder was marked historical at [e7a16d1](https://github.com/tclasen/semanti
 |---|---|
 | [Accepted work definition](controls/accepted-work-definition.md) | `intake-and-work-definition` |
 | [Planning consistency](controls/planning-consistency.md) | `change-and-dependencies` |
-| [Evidence validity](controls/evidence-validity.md) | `knowledge-and-evidence` |
+| [Assessment evidence validity](controls/assessment-evidence-validity.md) | `knowledge-and-evidence` |
 | [Acceptance coverage](controls/acceptance-coverage.md) | `quality-and-validation` |
 | [Local quality gates](controls/local-quality-gates.md) | `quality-and-validation` |
 | [Verified delivery](controls/verified-delivery.md) | `release-and-external-action` |
 | [Bounded execution](controls/bounded-execution.md) | `reliability-and-recovery` |
 | [Safe work resumption](controls/safe-work-resumption.md) | `workflow-and-coordination` |
-| [Reconciliation before retry](controls/reconciliation-before-retry.md) | `reliability-and-recovery` |
+| [Reconcile before retry](controls/reconcile-before-retry.md) | `reliability-and-recovery` |
 | [Isolated parallel work](controls/isolated-parallel-work.md) | `workflow-and-coordination` |
 | [Task configuration selection](controls/task-configuration-selection.md) | `workflow-and-coordination` |
 | [Instruction change control](controls/instruction-change-control.md) | `monitoring-and-improvement` |
@@ -101,9 +101,9 @@ Each row names the destination of its reusable content. Generic repeated rules a
 | `AGENTS.md`[^agents] | [Delivery lifecycle](guides/factory-delivery-lifecycle.md) composes the operating contract; [dispatcher guide](guides/factory-dispatcher-handoff.md) retains conditional role entry. This is source data, not new repository instructions. |
 | `policies/governance.md`[^policies-governance] | [Accepted work definition](controls/accepted-work-definition.md), [approved data processing](controls/approved-data-processing.md), and existing [bounded external action](controls/bounded-external-action.md); exception handling in [instruction change control](controls/instruction-change-control.md). |
 | `policies/planning.md`[^policies-planning] | [Accepted work definition](controls/accepted-work-definition.md), [planning consistency](controls/planning-consistency.md), and prerequisite-ready selection/factory-first boundaries in the [lifecycle](guides/factory-delivery-lifecycle.md). |
-| `policies/execution.md`[^policies-execution] | [Bounded execution](controls/bounded-execution.md), [safe work resumption](controls/safe-work-resumption.md), [reconciliation before retry](controls/reconciliation-before-retry.md), [isolated parallel work](controls/isolated-parallel-work.md), [task configuration selection](controls/task-configuration-selection.md), [evidence validity](controls/evidence-validity.md), plus [work record](guides/factory-work-record.md) and [dispatcher](guides/factory-dispatcher-handoff.md). |
-| `policies/verification.md`[^policies-verification] | [Acceptance coverage](controls/acceptance-coverage.md), [local quality gates](controls/local-quality-gates.md), [evidence validity](controls/evidence-validity.md); existing [evidence traceability](controls/evidence-traceability.md) and [outcome verification](controls/outcome-verification.md) retain their current meanings. |
-| `policies/delivery.md`[^policies-delivery] | [Verified delivery](controls/verified-delivery.md), [reconciliation before retry](controls/reconciliation-before-retry.md), and [verified service recovery](controls/verified-service-recovery.md). Commit style and exact authorized integration endpoint remain host choices. |
+| `policies/execution.md`[^policies-execution] | [Bounded execution](controls/bounded-execution.md), [safe work resumption](controls/safe-work-resumption.md), [reconcile before retry](controls/reconcile-before-retry.md), [isolated parallel work](controls/isolated-parallel-work.md), [task configuration selection](controls/task-configuration-selection.md), [assessment evidence validity](controls/assessment-evidence-validity.md), plus [work record](guides/factory-work-record.md) and [dispatcher](guides/factory-dispatcher-handoff.md). |
+| `policies/verification.md`[^policies-verification] | [Acceptance coverage](controls/acceptance-coverage.md), [local quality gates](controls/local-quality-gates.md), [assessment evidence validity](controls/assessment-evidence-validity.md); existing [evidence traceability](controls/evidence-traceability.md) and [outcome verification](controls/outcome-verification.md) retain their current meanings. |
+| `policies/delivery.md`[^policies-delivery] | [Verified delivery](controls/verified-delivery.md), [reconcile before retry](controls/reconcile-before-retry.md), and [verified service recovery](controls/verified-service-recovery.md). Commit style and exact authorized integration endpoint remain host choices. |
 | `policies/instructions.md`[^policies-instructions] | [Instruction change control](controls/instruction-change-control.md), with benefit assessment linked to existing [outcome verification](controls/outcome-verification.md). |
 | `workflows/lifecycle.md`[^workflows-lifecycle] | [Delivery lifecycle](guides/factory-delivery-lifecycle.md); reusable requirements link to controls instead of being repeated as a second policy. |
 | `workflows/onboarding.md`[^workflows-onboarding] | [Project binding](guides/factory-project-binding.md) and [adoption readiness](guides/factory-adoption-readiness.md); reuse known facts and ask only consequential missing questions. |

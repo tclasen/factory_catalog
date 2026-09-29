@@ -79,11 +79,11 @@ Classwork's agent loop separates a proposed action, authorization, execution, ob
 
 **Application:** compose [bounded external action](controls/bounded-external-action.md) with [outcome verification](controls/outcome-verification.md). Record the grant used, target, attempted operation, observed effect, and completion criterion. Set attempt and time limits locally. Before retrying a side effect after a timeout, determine whether it already occurred; use duplicate prevention or escalate when the result is ambiguous.
 
-**Review fixture:** in a safe test environment, simulate a timeout after an action has taken effect. Check that recovery verifies the effect or stops within its declared limit, and that it does not create a duplicate effect. Retain the action trace and disposition. This is a proposed recovery check, not a claim that the current controls completely cover retry safety.
+**Review fixture:** in a safe test environment, simulate a timeout after an action has taken effect. Check that recovery verifies the effect or stops within its declared limit, and that it does not create a duplicate effect. Retain the action trace and disposition. Use [reconcile before retry](controls/reconcile-before-retry.md) for its full retry-safety requirement and assessment, and [cumulative execution limits](controls/cumulative-execution-limits.md) for accounting across attempts. This fixture supplements those procedures and has not been executed.
 
 ## Decisions still open
 
-Graph reconciliation, learner-data handling, and bounded recovery may justify dedicated controls later. Decide that after reviewing concrete implementations, their failure cases, and overlap with existing controls. Each adopter still needs a pinned catalog revision and local assessment evidence.
+Review any remaining graph-reconciliation and learner-data gaps against concrete implementations and existing controls before proposing new definitions. Bounded recovery already has selectable retry, limit, and resumption controls; assess those scopes before adding another. Each adopter still needs a pinned catalog revision and local assessment evidence.
 
 [^intake]: [Source intake procedure](https://github.com/tclasen/classwork/blob/12d29b3ae730c565135604f027b502b87b225758/.agents/skills/okf-source-intake/SKILL.md), pinned classwork revision.
 [^synthesis]: [Knowledge synthesis procedure](https://github.com/tclasen/classwork/blob/12d29b3ae730c565135604f027b502b87b225758/.agents/skills/okf-knowledge-synthesis/SKILL.md), pinned classwork revision.
