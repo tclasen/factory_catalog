@@ -23,6 +23,8 @@ sources:
 
 A supplier-comparison worker saves a preference embedded in a shared document. A new session applies that preference without consulting the original task owner. Automatic summaries and checkpoints can carry the same contamination.
 
+The saved content may originate in [retrieved instructions](retrieved-instruction-action.md) or [compromised tool output](compromised-tool-behavior.md). Persistence adds a later-session exposure: blocking the original action does not establish that the instruction was excluded from memory or derived summaries.
+
 ## Threatened outcomes and affected parties
 
 Persistent artifacts and fair, accurate comparisons are threatened. Decision owners, users sharing state, and evaluated suppliers may be affected.
