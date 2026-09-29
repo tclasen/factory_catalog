@@ -2,9 +2,13 @@
 
 Use these procedures with the generated bundle, recording its full source commit
 and VERSION. Give participants the bundle and task brief; contributor documents
-must not supply missing adopter instructions. Record participant, date, procedure,
-observations, friction, failures, corrections, and unresolved gaps in the release
-issue. These are protocols, not completed observations or operational assessments.
+must not supply missing adopter instructions. Record participant, evaluator and
+independence, date, procedure, task brief, selections and rationale, outputs,
+observations, friction, failures and unknowns, corrections and repeats, and
+unresolved gaps in the release issue. For repository maintenance, also record
+the repository revision, human/agent roles, tools, allowed effects, isolation,
+fixture state, and cleanup. These are protocols, not completed observations or
+operational assessments.
 
 ## Human-only: a meeting recommendation
 
@@ -20,8 +24,9 @@ provenance, implement the chosen procedures, and assess the recommendation.
 Suggested starting points are [adoption](../catalog/adoption.md),
 [evidence traceability](../catalog/controls/evidence-traceability.md), and
 [outcome verification](../catalog/controls/outcome-verification.md).
-The participant makes and explains the selection; these suggestions are not a
-mandatory minimum for ordinary adoption.
+The participant makes and explains the initial selection without being shown
+these suggestions or the negative fixtures. They are facilitator references,
+not required selections for ordinary adoption.
 
 Copy one selected control with its adoption record; reference another at the same
 commit. Follow required cross-control dependencies. Declare criteria before writing.
@@ -29,28 +34,47 @@ Neither venue currently meets all established requirements: do not invent B's
 availability or reduce the headcount. The useful output can be a conditional
 recommendation and a request for missing evidence.
 
-Exercise the selected controls' negative fixtures. For evidence traceability,
-include a fabricated citation, contradictory claim (A seats 14), and unsupported
-claim missing from the claim table (B is available Tuesday). Inspect the full
-output. Record detected failures, unknowns, and acceptance decisions separately.
+After recording the initial recommendation, inspect each selected control's
+assessment and run an in-bundle negative case when one is specified. Do not invent
+a substitute fixture; record when an assessment has no executable negative case.
+For evidence traceability, if selected, include a fabricated citation,
+contradictory claim (A seats 14), and unsupported claim missing from the claim
+table (B is available Tuesday). Inspect the full output and record detected
+failures, unknowns, and acceptance decisions separately. If evidence
+traceability was not selected, record that omission and its rationale, then
+present it as a separate applicability challenge after the first recommendation;
+do not silently add it to the participant's original adoption.
+
 Ask the participant to resume from an incomplete handoff that omits B's source
-revision. Observe whether they identify and recover the missing provenance before
-claiming a completed adoption. Repeat affected steps after any documentation fix.
+revision. Do not provide the missing revision in the handoff. Observe whether the
+participant withholds completion until they recover supported provenance. Repeat
+affected steps after any documentation fix.
 
 ## Human with an agent: bounded maintenance
 
-Use a real, authorized repository-maintenance task. The human states the desired
-result and boundaries; the agent uses bundle guidance to select and implement
-controls. Record what requires human judgment, which effects are authorized, and
-how the final evidence reaches the human. Do not assume the repository's own
-contribution policy proves the catalog is sufficient for an outside adopter.
+Before the session, the human supplies a real authorized maintenance task and
+states its desired result, boundaries, and allowed effects. Record the repository
+and starting commit, the disposable worktree or copy used, the human, agent and
+evaluator roles, and the tools available. The agent uses bundle guidance to
+select and implement controls. Do not assume the repository's own contribution
+policy proves the catalog is sufficient for an outside adopter.
 
-Pin reference adoptions and at least one dependency. Introduce a safe fixture with
-an unavailable dependency and an interrupted handoff. Stop the predecessor before
-resuming; reconstruct scope, current revision, effects, and remaining authority.
-Retain an actual failed check and correction, or deliberately inject a safe failure.
-Verify that missing evidence stays unknown and failed criteria block acceptance.
-Record the human's ability to inspect the final handoff without contributor lore.
+Run the task in an isolated disposable worktree or copy. Limit effects to that
+checkout and local checks; do not push, merge, deploy, contact external parties,
+or use production data. Put failure injection and unavailable-dependency fixtures
+in a separate scratch area of that disposable checkout. Use a deliberately absent
+local fixture dependency and a safe failing check, not a disabled real service or
+broken shared branch. Record the fixture setup and remove it after the session;
+verify the shared repository and external systems were not changed.
+
+Pin reference adoptions and at least one dependency to the candidate revision.
+Create an interrupted handoff that records scope, current revision, attempted
+effects, evidence, unresolved dependency, and remaining authority. Stop the
+predecessor before resuming. Observe whether the successor agent reconstructs
+those facts and whether the human can inspect them without contributor lore.
+Retain the actual or injected failed check and correction. Verify missing evidence
+stays unknown and failed criteria block acceptance. Record the final local diff
+and cleanup disposition; do not treat isolated test effects as repository changes.
 
 ## Programmatic consumer
 
