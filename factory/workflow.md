@@ -19,7 +19,8 @@ For work spanning sessions or PRs, use one GitHub issue body as the canonical
 current checklist. Keep that parent open until every accepted criterion is
 reconciled; a merged PR completes only its bounded contribution. Use a PR body
 as the canonical record only for a single-PR task with no remaining parent scope.
-Follow the selected [catalog procedure](../catalog/guides/durable-task-tracking.md).
+Follow the [pinned catalog procedure](https://github.com/tclasen/factory_catalog/blob/5aadd9cb822fbc3c9aef68c039038f1594e42c67/catalog/guides/durable-task-tracking.md)
+recorded in the [adoption](adoption.md#composition-basis-and-maintenance).
 
 At intake, record the canonical URL in the local checkpoint and every child PR.
 Create an issue when accepted work has none and needs durable tracking. Find it
