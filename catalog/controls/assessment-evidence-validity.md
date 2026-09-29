@@ -8,12 +8,6 @@ sources:
   - id: software-factory
     resource: https://github.com/tclasen/software-factory/blob/0a429827a595712ce1fa3069528565c72da2a549/skills/software-factory/references/verification-selection.md
     title: "Software Factory: Assessment evidence validity basis"
-  - id: policies-verification
-    resource: https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/verification.md
-    title: "Verification and review"
-  - id: policies-execution
-    resource: https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md
-    title: "Ownership, execution and recovery"
 ---
 
 # Assessment evidence validity
@@ -53,9 +47,6 @@ Requires inspectable identities and a credible dependency map. [Evidence traceab
 
 ## Source and adoption
 
-This catalog requirement combines Software Factory guidance[^software-factory] with the semantic_search policies.[^policies-execution][^policies-verification] Its assessment cases are proposed catalog procedures, not reported operational results. Before adoption by reference or copying, retain this identity, catalog version, and the exact published catalog commit URL; pin cross-control references to that same revision using the [adoption procedure](../adoption.md#record-the-adoption).
+The pinned Software Factory guidance[^software-factory] supports mapping changed behavior and failure risk to selected checks and evidence, invalidating results when relevant source, configuration, dependency, fixture, or accepted-criteria inputs change, preserving unaffected results with their original identity, and rerunning affected checks and required integration gates. The input inventory, dependency map, freshness rules, and assessment cases above are catalog adaptations proposed for this control; they are not presented as requirements from that source or as reported operational results. Two previously listed `semantic_search` sources were unavailable (404) at their pinned revision and are not treated as support. Before adoption by reference or copying, retain this identity, catalog version, and the exact published catalog commit URL; pin cross-control references to that same revision using the [adoption procedure](../adoption.md#record-the-adoption).
 
 [^software-factory]: [Pinned Software Factory source](https://github.com/tclasen/software-factory/blob/0a429827a595712ce1fa3069528565c72da2a549/skills/software-factory/references/verification-selection.md).
-
-[^policies-verification]: [Verification and review](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/verification.md).
-[^policies-execution]: [Ownership, execution and recovery](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md).
