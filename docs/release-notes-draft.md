@@ -49,6 +49,30 @@ Observed pre-v1 changes relevant to the candidate:
   private source access; the private source content is not part of their support
   basis.
 
+## Compatibility classification for the held candidate
+
+The comparison point `e01f0e70604ffa8d97a9ab3f4a6fc581603d9298` is a pre-v1
+source revision, not a stable release. The exact comparison with held candidate
+`7a91dad1a8e1850d8e8baa436532696f5f1f79b2` removes 88 catalog paths and modifies
+six stable files. The 88 draft concepts remain in `docs/proposals/` and are not
+included in the candidate bundle. If removal or movement of a published concept
+path occurred after v1.0, the consumer contract classifies it as a major change.
+These removals occurred before the first stable baseline, when compatibility is
+not promised; v1.0.0 would establish the initial contract at the owner-selected
+baseline rather than claim compatibility with the pre-v1 paths.
+
+Four stable files remove optional links to deferred drafts:
+`catalog/factories/learning.md`, `catalog/factories/software-delivery.md`,
+`catalog/factory-implementation-tradeoffs.md`, and
+`catalog/guides/durable-task-tracking.md`. Their instructions remain
+self-contained. Two controls, `catalog/controls/assessment-evidence-validity.md`
+and `catalog/controls/reconcile-before-retry.md`, clarify that private source
+contents are not relied on as support; their requirements and assessment
+criteria are unchanged. The duplicate factory work-record guide was retired
+before the comparison revision. These changes do not establish an earlier
+published catalog version; pre-v1 adopters should follow the exact-commit
+migration guidance above.
+
 These are observed pre-v1 tree changes, not a promise that any earlier commit
 was compatible or published. As of 2026-09-29, the repository has no release
 tags or GitHub Releases; a prior adopter may still have used an exact checkout.
@@ -58,20 +82,36 @@ deferred, or meaningfully revised concepts, and carry accepted limitations.
 
 ## Evidence and limitations to carry into publication
 
-Link the full-catalog dispositions, programmatic consumer evidence, autonomous
-agent-only task simulation, final checks, source commit, archive checksum, and
-immutable release assets. State known source-access restrictions and unresolved
-limitations. No human walkthroughs were performed for this release; human
-usability has not been empirically validated. The repository owner removed live
-human participation from the 1.0 gate. This limitation must be visible in the
-baseline decision and final release notes. The agent simulation does not establish
-every control's operational effectiveness, exhaustive domain coverage, or fitness
-for every deployment.
+Evidence records: [catalog dispositions and content review](https://github.com/tclasen/factory_catalog/issues/48),
+[candidate adoption exercises](https://github.com/tclasen/factory_catalog/issues/49),
+and [qualification and package verification](https://github.com/tclasen/factory_catalog/issues/50).
+
+For held candidate `7a91dad1a8e1850d8e8baa436532696f5f1f79b2`, the programmatic
+consumer found 49 concepts and resolved 12 structured selections to stable
+controls. The agent-only venue scenario found A too small for 14 people and B
+conditional on supported Tuesday availability; it did not claim a booking or
+meeting outcome. Both are candidate-bound machine/scenario evidence only.
+
+At publication, link these records with the final checks, source commit, archive
+checksum, and immutable release assets. State known source-access restrictions
+and unresolved limitations. No human walkthroughs were performed for this
+release; human usability has not been empirically validated. The programmatic
+and agent-only exercises support machine-consumer and scenario review only.
+The absence of human evidence and other known limitations must be visible in the
+baseline decision and final release notes. The agent simulation does not
+establish every control's operational effectiveness, exhaustive domain coverage,
+or fitness for every deployment.
 
 ## Unresolved publication fields
 
 - Owner-approved baseline and version; final integrated source commit.
-- Final included concept dispositions and migration impacts.
+- Final included concept dispositions are recorded in #48; the held-candidate
+  pre-v1 migration classification is recorded above and in #50. Bind both to the
+  owner-approved baseline and final release commit.
+- Held-candidate archive SHA-256 is
+  `ca95706bf4f79ad35effed132b38128889caa6da5cadabe1a9c7872d63604c4b`; it is a
+  readiness artifact, not an approved baseline or release asset. Rebuild against
+  the approved final commit after the VERSION PR is integrated.
 - Candidate-bound programmatic consumer evidence and autonomous agent-only task
   simulation; repeat affected procedures if the selected candidate changes.
 - Explicit acknowledgement that no human usability sessions were performed and
