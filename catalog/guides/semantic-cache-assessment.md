@@ -7,10 +7,12 @@ tags: [retrieval, cache, privacy, assessment]
 sources:
   - id: redis-cache
     resource: https://redis.io/blog/what-is-semantic-caching/
-    title: "What is semantic caching?"
+    title: "What is semantic caching? Guide to faster, smarter LLM apps"
+    author: human:jim-allen-wallace
   - id: platform-cache
     resource: https://huyenchip.com/2024/07/25/genai-platform.html
     title: "Building A Generative AI Platform"
+    author: human:chip-huyen
 ---
 
 # Assess semantic answer caches
@@ -19,7 +21,7 @@ sources:
 
 ## Purpose and applicability
 
-Use when an application reuses a previously generated answer for an identical or similar query. Redis describes similarity-based lookup as a way to avoid repeated model calls; Huyen places caching among components that can reduce application latency.[^redis-cache][^platform-cache] Their architecture explanations motivate the assessment below. Savings and accuracy claims need local evidence.
+Use when an application reuses a previously generated answer for an identical or similar query. Redis's current article describes semantic lookup that can reuse stored responses for similar queries; Huyen's 2024 architecture post distinguishes semantic caching from prompt and exact caching and describes failure risks in the matching path.[^redis-cache][^platform-cache] These descriptions motivate the proposed assessment below; they do not establish the effectiveness of a particular cache or this assessment. Savings and accuracy claims need local evidence.
 
 This guide applies [approved data processing](../controls/approved-data-processing.md), [retrieval corpus integrity](../controls/retrieval-corpus-integrity.md), [data lineage impact](../controls/data-lineage-impact.md), and [persistent state recovery](../controls/persistent-state-recovery.md). The catalog already covers stale or poisoned cached material. The added procedure focuses on deciding whether two requests may safely share an answer.
 
@@ -75,5 +77,5 @@ The reuse contract and fixtures are catalog interpretations, not vendor requirem
 
 Retain linked control identities, catalog version from the adopted revision, and exact source commit URLs under the [adoption procedure](../adoption.md#record-the-adoption). No product-specific threshold or implementation is prescribed.
 
-[^redis-cache]: [Redis: What is semantic caching?](https://redis.io/blog/what-is-semantic-caching/).
-[^platform-cache]: [Chip Huyen: Building A Generative AI Platform](https://huyenchip.com/2024/07/25/genai-platform.html).
+[^redis-cache]: [Jim Allen Wallace, Redis: What is semantic caching? Guide to faster, smarter LLM apps](https://redis.io/blog/what-is-semantic-caching/). The page displays January 20, 2026 as its date; accessed 2026-09-29 UTC. No immutable revision or verified last-modified date was identified. This is a vendor-authored page; its performance claims are not evidence for this guide's proposed assessment.
+[^platform-cache]: [Chip Huyen: Building A Generative AI Platform](https://huyenchip.com/2024/07/25/genai-platform.html). The page displays July 25, 2024; accessed 2026-09-29 UTC. No immutable revision or verified last-modified date was identified.
