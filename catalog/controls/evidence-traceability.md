@@ -4,6 +4,7 @@ title: "Evidence traceability"
 description: "Make material factual claims and their supporting evidence inspectable."
 status: stable
 family: knowledge-and-evidence
+sources: []
 ---
 
 # Evidence traceability
@@ -42,6 +43,10 @@ Assess one declared output revision. Inspect all material claims, including thos
 - **Evidence:** assessed revision, claim table, reviewer identity, source references, negative-case results, and dispositions.
 
 For the [retrieval-poisoning scenario](../risks/retrieval-poisoning.md), use a reachable citation to an altered policy that contradicts the memo. The existing source-support check must still withhold acceptance. Successful link resolution does not satisfy the check; corpus admission is assessed separately under [retrieval corpus integrity](retrieval-corpus-integrity.md).
+
+## Source and adaptation
+
+The requirement, procedure, and assessment criteria here are authored for this catalog. No external source or adaptation is claimed; linked catalog concepts provide context and are not cited as the basis for this control. This authorship statement is not evidence of operational effectiveness, and no operational assessment is asserted.
 
 ## Dependencies and limitations
 
