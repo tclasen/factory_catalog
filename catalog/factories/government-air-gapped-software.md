@@ -72,16 +72,16 @@ control_selections:
 
 ## Two factories and their handoff
 
+Use the [air-gapped artifact transfer procedure](../guides/air-gapped-artifact-transfer.md) for packaging, admission, internal requalification, and audit continuity. The following stages specialize it for this contract.
+
 | Stage / owner | Work performed | Required gate and retained output |
 |---|---|---|
 | Scope / customer and security owners | Separate low-side requirements from sensitive local requirements; declare acceptance criteria and authority for each activity | Approved brief, handling rules, grants, and independently protected acceptance configuration |
 | Low-side development / development factory | AI agents design, implement, debug, and iterate with or without human developers | Deterministic format, lint, type, unit, integration, security, and dependency checks as applicable; bind commands, tool versions, fixtures, and results to the final source/build revision |
-| Package / low-side release owner | Assemble the files needed for offline continuation, including dependency closure and instructions | Inventory every file, digest, origin, handling label, package identity, qualification result, and transfer destination; requalify the final package after any packaging transformation |
-| Transfer / authorized custodian and receiving service | Carry the approved files through the customer's controlled media or file-transfer procedure; retain custody events | Verify authorization, media identity, signatures against locally trusted keys, file inventory and hashes; quarantine on arrival, inspect content and malware with recorded scanner versions/freshness, and admit only allowed files |
+| Package / low-side release owner | Assemble source, build recipes, offline dependencies, tests, documentation, and revision-bound evidence | Apply [package qualification](../guides/air-gapped-artifact-transfer.md#package-and-admit) to the software distributable |
+| Transfer and admission / authorized custodian and receiving service | Carry the package through the customer-approved procedure | Apply [custody, quarantine, and admission gates](../guides/air-gapped-artifact-transfer.md#package-and-admit); retain receiving package identity |
 | Internal development / air-gapped factory | Import into an isolated workspace; adapt code to sensitive interfaces, implement local features, and debug against approved internal fixtures, with or without human developers | Rebuild with admitted tools and dependencies; run deterministic checks again plus sensitive integration and access-control tests; every internal edit or relevant configuration change creates a new candidate requiring affected qualification |
 | Internal acceptance and release / acceptance owner and release operator | Evaluate the internal candidate against protected criteria, authorize deployment, and observe the pilot | Independent acceptance verdict, separate release grant, destination artifact/configuration verification, and customer outcome evidence |
-
-Admission does not execute imported scripts, notebooks, model files, or agent instructions automatically. Treat imported content as untrusted until the permitted execution scope is established. Hash equality proves correspondence to the manifest, not benign behavior. Missing tools, stale security evidence outside the agreed freshness policy, skipped required checks, or uncertain destination identity block the affected stage.
 
 ## Human participation, autonomy, and authority
 
@@ -89,7 +89,7 @@ Each factory may use human-assisted development, unattended AI development, or a
 
 Agents may edit their assigned workspace and run admitted tools. They cannot change acceptance criteria, signing trust, security policy, transfer permissions, or deployment grants. A separate acceptance service evaluates candidates without exposing its credentials to candidate code. Neither a human review nor an AI review replaces required deterministic checks; those checks also cannot establish every security property or customer outcome.
 
-There is no automatic return path from the air-gapped factory. Code, logs, screenshots, prompts, crash dumps, and derived test results remain inside unless a separately authorized release process approves the exact content and destination. Any permitted low-side follow-up begins with that approved material in a fresh context. Transfer media are handled under the customer's rules before any reuse; a returning device is also a potential disclosure route.
+Apply the [separate return-transfer procedure](../guides/air-gapped-artifact-transfer.md#separately-authorize-return-transfers) to code, logs, screenshots, prompts, crash dumps, and derived test results; they remain inside unless the exact content and destination are approved.
 
 ## Selected controls and proposed implementation
 
@@ -110,9 +110,7 @@ All selections are applicable, proposed, and not assessed. The delivery lead own
 
 ## Audit and assessment plan
 
-Retain a causal record from contract requirement through low-side revision, package, custody events, admission, internal changes, internal build, verdict, and deployed artifact. Include actor/service identity, grants, policy/configuration revisions, model/tool versions, executed actions, deterministic check results, exceptions, and destination observations. Preserve permitted prompts and outputs only when needed under the handling policy; private model reasoning is not required. Link protected records with opaque identifiers when descriptive metadata is itself sensitive.
-
-Evidence stays in approved storage on its originating side, with only approved evidence included in the inbound package. The internal audit record links both stages without exporting sensitive records. Define retention, authorized auditor access, integrity protection, causal ordering when clocks differ, and an owner for missing records. In this design, loss of required audit recording stops transfer, acceptance, and release until evidence continuity is restored and the affected work is reassessed.
+Apply [audit continuity](../guides/air-gapped-artifact-transfer.md#preserve-audit-continuity) from the contract requirement through the low-side revision, package, internal code changes and build, acceptance verdict, and deployed artifact. Link customer scenario observations to that internal release.
 
 Run every selected control's assessment before claiming effectiveness. Add these integrated cases using synthetic sensitive fixtures:
 
