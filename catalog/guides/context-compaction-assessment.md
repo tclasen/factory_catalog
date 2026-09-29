@@ -22,8 +22,8 @@ Use when a continuing workflow compresses or replaces its context. Apply [durabl
 
 1. Inventory authoritative scope, grants, acceptance criteria, source references, late corrections, completed work, remaining obligations, resource totals, and unresolved external effects before compression.
 2. Store authoritative records outside the summary. Mark summaries as derived artifacts with source revisions. Recover canonical material before dependent action when a summary is insufficient; recheck current grants and state.
-3. Compare an uncompressed run with repeated compression on the same authorized task and criteria. Include a late correction, unresolved external effect, omitted constraint, and completed action that must not be repeated.
-4. Inspect the next decisions and actual effects. Test absent canonical records: dependent work must stop with a recovery condition while independent authorized work may proceed.
+3. Compare an uncompressed run with repeated compression on the same task and criteria. For any task that can create external or irreversible effects, run each comparison in an isolated, resettable fixture with synthetic data or mock destinations that cannot reach production. Verify the fixture is reset between runs. Include a late correction, unresolved external effect, omitted constraint, and completed action that must not be repeated; represent external effects in the fixture rather than repeating live mutations.
+4. Inspect the next decisions and observed fixture effects. Test absent canonical records: dependent work must stop with a recovery condition while independent authorized work may proceed. Assess production behavior separately, and only under applicable authority with a predeclared method that avoids duplicating effects.
 5. Retain all runs, preserved/missing items, reacquisition calls, review effort, latency, and total cost. Report performance changes only under [measured process improvement](../controls/measured-process-improvement.md).
 
 ## Assessment
