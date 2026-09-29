@@ -29,7 +29,7 @@ Preserve a durable record of accepted scope, authority, ownership, revisions, un
 
 ## Implementation
 
-1. Use the [work record guide](../guides/factory-work-record.md) and retain sensitive evidence through protected references.
+1. Use the project's existing record and follow [restart and handoff records](../restart-and-handoff-records.md); retain sensitive evidence through protected references.
 2. Stop or fence predecessor processes and descendants; a lease timestamp, branch, or written generation is insufficient proof.
 3. Inspect current files, processes, destination state, and grants before accepting the handoff.
 4. When a packet is missing, reconstruct from the original request and observable state after safe stop; mark unrecoverable inputs unknown. Preserve cancellation as cancellation.

@@ -14,7 +14,7 @@ sources:
 
 # Assess context preservation
 
-[Adoption](../adoption.md) · [Work record](factory-work-record.md)
+[Adoption](../adoption.md) · [Restart and handoff records](../restart-and-handoff-records.md) · [Task tracking](durable-task-tracking.md)
 
 ## Procedure
 
