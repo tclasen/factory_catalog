@@ -55,4 +55,6 @@ Declare the implementation, revision, scope, evaluator, and applicable paths bef
 
 Requires trustworthy comparable evidence where available; model rankings and prices change. This control does not prescribe a model or grant authority to override runtime settings. Use [bounded execution](bounded-execution.md) for resource ceilings.
 
+When measured savings or other comparative benefits justify adopting a configuration change, [measured process improvement](measured-process-improvement.md) describes comparison design and cost/quality accounting. Task configuration selection also supports a provisional assignment-level choice with disclosed uncertainty; it does not require a benchmark campaign.
+
 [^policies-execution]: [Ownership, execution and recovery](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md).

@@ -20,6 +20,8 @@ sources:
 
 A single research request spawns child searches that each consume what they assume is an independent budget. Concurrent calls and delayed metering allow spending to continue after the parent stops.
 
+[Retrieved instructions](retrieved-instruction-action.md) can initiate this scenario if a worker passes malicious requests for repeated work to child actors. Faulty delegation can also exhaust resources without an adversary, so the budget assessment covers aggregate consumption regardless of how the work began.
+
 ## Threatened outcomes and affected parties
 
 Service availability, operating budgets, and timely useful work are threatened. The job owner and other users of shared capacity may be affected.

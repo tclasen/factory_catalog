@@ -20,6 +20,8 @@ sources:
 
 A contract factory retrieves an altered policy as authority for an obsolete approval rule. Ingestion access, stale caches, or missing source review allow the altered revision to influence the output.
 
+This scenario concerns a corrupted factual or policy basis for a decision. [Retrieved instructions inducing an action](retrieved-instruction-action.md) concern the worker treating retrieved content as permission to act. One document can carry both false claims and malicious instructions; assess the evidence and action boundaries separately.
+
 ## Threatened outcomes and affected parties
 
 Corpus integrity, factual claims, and authorized contracting outcomes are threatened. Reviewers, signatories, and counterparties may be affected.
