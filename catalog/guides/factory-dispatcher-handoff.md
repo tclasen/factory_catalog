@@ -51,5 +51,7 @@ Walk normal completion, same-task continuation, exhausted allowance, a lost retu
 
 These checks assess a proposed procedure. A written role split does not technically isolate credentials, processes, or authority and has not been operationally qualified here.
 
+The cited execution and readiness pages support the bounded dispatcher arrangement and recovery boundary described above. The catalog-control mapping and this return-state walkthrough are proposed catalog synthesis; the sources do not qualify a host runtime or establish that its roles are isolated.
+
 [^policies-execution]: [Ownership, execution and recovery](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md).
 [^readiness]: [Adoption and framework readiness](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/readiness.md).
