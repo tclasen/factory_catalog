@@ -55,7 +55,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Recommends representative human-labeled queries, difficult cases, and continued updates as usage changes.[^databricks]
 
-**Catalog use — guide:** Use distinct development and acceptance sets; choose sample sizes for the decision rather than copying a vendor minimum. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Use distinct development and acceptance sets; choose sample sizes for the decision rather than copying a vendor minimum. Use [agent evaluation coverage](../proposals/guides/agent-evaluation-coverage.md).
 
 ## Snowflake
 
@@ -79,7 +79,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Separates ingestion of local data from retrieval and generation to address knowledge and freshness gaps.[^mongodb]
 
-**Catalog use — apply:** Trace changes from source documents to embeddings, retrieved evidence, and answers. Use [data lineage impact](../../catalog/controls/data-lineage-impact.md).
+**Catalog use — apply:** Trace changes from source documents to embeddings, retrieved evidence, and answers. Use [data lineage impact](../proposals/controls/data-lineage-impact.md).
 
 ## Elastic
 
@@ -95,7 +95,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Connects knowledge-graph construction, queries, and graph-based retrieval to application examples.[^neo4j]
 
-**Catalog use — apply:** Check extracted entity identities and relationship meaning before using generated graph edges as evidence. Use [semantic mapping validation](../../catalog/controls/semantic-mapping-validation.md).
+**Catalog use — apply:** Check extracted entity identities and relationship meaning before using generated graph edges as evidence. Use [semantic mapping validation](../proposals/controls/semantic-mapping-validation.md).
 
 ## Pinecone
 
@@ -111,7 +111,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Separates indexing, retrieval, and generation; discusses model-assisted evaluation.[^weaviate]
 
-**Catalog use — guide:** Calibrate judges and preserve component failures instead of relying on one aggregate score. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Calibrate judges and preserve component failures instead of relying on one aggregate score. Use [agent evaluation coverage](../proposals/guides/agent-evaluation-coverage.md).
 
 ## Qdrant
 
@@ -119,7 +119,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Distinguishes relevance to user intent from approximate-neighbor recall and end-to-end answer quality.[^qdrant]
 
-**Catalog use — guide:** Use independently labeled query/document pairs and report rare query classes. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Use independently labeled query/document pairs and report rare query classes. Use [agent evaluation coverage](../proposals/guides/agent-evaluation-coverage.md).
 
 ## Redis
 
@@ -127,7 +127,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Reuses answers for similar queries to reduce repeated model work.[^redis]
 
-**Catalog use — guide:** Similarity alone cannot establish authorization, freshness, or answer equivalence. Use [semantic cache assessment](../../catalog/guides/semantic-cache-assessment.md).
+**Catalog use — guide:** Similarity alone cannot establish authorization, freshness, or answer equivalence. Use [semantic cache assessment](../proposals/guides/semantic-cache-assessment.md).
 
 [^databricks]: [Define “quality”: Evaluation sets | Databricks on AWS](https://docs.databricks.com/aws/en/agents/tutorials/ai-cookbook/evaluate-define-quality).
 [^snowflake]: [Cortex Search | Snowflake Documentation](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview).

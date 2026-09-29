@@ -55,7 +55,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Replays conversation history and evaluates subsequent turns against expected behavior.[^salesforce]
 
-**Catalog use — guide:** Include corrections and topic switches, and inspect actual tool effects alongside answers. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Include corrections and topic switches, and inspect actual tool effects alongside answers. Use [agent evaluation coverage](../proposals/guides/agent-evaluation-coverage.md).
 
 ## ServiceNow
 
@@ -63,7 +63,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Describes an inventory of AI assets linked to owners, services, runtime monitoring, and business value.[^servicenow]
 
-**Catalog use — apply:** Treat inventory as an implementation input; advertised complete visibility requires local testing. Use [decision rights and accountability](../../catalog/controls/decision-rights-and-accountability.md).
+**Catalog use — apply:** Treat inventory as an implementation input; advertised complete visibility requires local testing. Use [decision rights and accountability](../proposals/controls/decision-rights-and-accountability.md).
 
 ## SAP
 
@@ -71,7 +71,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Organizes responsible AI around ethics, security, compliance, and governance responsibilities.[^sap]
 
-**Catalog use — apply:** Map actual data flows and owners; principles alone cannot enforce processing restrictions. Use [approved data processing](../../catalog/controls/approved-data-processing.md).
+**Catalog use — apply:** Map actual data flows and owners; principles alone cannot enforce processing restrictions. Use [approved data processing](../proposals/controls/approved-data-processing.md).
 
 ## Oracle
 
@@ -95,7 +95,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Combines shop-floor, enterprise, and unstructured data with role-specific interfaces.[^abb]
 
-**Catalog use — apply:** Validate units, asset identity, and domain meaning before acting on combined data. Use [context translation contracts](../../catalog/controls/context-translation-contracts.md).
+**Catalog use — apply:** Validate units, asset identity, and domain meaning before acting on combined data. Use [context translation contracts](../proposals/controls/context-translation-contracts.md).
 
 ## Palantir
 
@@ -103,7 +103,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Connects agents and workflows to an ontology, evaluation tools, security, and audit infrastructure.[^palantir]
 
-**Catalog use — apply:** Model object relationships and permissions explicitly; importing a platform does not validate local semantics. Use [domain model boundaries](../../catalog/controls/domain-model-boundaries.md).
+**Catalog use — apply:** Model object relationships and permissions explicitly; importing a platform does not validate local semantics. Use [domain model boundaries](../proposals/controls/domain-model-boundaries.md).
 
 ## UiPath
 

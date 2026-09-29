@@ -55,7 +55,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Distinguishes thread checkpoints from durable cross-thread stores and warns that in-memory checkpoints disappear on restart.[^langchain]
 
-**Catalog use — apply:** Test resumed behavior and persistent state, including unresolved external effects. Use [safe work resumption](../../catalog/controls/safe-work-resumption.md).
+**Catalog use — apply:** Test resumed behavior and persistent state, including unresolved external effects. Use [safe work resumption](../proposals/controls/safe-work-resumption.md).
 
 ## LlamaIndex
 
@@ -63,7 +63,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Distinguishes response correctness, faithfulness, semantic similarity, and retrieval quality.[^llamaindex]
 
-**Catalog use — guide:** Choose metrics by failure mode and qualify model judges against human labels. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Choose metrics by failure mode and qualify model judges against human labels. Use [agent evaluation coverage](../proposals/guides/agent-evaluation-coverage.md).
 
 ## Arize AI
 
@@ -87,7 +87,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Describes health checks, recovery, upgrades, and structured deployment configuration.[^anyscale]
 
-**Catalog use — apply:** Test failure recovery against a pinned serving configuration. Use [verified service recovery](../../catalog/controls/verified-service-recovery.md).
+**Catalog use — apply:** Test failure recovery against a pinned serving configuration. Use [verified service recovery](../proposals/controls/verified-service-recovery.md).
 
 ## Modal
 
@@ -95,7 +95,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Separates cold-start queue delay from initialization work on the first invocation.[^modal]
 
-**Catalog use — guide:** Measure cold and warm workloads separately; a warm average can hide user-visible delays. Use [ai factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md).
+**Catalog use — guide:** Measure cold and warm workloads separately; a warm average can hide user-visible delays. Use [ai factory workload qualification](../proposals/guides/ai-factory-workload-qualification.md).
 
 ## Baseten
 
@@ -103,7 +103,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Discusses jointly optimizing latency, throughput, quality, cost, functionality, and deployment efficiency.[^baseten]
 
-**Catalog use — guide:** Use a comparable workload and quality floor before calling one serving stack better. Use [ai factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md).
+**Catalog use — guide:** Use a comparable workload and quality floor before calling one serving stack better. Use [ai factory workload qualification](../proposals/guides/ai-factory-workload-qualification.md).
 
 ## Together AI
 
@@ -119,7 +119,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Distinguishes server-acknowledged requests from client-observed timeouts and network failures.[^fireworks-ai]
 
-**Catalog use — guide:** Reconcile client and server counts, retries, and failures before calculating reliability. Use [ai factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md).
+**Catalog use — guide:** Reconcile client and server counts, retries, and failures before calculating reliability. Use [ai factory workload qualification](../proposals/guides/ai-factory-workload-qualification.md).
 
 ## Unstructured
 
@@ -127,7 +127,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Uses document structure and metadata to form chunks, including title and page boundaries.[^unstructured]
 
-**Catalog use — apply:** Test extraction/chunking failures; the inspected endpoint is legacy, so verify current APIs separately. Use [data lineage impact](../../catalog/controls/data-lineage-impact.md).
+**Catalog use — apply:** Test extraction/chunking failures; the inspected endpoint is legacy, so verify current APIs separately. Use [data lineage impact](../proposals/controls/data-lineage-impact.md).
 
 [^langchain]: [Persistence - Docs by LangChain](https://docs.langchain.com/oss/python/langgraph/persistence).
 [^llamaindex]: [Evaluating | Developer Documentation](https://developers.llamaindex.ai/python/framework/module_guides/evaluating/).

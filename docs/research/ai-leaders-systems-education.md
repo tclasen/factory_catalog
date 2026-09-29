@@ -55,7 +55,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Offers hands-on model training and deployment for people with coding experience.[^jeremy-howard]
 
-**Catalog use — apply:** Use as role training; curriculum coverage does not demonstrate operator competence. Use [accepted work definition](../../catalog/controls/accepted-work-definition.md).
+**Catalog use — apply:** Use as role training; curriculum coverage does not demonstrate operator competence. Use [accepted work definition](../proposals/controls/accepted-work-definition.md).
 
 ## Rachel Thomas
 
@@ -63,7 +63,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Uses case studies to examine consequences of choices in data and model development.[^rachel-thomas]
 
-**Catalog use — apply:** Add affected parties and escalation to design reviews; the course overview is not a compliance checklist. Use [decision rights and accountability](../../catalog/controls/decision-rights-and-accountability.md).
+**Catalog use — apply:** Add affected parties and escalation to design reviews; the course overview is not a compliance checklist. Use [decision rights and accountability](../proposals/controls/decision-rights-and-accountability.md).
 
 ## Sebastian Ruder
 
@@ -87,7 +87,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Introduces a generalist learning resource about representations and recommendation systems.[^vicki-boykis]
 
-**Catalog use — defer:** Landing page reviewed; the linked book was not audited, so no algorithm claim is adopted. Review in the context of [semantic mapping validation](../../catalog/controls/semantic-mapping-validation.md).
+**Catalog use — defer:** Landing page reviewed; the linked book was not audited, so no algorithm claim is adopted. Review in the context of [semantic mapping validation](../proposals/controls/semantic-mapping-validation.md).
 
 ## Goku Mohandas
 
@@ -95,7 +95,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Connects design, development, deployment, and iteration using software-engineering practices.[^goku-mohandas]
 
-**Catalog use — apply:** Use exercises to design checks; production implementation and test evidence remain separate. Use [controlled dependency change](../../catalog/controls/controlled-dependency-change.md).
+**Catalog use — apply:** Use exercises to design checks; production implementation and test evidence remain separate. Use [controlled dependency change](../proposals/controls/controlled-dependency-change.md).
 
 ## Harrison Chase
 
@@ -111,7 +111,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Combines question/answer examples with source context for use-case evaluation.[^jerry-liu]
 
-**Catalog use — guide:** Inspect representativeness and synthetic labels before using community datasets for acceptance. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Inspect representativeness and synthetic labels before using community datasets for acceptance. Use [agent evaluation coverage](../proposals/guides/agent-evaluation-coverage.md).
 
 ## Shreya Shankar
 
@@ -119,7 +119,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** Studies human alignment of generated evaluators and changes in criteria while reviewing outputs.[^shreya-shankar]
 
-**Catalog use — guide:** Version revised rubrics and rerun comparisons; criterion discovery must not silently change a release gate. Use [agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md).
+**Catalog use — guide:** Version revised rubrics and rerun comparisons; criterion discovery must not silently change a release gate. Use [agent evaluation coverage](../proposals/guides/agent-evaluation-coverage.md).
 
 ## Tri Dao
 
@@ -127,7 +127,7 @@ This is an annotated selection from the 100-entry research set, inspected on **2
 
 **Learning:** FlashAttention-2 studies GPU work partitioning and communication costs.[^tri-dao]
 
-**Catalog use — guide:** Abstract reviewed; kernel performance claims need whole-workload validation. Use [ai factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md).
+**Catalog use — guide:** Abstract reviewed; kernel performance claims need whole-workload validation. Use [ai factory workload qualification](../proposals/guides/ai-factory-workload-qualification.md).
 
 [^jeremy-howard]: [Practical Deep Learning for Coders - Practical Deep Learning](https://course.fast.ai/).
 [^rachel-thomas]: [Practical Deep Learning for Coders - Bonus: Data ethics](https://course.fast.ai/Lessons/lesson8a.html).

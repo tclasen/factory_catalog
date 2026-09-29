@@ -109,17 +109,17 @@ Each row links to an independently addressable OKF node. The priorities are prop
 
 | Priority | Node | Relationship and distinct contribution |
 |---|---|---|
-| First | [Data product accountability](../../catalog/controls/data-product-accountability.md) | Assigns the Actor responsible for product outcomes, support, and continuity |
-| First | [Data product contract](../../catalog/controls/data-product-contract.md) | Defines acceptance terms for shared Artifacts and their intended use |
-| First | [Data semantic interoperability](../../catalog/controls/data-semantic-interoperability.md) | Assesses mappings when Activities combine artifacts across domains |
-| First | [Federated data policy enforcement](../../catalog/controls/federated-data-policy-enforcement.md) | Checks consistent application of policy and Authority grants across routes |
-| Next | [Data product discovery](../../catalog/controls/data-product-discovery.md) | Makes products and supported distributions findable and reconciles coverage |
-| Next | [Data product service objectives](../../catalog/controls/data-product-service-objectives.md) | Connects consumer expectations to observations, breach response, and Evidence |
-| Next | [Data lineage and impact assessment](../../catalog/controls/data-lineage-impact.md) | Traces inputs, transformations, and affected consumers at specific revisions |
-| Next | [Data contract evolution](../../catalog/controls/data-contract-evolution.md) | Coordinates semantic changes, consumer transitions, and retirement |
-| Supporting guide | [Data mesh platform selection](../../catalog/data-mesh-platform-selection.md) | Helps select shared capabilities and a bounded pilot |
-| Supporting guide | [Data product records](../../catalog/data-product-records.md) | Shows how to describe ownership, interfaces, and evidence using existing concepts |
-| Application | [Regional water evidence network](../../catalog/factories/regional-water-evidence.md) | Fictional non-software example linking producers, consumers, controls, and assessments |
+| First | [Data product accountability](../proposals/controls/data-product-accountability.md) | Assigns the Actor responsible for product outcomes, support, and continuity |
+| First | [Data product contract](../proposals/controls/data-product-contract.md) | Defines acceptance terms for shared Artifacts and their intended use |
+| First | [Data semantic interoperability](../proposals/controls/data-semantic-interoperability.md) | Assesses mappings when Activities combine artifacts across domains |
+| First | [Federated data policy enforcement](../proposals/controls/federated-data-policy-enforcement.md) | Checks consistent application of policy and Authority grants across routes |
+| Next | [Data product discovery](../proposals/controls/data-product-discovery.md) | Makes products and supported distributions findable and reconciles coverage |
+| Next | [Data product service objectives](../proposals/controls/data-product-service-objectives.md) | Connects consumer expectations to observations, breach response, and Evidence |
+| Next | [Data lineage and impact assessment](../proposals/controls/data-lineage-impact.md) | Traces inputs, transformations, and affected consumers at specific revisions |
+| Next | [Data contract evolution](../proposals/controls/data-contract-evolution.md) | Coordinates semantic changes, consumer transitions, and retirement |
+| Supporting guide | [Data mesh platform selection](../proposals/data-mesh-platform-selection.md) | Helps select shared capabilities and a bounded pilot |
+| Supporting guide | [Data product records](../proposals/data-product-records.md) | Shows how to describe ownership, interfaces, and evidence using existing concepts |
+| Application | [Regional water evidence network](../proposals/factories/regional-water-evidence.md) | Fictional non-software example linking producers, consumers, controls, and assessments |
 
 These controls complement [evidence traceability](../../catalog/controls/evidence-traceability.md), which tests support for material claims; [outcome verification](../../catalog/controls/outcome-verification.md), which tests beneficiary outcomes; and [bounded external action](../../catalog/controls/bounded-external-action.md), which tests authority for specific effects. A product can pass structural checks and still be wrong, unauthorized for a use, or unhelpful. These are separate findings.
 
@@ -159,7 +159,7 @@ A small organization with few producers and no recurring coordination problem ma
 
 ## Deferred opportunities and evidence gaps
 
-[Approved data processing](../../catalog/controls/approved-data-processing.md) already addresses permitted use and destinations, [scoped retirement](../../catalog/controls/scoped-retirement.md) covers resource and copy disposition, and [decision rights and accountability](../../catalog/controls/decision-rights-and-accountability.md) covers authority and intervention. Potential later nodes include additional cross-product purpose restrictions, deletion propagation evidence, reference-data stewardship, cross-domain incident coordination, and allocation of shared platform costs. They need clear boundaries against existing or concurrent protection, recovery, dependency, and resource-budget work. Sector-specific legal controls need authoritative jurisdiction-specific research. Attested metric computations need actual sanctioned code, executor instructions, and deterministic attesters under pinned OKF §10; a metric description alone is insufficient.
+[Approved data processing](../proposals/controls/approved-data-processing.md) already addresses permitted use and destinations, [scoped retirement](../proposals/controls/scoped-retirement.md) covers resource and copy disposition, and [decision rights and accountability](../proposals/controls/decision-rights-and-accountability.md) covers authority and intervention. Potential later nodes include additional cross-product purpose restrictions, deletion propagation evidence, reference-data stewardship, cross-domain incident coordination, and allocation of shared platform costs. They need clear boundaries against existing or concurrent protection, recovery, dependency, and resource-budget work. Sector-specific legal controls need authoritative jurisdiction-specific research. Attested metric computations need actual sanctioned code, executor instructions, and deterministic attesters under pinned OKF §10; a metric description alone is insufficient.
 
 This contribution intentionally keeps those opportunities as proposals. The delivered guides and controls are draft definitions. Local bundle checks establish structure and links, not operational effectiveness. Next review decisions are whether the boundaries are useful and which real producer-consumer pilot should exercise the proposed assessments. Adoption must pin identities and source revisions under the [adoption guide](../../catalog/adoption.md#record-the-adoption).
 

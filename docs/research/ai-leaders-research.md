@@ -28,9 +28,9 @@ Use the three assessment guides below to turn published ideas into local evidenc
 
 | Priority | Addition | Decision it supports | Existing coverage it applies |
 |---|---|---|---|
-| 1 | [Agent evaluation coverage](../../catalog/guides/agent-evaluation-coverage.md) | Whether an agent improvement holds across relevant tasks, users, conversation turns, and failure classes | Acceptance coverage, protected acceptance, verifier qualification, measured process improvement |
-| 2 | [AI factory workload qualification](../../catalog/guides/ai-factory-workload-qualification.md) | Whether a combined infrastructure stack can deliver accepted work under normal load, bursts, and failure | Task configuration selection, resource budgets, dependency change, service recovery |
-| 3 | [Semantic cache assessment](../../catalog/guides/semantic-cache-assessment.md) | Whether answer reuse preserves permission, meaning, freshness, and quality | Approved data processing, corpus integrity, persistent-state recovery |
+| 1 | [Agent evaluation coverage](../proposals/guides/agent-evaluation-coverage.md) | Whether an agent improvement holds across relevant tasks, users, conversation turns, and failure classes | Acceptance coverage, protected acceptance, verifier qualification, measured process improvement |
+| 2 | [AI factory workload qualification](../proposals/guides/ai-factory-workload-qualification.md) | Whether a combined infrastructure stack can deliver accepted work under normal load, bursts, and failure | Task configuration selection, resource budgets, dependency change, service recovery |
+| 3 | [Semantic cache assessment](../proposals/guides/semantic-cache-assessment.md) | Whether answer reuse preserves permission, meaning, freshness, and quality | Approved data processing, corpus integrity, persistent-state recovery |
 
 Priority is an editorial judgment about the catalog's needs, based on applicability and a feasible assessment. It is not a ranking of published effectiveness. The existing [Agent Patterns review](agentpatterns-opportunities.md) already identifies retrieval coverage, tool usability, and compaction opportunities; this research complements those proposals.
 
@@ -76,7 +76,7 @@ Each linked guide contains ten annotated entries, source frontmatter, keyed attr
 
 ## Findings and boundaries
 
-**Choose a system for the task.** Anthropic's agent guidance favors simple compositions and explicit performance/cost tradeoffs.[^agents] The catalog already supports this through [implementation selection](../../catalog/factory-implementation-selection.md) and [task configuration selection](../../catalog/controls/task-configuration-selection.md). A new agent taxonomy would add little here.
+**Choose a system for the task.** Anthropic's agent guidance favors simple compositions and explicit performance/cost tradeoffs.[^agents] The catalog already supports this through [implementation selection](../../catalog/factory-implementation-selection.md) and [task configuration selection](../proposals/controls/task-configuration-selection.md). A new agent taxonomy would add little here.
 
 **Measure accepted work.** Husain's product evaluation account connects task-specific tests, trace inspection, and product experiments.[^evals] The evaluation guide adds records for coverage, changing rubrics, and comparisons across deployment conditions. It does not replace [outcome verification](../../catalog/controls/outcome-verification.md).
 
@@ -86,7 +86,7 @@ Each linked guide contains ten annotated entries, source frontmatter, keyed attr
 
 ## Apply and maintain the research
 
-1. Select a concrete outcome and an accountable owner using [accepted work definition](../../catalog/controls/accepted-work-definition.md).
+1. Select a concrete outcome and an accountable owner using [accepted work definition](../proposals/controls/accepted-work-definition.md).
 2. Follow relevant source entries, distinguish source claims from our proposed application, and inspect deeper material where the review depth is insufficient for the decision.
 3. Reuse the linked controls. For adoption, retain their identities, catalog version from the adopted revision, and exact source commit under the [adoption procedure](../../catalog/adoption.md#record-the-adoption).
 4. Define local fixtures and acceptance criteria before assessing a candidate. Preserve failed, inconclusive, and missing results.
