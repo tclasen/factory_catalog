@@ -62,7 +62,7 @@ All implementations are **proposed** and assessments **not assessed**. The learn
 
 ## Prerequisites and transfer extension
 
-Proposed application of the [learning assessment procedure](../guides/learning-assessment.md): define the target capability as recognizing suspicious message cues, explaining the decision, and choosing the approved response. Use an entry task to identify missing knowledge of those cues or the response policy; adapt practice to the observed gap. Keep learner-specific routes and individual performance records outside the shared knowledge bundle, with restricted access.
+For this proposed assessment, define the target capability as recognizing suspicious message cues, explaining the decision, and choosing the approved response. Use an entry task to identify missing knowledge of those cues or the response policy, then adapt practice to the observed gap. Keep learner-specific routes and individual performance records outside the shared knowledge bundle, with restricted access. The separate [learning assessment guide](../guides/learning-assessment.md) is an optional draft reference, not part of the stable bundle or a prerequisite for understanding this example.
 
 For the existing seven-day follow-up, use a comparable unseen scenario with different surface details. Record hints, assistance, and the rubric version so assisted practice is distinguishable from independent performance. Missing evidence stays unverified; a failed task identifies what was not demonstrated under those conditions. The existing illustrative improvement threshold remains unchanged and still needs justification before a real pilot.
 
