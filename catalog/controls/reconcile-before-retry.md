@@ -10,10 +10,10 @@ sources:
     title: "Software Factory: Reconcile before retry basis"
   - id: policies-execution
     resource: https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md
-    title: "Previously cited: Ownership, execution and recovery (unavailable at pinned revision)"
+    title: "Previously cited: Ownership, execution and recovery (private source; not used as support)"
   - id: policies-delivery
     resource: https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/delivery.md
-    title: "Previously cited: Integration, release and completion (unavailable at pinned revision)"
+    title: "Previously cited: Integration, release and completion (private source; not used as support)"
 ---
 
 # Reconcile before retry
@@ -53,9 +53,9 @@ Depends on trustworthy recipient observations and adequate operation identity. [
 
 ## Source and adoption
 
-This catalog requirement is adapted from Software Factory tool-contract guidance.[^software-factory] That source supports retaining operation identity and reconciling an unknown mutation outcome, including partial writes; the wider requirement and assessment are catalog synthesis. The previously cited semantic_search policies could not be inspected at their pinned revisions and are not asserted as support.[^policies-execution][^policies-delivery] Assessment cases are proposed catalog procedures, not reported operational results. Before adoption by reference or copying, retain this identity, catalog version, and the exact published catalog commit URL; pin cross-control references to that same revision using the [adoption procedure](../adoption.md#record-the-adoption).
+This catalog requirement is adapted from Software Factory tool-contract guidance.[^software-factory] That source supports retaining operation identity and reconciling an unknown mutation outcome, including partial writes; the wider requirement and assessment are catalog synthesis. Authenticated GitHub access on 2026-09-29 confirms both previously cited policy files exist at pinned commit 70cfad0de635197f36f14e5276dec145483c5128 in a private repository. Their content is not relied on as support here; readers without repository access cannot independently audit them.[^policies-execution][^policies-delivery] Assessment cases are proposed catalog procedures, not reported operational results. Before adoption by reference or copying, retain this identity, catalog version, and the exact published catalog commit URL; pin cross-control references to that same revision using the [adoption procedure](../adoption.md#record-the-adoption).
 
 [^software-factory]: [Pinned Software Factory source](https://github.com/tclasen/software-factory/blob/0a429827a595712ce1fa3069528565c72da2a549/skills/software-factory/references/tool-contracts.md).
 
-[^policies-execution]: The earlier draft cited [Ownership, execution and recovery](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md). This exact pinned URL returned HTTP 404 when checked on 2026-09-29; its content could not be reviewed and is not asserted as support.
-[^policies-delivery]: The earlier draft cited [Integration, release and completion](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/delivery.md). This exact pinned URL returned HTTP 404 when checked on 2026-09-29; its content could not be reviewed and is not asserted as support.
+[^policies-execution]: The earlier draft cited [Ownership, execution and recovery](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/execution.md). This exact file was confirmed on 2026-09-29 at the pinned revision in a private repository, but its content is not used as support in this control. Readers without repository access cannot audit it; an unauthenticated 404 reflects an access limit.
+[^policies-delivery]: The earlier draft cited [Integration, release and completion](https://github.com/tclasen/semantic_search/blob/70cfad0de635197f36f14e5276dec145483c5128/factory/policies/delivery.md). This exact file was confirmed on 2026-09-29 at the pinned revision in a private repository, but its content is not used as support in this control. Readers without repository access cannot audit it; an unauthenticated 404 reflects an access limit.
