@@ -112,7 +112,9 @@ use neutral titles and the private manifest mapping.
     session, model/effort, received prompt, JSON response and cited evidence. Missing
     or malformed scoring stays unscored; it is not replaced by invented values.
 11. After the first three task runs and their evaluators, run `qualify`. This requires
-    complete, uncontaminated scoring, not success on the task itself. Only then may
+    complete, uncontaminated capture and a scored or durably unscored outcome for
+    each evaluator, with at least one accepted score to qualify the scoring path.
+    It does not require successful task outcomes. Only then may
     the second block begin. Continue serially; run `report` at checkpoints and before
     handoff. Keep all evaluation chats available through handoff.
 
@@ -208,3 +210,28 @@ attempt counts across setups; never retry genuine task failures merely to pass.
 Run `./scripts/test_desktop_eval.py` for offline regressions. These also run through
 `./scripts/check_catalog.py --github`. Synthetic tests establish tooling behavior,
 not successful desktop integration or catalog effectiveness.
+
+## Audited analysis-only amendments
+
+A valid evaluator response may leave a judgment unknown; malformed or unsupported
+judgments also remain unscored. Save its raw session, available usage, rejection
+reason and hashed `unscored.json` receipt. Never launch a replacement evaluator
+merely to obtain a score. All 48 cells remain in reporting denominators.
+
+An authorized observer correction can preserve the current task experiment using
+`adopt-analysis-revision <original-observer.py> <reason>`. The original source must
+match the frozen hash. An AST comparison rejects changes outside the observer and
+admission functions; every other frozen input and the session reader must remain
+identical. The score rule, evaluator prompt, fixture checks, task prompts and
+reservation limits are outside the allowed change set. Review of the allowed
+functions is still required; this is an audit boundary, not a security sandbox.
+
+The amendment appends a ledger event and retains source hashes and the original
+observer. Only the specifically recognized incomplete-score/qualification halts
+can be superseded. A missing evaluator-log path can also be reconciled after the
+correct session has passed identity, prompt and evidence validation; its source
+digest and resolved halt are recorded. Account limits and other operational halts
+remain active.
+Reports disclose amendments and unscored outcomes. No completed chat is rerun and
+no accepted score is overwritten. Changes to experimental inputs still require a
+separate frozen setup.

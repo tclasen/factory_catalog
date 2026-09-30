@@ -216,6 +216,111 @@ def prepare(root: Path, catalog_ref: str, app_version: str):
     return config
 
 
+def active_halts(events):
+    superseded = {
+        n
+        for e in events
+        if e["kind"] in {"analysis_amended", "evidence_reconciled"}
+        for n in e["data"].get("superseded_halts", [])
+    }
+    return [
+        e for e in events if e["kind"] == "halted" and e["sequence"] not in superseded
+    ]
+
+
+def analysis_sources(root, config):
+    events = ledger(root, config)
+    amendments = [e for e in events if e["kind"] == "analysis_amended"]
+    if not amendments:
+        return config["source_hashes"]
+    receipt = amendments[-1]["data"]
+    revision = read_json(root / "analysis" / (receipt["revision_hash"] + ".json"))
+    if (
+        digest(revision) != receipt["revision_hash"]
+        or revision["config_hash"] != config["config_hash"]
+    ):
+        raise PilotError("analysis revision receipt mismatch")
+    return revision["source_hashes"]
+
+
+def adopt_analysis_revision(root, previous_source, reason):
+    """Allow audited observer corrections without changing tasks or score criteria."""
+    import ast
+
+    with locked(root):
+        config = read_json(root / "config.json")
+        unsigned = dict(config)
+        if unsigned.pop("config_hash") != digest(unsigned):
+            raise PilotError("invalid frozen configuration")
+        name = "scripts/desktop_eval.py"
+        original = previous_source.read_text()
+        if (
+            hashlib.sha256(original.encode()).hexdigest()
+            != config["source_hashes"][name]
+        ):
+            raise PilotError("original observer does not match frozen source")
+        current = (ROOT / name).read_text()
+        allowed = {
+            "load_experiment",
+            "score_session",
+            "qualify",
+            "report",
+            "main",
+            "reserve",
+            "active_halts",
+            "analysis_sources",
+            "adopt_analysis_revision",
+        }
+
+        def boundary(source):
+            tree = ast.parse(source)
+            tree.body = [
+                n
+                for n in tree.body
+                if not (isinstance(n, ast.FunctionDef) and n.name in allowed)
+            ]
+            return ast.dump(tree, include_attributes=False)
+
+        if boundary(original) != boundary(current):
+            raise PilotError(
+                "analysis amendment changes participant or scoring boundary"
+            )
+        hashes = source_hashes()
+        if any(hashes[k] != v for k, v in config["source_hashes"].items() if k != name):
+            raise PilotError("analysis amendment changes frozen inputs or reader")
+        events = ledger(root, config)
+        if hashes == analysis_sources(root, config):
+            raise PilotError("analysis revision already active")
+        permitted = {
+            "score failed: silent-error judgment incomplete; retain unscored",
+            "qualify failed: first block needs complete, uncontaminated scoring",
+        }
+        superseded = [
+            e["sequence"]
+            for e in active_halts(events)
+            if e["data"].get("reason") in permitted
+        ]
+        revision = {
+            "config_hash": config["config_hash"],
+            "source_hashes": hashes,
+            "reason": reason,
+            "at": now(),
+            "superseded_halts": superseded,
+        }
+        revision_hash = digest(revision)
+        write_json(root / "analysis" / (revision_hash + ".json"), revision)
+        (root / "analysis" / "frozen-observer.py").write_text(original)
+        return append(
+            root,
+            config,
+            events,
+            "analysis_amended",
+            revision_hash=revision_hash,
+            superseded_halts=superseded,
+            reason=reason,
+        )
+
+
 def load_experiment(root):
     config = read_json(root / "config.json")
     value = dict(config)
@@ -224,7 +329,7 @@ def load_experiment(root):
         raise PilotError("invalid or changed frozen configuration")
     if config.get("execution_policy") != "wait_for_completion":
         raise PilotError("unsupported execution policy")
-    if config["source_hashes"] != source_hashes():
+    if analysis_sources(root, config) != source_hashes():
         raise PilotError("harness changed after freeze; preserve experiment and halt")
     specs, catalog, manifest = (
         read_json(root / name)
@@ -362,7 +467,7 @@ def reserve(root, run_id, role):
             raise PilotError("desktop preflight blocked: " + "; ".join(gaps))
         events = ledger(root, config)
         status = states(events)
-        if any(e["kind"] == "halted" for e in events):
+        if active_halts(events):
             raise PilotError("experiment halted; no further dispatch")
         if (run_id, role) in status:
             raise PilotError("attempt already reserved; reconcile instead of retrying")
@@ -840,11 +945,55 @@ def score_session(root, run_id, session_path):
         for e in evidence["events"]
         if e["kind"] == "assistant" and e.get("phase") == "final"
     ][-1]
-    judgment = json.loads(final)
-    result = accept_score(root, run_id, judgment)
     run_dir = root / "runs" / run_id
+    if (run_dir / "result.json").exists() or (run_dir / "unscored.json").exists():
+        raise PilotError("scoring already recorded; do not replace")
+    verify_capture(root, run_id)
     (run_dir / "evaluator.raw.jsonl").write_bytes(session_path.read_bytes())
     write_json(run_dir / "evaluator-usage.json", evidence["telemetry"])
+    try:
+        judgment = json.loads(final)
+        result = accept_score(root, run_id, judgment)
+    except (json.JSONDecodeError, PilotError) as exc:
+        outcome = {
+            "run_id": run_id,
+            "status": "unscored",
+            "reason": str(exc),
+            "evaluator_evidence_digest": digest(evidence),
+        }
+        write_json(run_dir / "unscored.json", outcome)
+        with locked(root):
+            append(
+                root,
+                config,
+                ledger(root, config),
+                "unscored",
+                run_id,
+                outcome_digest=digest(outcome),
+            )
+        result = outcome
+    # A corrected path can recover missing-file observations without redispatch.
+    with locked(root):
+        events = ledger(root, config)
+        resolved = [
+            e["sequence"]
+            for e in active_halts(events)
+            if e["data"]
+            .get("reason", "")
+            .startswith("score failed: [Errno 2] No such file or directory:")
+            and status["thread_id"] in e["data"]["reason"]
+        ]
+        if resolved:
+            append(
+                root,
+                config,
+                events,
+                "evidence_reconciled",
+                run_id,
+                superseded_halts=resolved,
+                session_sha256=hashlib.sha256(session_path.read_bytes()).hexdigest(),
+                reason="Correct session recovered and validated for the recorded evaluator identity",
+            )
     return result
 
 
@@ -852,12 +1001,31 @@ def qualify(root):
     with locked(root):
         config, _, manifest = load_experiment(root)
         events = ledger(root, config)
-        if any(e["kind"] == "halted" for e in events) or preflight_gaps(root, config):
+        if active_halts(events) or preflight_gaps(root, config):
             raise PilotError("halted or failed preflight")
+        accepted = 0
         for row in manifest[:3]:
-            path = root / "runs" / row["run_id"] / "result.json"
-            if not path.exists() or read_json(path)["contamination"]:
-                raise PilotError("first block needs complete, uncontaminated scoring")
+            run_id = row["run_id"]
+            if not (root / "runs" / run_id / "evidence.json").exists():
+                raise PilotError("first block needs complete captured evidence")
+            captured, _ = verify_capture(root, run_id)
+            if captured["contamination"]:
+                raise PilotError("first block has contaminated evidence")
+            path = root / "runs" / run_id / "result.json"
+            unknown = root / "runs" / run_id / "unscored.json"
+            if path.exists():
+                accepted += 1
+            elif not unknown.exists() or not any(
+                e["kind"] == "unscored"
+                and e["run_id"] == run_id
+                and e["data"]["outcome_digest"] == digest(read_json(unknown))
+                for e in events
+            ):
+                raise PilotError(
+                    "first block needs scored or durably unscored outcomes"
+                )
+        if not accepted:
+            raise PilotError("first block has no accepted evaluator result")
         if any(e["kind"] == "qualified" for e in events):
             raise PilotError("first block already qualified")
         return append(root, config, events, "qualified")
@@ -926,6 +1094,15 @@ def report(root):
         )
         path = root / "runs" / row["run_id"] / "result.json"
         result = read_json(path) if path.exists() else None
+        unscored_path = root / "runs" / row["run_id"] / "unscored.json"
+        unscored = read_json(unscored_path) if unscored_path.exists() else None
+        if unscored and not any(
+            e["kind"] == "unscored"
+            and e["run_id"] == row["run_id"]
+            and e["data"]["outcome_digest"] == digest(unscored)
+            for e in events
+        ):
+            raise PilotError("unscored outcome receipt mismatch")
         if result:
             validate(result, path, 1)
             if result.get("experiment_id") != config["config_hash"] or any(
@@ -964,6 +1141,7 @@ def report(root):
                 "task_status": task_state,
                 "scoring_status": score_state,
                 "scored": result is not None,
+                "scoring_failure": unscored,
                 "passed": passed(result) if result else None,
                 "silent_error": result["silent_error"] if result else None,
                 "failed_invariants": [
@@ -1106,7 +1284,10 @@ def report(root):
             e["kind"] == "reserved" and e["role"] == "evaluator" for e in events
         ),
         "preflight_gaps": gaps,
-        "halts": [e["data"]["reason"] for e in events if e["kind"] == "halted"],
+        "halts": [e["data"]["reason"] for e in active_halts(events)],
+        "analysis_revisions": [
+            e["data"] for e in events if e["kind"] == "analysis_amended"
+        ],
         "cells": cells,
         "conditions": summaries,
         "task_results": task_summaries,
@@ -1118,7 +1299,7 @@ def report(root):
         "comparisons": comparisons,
         "disagreements": sum(len(r["evaluator_disagreements"]) for r in rows),
         "recommendation": "stop: qualification blocked"
-        if gaps
+        if gaps or active_halts(events)
         else (
             "revise: incomplete or contaminated evidence"
             if len(usable) != 48
@@ -1195,6 +1376,9 @@ def main():
     sub.add_parser("status")
     sub.add_parser("report")
     sub.add_parser("qualify")
+    p = sub.add_parser("adopt-analysis-revision")
+    p.add_argument("previous_source", type=Path)
+    p.add_argument("reason")
     p = sub.add_parser("halt")
     p.add_argument("reason")
     p = sub.add_parser("stage")
@@ -1218,7 +1402,9 @@ def main():
     args = parser.parse_args()
     root = args.experiment.resolve()
     try:
-        if args.command == "prepare":
+        if args.command == "adopt-analysis-revision":
+            result = adopt_analysis_revision(root, args.previous_source, args.reason)
+        elif args.command == "prepare":
             result = prepare(root, args.catalog_ref, args.app_version)
         elif args.command == "stage":
             result = stage_workspace(root, args.run_id, args.workspace)
