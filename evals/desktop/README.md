@@ -51,7 +51,10 @@ capability is unavailable. The frozen execution policy is `wait_for_completion`.
 
 Confirm that natural completion can be observed and full local session logs can
 be located by the returned chat ID. The reader currently qualifies only desktop runtime
-`0.158.0-alpha.2.1`, observed on this host; the installed CLI version is irrelevant.
+`0.159.2`, observed in a fresh projectless chat; the installed CLI version is irrelevant.
+The reader decodes character entities once in the desktop creation envelope,
+normalizes that envelope as user input and
+`final_answer` as the final response; all other unmatched tool outputs still fail.
 New log formats require a separate tested harness revision before a new experiment.
 
 ## Coordinator procedure

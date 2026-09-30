@@ -294,6 +294,39 @@ class SessionReader(unittest.TestCase):
         self.assertEqual(result["telemetry"]["tool_calls"], 1)
         self.assertIsNone(result["telemetry"]["cost_usd"])
 
+    def test_desktop_159_creation_envelope_and_final_answer(self):
+        records = session_records(self.cwd)
+        records[3] = {
+            "type": "response_item",
+            "payload": {
+                "type": "function_call_output",
+                "name": "create_thread",
+                "namespace": "codex_app",
+                "output": "<codex_delegation>\n  <source_thread_id>00000000-0000-0000-0000-000000000000</source_thread_id>\n  <input>Synthetic &lt;task&gt; &amp; literal &amp;lt;tag&amp;gt;</input>\n</codex_delegation>",
+            },
+        }
+        records[8]["payload"]["phase"] = "final_answer"
+        result = self.read(records)
+        self.assertTrue(result["complete"])
+        self.assertEqual(result["telemetry"]["tool_calls"], 1)
+        self.assertEqual(result["events"][0]["kind"], "user")
+        self.assertEqual(
+            result["events"][0]["text"], "Synthetic <task> & literal &lt;tag&gt;"
+        )
+        self.assertEqual(result["events"][-1]["phase"], "final")
+        for mode in ("namespace", "malformed", "duplicate", "late"):
+            candidate = json.loads(json.dumps(records))
+            if mode == "namespace":
+                candidate[3]["payload"]["namespace"] = "unknown"
+            elif mode == "malformed":
+                candidate[3]["payload"]["output"] = "unwrapped task"
+            elif mode == "duplicate":
+                candidate.insert(4, candidate[3])
+            else:
+                candidate.append(candidate.pop(3))
+            with self.subTest(mode=mode), self.assertRaises(ev.EvidenceError):
+                self.read(candidate)
+
     def test_runtime_model_effort_and_workspace_drift(self):
         for index, key, value in (
             (0, "cli_version", "new-version"),
@@ -686,15 +719,28 @@ class Experiment(unittest.TestCase):
     def test_scorer_session_identity_and_final_json(self):
         _, _, judgment = self.scoring_fixture()
         records = session_records(self.base / "evaluator", f"test-evaluator-{self.run}")
-        records[3]["payload"]["content"] = [
-            {"text": pilot.evaluator_prompt(self.root, self.run)}
-        ]
+        import html
+
+        encoded = html.escape(pilot.evaluator_prompt(self.root, self.run), quote=False)
+        records[3] = {
+            "type": "response_item",
+            "payload": {
+                "type": "function_call_output",
+                "name": "create_thread",
+                "namespace": "codex_app",
+                "output": "<codex_delegation>\n  <source_thread_id>00000000-0000-0000-0000-000000000000</source_thread_id>\n  <input>"
+                + encoded
+                + "</input>\n</codex_delegation>",
+            },
+        }
+        records[8]["payload"]["phase"] = "final_answer"
         records[8]["payload"]["content"] = [{"text": json.dumps(judgment)}]
         records = [
             r
             for r in records
             if r.get("payload", {}).get("type")
             not in {"function_call", "function_call_output"}
+            or r.get("payload", {}).get("name") == "create_thread"
         ]
         path = self.base / "judge.jsonl"
         path.write_text("".join(json.dumps(r) + "\n" for r in records))

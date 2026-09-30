@@ -8,13 +8,15 @@ from __future__ import annotations
 
 import json
 import hashlib
+import html
 import math
 import os
+import re
 from pathlib import Path
 import subprocess
 import sys
 
-SUPPORTED_RUNTIME = "0.158.0-alpha.2.1"
+SUPPORTED_RUNTIME = "0.159.2"
 RECORD_TYPES = {
     "session_meta",
     "event_msg",
@@ -70,6 +72,7 @@ def read_session(path: Path, thread_id: str, cwd: Path, model: str, effort: str)
     events, contexts, starts, ends, pending = [], [], [], [], set()
     seen_calls = set()
     meta = None
+    delegation_seen = False
     telemetry = {"input_tokens": None, "output_tokens": None, "elapsed_seconds": None}
     incomplete = []
     world, inherited = {}, []
@@ -188,6 +191,36 @@ def read_session(path: Path, thread_id: str, cwd: Path, model: str, effort: str)
                 )
             elif subtype in {"function_call_output", "custom_tool_call_output"}:
                 call_id = payload.get("call_id")
+                if (
+                    subtype == "function_call_output"
+                    and call_id is None
+                    and payload.get("name") == "create_thread"
+                    and payload.get("namespace") == "codex_app"
+                ):
+                    # Desktop creation supplies the task as an initial envelope,
+                    # not an agent tool invocation. Keep its input as user data.
+                    envelope = re.fullmatch(
+                        r"<codex_delegation>\n  <source_thread_id>[0-9a-f-]{36}</source_thread_id>"
+                        r"\n  <input>(.*)</input>\n</codex_delegation>",
+                        text_content(payload.get("output", "")),
+                        re.S,
+                    )
+                    if (
+                        delegation_seen
+                        or seen_calls
+                        or any(e["kind"] == "assistant" for e in events)
+                        or not envelope
+                    ):
+                        raise EvidenceError("invalid desktop creation envelope")
+                    delegation_seen = True
+                    events.append(
+                        {
+                            "kind": "user",
+                            "text": html.unescape(envelope.group(1)),
+                            "source": "desktop_creation",
+                        }
+                    )
+                    continue
                 if call_id not in pending:
                     raise EvidenceError("tool output without one preceding call")
                 pending.remove(call_id)
@@ -201,7 +234,9 @@ def read_session(path: Path, thread_id: str, cwd: Path, model: str, effort: str)
                 events.append(
                     {
                         "kind": payload["role"],
-                        "phase": payload.get("phase"),
+                        "phase": "final"
+                        if payload.get("phase") == "final_answer"
+                        else payload.get("phase"),
                         "text": text_content(payload.get("content", [])),
                     }
                 )
@@ -483,6 +518,7 @@ def python_checks(task_id, workspace: Path):
         body = """from labels import normalize_label
 import json
 import hashlib
+import html
 r = {"normalization_correct": all(normalize_label(x)==y for x,y in [("  North \\t STAR\\n", "north star"), ("", ""), ("A  B", "a b")])}
 r["nonstrings_rejected"] = True
 for value in [None, 3, [], {}]:
