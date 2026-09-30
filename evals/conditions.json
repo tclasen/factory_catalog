@@ -1,0 +1,45 @@
+[
+  {
+    "id": "bare",
+    "label": "Bare model",
+    "family": "baseline",
+    "catalog_access": "none",
+    "instruction": "Give only the task, fixture workspace, ordinary system/tool instructions, and permissions. Do not mention Factory Catalog or add generic process advice."
+  },
+  {
+    "id": "minimal",
+    "label": "Minimal generic process prompt",
+    "family": "baseline",
+    "catalog_access": "none",
+    "instruction": "Add a short frozen instruction to plan, verify required outcomes, respect permissions, and state unverified work. Do not provide Factory Catalog content or vocabulary."
+  },
+  {
+    "id": "catalog-full",
+    "label": "Full Factory Catalog",
+    "family": "treatment",
+    "catalog_access": "full-pinned-revision",
+    "instruction": "Use the README onboarding prompt at the pinned revision; follow catalog/adoption.md and catalog/consumer-contract.md and permit inspection of the complete inventory at that revision."
+  },
+  {
+    "id": "catalog-controls-only",
+    "label": "Controls without adoption procedure",
+    "family": "ablation",
+    "catalog_access": "control-files-only",
+    "instruction": "Provide the complete pinned catalog/controls inventory and relative dependencies, but not the README onboarding prompt, catalog/adoption.md, or catalog/consumer-contract.md."
+  },
+  {
+    "id": "catalog-procedure-only",
+    "label": "Adoption procedure without control bodies",
+    "family": "ablation",
+    "catalog_access": "procedure-only",
+    "instruction": "Provide the pinned README onboarding prompt, catalog/adoption.md, catalog/consumer-contract.md, required ontology/navigation, and control titles/descriptions only; omit requirement and assessment bodies."
+  },
+  {
+    "id": "expert-task-prompt",
+    "label": "Predeclared task-specific expert prompt",
+    "family": "baseline",
+    "catalog_access": "none",
+    "optional": true,
+    "instruction": "Use only the task-specific expert_prompt frozen before treatment results were inspected. Do not provide Factory Catalog content."
+  }
+]
