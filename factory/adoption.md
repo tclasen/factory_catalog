@@ -35,6 +35,10 @@ retain unmet technical requirements.
 | [controls/bounded-external-action](https://github.com/tclasen/factory_catalog/blob/5aadd9cb822fbc3c9aef68c039038f1594e42c67/catalog/controls/bounded-external-action.md) | P0 | Publication credentials may exceed a task grant. | Host permissions and GitHub protections cover some boundaries; per-path grant enforcement is not established. Owner must qualify or restrict uncovered paths. | proposed |
 | [controls/durable-work-handoff](https://github.com/tclasen/factory_catalog/blob/5aadd9cb822fbc3c9aef68c039038f1594e42c67/catalog/controls/durable-work-handoff.md) | P1 | Session loss can lose obligations and effects. | Checkpoint then issue/PR, before/after effects; successor reconciles actual state. Crash window is explicit. | implemented |
 | [controls/reconcile-before-retry](https://github.com/tclasen/factory_catalog/blob/5aadd9cb822fbc3c9aef68c039038f1594e42c67/catalog/controls/reconcile-before-retry.md) | P1 | An uncertain response can cause duplicate publication. | Retain branch/SHA and PR head/base intent, query GitHub before repeating writes, block unknown effects. | implemented |
+| [controls/qualified-artifact-promotion](https://github.com/tclasen/factory_catalog/blob/5aadd9cb822fbc3c9aef68c039038f1594e42c67/catalog/controls/qualified-artifact-promotion.md) | P0 | Publishing a PR must preserve the qualified candidate. | [Delivery qualification](workflow.md#delivery-qualification) binds the complete Git tree and relevant configuration to local checks and independently reads back the remote commit/tree. Scope is source-only PR delivery; package/install paths require a new task-specific implementation. | implemented |
+| [controls/exclusive-mutation-ownership](https://github.com/tclasen/factory_catalog/blob/5aadd9cb822fbc3c9aef68c039038f1594e42c67/catalog/controls/exclusive-mutation-ownership.md) | P1 | Ownership transfer, stale writers or concurrent writes can corrupt shared task state. | [Resumption](workflow.md#resume-uncertainty-and-cancellation) requires evidence of effective exclusion before transfer. Serial work and separate checkouts alone do not qualify receiving-boundary enforcement; owner must resolve the gap before a competing writer can act. | proposed |
+| [controls/cumulative-execution-limits](https://github.com/tclasen/factory_catalog/blob/5aadd9cb822fbc3c9aef68c039038f1594e42c67/catalog/controls/cumulative-execution-limits.md) | P1 | Applicable host/user allowances must survive attempts and resumption. | [Resource accounting](workflow.md#resource-accounting-and-stopping) preserves usage and reservations. Durable metering and enforcement remain unqualified; unknown usage cannot create capacity. | proposed |
+| [controls/workflow-resource-budgets](https://github.com/tclasen/factory_catalog/blob/5aadd9cb822fbc3c9aef68c039038f1594e42c67/catalog/controls/workflow-resource-budgets.md) | P1 | Model/tool jobs consume shared time and capacity even without billing. | [Resource accounting](workflow.md#resource-accounting-and-stopping) identifies resources, owner, bounds and in-flight exposure. Aggregate admission/cancellation enforcement is not established; unknown bounds remain an explicit gap for the owner. | proposed |
 
 Assessment baseline for this adoption: **not-assessed** for every selected row.
 Task-specific observations remain with their assessed revision and issue/PR.
@@ -49,17 +53,14 @@ acceptance, planning, delivery and execution procedures remain required by the
 [workflow](workflow.md) and [CONTRIBUTING](../CONTRIBUTING.md); their pre-v1 source
 drafts are dispositioned below. None of these mechanisms grants authority.
 
-The following companion requirements were considered at the same v1 revision.
-Their dispositions keep missing implementation distinct from non-applicability.
+The following companion requirement was considered at the same v1 revision.
+Its disposition keeps an absent benefit claim distinct from missing implementation.
 
 | Pinned companion | Decision and next trigger |
 |---|---|
-| [controls/qualified-artifact-promotion](https://github.com/tclasen/factory_catalog/blob/5aadd9cb822fbc3c9aef68c039038f1594e42c67/catalog/controls/qualified-artifact-promotion.md) | Applicable; proposed beyond PR tree comparison. Package/install paths are outside this adoption. Assess matching, changed/missing/extra artifacts and unavailable destination evidence before claiming promotion qualified. |
-| [controls/cumulative-execution-limits](https://github.com/tclasen/factory_catalog/blob/5aadd9cb822fbc3c9aef68c039038f1594e42c67/catalog/controls/cumulative-execution-limits.md) | Applicable when host/user allowances exist; proposed. The work record preserves counts, but durable host accounting and enforcement are not qualified. Unknown usage must not create capacity; reassess before bounded spending or delegation. |
-| [controls/exclusive-mutation-ownership](https://github.com/tclasen/factory_catalog/blob/5aadd9cb822fbc3c9aef68c039038f1594e42c67/catalog/controls/exclusive-mutation-ownership.md) | Undetermined for host-level enforcement; owner must resolve before concurrent writers or transfer to an active predecessor. Serial work is selected, but a separate checkout alone does not prove exclusion. |
 | [controls/measured-process-improvement](https://github.com/tclasen/factory_catalog/blob/5aadd9cb822fbc3c9aef68c039038f1594e42c67/catalog/controls/measured-process-improvement.md) | Not applicable to this explicit adoption request without a measured-benefit claim. Select a predeclared comparison before claiming faster, cheaper, or better maintenance. |
 
-Companion assessments are **not-assessed**. The work lead owns task-specific
+The companion assessment is **not-assessed**. The work lead owns task-specific
 follow-up; the repository owner owns permission/enforcement changes. Missing
 enforcement remains a gap; prompt rules cannot satisfy a technical boundary.
 No permissions, credentials, branch rules, services or recurring jobs are changed
@@ -100,30 +101,82 @@ Their requirements and assessments are unchanged. Evidence validity and retry
 reconciliation clarify their public support basis; evidence traceability adds an
 authorship statement. Bounded external action removes an optional deferred service
 recovery link. Durable work handoff adds the stable tracking guide already reflected
-in our issue/PR procedure. These changes require no new local operating mechanism.
+in our issue/PR procedure. Those source changes require no new mechanism. The
+replacement compositions below explicitly select additional coverage and retain
+its implementation gaps.
 
-The release excludes the following previously selected or considered drafts.
-They are no longer selected catalog controls or composition guides in this binding.
-Their useful local procedures remain repository policy, with the original source
-provenance in the prior record. This does not promote the deferred drafts into v1
-or claim an equivalent stable replacement.
+The release deferred eleven previously selected or considered drafts and retired
+the duplicate work-record guide in [PR #67](https://github.com/tclasen/factory_catalog/pull/67).
+The former identities are no longer selected. The four clean or near-clean
+replacements below use stable v1 requirements and guidance; remaining duties stay
+explicit local policy. Selection does not close the stated implementation or
+assessment gaps. Other deferred items retain their local procedures and historical
+provenance without claiming a stable replacement.
 
-| Deferred pre-v1 identity | Local disposition / authoritative procedure |
+| Former pre-v1 identity | Local disposition / authoritative procedure |
 |---|---|
 | `controls/accepted-work-definition` | Retain intake scope, owner and criteria in [work record](work-record.md#intent-and-boundary). |
 | `controls/acceptance-coverage` | Retain criterion mapping and reconciliation in [work record](work-record.md#plan-and-acceptance) and [workflow](workflow.md). |
-| `controls/verified-delivery` | Retain signed PR, tested-tree comparison and destination checks under [contribution policy](../CONTRIBUTING.md#5-verify-and-open-a-pull-request). Qualified artifact promotion remains proposed beyond that mechanism. |
+| `controls/verified-delivery` | Use [delivery composition](#delivery-composition): qualified artifact promotion, assessment evidence validity, bounded external action and outcome verification. Local stage and endpoint checks remain required. |
 | `controls/planning-consistency` | Retain updates to scope, checklist and affected checks in [workflow](workflow.md#the-work-record-follows-the-task). |
 | `controls/instruction-change-control` | Retain observed-defect, authority and review-trigger rules in [workflow](workflow.md#improve-without-rewriting-the-evidence). |
-| `controls/safe-work-resumption` | Retain state and predecessor reconciliation in [workflow](workflow.md#resume-uncertainty-and-cancellation). Writer exclusion remains unqualified, as recorded above. |
-| `controls/bounded-execution` | Retain boundary, usage and stop/checkpoint fields in [work record](work-record.md#current-state-and-limits). Durable accounting and enforcement remain proposed. |
+| `controls/safe-work-resumption` | Use [resumption composition](#resumption-composition): durable work handoff, exclusive mutation ownership, reconcile before retry and assessment evidence validity. Effective writer exclusion remains a technical gap. |
+| `controls/bounded-execution` | Use [execution composition](#execution-composition): cumulative execution limits and workflow resource budgets. Keep the local task boundary, failure diagnosis and checkpoint policy. |
 | `controls/local-quality-gates` | Keep task-specific tooling checks under [contribution policy](../CONTRIBUTING.md#5-verify-and-open-a-pull-request). Not applicable to this documentation update; tooling work must select tools or record narrow owned exceptions. No formatter/linter/type-checker qualification is implied. |
 | `guides/factory-project-binding` | Keep the project-owned [binding](README.md). |
 | `guides/factory-delivery-lifecycle` | Keep the project-owned [workflow](workflow.md). |
-| `guides/factory-work-record` | Keep the project-owned [work record](work-record.md). |
+| `guides/factory-work-record` | Retired duplicate. Use [record composition](#record-composition): restart and handoff records plus durable task tracking, adapted in the local work record. |
 | `guides/factory-adoption-readiness` | Keep scoped criteria, verification and gap review in the [workflow](workflow.md). No blanket readiness claim. |
 
 Reassess after a lost obligation, conflicting tracker state, inaccessible handoff,
 changed storage/authority, or a control upgrade. No scheduler, automatic completeness
 proof or storage backup is provided by this adoption. Historical process trials and
 the binding's review trigger are not restarted by this source update.
+
+## Replacement compositions
+
+All controls named here use the pinned source URLs, version, owners, implementation
+states and assessment baseline above. These are local compositions, not new catalog
+controls or a claim that every former requirement has an identical v1 definition.
+
+### Record composition
+
+The stable restart and handoff record supplies identity, intent, authority,
+ownership, current state, evidence, resources, operation effects and continuation.
+Durable task tracking supplies the canonical checklist and reconciliation procedure.
+The [local record](work-record.md) adapts both and adds repository delivery fields;
+its evidence section uses the stable assessment evidence record. No duplicate
+catalog work-record guide is needed. Record-format changes require validation or
+blocked dependent resumption; an inaccessible record cannot establish readiness.
+
+### Resumption composition
+
+Durable work handoff governs record preservation and state reconciliation; exclusive
+mutation ownership governs effective exclusion of prior/stale writers; reconcile
+before retry resolves uncertain effects; evidence validity reopens stale checks.
+Use [the resume procedure](workflow.md#resume-uncertainty-and-cancellation) before
+successor writes. Missing authority, unreadable state or unresolved ownership blocks
+the affected mutation. A record or cooperative stop alone cannot establish fencing.
+The work lead records evidence; the repository owner resolves enforcement gaps.
+
+### Execution composition
+
+Cumulative execution limits carries actual usage and reservations across retries
+and resumption. Workflow resource budgets covers aggregate job admission, child
+work and in-flight exposure. The local [resource procedure](workflow.md#resource-accounting-and-stopping)
+retains the former task-boundary, repeated-failure diagnosis and checkpoint duties.
+These controls are selected as proposed mechanisms: bookkeeping is not enforceable
+metering or a shared budget boundary. Unknown telemetry and missing bounds stay
+visible; neither a restart nor a missing measurement supplies fresh capacity.
+
+### Delivery composition
+
+Qualified artifact promotion checks the destination object; evidence validity binds
+qualification to the candidate and configuration; bounded external action governs
+authority; outcome verification limits claims to observed stages and benefits.
+The local [delivery procedure](workflow.md#delivery-qualification) defines the stages,
+endpoint, complete source artifact and required remote observations. Signed PR
+publication is the normal endpoint; merge, release and installed behavior require
+their own scope and evidence. A changed tree, incompatible configuration or unknown
+destination blocks the affected delivery claim. The PR procedure is implemented;
+authority enforcement remains proposed and full control assessments remain unrun.
