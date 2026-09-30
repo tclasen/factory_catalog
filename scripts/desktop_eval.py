@@ -243,7 +243,7 @@ def analysis_sources(root, config):
     return revision["source_hashes"]
 
 
-def adopt_analysis_revision(root, previous_source, reason):
+def adopt_analysis_revision(root, previous_source, reason, previous_reader=None):
     """Allow audited observer corrections without changing tasks or score criteria."""
     import ast
 
@@ -263,6 +263,7 @@ def adopt_analysis_revision(root, previous_source, reason):
         allowed = {
             "load_experiment",
             "score_session",
+            "collect",
             "qualify",
             "report",
             "main",
@@ -272,12 +273,12 @@ def adopt_analysis_revision(root, previous_source, reason):
             "adopt_analysis_revision",
         }
 
-        def boundary(source):
+        def boundary(source, permitted=allowed):
             tree = ast.parse(source)
             tree.body = [
                 n
                 for n in tree.body
-                if not (isinstance(n, ast.FunctionDef) and n.name in allowed)
+                if not (isinstance(n, ast.FunctionDef) and n.name in permitted)
             ]
             return ast.dump(tree, include_attributes=False)
 
@@ -286,7 +287,27 @@ def adopt_analysis_revision(root, previous_source, reason):
                 "analysis amendment changes participant or scoring boundary"
             )
         hashes = source_hashes()
-        if any(hashes[k] != v for k, v in config["source_hashes"].items() if k != name):
+        permitted_files = {name}
+        reader_name = "scripts/desktop_eval_evidence.py"
+        if previous_reader is not None:
+            original_reader = previous_reader.read_text()
+            if (
+                hashlib.sha256(original_reader.encode()).hexdigest()
+                != config["source_hashes"][reader_name]
+            ):
+                raise PilotError("original reader does not match frozen source")
+            if boundary(original_reader, {"read_session"}) != boundary(
+                (ROOT / reader_name).read_text(), {"read_session"}
+            ):
+                raise PilotError(
+                    "reader amendment changes fixture checks or frozen runtime"
+                )
+            permitted_files.add(reader_name)
+        if any(
+            hashes[k] != v
+            for k, v in config["source_hashes"].items()
+            if k not in permitted_files
+        ):
             raise PilotError("analysis amendment changes frozen inputs or reader")
         events = ledger(root, config)
         if hashes == analysis_sources(root, config):
@@ -310,6 +331,8 @@ def adopt_analysis_revision(root, previous_source, reason):
         revision_hash = digest(revision)
         write_json(root / "analysis" / (revision_hash + ".json"), revision)
         (root / "analysis" / "frozen-observer.py").write_text(original)
+        if previous_reader is not None:
+            (root / "analysis" / "frozen-reader.py").write_text(original_reader)
         return append(
             root,
             config,
@@ -783,6 +806,36 @@ def collect(root, run_id, session_path):
             evidence_digest=digest(evidence),
             blind_digest=digest(blind),
         )
+        current = ledger(root, config)
+        resolved = []
+        for event in active_halts(current):
+            if (
+                event["data"].get("reason")
+                != "collect failed: tool output without one preceding call"
+            ):
+                continue
+            completed = [
+                e
+                for e in current
+                if e["sequence"] < event["sequence"] and e["kind"] == "completed"
+            ]
+            if (
+                completed
+                and completed[-1]["run_id"] == run_id
+                and completed[-1]["role"] == "task"
+            ):
+                resolved.append(event["sequence"])
+        if resolved:
+            append(
+                root,
+                config,
+                current,
+                "evidence_reconciled",
+                run_id,
+                superseded_halts=resolved,
+                source_sha256=evidence["source_sha256"],
+                reason="Retained task session fully validated with qualified input-envelope adapter",
+            )
     return evidence
 
 
@@ -1379,6 +1432,7 @@ def main():
     p = sub.add_parser("adopt-analysis-revision")
     p.add_argument("previous_source", type=Path)
     p.add_argument("reason")
+    p.add_argument("--previous-reader", type=Path)
     p = sub.add_parser("halt")
     p.add_argument("reason")
     p = sub.add_parser("stage")
@@ -1403,7 +1457,9 @@ def main():
     root = args.experiment.resolve()
     try:
         if args.command == "adopt-analysis-revision":
-            result = adopt_analysis_revision(root, args.previous_source, args.reason)
+            result = adopt_analysis_revision(
+                root, args.previous_source, args.reason, args.previous_reader
+            )
         elif args.command == "prepare":
             result = prepare(root, args.catalog_ref, args.app_version)
         elif args.command == "stage":
