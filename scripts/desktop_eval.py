@@ -727,7 +727,9 @@ def collect(root, run_id, session_path):
         read_json(p).get("fixed_environment_id") != fixed_environment for p in previous
     ):
         raise PilotError("effective desktop environment drift between runs")
-    artifacts = snapshot(Path(stage["workspace"]))
+    artifacts = snapshot(
+        Path(stage["workspace"]), binary_auxiliary=config["schema_version"] == 3
+    )
     events = evidence["events"]
     journal = [
         e
