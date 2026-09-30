@@ -1,5 +1,10 @@
 # Desktop pilot preflight — 2026-09-30
 
+Historical observation under the original cancellation policy. The user later
+authorized reporting-only thresholds; see the [current runbook](../README.md).
+The stop denial below is preserved and no longer blocks admission under the
+revised policy. It does not establish fresh-chat or session-log qualification.
+
 **Decision: stop before live dispatch.** The required desktop stop capability is
 unavailable. No catalog-effectiveness conclusion can be drawn.
 

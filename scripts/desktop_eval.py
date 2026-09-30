@@ -58,7 +58,6 @@ SOURCE_FILES = (
 )
 CAPABILITIES = (
     "native_chat_tools",
-    "stop_action",
     "session_logs",
     "separate_workspaces",
 )
@@ -136,7 +135,7 @@ def prepare(root: Path, catalog_ref: str, app_version: str):
         raise PilotError("pinned README onboarding prompt not found")
     specs = fixture_specs()
     config = {
-        "schema_version": 1,
+        "schema_version": 2,
         "created_at": now(),
         "catalog_commit": sha,
         "catalog_version": catalog["catalog/VERSION"].strip(),
@@ -152,8 +151,9 @@ def prepare(root: Path, catalog_ref: str, app_version: str):
         "conditions": list(CONDITIONS),
         "task_limit": 48,
         "evaluator_limit": 48,
-        "task_timeout_seconds": 600,
-        "evaluator_timeout_seconds": 180,
+        "execution_policy": "wait_for_completion",
+        "task_threshold_seconds": 600,
+        "evaluator_threshold_seconds": 180,
         "common_prompt": COMMON,
         "condition_prompts": {
             "bare": "",
@@ -218,8 +218,10 @@ def load_experiment(root):
     config = read_json(root / "config.json")
     value = dict(config)
     recorded = value.pop("config_hash", None)
-    if config.get("schema_version") != 1 or recorded != digest(value):
+    if config.get("schema_version") != 2 or recorded != digest(value):
         raise PilotError("invalid or changed frozen configuration")
+    if config.get("execution_policy") != "wait_for_completion":
+        raise PilotError("unsupported execution policy")
     if config["source_hashes"] != source_hashes():
         raise PilotError("harness changed after freeze; preserve experiment and halt")
     specs, catalog, manifest = (
@@ -338,7 +340,6 @@ def states(events):
             "started",
             "completed",
             "failed",
-            "timed_out",
             "blocked",
         }:
             key = (event["run_id"], event["role"])
@@ -395,7 +396,7 @@ def transition(root, run_id, role, state, **data):
         old = states(events).get((run_id, role))
         allowed = {
             "reserved": {"started", "blocked"},
-            "started": {"completed", "failed", "timed_out", "blocked"},
+            "started": {"completed", "failed", "blocked"},
         }
         if old is None or state not in allowed.get(old["state"], set()):
             raise PilotError("invalid attempt transition")
@@ -418,12 +419,12 @@ def transition(root, run_id, role, state, **data):
             if stamp.tzinfo is None:
                 raise PilotError("start time requires a timezone")
         if (
-            state in {"completed", "failed", "timed_out"}
+            state in {"completed", "failed"}
             and data.get("cessation_observed") is not True
         ):
             raise PilotError("terminal state requires observed cessation")
         event = append(root, config, events, state, run_id, role, **data)
-        if state in {"blocked", "timed_out"} or data.get("account_limit"):
+        if state == "blocked" or data.get("account_limit"):
             append(
                 root,
                 config,
@@ -449,7 +450,7 @@ def deadline(root, run_id, role, current_time=None):
         (current_time or datetime.now(timezone.utc))
         - datetime.fromisoformat(state["started_at"])
     ).total_seconds()
-    return elapsed >= config[f"{role}_timeout_seconds"]
+    return elapsed > config[f"{role}_threshold_seconds"]
 
 
 def row_and_spec(root, run_id):
@@ -867,11 +868,41 @@ def cluster_interval(pairs, seed=20260930):
     }
 
 
+def attempt_timing(events, run_id, role, threshold, observed_at):
+    """Dispatch-to-observed-cessation latency, including coordinator/polling delay."""
+    matching = [e for e in events if e["run_id"] == run_id and e["role"] == role]
+    started = next((e for e in matching if e["kind"] == "started"), None)
+    if started is None:
+        return {
+            "elapsed_seconds": None,
+            "incomplete": True,
+            "within_threshold": None,
+            "threshold_exceeded": None,
+        }
+    terminal = next(
+        (e for e in matching if e["data"].get("cessation_observed") is True), None
+    )
+    end = terminal["at"] if terminal else observed_at
+    elapsed = (
+        datetime.fromisoformat(end)
+        - datetime.fromisoformat(started["data"]["started_at"])
+    ).total_seconds()
+    if elapsed < 0:
+        raise PilotError("observation precedes dispatch; reconcile timestamps")
+    return {
+        "elapsed_seconds": elapsed,
+        "incomplete": terminal is None,
+        "within_threshold": elapsed <= threshold if terminal else None,
+        "threshold_exceeded": elapsed > threshold,
+    }
+
+
 def report(root):
     config, _, manifest = load_experiment(root)
     events = ledger(root, config)
     status = states(events)
     gaps = preflight_gaps(root, config)
+    observed_at = now()
     cells, rows = [], []
     for row in manifest:
         task_state = status.get((row["run_id"], "task"), {}).get("state", "unattempted")
@@ -905,6 +936,16 @@ def report(root):
         cells.append(
             {
                 **row,
+                "timing": {
+                    role: attempt_timing(
+                        events,
+                        row["run_id"],
+                        role,
+                        config[f"{role}_threshold_seconds"],
+                        observed_at,
+                    )
+                    for role in ("task", "evaluator")
+                },
                 "task_status": task_state,
                 "scoring_status": score_state,
                 "scored": result is not None,
@@ -945,7 +986,20 @@ def report(root):
     summaries = {}
     for condition in CONDITIONS:
         selected = [r for r in rows if r["condition_id"] == condition]
+        timed = [
+            c
+            for c in cells
+            if c["condition_id"] == condition
+            and c["scored"]
+            and c["timing"]["task"]["within_threshold"] is not None
+        ]
         summaries[condition] = {
+            "timing_scored": len(timed),
+            "pass_within_threshold_rate_scored": statistics.fmean(
+                c["passed"] and c["timing"]["task"]["within_threshold"] for c in timed
+            )
+            if timed
+            else None,
             "planned": 16,
             "scored": len(selected),
             "pass_rate_scored": statistics.fmean(passed(r) for r in selected)
@@ -1010,6 +1064,11 @@ def report(root):
         "catalog_commit": config["catalog_commit"],
         "model": MODEL,
         "reasoning_effort": EFFORT,
+        "observed_at": observed_at,
+        "execution_policy": config["execution_policy"],
+        "threshold_seconds": {
+            role: config[f"{role}_threshold_seconds"] for role in ("task", "evaluator")
+        },
         "planned": 48,
         "task_attempts": sum(
             e["kind"] == "reserved" and e["role"] == "task" for e in events
@@ -1056,6 +1115,19 @@ def report(root):
     for condition, summary in summaries.items():
         lines.append(
             f"| {condition} | 16 | {summary['attempted']} | {summary['scored']} | {fmt(summary['pass_rate_scored'])} | {fmt(summary['silent_error_rate_scored'])} |"
+        )
+    lines += [
+        "",
+        "## Reporting thresholds",
+        "",
+        "Thresholds never cancel runs. Latency is dispatch to observed cessation and includes polling/coordinator delay. Incomplete durations are lower bounds; outcomes remain unknown.",
+        "",
+        "| Condition | Scored with timing | Pass within task threshold |",
+        "|---|---:|---:|",
+    ]
+    for condition, summary in summaries.items():
+        lines.append(
+            f"| {condition} | {summary['timing_scored']} | {fmt(summary['pass_within_threshold_rate_scored'])} |"
         )
     lines += ["", "## Qualification", ""] + [f"- {g}" for g in gaps + output["halts"]]
     lines += [
@@ -1106,7 +1178,7 @@ def main():
         if name == "transition":
             p.add_argument(
                 "state",
-                choices=("started", "completed", "failed", "timed_out", "blocked"),
+                choices=("started", "completed", "failed", "blocked"),
             )
             p.add_argument("--receipt", type=Path, required=True)
     for name in ("oracle", "evaluator-prompt", "collect", "score"):

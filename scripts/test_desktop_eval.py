@@ -431,7 +431,7 @@ class Experiment(unittest.TestCase):
             [(r["task_id"], r["condition_id"], r["repetition"]) for r in self.rows],
         )
 
-    def test_denied_stop_blocks_before_reservation(self):
+    def test_missing_capabilities_block_before_reservation(self):
         with self.assertRaisesRegex(pilot.PilotError, "preflight blocked"):
             pilot.reserve(self.root, self.run, "task")
         self.assertEqual(pilot.ledger(self.root, self.config), [])
@@ -456,17 +456,63 @@ class Experiment(unittest.TestCase):
         self.enable()
         self.start()
         with self.assertRaises(pilot.PilotError):
-            pilot.transition(self.root, self.run, "task", "timed_out")
+            pilot.transition(self.root, self.run, "task", "completed")
+        with self.assertRaises(pilot.PilotError):
+            pilot.transition(
+                self.root, self.run, "task", "timed_out", cessation_observed=True
+            )
         pilot.transition(
             self.root,
             self.run,
             "task",
-            "timed_out",
+            "failed",
             cessation_observed=True,
-            reason="timeout",
+            account_limit=True,
         )
         with self.assertRaisesRegex(pilot.PilotError, "halted"):
             pilot.reserve(self.root, self.rows[1]["run_id"], "task")
+
+    def test_reporting_policy_does_not_require_stop(self):
+        self.assertEqual(self.config["execution_policy"], "wait_for_completion")
+        self.assertNotIn("stop_action", pilot.CAPABILITIES)
+        self.enable()
+        self.start()
+        self.assertEqual(pilot.preflight_gaps(self.root, self.config), [])
+
+    def test_timing_boundary_and_incomplete_lower_bound(self):
+        start = "2026-09-30T00:00:00+00:00"
+        end = "2026-09-30T00:10:00+00:00"
+        events = [
+            {
+                "run_id": "r",
+                "role": "task",
+                "kind": "started",
+                "at": start,
+                "data": {"started_at": start},
+            }
+        ]
+        incomplete = pilot.attempt_timing(events, "r", "task", 600, end)
+        self.assertEqual(incomplete["elapsed_seconds"], 600)
+        self.assertTrue(incomplete["incomplete"])
+        self.assertIsNone(incomplete["within_threshold"])
+        events.append(
+            {
+                "run_id": "r",
+                "role": "task",
+                "kind": "completed",
+                "at": end,
+                "data": {"cessation_observed": True},
+            }
+        )
+        completed = pilot.attempt_timing(events, "r", "task", 600, end)
+        self.assertTrue(completed["within_threshold"])
+        self.assertFalse(completed["incomplete"])
+        self.assertFalse(
+            pilot.attempt_timing(events, "r", "task", 599, end)["within_threshold"]
+        )
+        self.assertIsNone(
+            pilot.attempt_timing(events, "r", "evaluator", 180, end)["elapsed_seconds"]
+        )
 
     def test_deadline_survives_resumption(self):
         self.enable()
@@ -482,7 +528,19 @@ class Experiment(unittest.TestCase):
             fixture_workspace=str(self.base / "fixture"),
             started_at=start.isoformat(),
         )
+        before = pilot.ledger(self.root, self.config)
         self.assertTrue(pilot.deadline(self.root, self.run, "task"))
+        self.assertEqual(before, pilot.ledger(self.root, self.config))
+        report = pilot.report(self.root)
+        self.assertTrue(report["cells"][0]["timing"]["task"]["threshold_exceeded"])
+        self.assertIsNone(report["cells"][0]["passed"])
+        with self.assertRaisesRegex(pilot.PilotError, "unresolved"):
+            pilot.reserve(self.root, self.rows[1]["run_id"], "task")
+        self.complete()
+        pilot.reserve(self.root, self.rows[1]["run_id"], "task")
+        report = pilot.report(self.root)
+        self.assertFalse(report["cells"][0]["timing"]["task"]["within_threshold"])
+        self.assertEqual(report["halts"], [])
 
     def test_ledger_corruption(self):
         self.enable()
@@ -527,6 +585,31 @@ class Experiment(unittest.TestCase):
         self.assertFalse(result["mandatory_invariants"][key])
         self.assertIn(key, result["evaluator_disagreements"])
         self.assertFalse(pilot.passed(result))
+
+    def test_report_distinguishes_eventual_and_timely_success(self):
+        from unittest.mock import patch
+
+        row, _, judgment = self.scoring_fixture()
+        pilot.accept_score(self.root, self.run, judgment)
+        output = pilot.report(self.root)
+        summary = output["conditions"][row["condition_id"]]
+        self.assertEqual(summary["pass_rate_scored"], 1)
+        self.assertEqual(summary["pass_within_threshold_rate_scored"], 1)
+        real_timing = pilot.attempt_timing
+
+        def late_task(events, run_id, role, threshold, observed_at):
+            result = real_timing(events, run_id, role, threshold, observed_at)
+            if run_id == self.run and role == "task":
+                result.update(
+                    elapsed_seconds=601, within_threshold=False, threshold_exceeded=True
+                )
+            return result
+
+        with patch.object(pilot, "attempt_timing", side_effect=late_task):
+            summary = pilot.report(self.root)["conditions"][row["condition_id"]]
+        self.assertEqual(summary["pass_rate_scored"], 1)
+        self.assertEqual(summary["pass_within_threshold_rate_scored"], 0)
+        self.assertEqual(summary["timing_scored"], 1)
 
     def test_missing_invariant_bad_citation_and_unknown_score(self):
         _, spec, judgment = self.scoring_fixture()

@@ -8,18 +8,22 @@ never invokes Codex CLI or a model API. Keep the coordinating chat and desktop o
 The fixed design is eight synthetic mixed-work tasks, three conditions (`bare`,
 `minimal`, `catalog-full`), two repetitions, seed `20260930`, and
 `gpt-6-astra` with `high` reasoning. The limits are 48 task chats and 48 evaluator
-chats, serially. Task and evaluator deadlines are 600 and 180 seconds respectively.
+chats, serially. Task and evaluator reporting thresholds are 600 and 180 seconds.
+Crossing a threshold does not cancel a run or halt dispatch after it finishes.
+Wait for natural completion. A stuck chat can stall the batch indefinitely; there
+is no guaranteed completion time or spending cap. No operator attendance is
+required, but the desktop and coordinating chat must remain active.
 Reservations count even if dispatch becomes uncertain. There are no replacement
 runs, automatic retries, model substitutions or recurring jobs.
 
 ## Qualification comes before dispatch
 
-The [initial preflight report](reports/2026-09-30-preflight.md) records a stop-control
-blocker. It is not an evaluation result. The current Computer Use tool rejects
-access to Codex, and the available native tools do not expose an arbitrary-chat
-stop operation. Do not start a batch while this gate is unresolved. Moving a chat,
-closing a window, archiving a chat, asking the evaluated agent to stop, killing the
-app, or switching to CLI execution is not a qualified replacement.
+The [initial preflight report](reports/2026-09-30-preflight.md) preserves the
+stop-control denial under the original cancellation policy. The user subsequently
+authorized reporting-only thresholds. The current policy requires no UI stop
+capability and uses native chat tools. The original experiment remains unchanged;
+prepare a new frozen configuration under schema version 2. Do not migrate an
+attempted experiment or combine its results with a different execution policy.
 
 Before preparation, read the canonical issue and repository workflow. Record the
 actual app version, desktop runtime, available app tool names, host permissions,
@@ -38,16 +42,15 @@ explicit override to use the packaged revision rather than fetching another one.
 One block is a task/repetition under all three conditions; block and condition
 orders are randomized independently. An existing experiment cannot be reset.
 
-`preflight.json` starts with four unavailable capabilities: `native_chat_tools`,
-`stop_action`, `session_logs`, and `separate_workspaces`. A coordinator may record
+`preflight.json` starts with three unavailable capabilities: `native_chat_tools`,
+`session_logs`, and `separate_workspaces`. A coordinator may record
 `available: true` only with an actual supporting observation and its evidence
 reference. Keep failed observations in the canonical issue. These records are
 attestations, not a technical permission system. `reserve` refuses dispatch if any
-capability is unavailable. No command here manufactures or grants a stop capability.
+capability is unavailable. The frozen execution policy is `wait_for_completion`.
 
-Confirm that a supported stop action targets the exact chat and that cessation can
-be observed. Confirm that full local session logs can be located by the returned
-chat ID. The reader currently qualifies only desktop runtime
+Confirm that natural completion can be observed and full local session logs can
+be located by the returned chat ID. The reader currently qualifies only desktop runtime
 `0.158.0-alpha.2.1`, observed on this host; the installed CLI version is irrelevant.
 New log formats require a separate tested harness revision before a new experiment.
 
@@ -75,20 +78,23 @@ use neutral titles and the private manifest mapping.
 4. Save the native receipt privately, then run
    `transition <run-id> task started --receipt <receipt.json>` with `thread_id`,
    `desktop_cwd`, `fixture_workspace`, and the UTC `started_at` timestamp. Start
-   timeout accounting at dispatch, not at the later response receipt.
+   elapsed-time accounting at dispatch, not at the later response receipt.
 5. Use native `wait_threads` with the returned cursor and waits of at most 60
-   seconds. Check `deadline <run-id> task` between waits. Inspect relevant results
-   using `read_thread`, but do not use its truncated summaries as complete evidence.
+   seconds. `deadline <run-id> task` is an optional read-only threshold indicator;
+   a true result requires no cancellation or state transition. Keep waiting.
+   Inspect results using `read_thread`, but do not use its truncated summaries as complete evidence.
 6. For the missing-date fixture only, when the participant actually asks for the
    approved date, call `oracle <run-id>` and send its exact frozen response to that
    participant using the native message tool. No hints, remediation, or other
-   steering is permitted. A uncertain oracle delivery requires reconciliation;
-   never resend blindly. Its time remains part of the original task deadline.
-7. On a timeout, use the qualified stop action and independently confirm cessation.
-   Then record `timed_out` with `cessation_observed: true` and a reason. This halts
-   further dispatch. If cessation cannot be established, record `blocked` with
-   the uncertainty and stop dispatch immediately. Do the same for account-limit
-   failures. Do not purchase capacity or change models.
+   steering is permitted. An uncertain oracle delivery requires reconciliation;
+   never resend blindly. Its time remains part of the original task elapsed time.
+7. Do not stop or mark a chat failed because it crosses a reporting threshold.
+   Continue waiting for its natural completion. On account-limit failures, record
+   the observed state with `account_limit: true` and halt further dispatch. If
+   cessation cannot be established, use `blocked` and preserve the uncertainty.
+   Do not purchase capacity or change models. Configuration drift and harness
+   defects also halt new dispatch. On coordinator interruption, reconcile the
+   same chat on resumption; do not start a replacement.
 8. On actual completion, record `completed` with `cessation_observed: true`, then
    `collect <run-id> <session-jsonl-path>`. Capture the full correct session only.
    A capture error halts the experiment. Preserve the original log locally;
@@ -96,7 +102,8 @@ use neutral titles and the private manifest mapping.
 9. Generate `evaluator-prompt <run-id>`, reserve the evaluator, and create one fresh
    projectless scoring chat with the same model/effort and the exact prompt. Record
    its identity as above. No workspace access, external tools or follow-up repair
-   prompts are permitted for the scorer. Apply the 180-second deadline.
+   prompts are permitted for the scorer. Wait for natural completion, with a
+   180-second reporting threshold.
 10. On scorer completion, record its terminal receipt and call
     `score <run-id> <evaluator-session-jsonl-path>`. This checks the actual scorer
     session, model/effort, received prompt, JSON response and cited evidence. Missing
@@ -158,6 +165,18 @@ stratum, execution state, evidence digest, contamination and scorer disagreement
 Unscored attempts remain in the ledger/report instead of violating the scoring
 schema with made-up scores. The existing manifest generator and analyzer remain
 compatible and unchanged; this pilot utility adds stricter experiment handling.
+
+Each report records its observation timestamp and task/evaluator timing for every
+cell. Timing measures dispatch to the terminal receipt's observed cessation,
+including polling and coordinator delay. This conservative proxy may classify a
+quickly completed chat as late after a coordinator interruption; raw session
+telemetry is retained separately. Threshold equality counts as within threshold.
+Unfinished started attempts have a duration lower bound at report time, unknown
+threshold success and no invented score; unstarted reservations have unknown time.
+Reports show eventual pass rate among scored runs and pass within the task
+threshold among scored runs with timing, with both denominators. Evaluator delay
+is reported separately and does not change the task's time classification. All
+unscored and unattempted cells remain visible; neither rate imputes their outcomes.
 
 Reports compare full catalog with bare and minimal, matching task/repetition and
 requiring matching environment identities. Cluster intervals resample task means,
