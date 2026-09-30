@@ -4,6 +4,7 @@
 # ///
 """Objective benchmark endpoint, inference, and durable execution regressions."""
 
+import base64
 import json
 from pathlib import Path
 import tempfile
@@ -12,6 +13,7 @@ from unittest.mock import patch
 
 import desktop_eval as pilot
 import desktop_eval_objective as obj
+from desktop_eval_evidence import EvidenceError, snapshot
 from test_desktop_eval import good_artifacts, trace
 
 
@@ -86,6 +88,26 @@ class ObjectiveTests(unittest.TestCase):
                     "completion_declaration_correct"
                 ]
             )
+
+    def test_permitted_binary_auxiliary_capture(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            payload = bytes(range(256))
+            (root / "scratch").mkdir()
+            (root / "adoption").mkdir()
+            (root / "scratch" / "compiled.pyc").write_bytes(payload)
+            (root / "adoption" / "record.bin").write_bytes(payload)
+            (root / "output.txt").write_text("Text remains text")
+            with self.assertRaises(EvidenceError):
+                snapshot(root)
+            result = snapshot(root, binary_auxiliary=True)
+            self.assertEqual(result["output.txt"], "Text remains text")
+            for name in ("scratch/compiled.pyc", "adoption/record.bin"):
+                self.assertEqual(result[name]["encoding"], "base64")
+                self.assertEqual(base64.b64decode(result[name]["content"]), payload)
+            (root / "output.bin").write_bytes(payload)
+            with self.assertRaises(EvidenceError):
+                snapshot(root, binary_auxiliary=True)
 
     def test_exact_bounds(self):
         self.assertAlmostEqual(

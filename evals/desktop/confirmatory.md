@@ -99,7 +99,10 @@ configuration and ledger errors halt. Diagnose and preserve failed setups before
 any explicitly distinct corrected experiment; never pool incompatible revisions.
 No runtime cancellation, scheduled automation, CLI model invocation or API model
 invocation is provided. Thresholds are reported after completion. Account limits
-halt new dispatch. Raw logs remain ignored and private; public reports contain
+halt new dispatch. Binary files within `adoption/` and `scratch/` are captured as explicit
+`{encoding: "base64", content: "..."}` values; they remain auxiliary evidence,
+not task deliverables. Other binary files remain outside the fixture contract.
+Raw logs remain ignored and private; public reports contain
 aggregate results, sanitized checks and references. The coordinator must remain
 active. Statistical conclusiveness is a possible outcome, not a guarantee.
 

@@ -6,6 +6,7 @@ unrelated sessions. A transcript summary is not an evidence substitute.
 
 from __future__ import annotations
 
+import base64
 import json
 import hashlib
 import html
@@ -312,8 +313,8 @@ def read_session(path: Path, thread_id: str, cwd: Path, model: str, effort: str)
     }
 
 
-def snapshot(workspace: Path):
-    """Capture text artifacts without following symlinks or reading huge files."""
+def snapshot(workspace: Path, binary_auxiliary=False):
+    """Capture text, optionally retaining permitted binary auxiliaries as base64."""
     artifacts = {}
     for path in sorted(workspace.rglob("*")):
         if path.is_symlink():
@@ -322,10 +323,19 @@ def snapshot(workspace: Path):
             continue
         if path.stat().st_size > 1_000_000:
             raise EvidenceError("artifact exceeds the qualified capture limit")
+        relative = path.relative_to(workspace).as_posix()
         try:
-            artifacts[path.relative_to(workspace).as_posix()] = path.read_text()
+            artifacts[relative] = path.read_text()
         except UnicodeDecodeError as exc:
-            raise EvidenceError("non-text artifact outside fixture contract") from exc
+            if binary_auxiliary and relative.startswith(("adoption/", "scratch/")):
+                artifacts[relative] = {
+                    "encoding": "base64",
+                    "content": base64.b64encode(path.read_bytes()).decode("ascii"),
+                }
+            else:
+                raise EvidenceError(
+                    "non-text artifact outside fixture contract"
+                ) from exc
     return artifacts
 
 
