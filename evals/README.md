@@ -91,3 +91,11 @@ costs are never zero. Human review and rework should be included when measured.
 Run `./scripts/test_eval_suite.py` for focused regression checks. The suite also
 runs through `./scripts/check_catalog.py --github` locally and in CI. Test records
 are synthetic and establish tooling behavior only.
+
+## Desktop pilot
+
+The [Codex desktop pilot](desktop/README.md) adds eight concrete mixed-work fixtures,
+frozen condition packages, durable attempt accounting, desktop-session evidence
+validation, blinded scoring, and an all-cell report. Its live dispatch gate remains
+blocked until a supported desktop stop mechanism is qualified; see the
+[preflight report](desktop/reports/2026-09-30-preflight.md).
