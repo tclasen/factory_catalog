@@ -766,6 +766,94 @@ class Experiment(unittest.TestCase):
             (self.root / "runs" / self.run / "evaluator.raw.jsonl").exists()
         )
 
+    def test_unscored_session_is_retained_and_qualifies_with_valid_scores(self):
+        for i, row in enumerate(self.rows[:3]):
+            self.run = row["run_id"]
+            _, _, judgment = self.scoring_fixture()
+            if i != 1:
+                pilot.accept_score(self.root, self.run, judgment)
+                continue
+            judgment["silent_error"] = None
+            records = session_records(
+                self.base / "evaluator", f"test-evaluator-{self.run}"
+            )
+            records[3]["payload"]["content"] = [
+                {"text": pilot.evaluator_prompt(self.root, self.run)}
+            ]
+            records[8]["payload"]["content"] = [{"text": json.dumps(judgment)}]
+            records = [
+                r
+                for r in records
+                if r["payload"].get("type")
+                not in {"function_call", "function_call_output"}
+            ]
+            path = self.base / "uncertain-judge.jsonl"
+            path.write_text("".join(json.dumps(r) + "\n" for r in records))
+            result = pilot.score_session(self.root, self.run, path)
+            self.assertEqual(result["status"], "unscored")
+            self.assertFalse((self.root / "runs" / self.run / "result.json").exists())
+            with self.assertRaisesRegex(pilot.PilotError, "already recorded"):
+                pilot.score_session(self.root, self.run, path)
+        pilot.qualify(self.root)
+        report = pilot.report(self.root)
+        self.assertEqual(sum(c["scored"] for c in report["cells"]), 2)
+        self.assertEqual(report["cells"][1]["scoring_failure"]["status"], "unscored")
+        pilot.reserve(self.root, self.rows[3]["run_id"], "task")
+
+    def test_analysis_amendment_preserves_treatments_and_account_halts(self):
+        from unittest.mock import patch
+        import hashlib
+
+        self.enable()
+        pilot.halt(
+            self.root, "score failed: silent-error judgment incomplete; retain unscored"
+        )
+        pilot.halt(self.root, "account limit")
+        original = (pilot.ROOT / "scripts/desktop_eval.py").read_text()
+        previous = self.base / "original.py"
+        previous.write_text(original)
+        sandbox = self.base / "source"
+        target = sandbox / "scripts/desktop_eval.py"
+        target.parent.mkdir(parents=True)
+        for participant_change in (True, False):
+            changed = (
+                original.replace(
+                    "Use the supplied local inputs.", "Different task instructions."
+                )
+                if participant_change
+                else original.replace(
+                    "# Desktop pilot report", "# Desktop pilot report revised"
+                )
+            )
+            if changed == original and not participant_change:
+                changed = original.replace(
+                    '"## Qualification"', '"## Qualification status"'
+                )
+            target.write_text(changed)
+            hashes = dict(self.config["source_hashes"])
+            hashes["scripts/desktop_eval.py"] = hashlib.sha256(
+                changed.encode()
+            ).hexdigest()
+            with (
+                patch.object(pilot, "ROOT", sandbox),
+                patch.object(pilot, "source_hashes", return_value=hashes),
+            ):
+                if participant_change:
+                    with self.assertRaisesRegex(pilot.PilotError, "boundary"):
+                        pilot.adopt_analysis_revision(self.root, previous, "test")
+                else:
+                    pilot.adopt_analysis_revision(
+                        self.root, previous, "observer-only test"
+                    )
+                    pilot.load_experiment(self.root)
+                    events = pilot.ledger(self.root, self.config)
+                    self.assertEqual(
+                        [e["data"]["reason"] for e in pilot.active_halts(events)],
+                        ["account limit"],
+                    )
+                    with self.assertRaisesRegex(pilot.PilotError, "halted"):
+                        pilot.reserve(self.root, self.run, "task")
+
     def test_successful_qualification_and_serial_continuation(self):
         self.enable()
         for row in self.rows[:3]:
