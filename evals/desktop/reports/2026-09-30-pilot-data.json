@@ -209,6 +209,7 @@
         "uncertainty_reconciled": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 52.982,
@@ -284,6 +285,7 @@
         "uncertainty_reconciled": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV2",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 45.101,
@@ -351,6 +353,7 @@
         "uncertainty_reconciled": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 44.373,
@@ -426,6 +429,7 @@
         "source_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 50.641,
@@ -503,6 +507,7 @@
         "source_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 50.046,
@@ -566,6 +571,7 @@
         "source_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 46.978,
@@ -640,6 +646,7 @@
         "unrelated_preserved": false,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV2",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 46.525,
@@ -706,6 +713,7 @@
         "unrelated_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 50.811,
@@ -779,6 +787,7 @@
         "unrelated_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV2",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 53.007,
@@ -852,6 +861,7 @@
         "scope_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV2",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 49.641,
@@ -918,6 +928,7 @@
         "scope_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 42.195,
@@ -991,6 +1002,7 @@
         "scope_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 47.472,
@@ -1064,6 +1076,7 @@
         "unavailable_not_passed": null,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 38.919,
@@ -1137,6 +1150,7 @@
         "unavailable_not_passed": null,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV2",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 39.699,
@@ -1210,6 +1224,7 @@
         "unavailable_not_passed": null,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 44.627,
@@ -1276,6 +1291,7 @@
         "unrelated_preserved": false,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 40.163,
@@ -1342,6 +1358,7 @@
         "unrelated_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV2",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 47.178,
@@ -1415,6 +1432,7 @@
         "unrelated_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 54.13,
@@ -1489,6 +1507,7 @@
         "initial_failure_observed": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 42.091,
@@ -1564,6 +1583,7 @@
         "initial_failure_observed": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV2",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 46.712,
@@ -1646,6 +1666,7 @@
         "initial_failure_observed": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 53.984,
@@ -1720,6 +1741,7 @@
         "inputs_preserved": false,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV2",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 43.832,
@@ -1786,6 +1808,7 @@
         "inputs_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 36.245,
@@ -1861,6 +1884,7 @@
         "inputs_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 40.9,
@@ -1935,6 +1959,7 @@
         "uncertainty_reconciled": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 49.206,
@@ -2003,6 +2028,7 @@
         "uncertainty_reconciled": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 49.335,
@@ -2078,6 +2104,7 @@
         "uncertainty_reconciled": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 51.16,
@@ -2152,6 +2179,7 @@
         "unavailable_not_passed": null,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 38.509,
@@ -2214,6 +2242,7 @@
         "unavailable_not_passed": null,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV2",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 49.342,
@@ -2282,6 +2311,7 @@
         "unavailable_not_passed": null,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 37.983,
@@ -2356,6 +2386,7 @@
         "source_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 48.863,
@@ -2431,6 +2462,7 @@
         "source_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV2",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 44.55,
@@ -2496,6 +2528,7 @@
         "source_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 44.919,
@@ -2558,6 +2591,7 @@
         "scope_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 48.296,
@@ -2631,6 +2665,7 @@
         "scope_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 49.787,
@@ -2704,6 +2739,7 @@
         "scope_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV2",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 42.841,
@@ -2772,6 +2808,7 @@
         "service_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 39.629,
@@ -2847,6 +2884,7 @@
         "service_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 44.569,
@@ -2922,6 +2960,7 @@
         "service_preserved": false,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 40.845,
@@ -2989,6 +3028,7 @@
         "service_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 43.11,
@@ -3064,6 +3104,7 @@
         "service_preserved": false,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 35.993,
@@ -3132,6 +3173,7 @@
         "service_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 45.754,
@@ -3207,6 +3249,7 @@
         "initial_failure_observed": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 45.781,
@@ -3274,6 +3317,7 @@
         "initial_failure_observed": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV2",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 46.099,
@@ -3349,6 +3393,7 @@
         "initial_failure_observed": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 57.217,
@@ -3423,6 +3468,7 @@
         "inputs_preserved": false,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 43.962,
@@ -3490,6 +3536,7 @@
         "inputs_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 42.938,
@@ -3563,6 +3610,7 @@
         "inputs_preserved": true,
         "verification_claims_supported": null
       },
+      "evaluator_instruction_variant": "EV1",
       "evaluator_usage": {
         "cost_usd": null,
         "elapsed_seconds": 40.133,
