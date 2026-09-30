@@ -358,7 +358,9 @@ class SessionReader(unittest.TestCase):
             ev.read_session(self.path, "test-thread", self.cwd, pilot.MODEL, "high")
         records = session_records(self.cwd)
         records[5]["payload"]["output"] = "Output truncated"
-        self.assertFalse(self.read(records)["complete"])
+        parsed = self.read(records)
+        self.assertTrue(parsed["complete"])
+        self.assertEqual(parsed["output_limitations"], ["E0003"])
 
     def test_snapshot_rejects_symlinks(self):
         (self.cwd / "link").symlink_to("/etc/hosts")
@@ -405,7 +407,7 @@ class Experiment(unittest.TestCase):
             self.root, self.run, role, "completed", cessation_observed=True
         )
 
-    def scoring_fixture(self, first_observation=True):
+    def scoring_fixture(self, first_observation=True, environment="environment"):
         self.enable()
         self.start()
         self.complete()
@@ -415,7 +417,7 @@ class Experiment(unittest.TestCase):
             run_dir / "evidence.json",
             {
                 "deterministic": dict.fromkeys(spec["invariants"], True),
-                "environment_id": "environment",
+                "environment_id": environment,
                 "contamination": [],
                 "telemetry": {"input_tokens": None},
             },
@@ -590,6 +592,8 @@ class Experiment(unittest.TestCase):
             self.assertEqual(
                 (workspace / "catalog").exists(), row["condition_id"] == "catalog-full"
             )
+            if row["condition_id"] == "catalog-full":
+                self.assertIn(self.config["catalog_commit"], prompt)
             if row["condition_id"] == "bare":
                 self.assertNotIn("Factory Catalog", prompt)
             with self.assertRaises(pilot.PilotError):
@@ -683,6 +687,18 @@ class Experiment(unittest.TestCase):
         pilot.write_json(self.root / "manifest.json", rows)
         with self.assertRaisesRegex(pilot.PilotError, "order"):
             pilot.load_experiment(self.root)
+
+    def test_instruction_variant_pairs_are_excluded(self):
+        _, _, judgment = self.scoring_fixture(environment="variant-a")
+        pilot.accept_score(self.root, self.run, judgment)
+        self.run = self.rows[1]["run_id"]
+        _, _, judgment = self.scoring_fixture(environment="variant-b")
+        pilot.accept_score(self.root, self.run, judgment)
+        result = pilot.report(self.root)
+        pairs = result["comparisons"]["catalog-full vs minimal"]
+        self.assertEqual(pairs["pass"]["pairs"], 0)
+        self.assertEqual(len(pairs["excluded_pairs"]), 1)
+        self.assertEqual(sum(c["scored"] for c in result["cells"]), 2)
 
     def test_report_detects_changed_score(self):
         _, _, judgment = self.scoring_fixture()

@@ -14,7 +14,7 @@ Wait for natural completion. A stuck chat can stall the batch indefinitely; ther
 is no guaranteed completion time or spending cap. No operator attendance is
 required, but the desktop and coordinating chat must remain active.
 Reservations count even if dispatch becomes uncertain. There are no replacement
-runs, automatic retries, model substitutions or recurring jobs.
+runs or automatic retries within a frozen setup, model substitutions or recurring jobs.
 
 ## Qualification comes before dispatch
 
@@ -125,8 +125,10 @@ it is not protection against an actor with permission to rewrite all files.
 
 The reader checks session identity, desktop cwd, model, effort, supported runtime,
 turn completion, paired tool calls/results, inherited-context hashes and final
-response. Unknown record types, pending calls, compaction or possible truncation
-stop dependent scoring. Cumulative usage snapshots are not added together. Missing
+response. Unknown record types, pending calls or compaction stop dependent scoring.
+A tool result truncated before reaching the participant is retained exactly as
+seen and flagged as an output-visibility limitation. It does not imply missing
+transcript records; evaluators must leave unsupported judgments unknown. Cumulative usage snapshots are not added together. Missing
 usage/cost stays null. The exact app version and tool availability must also be
 rechecked by the coordinator before each block; stop on changes.
 
@@ -182,7 +184,13 @@ is reported separately and does not change the task's time classification. All
 unscored and unattempted cells remain visible; neither rate imputes their outcomes.
 
 Reports compare full catalog with bare and minimal, matching task/repetition and
-requiring matching environment identities. Cluster intervals resample task means,
+requiring matching environment identities. The desktop has supplied different
+built-in instruction variants across otherwise identical fresh chats. Their hashes
+are recorded, variant counts are reported by condition, and mismatched pairs are
+excluded explicitly. Native creation does not expose a way to pin these variants;
+condition summaries therefore retain this confounder. Permissions, tools, model,
+effort, app/runtime and per-run context still require consistency.
+Cluster intervals resample task means,
 weighting each task equally; they are descriptive with only eight tasks. Unmatched
 runs remain in summaries and the all-cell report. Task and evaluator resource
 observations are reported separately, including their missingness.
@@ -192,7 +200,10 @@ on incomplete or contaminated evidence, and consider a separately authorized lar
 experiment only after a fully qualified pilot. This pilot never authorizes adoption
 on speed alone. Report quality regressions regardless of latency or token savings.
 No retries, fixture repairs, rubric tuning or model changes may be silently mixed
-into a frozen experiment. Preserve it and request a new bounded experiment instead.
+into a frozen experiment. Preserve it and create a new bounded setup when repair
+is authorized. The current user authorization permits automatic harness repairs,
+new setups and verified PR merges until the pilot is complete. Keep cumulative
+attempt counts across setups; never retry genuine task failures merely to pass.
 
 Run `./scripts/test_desktop_eval.py` for offline regressions. These also run through
 `./scripts/check_catalog.py --github`. Synthetic tests establish tooling behavior,

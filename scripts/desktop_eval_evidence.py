@@ -75,6 +75,7 @@ def read_session(path: Path, thread_id: str, cwd: Path, model: str, effort: str)
     delegation_seen = False
     telemetry = {"input_tokens": None, "output_tokens": None, "elapsed_seconds": None}
     incomplete = []
+    limited_calls = []
     world, inherited = {}, []
     for number, line in enumerate(path.read_text().splitlines(), 1):
         try:
@@ -225,8 +226,12 @@ def read_session(path: Path, thread_id: str, cwd: Path, model: str, effort: str)
                     raise EvidenceError("tool output without one preceding call")
                 pending.remove(call_id)
                 output = text_content(payload.get("output", ""))
-                if "truncated" in output.lower():
-                    incomplete.append("possibly_truncated_tool_output")
+                if re.search(
+                    r"(?:warning: truncated output|output truncated|\d+ tokens truncated)",
+                    output,
+                    re.I,
+                ):
+                    limited_calls.append(call_id)
                 events.append(
                     {"kind": "tool_output", "call_id": call_id, "text": output}
                 )
@@ -278,6 +283,11 @@ def read_session(path: Path, thread_id: str, cwd: Path, model: str, effort: str)
         "telemetry": telemetry,
         "complete": not incomplete,
         "gaps": sorted(set(incomplete)),
+        "output_limitations": [
+            e["id"]
+            for e in events
+            if e.get("call_id") in limited_calls and e["kind"] == "tool_output"
+        ],
         "base_instructions": meta.get("base_instructions"),
         "runtime_version": meta["cli_version"],
     }

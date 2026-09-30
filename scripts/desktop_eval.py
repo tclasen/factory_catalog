@@ -152,6 +152,7 @@ def prepare(root: Path, catalog_ref: str, app_version: str):
         "task_limit": 48,
         "evaluator_limit": 48,
         "execution_policy": "wait_for_completion",
+        "inherited_instruction_policy": "record_variants_exclude_mismatched_pairs",
         "task_threshold_seconds": 600,
         "evaluator_threshold_seconds": 180,
         "common_prompt": COMMON,
@@ -159,6 +160,7 @@ def prepare(root: Path, catalog_ref: str, app_version: str):
             "bare": "",
             "minimal": MINIMAL,
             "catalog-full": (
+                f"Pinned catalog source commit: {sha}; version: {catalog['catalog/VERSION'].strip()}. "
                 "Use the packaged Factory Catalog to perform this task. For this experiment, "
                 "the supplied immutable revision overrides any instruction to resolve a newer release. "
                 "Read CATALOG_README.md and catalog/adoption.md and catalog/consumer-contract.md. "
@@ -563,9 +565,20 @@ def collect(root, run_id, session_path):
             "inherited_context_hash": evidence["inherited_context_hashes"][0],
         }
     )
-    # A prior capture freezes the effective instruction/tool configuration.
+    fixed_environment = digest(
+        {
+            "app_version": config["app_version"],
+            "runtime": evidence["runtime_version"],
+            "context": evidence["contexts"][0],
+            "inherited_context_hash": evidence["inherited_context_hashes"][0],
+        }
+    )
+    # Built-in instruction variants are observed, not controlled by native creation.
+    # Preserve them for pairing; permissions/tools/model still require equality.
     previous = list((root / "runs").glob("*/evidence.json"))
-    if any(read_json(p)["environment_id"] != environment for p in previous):
+    if any(
+        read_json(p).get("fixed_environment_id") != fixed_environment for p in previous
+    ):
         raise PilotError("effective desktop environment drift between runs")
     artifacts = snapshot(Path(stage["workspace"]))
     events = evidence["events"]
@@ -607,7 +620,8 @@ def collect(root, run_id, session_path):
     )
     if catalog_artifacts != expected_catalog:
         hits.append("catalog_package_changed")
-    evidence.pop("base_instructions")
+    evidence["base_instruction_hash"] = digest(evidence.pop("base_instructions"))
+    evidence["fixed_environment_id"] = fixed_environment
     evidence.update(
         artifacts=artifacts,
         deterministic=deterministic,
@@ -774,6 +788,7 @@ def accept_score(root, run_id, judgment):
         "evaluator_id": state["thread_id"],
         "evaluator_blinded": True,
         "evaluator_disagreements": disagreements,
+        "evidence_limitations": evidence.get("output_limitations", []),
         "contamination": evidence["contamination"],
         "evidence_digest": digest(evidence),
     }
@@ -963,6 +978,9 @@ def report(root):
                 else [],
                 "reason": status.get((row["run_id"], "task"), {}).get("reason"),
                 "contaminated": bool(result and result["contamination"]),
+                "evidence_limitations": result.get("evidence_limitations", [])
+                if result
+                else [],
             }
         )
     comparisons = {}
@@ -971,15 +989,23 @@ def report(root):
         groups = defaultdict(dict)
         for row in usable:
             groups[(row["task_id"], row["repetition"])][row["condition_id"]] = row
-        pd, sd = [], []
+        pd, sd, excluded = [], [], []
         for (task, _), group in groups.items():
             if baseline in group and "catalog-full" in group:
                 b, t = group[baseline], group["catalog-full"]
                 if b["environment_id"] != t["environment_id"]:
-                    raise PilotError("paired environment mismatch")
+                    excluded.append(
+                        {
+                            "task_id": task,
+                            "repetition": b["repetition"],
+                            "reason": "inherited_instruction_variant_mismatch",
+                        }
+                    )
+                    continue
                 pd.append((task, int(passed(t)) - int(passed(b))))
                 sd.append((task, int(t["silent_error"]) - int(b["silent_error"])))
         comparisons[f"catalog-full vs {baseline}"] = {
+            "excluded_pairs": excluded,
             "pass": cluster_interval(pd),
             "silent_error": cluster_interval(sd),
         }
@@ -1001,6 +1027,9 @@ def report(root):
             if timed
             else None,
             "planned": 16,
+            "environment_variants": dict(
+                Counter(r["environment_id"] for r in selected)
+            ),
             "scored": len(selected),
             "pass_rate_scored": statistics.fmean(passed(r) for r in selected)
             if selected
@@ -1147,7 +1176,7 @@ def report(root):
         json.dumps(telemetry, indent=2),
         "```",
         "",
-        "All 48 cells, task-level results, failed/unknown invariants, and failure modes are retained in report.json.",
+        "All 48 cells, task-level results, failed/unknown invariants, failure modes and tool-output visibility limitations are retained in report.json.",
         "Intervals resample task means and are exploratory with only eight tasks. Missing observations do not become failures or successes.",
         "Automated scoring is not independent human validation. Workspace separation does not prove access isolation.",
         "No result establishes model-independent effectiveness or authorizes expansion.",
