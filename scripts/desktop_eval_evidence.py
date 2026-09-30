@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import hashlib
+import html
 import math
 import os
 import re
@@ -215,7 +216,7 @@ def read_session(path: Path, thread_id: str, cwd: Path, model: str, effort: str)
                     events.append(
                         {
                             "kind": "user",
-                            "text": envelope.group(1),
+                            "text": html.unescape(envelope.group(1)),
                             "source": "desktop_creation",
                         }
                     )
@@ -517,6 +518,7 @@ def python_checks(task_id, workspace: Path):
         body = """from labels import normalize_label
 import json
 import hashlib
+import html
 r = {"normalization_correct": all(normalize_label(x)==y for x,y in [("  North \\t STAR\\n", "north star"), ("", ""), ("A  B", "a b")])}
 r["nonstrings_rejected"] = True
 for value in [None, 3, [], {}]:
