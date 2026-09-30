@@ -5,6 +5,11 @@ under the [workflow](workflow.md). Keep entries proportionate: a small correctio
 can use a sentence per section. Mark unknowns explicitly; omit a conditional field
 only with a reason. Update current state without erasing failed evidence.
 
+This is the local implementation of the [record composition](adoption.md#record-composition).
+Use the [resumption](workflow.md#resume-uncertainty-and-cancellation),
+[resource](workflow.md#resource-accounting-and-stopping) and
+[delivery](workflow.md#delivery-qualification) procedures with the fields below.
+
 ## Intent and boundary
 
 - Request/source, intended beneficiary and outcome:
@@ -16,7 +21,7 @@ only with a reason. Update current state without erasing failed evidence.
 ## Current checklist
 
 - Canonical issue/PR URL and parent, if any:
-- Record owner, last reconciliation time and inspected source revision:
+- Record owner, format/version, last reconciliation time and inspected source revision:
 - Current next safe action; pending local updates not yet published:
 
 | Item ID / accepted completion criterion | State | Owner | Dependencies / blocker and resume condition | Evidence / target revision | Next action |
@@ -40,6 +45,7 @@ A completed PR is not evidence that every parent criterion was met.
 - Runtime/model configuration when known; tool versions and relevant environment:
 - Applicable host/user resource limits, issuer/units, cumulative usage/attempts,
   outstanding reservations, remaining allowance, and next checkpoint:
+- Resource accounting/enforcement reference, child and in-flight exposure, and cancel/drain policy:
 - Unknown telemetry and resulting limits on claims; no numeric budget means no invented quota:
 - Blockers, changed scope/assumptions, and invalidated evidence:
 
@@ -63,7 +69,8 @@ existing provenance instead of copying it. State when the producer also reviewed
 - Before mutation: action, destination, intended revision, authority, and operation identity:
 - After mutation: receipt and independent destination observation; unknown/partial effects:
 - Local checks, signed commit, remote signature verification, PR head, CI, and PR URL:
-- Applicable completion stages and unmet stages; merging/release follow repository policy:
+- Complete artifact boundary, qualified tree/digest, relevant configuration and destination comparison:
+- Applicable completion stages, required remote/installed observations and unmet stages; merging/release follow repository policy:
 - Artifact acceptance / control assessment / observed beneficiary outcome, separately:
 
 ## Handoff and improvement

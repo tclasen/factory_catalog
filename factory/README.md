@@ -5,7 +5,8 @@ this operating binding alongside [CONTRIBUTING](../CONTRIBUTING.md), which remai
 the authority for contribution, security, versioning, and verification policy.
 Start each task here, then use the [workflow](workflow.md) and
 [work record](work-record.md). The [adoption record](adoption.md) identifies the
-selected catalog revisions, local implementations, and gaps.
+current v1 catalog selection, local implementations, migration dispositions, and
+gaps.
 
 ## Project binding
 

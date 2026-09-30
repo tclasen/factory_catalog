@@ -19,7 +19,8 @@ For work spanning sessions or PRs, use one GitHub issue body as the canonical
 current checklist. Keep that parent open until every accepted criterion is
 reconciled; a merged PR completes only its bounded contribution. Use a PR body
 as the canonical record only for a single-PR task with no remaining parent scope.
-Follow the selected [catalog procedure](../catalog/guides/durable-task-tracking.md).
+Follow the [pinned catalog procedure](https://github.com/tclasen/factory_catalog/blob/5aadd9cb822fbc3c9aef68c039038f1594e42c67/catalog/guides/durable-task-tracking.md)
+recorded in the [adoption](adoption.md#composition-basis-and-maintenance).
 
 At intake, record the canonical URL in the local checkpoint and every child PR.
 Create an issue when accepted work has none and needs durable tracking. Find it
@@ -54,8 +55,13 @@ and sensitive source payloads out of public records.
 
 Before resuming writes, read the record and current instructions, confirm prior
 writers/processes stopped or lost access, and inspect actual checkout, dirty work,
-branch, remote head, checks, and authority. A branch name or old checkpoint cannot
-prove exclusive ownership. If ownership or essential intent cannot be established,
+branch, remote head, checks, and authority. Apply the
+[resumption composition](adoption.md#resumption-composition). For an ownership
+transfer, demonstrate that the predecessor has lost effective write access or
+that the receiving boundary rejects stale writes. Cooperative cessation alone
+does not qualify exclusive ownership. Validate a changed record format before
+using it; block dependent mutation if consequential fields cannot be interpreted.
+A branch name or old checkpoint cannot prove exclusive ownership. If ownership or essential intent cannot be established,
 preserve work and block dependent mutation. If the record is missing or unreadable,
 reconstruct only supported facts from the request and actual systems.
 
@@ -65,6 +71,51 @@ candidate before creating another. If state remains unavailable, retain the bloc
 do not assume a retry is harmless. Record partial effects individually. On
 cancellation, stop owned execution safely, preserve unfinished work and effects,
 and report cancellation rather than completion.
+
+## Resource accounting and stopping
+
+Apply the [execution composition](adoption.md#execution-composition) during intake,
+before consuming an allowance, and on retry or resumption. Record the task boundary,
+resource owner, actual granted limits, measurement/enforcement mechanism, cumulative
+usage, outstanding reservations and remaining capacity in the work record. Include
+children and worst-case in-flight use when relevant; serial execution does not
+eliminate resource consumption. Unknown host limits or telemetry remain gaps, not
+invented quotas or proof of an enforceable budget.
+
+Before a bounded operation, establish sufficient capacity through accounting,
+conservative reservations or an enforceable operation limit. Uncertain usage cannot
+reset capacity. Stop new consumption when the allowance is exhausted or remaining
+capacity cannot be established; reconcile or refer the needed limit decision to its
+authorized owner. Cancel or drain in-flight work within the declared stopping policy
+and preserve partial artifacts and unresolved effects. The actor cannot raise its
+own grant. The owner must qualify missing aggregate enforcement before relying on
+this factory for work requiring that boundary.
+
+Diagnose unchanged failure loops before retrying, preserve cumulative attempts,
+and checkpoint before the next operation would exceed a known allowance. These
+local stopping duties remain even where technical budget enforcement is proposed.
+
+## Delivery qualification
+
+Apply the [delivery composition](adoption.md#delivery-composition). Before publication,
+record the accepted destination and completion stages, their checks and failure
+routes. For a source-only PR, the artifact is the complete staged Git tree, including
+its source, guidance, tests and checked-in configuration. Record relevant tool and
+external environment identities separately; a relevant change invalidates affected
+evidence. Generated attachments, packages or installed behavior require an explicit
+artifact boundary and task-specific qualification if they enter scope.
+
+Run the required local checks and bind their results to that tree. Verify that the
+signed commit carries it, then inspect GitHub's actual commit/tree and PR head/base,
+signature and required remote checks. A remote branch name or successful push is
+insufficient. Changed, missing or extra files, a different rebuild, incompatible
+configuration or unavailable destination evidence leaves delivery open; reconcile
+and rerun affected qualification before claiming it complete. Follow CONTRIBUTING
+for signing, review and publication; this composition adds no merge authority.
+
+Report each stage separately. PR delivery cannot establish integration, release,
+installation or beneficiary outcomes. Keep required remote behavior unverified
+until observed, and retain blocked stages and the next action in the work record.
 
 ## Improve without rewriting the evidence
 
