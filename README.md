@@ -32,24 +32,54 @@ Every adopted control must retain its identity, catalog version, and exact sourc
 
 ## Copy and paste into an agent
 
-Replace the bracketed fields:
+Paste either prompt as written. The agent inspects the project context and asks
+for missing information; no substitutions are needed.
+
+### Onboard a new or existing project
 
 ```text
-Use https://github.com/tclasen/factory_catalog to help build a knowledge-work
-factory for [project or system] that achieves [outcomes], subject to [constraints].
+Use https://github.com/tclasen/factory_catalog to onboard this project to a
+knowledge-work factory. Inspect the available project context and instructions;
+if no project exists yet, help define it. Ask concise onboarding questions about
+missing outcomes, activities, owners, risks, constraints, and authority before
+making decisions that depend on the answers.
 
-Read the README and inspect the available controls. Record the exact catalog
-commit and the value of catalog/VERSION at that same commit.
-Recommend a prioritized selection of applicable controls with rationale,
-dependencies, implementation steps, expected outcomes, and assessment evidence.
+Use the newest stable catalog release, or the latest published main commit if
+none exists. Resolve it to a full commit SHA and read catalog/VERSION there.
+Follow catalog/adoption.md and catalog/consumer-contract.md at that revision;
+inspect the complete control inventory, not just curated indexes.
 
-Adopt controls by [version-pinned URL / copy and paste], preserving each control's
-identity, version, and source commit. Implement and assess the selected controls
-within the project's existing instructions and permissions. Report what passed,
-what failed, and what remains unverified.
+Select a minimal, prioritized set with rationale and dependencies. Integrate it
+into the project's workflow within existing instructions and permissions. Default
+to adoption by reference; preserve each control's identity, version, pinned URL,
+and local adaptations in a durable project adoption record. Implement and assess
+the selection, recording evidence and reporting passes, failures, unverified work,
+and catalog gaps without presenting invented controls as catalog content.
+```
 
-If the catalog lacks the necessary controls, identify the gaps and propose next
-steps without presenting invented controls as catalog content.
+### Migrate an existing catalog adoption
+
+```text
+Migrate this project's use of https://github.com/tclasen/factory_catalog to the
+newest stable release, or the latest published main commit if none exists.
+Inspect project instructions, adoption records, copied controls, references, and
+local adaptations. Ask focused questions where missing context or provenance
+blocks a reliable migration; do not guess the previously adopted revisions.
+
+Resolve the target to a full commit SHA and read catalog/VERSION there. Follow
+catalog/adoption.md and catalog/consumer-contract.md at that revision. Compare
+each adopted revision with the target, including release notes, requirements,
+assessments, dependencies, paths, and metadata. Account for every adopted control:
+retain, update, replace, or explicitly defer/retire it with rationale. Evaluate
+replacements for moved, removed, split, or combined controls by meaning; preserve
+uncovered local duties and flag gaps. New controls are not mandatory additions.
+
+Within existing project instructions and permissions, migrate affected workflow,
+implementation, copies, and references, preserving local adaptations and prior
+adoption records. Record each resulting control's identity, version, exact source
+SHA, and pinned URL, including any deferred old pins. Run affected assessments
+before claiming a current pass; keep historical evidence bound to its original
+revision. Report changes, passes, failures, unverified work, and remaining gaps.
 ```
 
 ## Contributing
