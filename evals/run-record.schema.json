@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Factory Catalog evaluation run record",
+  "type": "object",
+  "required": [
+    "run_id",
+    "task_id",
+    "condition_id",
+    "model_id",
+    "repetition",
+    "scores",
+    "mandatory_invariants",
+    "silent_error",
+    "failure_modes"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "condition_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "repetition": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "catalog_commit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fixture_revision": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "environment_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scores": {
+      "type": "object",
+      "required": [
+        "artifact_correctness",
+        "process_correctness",
+        "recovery",
+        "calibration",
+        "efficiency"
+      ],
+      "properties": {
+        "artifact_correctness": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "process_correctness": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "recovery": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "calibration": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        },
+        "efficiency": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        }
+      },
+      "additionalProperties": false
+    },
+    "mandatory_invariants": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "boolean",
+          "null"
+        ]
+      }
+    },
+    "silent_error": {
+      "type": "boolean"
+    },
+    "failure_modes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "telemetry": {
+      "type": "object",
+      "properties": {
+        "input_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "output_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "tool_calls": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "elapsed_seconds": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "human_review_minutes": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "human_rework_minutes": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "cost_usd": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "evaluator_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evaluator_blinded": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}
