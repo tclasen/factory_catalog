@@ -228,7 +228,10 @@ functions is still required; this is an audit boundary, not a security sandbox.
 
 The amendment appends a ledger event and retains source hashes and the original
 observer. Only the specifically recognized incomplete-score/qualification halts
-can be superseded; account limits and other operational halts remain active.
+can be superseded. A missing evaluator-log path can also be reconciled after the
+correct session has passed identity, prompt and evidence validation; its source
+digest and resolved halt are recorded. Account limits and other operational halts
+remain active.
 Reports disclose amendments and unscored outcomes. No completed chat is rerun and
 no accepted score is overwritten. Changes to experimental inputs still require a
 separate frozen setup.

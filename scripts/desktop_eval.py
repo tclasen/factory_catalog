@@ -220,7 +220,7 @@ def active_halts(events):
     superseded = {
         n
         for e in events
-        if e["kind"] == "analysis_amended"
+        if e["kind"] in {"analysis_amended", "evidence_reconciled"}
         for n in e["data"].get("superseded_halts", [])
     }
     return [
@@ -953,7 +953,7 @@ def score_session(root, run_id, session_path):
     write_json(run_dir / "evaluator-usage.json", evidence["telemetry"])
     try:
         judgment = json.loads(final)
-        return accept_score(root, run_id, judgment)
+        result = accept_score(root, run_id, judgment)
     except (json.JSONDecodeError, PilotError) as exc:
         outcome = {
             "run_id": run_id,
@@ -971,7 +971,30 @@ def score_session(root, run_id, session_path):
                 run_id,
                 outcome_digest=digest(outcome),
             )
-        return outcome
+        result = outcome
+    # A corrected path can recover missing-file observations without redispatch.
+    with locked(root):
+        events = ledger(root, config)
+        resolved = [
+            e["sequence"]
+            for e in active_halts(events)
+            if e["data"]
+            .get("reason", "")
+            .startswith("score failed: [Errno 2] No such file or directory:")
+            and status["thread_id"] in e["data"]["reason"]
+        ]
+        if resolved:
+            append(
+                root,
+                config,
+                events,
+                "evidence_reconciled",
+                run_id,
+                superseded_halts=resolved,
+                session_sha256=hashlib.sha256(session_path.read_bytes()).hexdigest(),
+                reason="Correct session recovered and validated for the recorded evaluator identity",
+            )
+    return result
 
 
 def qualify(root):

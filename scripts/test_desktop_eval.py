@@ -789,7 +789,14 @@ class Experiment(unittest.TestCase):
             ]
             path = self.base / "uncertain-judge.jsonl"
             path.write_text("".join(json.dumps(r) + "\n" for r in records))
+            pilot.halt(
+                self.root,
+                f"score failed: [Errno 2] No such file or directory: 'missing-test-evaluator-{self.run}.jsonl'",
+            )
             result = pilot.score_session(self.root, self.run, path)
+            self.assertEqual(
+                pilot.active_halts(pilot.ledger(self.root, self.config)), []
+            )
             self.assertEqual(result["status"], "unscored")
             self.assertFalse((self.root / "runs" / self.run / "result.json").exists())
             with self.assertRaisesRegex(pilot.PilotError, "already recorded"):
