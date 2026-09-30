@@ -241,3 +241,10 @@ separate frozen setup.
 A successful retained-task capture can reconcile its own prior unmatched-envelope
 halt, identified by the immediately preceding task completion. Other tasks’ halts
 and unresolved evidence remain untouched.
+
+## Objective follow-up
+
+The [objective desktop benchmark](confirmatory.md) corrects the pilot's scoring
+and permissions problems and defines a new, separately frozen experiment with
+planned equivalence/superiority decisions. Use `prepare --confirmatory` for schema
+3; ordinary `prepare` retains the original pilot protocol.

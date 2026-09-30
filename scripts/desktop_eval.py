@@ -25,6 +25,8 @@ import statistics
 import subprocess
 import tarfile
 
+import desktop_eval_objective as objective
+
 from analyze_evals import SCORE_FIELDS, passed, validate
 from desktop_eval_evidence import (
     SUPPORTED_RUNTIME,
@@ -54,6 +56,7 @@ SOURCE_FILES = (
     "evals/desktop/service.py",
     "scripts/desktop_eval.py",
     "scripts/desktop_eval_evidence.py",
+    "scripts/desktop_eval_objective.py",
     "scripts/analyze_evals.py",
 )
 CAPABILITIES = (
@@ -109,7 +112,7 @@ def fixture_specs():
     return specs
 
 
-def prepare(root: Path, catalog_ref: str, app_version: str):
+def prepare(root: Path, catalog_ref: str, app_version: str, confirmatory=False):
     if root.exists():
         raise PilotError(
             "experiment directory already exists; never reset an experiment"
@@ -171,29 +174,43 @@ def prepare(root: Path, catalog_ref: str, app_version: str):
         "rubric": read_json(ROOT / "evals/desktop/rubric.json"),
         "decision_rule": "Do not adopt from this eight-task pilot. Stop on harness/qualification defects; revise on missing or contaminated evidence. Consider a separately authorized larger experiment only after complete qualification and scoring; report all quality regressions regardless of speed.",
     }
+    if confirmatory:
+        specs = objective.fixtures(specs)
+        config.update(
+            schema_version=3,
+            fixture_revision=digest(specs),
+            seed=20261001,
+            repetitions=None,
+            task_limit=3 * objective.LOOKS[-1],
+            evaluator_limit=0,
+            common_prompt=objective.COMMON,
+            inherited_instruction_policy="retain_all_randomized_assignments",
+            planned_looks=list(objective.LOOKS),
+            practical_margin=objective.MARGIN,
+            tail_alpha=objective.TAIL_ALPHA,
+            decision_rule="Stop at the first planned look with both quality contrasts classified; otherwise continue to the final look. Never change margins or replace outcomes.",
+        )
+        config["condition_prompts"]["catalog-full"] += (
+            "\nKeep any adoption records under adoption/ and working notes under scratch/. "
+            "The task permissions and completion.json interface apply throughout."
+        )
     config["config_hash"] = digest(config)
-    rng = random.Random(config["seed"])
-    blocks = [(spec, rep) for spec in specs for rep in (1, 2)]
-    rng.shuffle(blocks)
     manifest = []
-    for block, (spec, rep) in enumerate(blocks, 1):
-        conditions = list(CONDITIONS)
-        rng.shuffle(conditions)
-        for condition in conditions:
-            identity = [config["config_hash"], spec["id"], condition, rep]
-            manifest.append(
-                {
-                    "run_id": digest(identity)[:20],
-                    "task_id": spec["id"],
-                    "condition_id": condition,
-                    "model_id": MODEL,
-                    "repetition": rep,
-                    "block": block,
-                    "order": len(manifest) + 1,
-                    "stratum": spec["stratum"],
-                    "domain": spec["domain"],
-                }
-            )
+    for task, condition, rep, block in objective.order(config, specs, CONDITIONS):
+        spec = next(s for s in specs if s["id"] == task)
+        manifest.append(
+            {
+                "run_id": digest([config["config_hash"], task, condition, rep])[:20],
+                "task_id": task,
+                "condition_id": condition,
+                "model_id": MODEL,
+                "repetition": rep,
+                "block": block,
+                "order": len(manifest) + 1,
+                "stratum": spec["stratum"],
+                "domain": spec["domain"],
+            }
+        )
     root.mkdir(parents=True, mode=0o700)
     for name, value in (
         ("config.json", config),
@@ -348,7 +365,7 @@ def load_experiment(root):
     config = read_json(root / "config.json")
     value = dict(config)
     recorded = value.pop("config_hash", None)
-    if config.get("schema_version") != 2 or recorded != digest(value):
+    if config.get("schema_version") not in {2, 3} or recorded != digest(value):
         raise PilotError("invalid or changed frozen configuration")
     if config.get("execution_policy") != "wait_for_completion":
         raise PilotError("unsupported execution policy")
@@ -363,13 +380,9 @@ def load_experiment(root):
         or digest(catalog) != config["catalog_digest"]
     ):
         raise PilotError("frozen fixture/catalog content changed")
-    expected = {(s["id"], c, r) for s in specs for c in CONDITIONS for r in (1, 2)}
-    if (
-        len(manifest) != 48
-        or {(r["task_id"], r["condition_id"], r["repetition"]) for r in manifest}
-        != expected
-    ):
-        raise PilotError("manifest does not cover exactly the 48 planned cells")
+    expected_order = objective.order(config, specs, CONDITIONS)
+    if len(manifest) != len(expected_order):
+        raise PilotError("manifest does not cover exactly the planned cells")
     for row in manifest:
         if (
             row["run_id"]
@@ -378,14 +391,6 @@ def load_experiment(root):
             )[:20]
         ):
             raise PilotError("manifest identity mismatch")
-    rng = random.Random(config["seed"])
-    blocks = [(spec["id"], rep) for spec in specs for rep in (1, 2)]
-    rng.shuffle(blocks)
-    expected_order = []
-    for block, (task, rep) in enumerate(blocks, 1):
-        conditions = list(CONDITIONS)
-        rng.shuffle(conditions)
-        expected_order.extend((task, condition, rep, block) for condition in conditions)
     for order, (row, expected_cell) in enumerate(zip(manifest, expected_order), 1):
         if (
             (row["task_id"], row["condition_id"], row["repetition"], row["block"])
@@ -516,6 +521,20 @@ def reserve(root, run_id, role):
             row = next(r for r in manifest if r["run_id"] == run_id)
             if row["block"] > 1 and not any(e["kind"] == "qualified" for e in events):
                 raise PilotError("first block has not qualified")
+            if config["schema_version"] == 3:
+                for prior in manifest[: row["order"] - 1]:
+                    if objective_result(root, prior["run_id"])["status"] != "scored":
+                        raise PilotError(
+                            "operational evidence unknown; preserve and diagnose"
+                        )
+                if row["block"] > objective.LOOKS[0]:
+                    interim = objective_report(
+                        root, write=False, look=objective.LOOKS[0]
+                    )
+                    if interim["decision"] != "continue":
+                        raise PilotError(
+                            "planned stopping gate: " + interim["decision"]
+                        )
         return append(root, config, events, "reserved", run_id, role)
 
 
@@ -728,7 +747,8 @@ def collect(root, run_id, session_path):
         e["kind"] == "user" and stored_prompt in e["text"] for e in events
     ):
         raise PilotError("task did not receive its frozen prompt")
-    deterministic = check_fixture(
+    checker = objective.checks if config["schema_version"] == 3 else check_fixture
+    deterministic = checker(
         spec, artifacts, events, python_checks(spec["id"], Path(stage["workspace"]))
     )
     hits = contamination(events, row["condition_id"], stage["workspace"])
@@ -767,7 +787,7 @@ def collect(root, run_id, session_path):
     blind_events = [
         dict(e)
         for e in events
-        if not (e["kind"] == "user" and COMMON.strip() in e["text"])
+        if not (e["kind"] == "user" and config["common_prompt"].strip() in e["text"])
     ]
     for event in blind_events:
         event["text"] = event["text"].replace(stage["workspace"], "[workspace]")
@@ -1064,6 +1084,11 @@ def qualify(root):
             captured, _ = verify_capture(root, run_id)
             if captured["contamination"]:
                 raise PilotError("first block has contaminated evidence")
+            if config["schema_version"] == 3:
+                if objective_result(root, run_id)["status"] != "scored":
+                    raise PilotError("qualification has operational unknowns")
+                accepted += 1
+                continue
             path = root / "runs" / run_id / "result.json"
             unknown = root / "runs" / run_id / "unscored.json"
             if path.exists():
@@ -1134,6 +1159,8 @@ def attempt_timing(events, run_id, role, threshold, observed_at):
 
 
 def report(root):
+    if read_json(root / "config.json")["schema_version"] == 3:
+        return objective_report(root)
     config, _, manifest = load_experiment(root)
     events = ledger(root, config)
     status = states(events)
@@ -1419,6 +1446,220 @@ def report(root):
     return output
 
 
+def objective_result(root, run_id):
+    config, _, spec = row_and_spec(root, run_id)
+    if config["schema_version"] != 3:
+        raise PilotError("objective scoring requires schema 3")
+    evidence, _ = verify_capture(root, run_id)
+    value = read_json(root / "runs" / run_id / "objective.json")
+    if value != {
+        "config_hash": config["config_hash"],
+        "run_id": run_id,
+        "evidence_digest": digest(evidence),
+        **objective.outcome(spec, evidence),
+    }:
+        raise PilotError("objective result mismatch")
+    receipts = [
+        e
+        for e in ledger(root, config)
+        if e["kind"] == "objective_scored" and e["run_id"] == run_id
+    ]
+    if len(receipts) != 1 or receipts[0]["data"]["outcome_digest"] != digest(value):
+        raise PilotError("objective score receipt missing or mismatched")
+    return value
+
+
+def score_objective(root, run_id):
+    config, _, spec = row_and_spec(root, run_id)
+    if config["schema_version"] != 3:
+        raise PilotError("objective scoring requires schema 3")
+    evidence, _ = verify_capture(root, run_id)
+    value = {
+        "config_hash": config["config_hash"],
+        "run_id": run_id,
+        "evidence_digest": digest(evidence),
+        **objective.outcome(spec, evidence),
+    }
+    with locked(root):
+        events = ledger(root, config)
+        receipts = [
+            e
+            for e in events
+            if e["kind"] == "objective_scored" and e["run_id"] == run_id
+        ]
+        path = root / "runs" / run_id / "objective.json"
+        if path.exists() and read_json(path) != value:
+            raise PilotError("preserve inconsistent objective result")
+        if receipts:
+            return objective_result(root, run_id)
+        # Crash recovery may adopt the identical unreceipted deterministic file.
+        write_json(path, value)
+        append(
+            root,
+            config,
+            events,
+            "objective_scored",
+            run_id,
+            outcome_digest=digest(value),
+        )
+    return objective_result(root, run_id)
+
+
+def objective_report(root, write=True, look=None):
+    config, specs, manifest = load_experiment(root)
+    events = ledger(root, config)
+    status = states(events)
+    rows = []
+    for row in manifest:
+        run_id = row["run_id"]
+        item = {
+            **row,
+            "execution_status": status.get((run_id, "task"), {}).get(
+                "state", "not_dispatched"
+            ),
+            "pass": None,
+            "structured_false_completion": None,
+        }
+        path = root / "runs" / run_id
+        if (path / "objective.json").exists():
+            item.update(objective_result(root, run_id))
+            evidence = read_json(path / "evidence.json")
+            item.update(
+                telemetry=evidence["telemetry"],
+                instruction_variant=evidence["base_instruction_hash"],
+                environment=evidence["fixed_environment_id"],
+                evidence_complete=evidence["complete"],
+                evidence_ref=f"runs/{run_id}/evidence.json",
+            )
+        item["timing"] = attempt_timing(
+            events,
+            run_id,
+            "task",
+            config["task_threshold_seconds"],
+            now(),
+        )
+        rows.append(item)
+    complete = sum(r["pass"] is not None for r in rows)
+    eligible = [
+        n for n in objective.LOOKS if all(r["pass"] is not None for r in rows[: 3 * n])
+    ]
+    if look is not None and look not in eligible:
+        raise PilotError("planned look requires every assigned outcome")
+    selected = look or (max(eligible) if eligible else None)
+    contrasts = {}
+    if selected:
+        blocks = [
+            {r["condition_id"]: r for r in rows[3 * i : 3 * i + 3]}
+            for i in range(selected)
+        ]
+        for baseline in CONDITIONS[:2]:
+            contrast = objective.comparison(
+                [(b["catalog-full"]["pass"], b[baseline]["pass"]) for b in blocks]
+            )
+            contrast["native_time_overhead"] = objective.overhead(
+                [
+                    (
+                        b["catalog-full"]["telemetry"].get("elapsed_seconds"),
+                        b[baseline]["telemetry"].get("elapsed_seconds"),
+                    )
+                    for b in blocks
+                ]
+            )
+
+            def total(row):
+                t = row["telemetry"]
+                return (
+                    t["input_tokens"] + t["output_tokens"]
+                    if all(
+                        t.get(k) is not None for k in ("input_tokens", "output_tokens")
+                    )
+                    else None
+                )
+
+            contrast["token_overhead"] = objective.overhead(
+                [(total(b["catalog-full"]), total(b[baseline])) for b in blocks]
+            )
+            contrasts[baseline] = contrast
+    decision = "await_planned_look"
+    if selected:
+        conclusive = all(c["decision"] != "unresolved" for c in contrasts.values())
+        decision = (
+            "conclusive"
+            if conclusive
+            else "continue"
+            if selected < objective.LOOKS[-1]
+            else "unresolved_at_maximum"
+        )
+    conditions = {}
+    for condition in CONDITIONS:
+        assigned = [r for r in rows if r["condition_id"] == condition]
+        observed = [r for r in assigned if r["pass"] is not None]
+        conditions[condition] = {
+            "planned": len(assigned),
+            "attempted": sum(
+                r["execution_status"] != "not_dispatched" for r in assigned
+            ),
+            "scored": len(observed),
+            "passed": sum(r["pass"] for r in observed),
+            "structured_false_completions": sum(
+                r["structured_false_completion"] for r in observed
+            ),
+            "instruction_variants": dict(
+                Counter(r["instruction_variant"] for r in observed)
+            ),
+            "task_results": {
+                s["id"]: {
+                    "scored": sum(r["task_id"] == s["id"] for r in observed),
+                    "passed": sum(
+                        r["task_id"] == s["id"] and r["pass"] for r in observed
+                    ),
+                }
+                for s in specs
+            },
+        }
+    output = {
+        "config_hash": config["config_hash"],
+        "schema_version": 3,
+        "scored": complete,
+        "selected_look": selected,
+        "decision": decision,
+        "contrasts": contrasts,
+        "conditions": conditions,
+        "runs": rows,
+        "active_halts": active_halts(events),
+        "monetary_cost": None,
+        "planned_looks": list(objective.LOOKS),
+        "practical_margin": objective.MARGIN,
+        "tail_alpha": objective.TAIL_ALPHA,
+    }
+    if write:
+        write_json(root / "report.json", output)
+        lines = [
+            "# Objective desktop benchmark",
+            "",
+            f"Scored: {complete}; decision: {decision}.",
+            "",
+            "| Condition | Attempted | Scored | Passed | Structured false completion |",
+            "|---|---:|---:|---:|---:|",
+        ]
+        for name, c in conditions.items():
+            lines.append(
+                f"| {name} | {c['attempted']} | {c['scored']} | {c['passed']} | {c['structured_false_completions']} |"
+            )
+        lines.extend(
+            [
+                "",
+                "## Prespecified comparisons",
+                "",
+                json.dumps(contrasts, indent=2),
+                "",
+                "Intervals assume independent stationary draws from the frozen eight-task mixture. Repeated identical fixtures, automated checks, desktop instruction variation, and unobserved host access limit inference. No human validation or general task-population claim. Monetary costs unknown.",
+            ]
+        )
+        (root / "report.md").write_text("\n".join(lines) + "\n")
+    return output
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--experiment", type=Path, required=True)
@@ -1426,6 +1667,7 @@ def main():
     p = sub.add_parser("prepare")
     p.add_argument("--catalog-ref", required=True)
     p.add_argument("--app-version", required=True)
+    p.add_argument("--confirmatory", action="store_true")
     sub.add_parser("status")
     sub.add_parser("report")
     sub.add_parser("qualify")
@@ -1448,7 +1690,7 @@ def main():
                 choices=("started", "completed", "failed", "blocked"),
             )
             p.add_argument("--receipt", type=Path, required=True)
-    for name in ("oracle", "evaluator-prompt", "collect", "score"):
+    for name in ("oracle", "evaluator-prompt", "collect", "score", "objective-score"):
         p = sub.add_parser(name)
         p.add_argument("run_id")
         if name in ("collect", "score"):
@@ -1461,7 +1703,9 @@ def main():
                 root, args.previous_source, args.reason, args.previous_reader
             )
         elif args.command == "prepare":
-            result = prepare(root, args.catalog_ref, args.app_version)
+            result = prepare(
+                root, args.catalog_ref, args.app_version, args.confirmatory
+            )
         elif args.command == "stage":
             result = stage_workspace(root, args.run_id, args.workspace)
         elif args.command == "reserve":
@@ -1480,6 +1724,8 @@ def main():
                 "contamination": evidence["contamination"],
                 "evidence_path": str(root / "runs" / args.run_id / "evidence.json"),
             }
+        elif args.command == "objective-score":
+            result = score_objective(root, args.run_id)
         elif args.command == "score":
             result = score_session(root, args.run_id, args.input)
         elif args.command == "oracle":
@@ -1501,7 +1747,7 @@ def main():
         print(result if isinstance(result, str) else json.dumps(result, indent=2))
     except (PilotError, EvidenceError, OSError, ValueError, KeyError) as exc:
         if (
-            args.command in {"collect", "score", "qualify"}
+            args.command in {"collect", "score", "objective-score", "qualify"}
             and (root / "config.json").exists()
         ):
             try:
