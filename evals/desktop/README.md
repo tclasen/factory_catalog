@@ -53,7 +53,7 @@ Confirm that natural completion can be observed and full local session logs can
 be located by the returned chat ID. The reader currently qualifies only desktop runtime
 `0.159.2`, observed in a fresh projectless chat; the installed CLI version is irrelevant.
 The reader decodes character entities once in the desktop creation envelope,
-normalizes that envelope as user input and
+normalizes creation and same-sender follow-up envelopes as user input and
 `final_answer` as the final response; all other unmatched tool outputs still fail.
 New log formats require a separate tested harness revision before a new experiment.
 
@@ -221,8 +221,10 @@ merely to obtain a score. All 48 cells remain in reporting denominators.
 An authorized observer correction can preserve the current task experiment using
 `adopt-analysis-revision <original-observer.py> <reason>`. The original source must
 match the frozen hash. An AST comparison rejects changes outside the observer and
-admission functions; every other frozen input and the session reader must remain
-identical. The score rule, evaluator prompt, fixture checks, task prompts and
+admission functions; every other frozen input must remain identical. A reader-normalization correction
+requires `--previous-reader <frozen-reader.py>`: its original hash must match and
+AST comparison permits changes only inside `read_session`, preserving runtime
+constants and all fixture checker functions. The score rule, evaluator prompt, fixture checks, task prompts and
 reservation limits are outside the allowed change set. Review of the allowed
 functions is still required; this is an audit boundary, not a security sandbox.
 
@@ -235,3 +237,7 @@ remain active.
 Reports disclose amendments and unscored outcomes. No completed chat is rerun and
 no accepted score is overwritten. Changes to experimental inputs still require a
 separate frozen setup.
+
+A successful retained-task capture can reconcile its own prior unmatched-envelope
+halt, identified by the immediately preceding task completion. Other tasks’ halts
+and unresolved evidence remain untouched.

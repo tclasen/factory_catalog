@@ -327,6 +327,44 @@ class SessionReader(unittest.TestCase):
             with self.subTest(mode=mode), self.assertRaises(ev.EvidenceError):
                 self.read(candidate)
 
+    def test_followup_envelope_requires_original_sender(self):
+        records = session_records(self.cwd)
+        envelope = "<codex_delegation>\n  <source_thread_id>00000000-0000-0000-0000-000000000000</source_thread_id>\n  <input>{}</input>\n</codex_delegation>"
+        records[3] = {
+            "type": "response_item",
+            "payload": {
+                "type": "function_call_output",
+                "name": "create_thread",
+                "namespace": "codex_app",
+                "output": envelope.format("Task"),
+            },
+        }
+        followup = {
+            "type": "response_item",
+            "payload": {
+                "type": "function_call_output",
+                "name": "send_message_to_thread",
+                "namespace": "codex_app",
+                "output": envelope.format("Approved &lt;date&gt;"),
+            },
+        }
+        records.insert(8, followup)
+        parsed = self.read(records)
+        self.assertEqual(
+            [
+                e["text"]
+                for e in parsed["events"]
+                if e.get("source") == "desktop_followup"
+            ],
+            ["Approved <date>"],
+        )
+        self.assertEqual(parsed["telemetry"]["tool_calls"], 1)
+        followup["payload"]["output"] = followup["payload"]["output"].replace(
+            "00000000-", "11111111-", 1
+        )
+        with self.assertRaises(ev.EvidenceError):
+            self.read(records)
+
     def test_runtime_model_effort_and_workspace_drift(self):
         for index, key, value in (
             (0, "cli_version", "new-version"),
@@ -722,7 +760,9 @@ class Experiment(unittest.TestCase):
         records[3]["payload"]["content"] = [{"text": prompt}]
         path = self.base / "task-session.jsonl"
         path.write_text("".join(json.dumps(r) + "\n" for r in records))
+        pilot.halt(self.root, "collect failed: tool output without one preceding call")
         pilot.collect(self.root, self.run, path)
+        self.assertEqual(pilot.active_halts(pilot.ledger(self.root, self.config)), [])
         blind = pilot.read_json(self.root / "runs" / self.run / "blind.json")
         self.assertNotIn("condition_id", blind)
         self.assertFalse(

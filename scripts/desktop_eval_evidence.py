@@ -73,6 +73,7 @@ def read_session(path: Path, thread_id: str, cwd: Path, model: str, effort: str)
     seen_calls = set()
     meta = None
     delegation_seen = False
+    delegation_source = None
     telemetry = {"input_tokens": None, "output_tokens": None, "elapsed_seconds": None}
     incomplete = []
     limited_calls = []
@@ -195,30 +196,48 @@ def read_session(path: Path, thread_id: str, cwd: Path, model: str, effort: str)
                 if (
                     subtype == "function_call_output"
                     and call_id is None
-                    and payload.get("name") == "create_thread"
+                    and payload.get("name")
+                    in {"create_thread", "send_message_to_thread"}
                     and payload.get("namespace") == "codex_app"
                 ):
                     # Desktop creation supplies the task as an initial envelope,
                     # not an agent tool invocation. Keep its input as user data.
                     envelope = re.fullmatch(
-                        r"<codex_delegation>\n  <source_thread_id>[0-9a-f-]{36}</source_thread_id>"
+                        r"<codex_delegation>\n  <source_thread_id>([0-9a-f-]{36})</source_thread_id>"
                         r"\n  <input>(.*)</input>\n</codex_delegation>",
                         text_content(payload.get("output", "")),
                         re.S,
                     )
+                    creation = payload["name"] == "create_thread"
                     if (
-                        delegation_seen
-                        or seen_calls
-                        or any(e["kind"] == "assistant" for e in events)
-                        or not envelope
+                        not envelope
+                        or (
+                            creation
+                            and (
+                                delegation_seen
+                                or seen_calls
+                                or any(e["kind"] == "assistant" for e in events)
+                            )
+                        )
+                        or (
+                            not creation
+                            and (
+                                not delegation_seen
+                                or envelope.group(1) != delegation_source
+                            )
+                        )
                     ):
-                        raise EvidenceError("invalid desktop creation envelope")
-                    delegation_seen = True
+                        raise EvidenceError("invalid desktop input envelope")
+                    if creation:
+                        delegation_seen = True
+                        delegation_source = envelope.group(1)
                     events.append(
                         {
                             "kind": "user",
-                            "text": html.unescape(envelope.group(1)),
-                            "source": "desktop_creation",
+                            "text": html.unescape(envelope.group(2)),
+                            "source": "desktop_creation"
+                            if creation
+                            else "desktop_followup",
                         }
                     )
                     continue
