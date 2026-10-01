@@ -39,7 +39,7 @@ def main() -> int:
     root = Path(__file__).resolve().parent.parent
     commands = [[sys.executable, str(root / "scripts" / name)] for name in (
         "test_validate_catalog.py", "test_release_catalog.py", "test_eval_suite.py", "test_desktop_eval.py",
-        "test_desktop_eval_objective.py", "validate_catalog.py", "build_catalog.py",
+        "test_desktop_eval_objective.py", "test_audit_desktop_clarifications.py", "validate_catalog.py", "build_catalog.py",
         "check_guidance_links.py", "review_catalog.py",
     )]
     if args.github:

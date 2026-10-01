@@ -138,3 +138,25 @@ Cross-model differences are descriptive. Historical Astra/high comparisons
 also differ in reasoning effort and execution date. Missing capture or account
 limits halt dispatch and leave results incomplete; no result is guaranteed
 conclusive. Native logs must match each experiment's frozen model and effort.
+
+### Clarification sensitivity audit
+
+The Luna replay exposed a false negative in the frozen T02 checker: it accepts
+an assistant request containing a question mark, or an input-tool call, but misses
+an explicit imperative such as “Please provide the approved launch date.” The
+original scores and evidence remain unchanged. A separate **post hoc sensitivity
+analysis** examines every T02 assignment in both models and all conditions:
+
+```sh
+uv run scripts/audit_desktop_clarifications.py build/evals/EXPERIMENT
+```
+
+The audit writes `clarification-audit.json`, binding its source hash and event
+references to the frozen experiment. It recognizes explicit assistant requests
+for the approved/launch date before actual oracle delivery. Statements about a
+missing date, quoted/tool text, and requests after delivery cannot support a
+correction. It only corrects that wording predicate; other failures and unknown
+evidence remain. Unscored assignments stay visible. This narrow automated audit
+is neither independent human validation nor a replacement primary endpoint.
+Report original and audited rates separately and identify any remaining checker
+limitations before interpreting differences.
