@@ -108,3 +108,33 @@ active. Statistical conclusiveness is a possible outcome, not a guarantee.
 
 Run `./scripts/test_desktop_eval_objective.py` and
 `./scripts/check_catalog.py --github` before publication or live dispatch.
+
+## Fixed Luna replay
+
+[Issue #90](https://github.com/tclasen/factory_catalog/issues/90) specifies a new
+fixed replay of the first 81 blocks (243 assignments) from the original schedule
+for each of `gpt-5.6-luna` and `gpt-6-luna`, both at `xhigh`: 486 task chats total,
+zero evaluator chats and no replacement attempts. Prepare separate experiments:
+
+```sh
+./scripts/desktop_eval.py --experiment build/evals/NEW prepare \
+  --catalog-ref f4c6f53679248f3330a6724b8458fe0e49cd0999 \
+  --app-version 'OBSERVED VERSION (BUILD)' --confirmatory \
+  --model gpt-5.6-luna --effort xhigh --replay-blocks 81
+```
+
+Repeat with `gpt-6-luna` and a different experiment directory. The full original
+128-block draw and condition shuffles are generated before taking the prefix.
+Only model/effort, experiment identity, and the fixed stopping plan change;
+fixtures, catalog, prompts, checks, and assignment order remain the same.
+The default command retains the original Astra/high sequential design.
+
+Freeze before dispatch and analyze only after all 81 blocks for each model;
+there is no early quality stopping. Keep the existing `0.05 / 32` per-tail
+allocation, now covering two models × two condition contrasts × eight tails at
+one final look. Keep the 10-point practical margin and all limitations above.
+The four within-model condition contrasts are the prespecified comparisons.
+Cross-model differences are descriptive. Historical Astra/high comparisons
+also differ in reasoning effort and execution date. Missing capture or account
+limits halt dispatch and leave results incomplete; no result is guaranteed
+conclusive. Native logs must match each experiment's frozen model and effort.

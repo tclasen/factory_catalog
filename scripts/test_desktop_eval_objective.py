@@ -189,6 +189,46 @@ class ObjectiveTests(unittest.TestCase):
             with self.assertRaises(pilot.PilotError):
                 pilot.load_experiment(root)
 
+    def test_luna_replay_preserves_original_prefix(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            original = Path(tmp) / "original"
+            pilot.prepare(original, "HEAD", "synthetic", True)
+            _, _, old = pilot.load_experiment(original)
+            keys = ("task_id", "condition_id", "repetition", "block", "order")
+            for model in ("gpt-5.6-luna", "gpt-6-luna"):
+                root = Path(tmp) / model
+                config = pilot.prepare(
+                    root, "HEAD", "synthetic", True, model, "xhigh", 81
+                )
+                _, _, rows = pilot.load_experiment(root)
+                self.assertEqual(len(rows), 243)
+                self.assertEqual(config["planned_looks"], [81])
+                self.assertEqual(config["task_limit"], 243)
+                self.assertEqual(config["reasoning_effort"], "xhigh")
+                self.assertEqual(
+                    [{k: r[k] for k in keys} for r in rows],
+                    [{k: r[k] for k in keys} for r in old[:243]],
+                )
+                self.assertTrue(all(r["model_id"] == model for r in rows))
+                self.assertTrue(
+                    set(r["run_id"] for r in rows).isdisjoint(r["run_id"] for r in old)
+                )
+                with self.assertRaises(pilot.PilotError):
+                    pilot.objective_report(root, look=64)
+                rows[0]["model_id"] = pilot.MODEL
+                pilot.write_json(root / "manifest.json", rows)
+                with self.assertRaises(pilot.PilotError):
+                    pilot.load_experiment(root)
+            for count in (0, 129, True):
+                with self.assertRaises(pilot.PilotError):
+                    pilot.prepare(
+                        Path(tmp) / "bad",
+                        "HEAD",
+                        "synthetic",
+                        True,
+                        replay_blocks=count,
+                    )
+
     def test_idempotent_scoring_and_receipts(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp) / "experiment"
@@ -223,9 +263,23 @@ class ObjectiveTests(unittest.TestCase):
                     pilot.objective_result(root, run)
 
     def test_reporting_and_planned_stop_guard(self):
+        self.check_reporting(False)
+
+    def test_fixed_replay_reporting_and_no_early_stop(self):
+        self.check_reporting(True)
+
+    def check_reporting(self, replay):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp) / "experiment"
-            config = pilot.prepare(root, "HEAD", "synthetic", True)
+            config = pilot.prepare(
+                root,
+                "HEAD",
+                "synthetic",
+                True,
+                "gpt-6-luna",
+                "xhigh",
+                81 if replay else None,
+            )
             _, specs, rows = pilot.load_experiment(root)
             pilot.write_json(
                 root / "preflight.json",
@@ -250,10 +304,17 @@ class ObjectiveTests(unittest.TestCase):
                 )
 
             add("qualified")
-            for row in rows[:192]:
+            for row in rows[: 243 if replay else 192]:
                 run = row["run_id"]
                 spec = next(s for s in specs if s["id"] == row["task_id"])
-                add("reserved", run, "task")
+                if row["order"] == 193:
+                    self.assertEqual(
+                        pilot.objective_report(root)["decision"], "await_planned_look"
+                    )
+                    pilot.reserve(root, run, "task")
+                    events = pilot.ledger(root, config)
+                else:
+                    add("reserved", run, "task")
                 add(
                     "started",
                     run,
@@ -293,11 +354,17 @@ class ObjectiveTests(unittest.TestCase):
                 add("objective_scored", run, outcome_digest=pilot.digest(value))
             report = pilot.objective_report(root)
             self.assertEqual(report["decision"], "conclusive")
-            self.assertEqual(report["selected_look"], 64)
-            self.assertEqual(report["scored"], 192)
-            self.assertEqual(report["conditions"]["catalog-full"]["passed"], 64)
-            with self.assertRaisesRegex(pilot.PilotError, "planned stopping gate"):
-                pilot.reserve(root, rows[192]["run_id"], "task")
+            self.assertEqual(report["selected_look"], 81 if replay else 64)
+            self.assertEqual(report["scored"], 243 if replay else 192)
+            self.assertEqual(
+                report["conditions"]["catalog-full"]["passed"], 81 if replay else 64
+            )
+            if replay:
+                with self.assertRaises(pilot.PilotError):
+                    pilot.reserve(root, rows[-1]["run_id"], "task")
+            else:
+                with self.assertRaisesRegex(pilot.PilotError, "planned stopping gate"):
+                    pilot.reserve(root, rows[192]["run_id"], "task")
 
 
 if __name__ == "__main__":

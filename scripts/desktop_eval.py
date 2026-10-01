@@ -112,7 +112,25 @@ def fixture_specs():
     return specs
 
 
-def prepare(root: Path, catalog_ref: str, app_version: str, confirmatory=False):
+def prepare(
+    root: Path,
+    catalog_ref: str,
+    app_version: str,
+    confirmatory=False,
+    model_id=MODEL,
+    reasoning_effort=EFFORT,
+    replay_blocks=None,
+):
+    if model_id not in {MODEL, "gpt-5.6-luna", "gpt-6-luna"}:
+        raise PilotError("unsupported desktop model")
+    if reasoning_effort not in {"low", "medium", "high", "xhigh", "max"}:
+        raise PilotError("unsupported reasoning effort")
+    if replay_blocks is not None and (
+        not confirmatory
+        or type(replay_blocks) is not int
+        or not 1 <= replay_blocks <= objective.LOOKS[-1]
+    ):
+        raise PilotError("replay requires 1–128 objective blocks")
     if root.exists():
         raise PilotError(
             "experiment directory already exists; never reset an experiment"
@@ -145,8 +163,8 @@ def prepare(root: Path, catalog_ref: str, app_version: str, confirmatory=False):
         "catalog_digest": digest(catalog),
         "fixture_revision": digest(specs),
         "source_hashes": source_hashes(),
-        "model_id": MODEL,
-        "reasoning_effort": EFFORT,
+        "model_id": model_id,
+        "reasoning_effort": reasoning_effort,
         "app_version": app_version,
         "runtime_version": SUPPORTED_RUNTIME,
         "seed": 20260930,
@@ -194,6 +212,13 @@ def prepare(root: Path, catalog_ref: str, app_version: str, confirmatory=False):
             "\nKeep any adoption records under adoption/ and working notes under scratch/. "
             "The task permissions and completion.json interface apply throughout."
         )
+    if replay_blocks is not None:
+        config.update(
+            replay_blocks=replay_blocks,
+            task_limit=3 * replay_blocks,
+            planned_looks=[replay_blocks],
+            decision_rule="Complete every fixed replay assignment; analyze once at the final block. No early quality stop or replacement attempts.",
+        )
     config["config_hash"] = digest(config)
     manifest = []
     for task, condition, rep, block in objective.order(config, specs, CONDITIONS):
@@ -203,7 +228,7 @@ def prepare(root: Path, catalog_ref: str, app_version: str, confirmatory=False):
                 "run_id": digest([config["config_hash"], task, condition, rep])[:20],
                 "task_id": task,
                 "condition_id": condition,
-                "model_id": MODEL,
+                "model_id": model_id,
                 "repetition": rep,
                 "block": block,
                 "order": len(manifest) + 1,
@@ -396,7 +421,7 @@ def load_experiment(root):
             (row["task_id"], row["condition_id"], row["repetition"], row["block"])
             != expected_cell
             or row["order"] != order
-            or row["model_id"] != MODEL
+            or row["model_id"] != config["model_id"]
         ):
             raise PilotError("manifest randomized order/configuration changed")
     return config, specs, manifest
@@ -527,14 +552,13 @@ def reserve(root, run_id, role):
                         raise PilotError(
                             "operational evidence unknown; preserve and diagnose"
                         )
-                if row["block"] > objective.LOOKS[0]:
-                    interim = objective_report(
-                        root, write=False, look=objective.LOOKS[0]
-                    )
-                    if interim["decision"] != "continue":
-                        raise PilotError(
-                            "planned stopping gate: " + interim["decision"]
-                        )
+                for look in config["planned_looks"][:-1]:
+                    if row["block"] > look:
+                        interim = objective_report(root, write=False, look=look)
+                        if interim["decision"] != "continue":
+                            raise PilotError(
+                                "planned stopping gate: " + interim["decision"]
+                            )
         return append(root, config, events, "reserved", run_id, role)
 
 
@@ -695,7 +719,11 @@ def collect(root, run_id, session_path):
     if stage["workspace"] != status.get("fixture_workspace"):
         raise PilotError("fixture workspace receipt mismatch")
     evidence = read_session(
-        session_path, status["thread_id"], Path(status["desktop_cwd"]), MODEL, EFFORT
+        session_path,
+        status["thread_id"],
+        Path(status["desktop_cwd"]),
+        config["model_id"],
+        config["reasoning_effort"],
     )
     if not evidence["complete"]:
         raise PilotError("incomplete desktop evidence: " + ", ".join(evidence["gaps"]))
@@ -999,7 +1027,11 @@ def score_session(root, run_id, session_path):
     if status.get("state") != "completed":
         raise PilotError("evaluator session is not completed")
     evidence = read_session(
-        session_path, status["thread_id"], Path(status["desktop_cwd"]), MODEL, EFFORT
+        session_path,
+        status["thread_id"],
+        Path(status["desktop_cwd"]),
+        config["model_id"],
+        config["reasoning_effort"],
     )
     if not evidence["complete"] or any(
         e["kind"] == "tool_call" for e in evidence["events"]
@@ -1351,8 +1383,8 @@ def report(root):
     output = {
         "config_hash": config["config_hash"],
         "catalog_commit": config["catalog_commit"],
-        "model": MODEL,
-        "reasoning_effort": EFFORT,
+        "model": config["model_id"],
+        "reasoning_effort": config["reasoning_effort"],
         "observed_at": observed_at,
         "execution_policy": config["execution_policy"],
         "threshold_seconds": {
@@ -1543,7 +1575,9 @@ def objective_report(root, write=True, look=None):
         rows.append(item)
     complete = sum(r["pass"] is not None for r in rows)
     eligible = [
-        n for n in objective.LOOKS if all(r["pass"] is not None for r in rows[: 3 * n])
+        n
+        for n in config["planned_looks"]
+        if all(r["pass"] is not None for r in rows[: 3 * n])
     ]
     if look is not None and look not in eligible:
         raise PilotError("planned look requires every assigned outcome")
@@ -1589,7 +1623,7 @@ def objective_report(root, write=True, look=None):
             "conclusive"
             if conclusive
             else "continue"
-            if selected < objective.LOOKS[-1]
+            if selected < config["planned_looks"][-1]
             else "unresolved_at_maximum"
         )
     conditions = {}
@@ -1622,6 +1656,8 @@ def objective_report(root, write=True, look=None):
     output = {
         "config_hash": config["config_hash"],
         "schema_version": 3,
+        "model": config["model_id"],
+        "reasoning_effort": config["reasoning_effort"],
         "scored": complete,
         "selected_look": selected,
         "decision": decision,
@@ -1630,7 +1666,7 @@ def objective_report(root, write=True, look=None):
         "runs": rows,
         "active_halts": active_halts(events),
         "monetary_cost": None,
-        "planned_looks": list(objective.LOOKS),
+        "planned_looks": config["planned_looks"],
         "practical_margin": objective.MARGIN,
         "tail_alpha": objective.TAIL_ALPHA,
     }
@@ -1670,6 +1706,9 @@ def main():
     p.add_argument("--catalog-ref", required=True)
     p.add_argument("--app-version", required=True)
     p.add_argument("--confirmatory", action="store_true")
+    p.add_argument("--model", default=MODEL)
+    p.add_argument("--effort", default=EFFORT)
+    p.add_argument("--replay-blocks", type=int)
     sub.add_parser("status")
     sub.add_parser("report")
     sub.add_parser("qualify")
@@ -1706,7 +1745,13 @@ def main():
             )
         elif args.command == "prepare":
             result = prepare(
-                root, args.catalog_ref, args.app_version, args.confirmatory
+                root,
+                args.catalog_ref,
+                args.app_version,
+                args.confirmatory,
+                args.model,
+                args.effort,
+                args.replay_blocks,
             )
         elif args.command == "stage":
             result = stage_workspace(root, args.run_id, args.workspace)

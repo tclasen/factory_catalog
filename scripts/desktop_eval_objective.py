@@ -63,6 +63,10 @@ def order(config, specs, conditions):
         shuffled = list(conditions)
         rng.shuffle(shuffled)
         rows.extend((task, c, rep, block) for c in shuffled)
+    # Draw/shuffle the full original schedule first: shortening the draw changes
+    # RNG state and would silently change the condition order of earlier blocks.
+    if "replay_blocks" in config:
+        return rows[: 3 * config["replay_blocks"]]
     return rows
 
 
